@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EMSA实验 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link active">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>⚡ EMSA——凝胶迁移阻滞实验</h1>
+  <p>如何"看见"两个分子在管子里结合了？让慢的跑在后面！</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> EMSA实验</div>
+
+<div class="card">
+  <h2>🧊 核心原理：大块头跑得慢</h2>
+  <p>EMSA全称是<strong>Electrophoretic Mobility Shift Assay</strong>（凝胶迁移阻滞实验），名字很唬人，但原理极其简单：</p>
+  <div class="hint-box">
+    <h4>💡 一句话概括</h4>
+    <p>把DNA片段放在凝胶中通电，它会在电场作用下"跑"（迁移）。如果DNA跟蛋白质结合了，变成了一个更大的<strong>DNA-蛋白质复合物</strong>——块头大了，就跑得慢了。因此，看条带位置就知道有没有结合。</p>
+  </div>
+  <p><strong>比喻：</strong> 想象你在一个窄巷子里赛跑——瘦子跑得快（游离DNA），胖子跑得慢（DNA+蛋白质复合物）。如果你在终点看到两个条带：一个在前面（游离DNA），一个在后面（复合物），说明有一部分DNA和蛋白质"绑在一起"变胖了。</p>
+</div>
+
+<div class="card">
+  <h2>🧪 实验流程分步拆解</h2>
+  <ol class="step-list">
+    <li><strong>制备探针</strong><br>化学合成一段包含Cs基因启动子序列的DNA短片段，用放射性同位素或荧光标记，让它"能看见"。</li>
+    <li><strong>体外结合反应</strong><br>在试管中将标记好的探针与纯化的T蛋白混合，在适当的缓冲液中孵育，让它们自由结合。</li>
+    <li><strong>非变性凝胶电泳</strong><br>将反应混合物加样到非变性聚丙烯酰胺凝胶上，通电跑胶。注意：必须是<strong>非变性</strong>胶，不能破坏DNA-蛋白质之间的非共价结合。</li>
+    <li><strong>成像检测</strong><br>用放射自显影或荧光成像系统（磷屏成像仪）检测标记探针的位置，看到条带。</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>📊 四组实验的逻辑——为什么要这样设计？</h2>
+  <table>
+    <tr><th>组别</th><th>T蛋白</th><th>标记探针</th><th>未标记野生型</th><th>未标记突变型</th><th>预期条带</th><th>目的</th></tr>
+    <tr><td>1</td><td>−</td><td>+</td><td>−</td><td>−</td><td>只有游离探针</td><td><strong>阴性对照</strong>：确认没有T蛋白时探针不滞留</td></tr>
+    <tr><td>2</td><td>+</td><td>+</td><td>−</td><td>−</td><td>复合物条带 + 游离探针</td><td><strong>阳性对照</strong>：确认T蛋白能结合标记探针</td></tr>
+    <tr><td>3</td><td>+</td><td>+</td><td>+</td><td>−</td><td>复合物条带<strong>变细</strong></td><td><strong>竞争实验</strong>：验证结合是特异性的</td></tr>
+    <tr><td>4</td><td>+</td><td>+</td><td>−</td><td>+</td><td>复合物条带<strong>不变</strong></td><td><strong>特异性对照</strong>：验证突变破坏了结合位点</td></tr>
+  </table>
+
+  <h3>逐个拆解设计意图</h3>
+
+  <h4>第1组：阴性对照——排除探针自身"卡在胶里"的可能</h4>
+  <p>如果只有探针、没有T蛋白，按理说只应看到"游离探针"条带（跑在最前面）。如果这一组出现了滞留条带，说明探针本身有聚合或其他非特异性滞留，实验就不准确了。</p>
+
+  <h4>第2组：阳性对照——确认T蛋白确实能结合</h4>
+  <p>T蛋白+标记探针，这是验证结合的最基本条件。出现复合物条带，说明"T蛋白确实能结合Cs基因的启动子"。这一组也是<strong>第4组的比较基准</strong>。</p>
+
+  <h4>第3组：竞争实验——验证结合的特异性</h4>
+  <p>加入大量<strong>未标记的野生型探针</strong>来"抢生意"。如果T蛋白对Cs启动子的结合是特异性的，那未标记探针会竞争掉一部分T蛋白，使能与标记探针结合的T蛋白减少，复合物条带变细。</p>
+  <p>如果条带没有变细，就说明结合是非特异性的（T蛋白随手乱粘），实验结果不可信。</p>
+
+  <h4>第4组：突变探针对照——确认那"特定几个碱基"是关键</h4>
+  <p>加入未标记的<strong>突变型</strong>探针——把推测的T蛋白结合位点的几个关键碱基改掉。如果突变后就不能竞争了（条带不变），说明突变正好破坏了结合位点；如果突变后仍然能竞争，说明突变的不是真正结合位点。</p>
+  <p>第4组的结果<strong>与第2组相近</strong>，说明突变探针完全失去了结合能力，不能参与竞争。</p>
+</div>
+
+<div class="card">
+  <h2>🖼️ 电泳结果示意图</h2>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 320">
+      <!-- Gel background -->
+      <rect x="80" y="40" width="520" height="240" fill="#f0f4ff" stroke="#ccc" stroke-width="2" rx="4"/>
+      <!-- Lane labels -->
+      <text x="145" y="30" text-anchor="middle" font-size="12" fill="#333">第1组</text>
+      <text x="275" y="30" text-anchor="middle" font-size="12" fill="#333">第2组</text>
+      <text x="405" y="30" text-anchor="middle" font-size="12" fill="#333">第3组</text>
+      <text x="535" y="30" text-anchor="middle" font-size="12" fill="#333">第4组</text>
+      <!-- Lane dividers -->
+      <line x1="210" y1="40" x2="210" y2="270" stroke="#ccc" stroke-width="1"/>
+      <line x1="340" y1="40" x2="340" y2="270" stroke="#ccc" stroke-width="1"/>
+      <line x1="470" y1="40" x2="470" y2="270" stroke="#ccc" stroke-width="1"/>
+      <!-- 复合物 label -->
+      <text x="60" y="100" font-size="11" fill="#c62828">复合物</text>
+      <line x1="70" y1="95" x2="80" y2="95" stroke="#c62828" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- 游离探针 label -->
+      <text x="60" y="220" font-size="11" fill="#1565c0">游离探针</text>
+      <line x1="70" y1="215" x2="80" y2="215" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- Lane 1: only free -->
+      <rect x="115" y="200" width="60" height="10" rx="5" fill="#1565c0"/>
+      <!-- Lane 2: complex + free -->
+      <rect x="245" y="80" width="60" height="10" rx="5" fill="#c62828"/>
+      <rect x="245" y="200" width="60" height="10" rx="5" fill="#1565c0"/>
+      <!-- Lane 3: thin complex + free -->
+      <rect x="375" y="80" width="60" height="5" rx="2.5" fill="#c62828"/>
+      <rect x="375" y="200" width="60" height="10" rx="5" fill="#1565c0"/>
+      <!-- Lane 4: complex + free (same as lane 2) -->
+      <rect x="505" y="80" width="60" height="10" rx="5" fill="#c62828"/>
+      <rect x="505" y="200" width="60" height="10" rx="5" fill="#1565c0"/>
+      <!-- Annotations -->
+      <text x="145" y="250" text-anchor="middle" font-size="10" fill="#666">无T蛋白</text>
+      <text x="275" y="250" text-anchor="middle" font-size="10" fill="#666">T+探针</text>
+      <text x="405" y="250" text-anchor="middle" font-size="10" fill="#c62828">竞争↓</text>
+      <text x="535" y="250" text-anchor="middle" font-size="10" fill="#2e7d32">不变✓</text>
+      <!-- Arrow -->
+      <text x="430" y="275" text-anchor="middle" font-size="11" fill="#666">箭头表示电泳方向（+极）</text>
+      <polygon points="340,280 345,295 335,295" fill="#666"/>
+    </svg>
+    <figcaption>EMSA电泳条带示意图（箭头方向为电泳方向）</figcaption>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔗 回到题目：图2的结论是怎么来的？</h2>
+  <p><strong>从EMSA到"T蛋白结合Cs启动子"：</strong></p>
+  <p>图2直接证明了T蛋白<strong>在体外</strong>能结合Cs基因的启动子DNA。这是直接的生化证据。</p>
+  <p><strong>从"体外结合"到"体内促进表达"：</strong></p>
+  <p>图1（反义核酸实验）证明了T蛋白<strong>在体内</strong>促进苦茶碱合成。图2证明T蛋白的作用是通过<strong>结合Cs启动子</strong>实现的。两图结合，证明了完整的调控链条：</p>
+  <p style="text-align:center;font-weight:bold;color:var(--primary-dark);">
+    T蛋白 → 结合Cs启动子 → 促进Cs基因转录 → 产生苦茶碱合成酶 → 合成苦茶碱
+  </p>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. EMSA实验中，第3组加入过量未标记探针后复合物条带变细，这说明：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'C')">A. T蛋白降解了</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">B. 标记探针失效了</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">C. T蛋白与DNA的结合是特异性且可被竞争</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">D. 实验操作失误</div>
+    </div>
+    <div class="quiz-feedback" id="qfb1"></div>
+    <p style="margin-top:16px;">2. 如果第4组的突变探针仍然能竞争（条带变细），说明什么？</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck2(this,'B')">A. EMSA实验失败了</div>
+      <div class="quiz-option" onclick="qcheck2(this,'B')">B. 突变位点不是T蛋白结合的关键碱基</div>
+      <div class="quiz-option" onclick="qcheck2(this,'B')">C. T蛋白没有结合Cs启动子</div>
+      <div class="quiz-option" onclick="qcheck2(this,'B')">D. 标记探针被降解了</div>
+    </div>
+    <div class="quiz-feedback" id="qfb2"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="03-antisense.html" class="nav-link">← 反义核酸技术</a>
+  <a href="05-luciferase.html" class="nav-link">💡 荧光素酶互补 →</a>
+</div>
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){
+  document.querySelectorAll('#qfb1').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>{var t=e.textContent.trim();if(t.length>1&&'ABCD'.includes(t[0])&&e.parentElement.parentElement.id!==''){if(e.parentElement===document.querySelector('#qfb2').parentElement)return;}e.classList.remove('correct','wrong');});
+  document.querySelectorAll('.quiz-option').forEach(e=>{var t=e.textContent.trim();if(t.startsWith(ans))el===e&&e.classList.add(el===e?'correct':'');});
+  el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb1').className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb1').innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！竞争实验证明了结合的特异性——如果结合是非特异性的，未标记探针就无法有效竞争。':'❌ 正确选项是C。';}
+function qcheck2(el,ans){
+  document.querySelectorAll('#qfb2').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb2').className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb2').innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！如果突变探针仍能竞争，说明被突变的碱基不是结合的关键位点，T蛋白仍能识别突变探针并与之结合。':'❌ 正确选项是B。';}
+</script>
+</body>
+</html>

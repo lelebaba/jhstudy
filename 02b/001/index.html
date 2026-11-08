@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幽门螺杆菌与胃癌 — 学习课件</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link active">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt/β-cat信号通路</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="05-protein-degradation.html" class="tree-link">🔬 5. 蛋白质合成与降解</a></li>
+              <li class="tree-item"><a href="08-central-dogma.html" class="tree-link">🔄 8. 中心法则</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附与E-cadherin</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="06-EMT.html" class="tree-link">🎭 6. 上皮-间质转化(EMT)</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. 幽门螺杆菌与胃癌</a></li>
+          <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 信号通路研究方法</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+
+<div class="header">
+  <h1>👻 幽门螺杆菌（Hp）感染与胃癌</h1>
+  <p>从一道高考真题出发，层层扩展至 Wnt/β-catenin 信号通路、细胞黏附、EMT 等核心生物学知识</p>
+</div>
+
+<div class="card">
+  <h2>📖 课件说明</h2>
+  <p>本课件围绕一道关于<strong>幽门螺杆菌（Hp）感染促进胃癌</strong>的高考真题展开，深入讲解题目涉及的生物学核心知识：</p>
+  <ul>
+    <li><strong>Wnt/β-catenin 信号通路</strong> —— 细胞增殖与癌变的核心调控通道</li>
+    <li><strong>E-cadherin 与细胞黏附</strong> —— 上皮组织完整性的分子基础</li>
+    <li><strong>上皮-间质转化（EMT）</strong> —— 癌细胞获得侵袭能力的关键过程</li>
+    <li><strong>蛋白质合成与降解</strong> —— 泛素化-蛋白酶体系统的调控</li>
+    <li><strong>信号通路研究方法</strong> —— 抑制剂、Western Blot 等实验技术</li>
+  </ul>
+  <p>每个知识点都配有<strong>通俗比喻、图解和互动小练习</strong>，帮助理解和巩固。</p>
+</div>
+
+<div class="card">
+  <h2>🗺️ 知识导航</h2>
+  <p>请按顺序学习，或点击感兴趣的知识点直接跳转：</p>
+
+  <ol class="step-list">
+    <li><strong><a href="01-problem.html">📋 题目分析</a></strong> — 原题回顾 + 逐问拆解答案（含图2补图）</li>
+    <li><strong><a href="02-wnt-signaling.html">🧬 Wnt/β-catenin 信号通路</a></strong> — 本题最核心的知识：降解复合体、β-cat的双重角色</li>
+    <li><strong><a href="03-hp-gastric-cancer.html">👻 幽门螺杆菌与胃癌</a></strong> — Hp为何是I类致癌物？感染到癌变的四步过程</li>
+    <li><strong><a href="04-cell-adhesion.html">🔗 细胞黏附与E-cadherin</a></strong> — E蛋白-β-cat复合物如何维持上皮完整性</li>
+    <li><strong><a href="05-protein-degradation.html">🔬 蛋白质合成与降解</a></strong> — 核糖体合成 → 磷酸化 → 泛素化 → 蛋白酶体水解</li>
+    <li><strong><a href="06-EMT.html">🎭 上皮-间质转化（EMT）</a></strong> — 癌细胞如何"变身"获得侵袭能力</li>
+    <li><strong><a href="07-research-methods.html">🧪 信号通路研究方法</a></strong> — ICG抑制剂、Western Blot、图2补图实验设计</li>
+    <li><strong><a href="08-central-dogma.html">🔄 中心法则</a></strong> — DNA→RNA→蛋白质，基础知识巩固</li>
+    <li><strong><a href="09-practice.html">📝 综合练习</a></strong> — 改编题检验学习效果</li>
+  </ol>
+</div>
+
+<div class="nav-btns">
+  <span></span>
+  <a href="01-problem.html" class="nav-btn">开始学习 →</a>
+</div>
+
+</div>
+
+<script>
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('show');
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>

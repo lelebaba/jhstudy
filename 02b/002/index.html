@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康普茶发酵与微生物培养 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link active">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>🫖 康普茶发酵与微生物培养技术</h1>
+    <p>从一道高考生物真题出发，层层扩展到最基础的微生物学知识</p>
+  </div>
+
+  <div class="card">
+    <h2>🎯 这套课件解决什么问题？</h2>
+    <p>这道题考了<strong>康普茶发酵</strong>的完整过程——从微生物的代谢类型、菌种筛选、发酵条件优化，到抑菌实验分析。涉及的知识面很广，但都有清晰的内在逻辑。</p>
+    <p>下面这张图是本课件的知识层次结构，从<strong>最直接相关的知识</strong>（题目本身）出发，层层向下扩展到<strong>最基础的概念</strong>：</p>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 420">
+        <!-- Level 1: 题目 -->
+        <rect x="240" y="10" width="200" height="50" rx="10" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+        <text x="340" y="40" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">📋 题目分析</text>
+
+        <!-- Lines to Level 2 -->
+        <line x1="340" y1="60" x2="120" y2="100" stroke="#666" stroke-width="2"/>
+        <line x1="340" y1="60" x2="340" y2="100" stroke="#666" stroke-width="2"/>
+        <line x1="340" y1="60" x2="560" y2="100" stroke="#666" stroke-width="2"/>
+
+        <!-- Level 2: 三个直接相关知识 -->
+        <rect x="30" y="100" width="180" height="50" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="130" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">🫖 康普茶发酵原理</text>
+
+        <rect x="250" y="100" width="180" height="50" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="340" y="130" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">🧫 微生物培养技术</text>
+
+        <rect x="470" y="100" width="180" height="50" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="560" y="130" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">📊 发酵条件优化</text>
+
+        <!-- Lines to Level 3 -->
+        <line x1="120" y1="150" x2="60" y2="190" stroke="#999" stroke-width="1.5"/>
+        <line x1="120" y1="150" x2="180" y2="190" stroke="#999" stroke-width="1.5"/>
+        <line x1="340" y1="150" x2="340" y2="190" stroke="#999" stroke-width="1.5"/>
+        <line x1="560" y1="150" x2="560" y2="190" stroke="#999" stroke-width="1.5"/>
+
+        <!-- Level 3 -->
+        <rect x="10" y="190" width="100" height="42" rx="8" fill="#81c784" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="60" y="216" text-anchor="middle" fill="#1b5e20" font-size="12">🍶 微生物代谢</text>
+
+        <rect x="130" y="190" width="100" height="42" rx="8" fill="#81c784" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="180" y="216" text-anchor="middle" fill="#1b5e20" font-size="12">🔬 醋酸菌与酵母菌</text>
+
+        <rect x="290" y="190" width="100" height="42" rx="8" fill="#81c784" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="340" y="216" text-anchor="middle" fill="#1b5e20" font-size="12">🧪 无菌操作技术</text>
+
+        <rect x="510" y="190" width="100" height="42" rx="8" fill="#81c784" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="560" y="216" text-anchor="middle" fill="#1b5e20" font-size="12">📈 响应面法</text>
+
+        <!-- Level 4 (基础中的基础) -->
+        <line x1="60" y1="232" x2="60" y2="270" stroke="#bbb" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="180" y1="232" x2="180" y2="270" stroke="#bbb" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="340" y1="232" x2="340" y2="270" stroke="#bbb" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="560" y1="232" x2="560" y2="270" stroke="#bbb" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <rect x="10" y="270" width="100" height="42" rx="8" fill="#c8e6c9" stroke="#81c784" stroke-width="1.5"/>
+        <text x="60" y="296" text-anchor="middle" fill="#1b5e20" font-size="12">🫁 呼吸作用</text>
+
+        <rect x="130" y="270" width="100" height="42" rx="8" fill="#c8e6c9" stroke="#81c784" stroke-width="1.5"/>
+        <text x="180" y="296" text-anchor="middle" fill="#1b5e20" font-size="12">🧬 原核vs真核</text>
+
+        <rect x="290" y="270" width="100" height="42" rx="8" fill="#c8e6c9" stroke="#81c784" stroke-width="1.5"/>
+        <text x="340" y="296" text-anchor="middle" fill="#1b5e20" font-size="12">🔥 灭菌原理</text>
+
+        <rect x="510" y="270" width="100" height="42" rx="8" fill="#c8e6c9" stroke="#81c784" stroke-width="1.5"/>
+        <text x="560" y="296" text-anchor="middle" fill="#1b5e20" font-size="12">📊 方差分析</text>
+
+        <!-- 底部标注 -->
+        <text x="10" y="350" font-size="12" fill="#888">绿色深→浅 = 从题目到基础</text>
+        <rect x="10" y="365" width="40" height="15" fill="#2e7d32"/>
+        <text x="30" y="376" text-anchor="middle" fill="#fff" font-size="9">L1</text>
+        <rect x="55" y="365" width="40" height="15" fill="#4caf50"/>
+        <text x="75" y="376" text-anchor="middle" fill="#fff" font-size="9">L2</text>
+        <rect x="100" y="365" width="40" height="15" fill="#81c784"/>
+        <text x="120" y="376" text-anchor="middle" fill="#fff" font-size="9">L3</text>
+        <rect x="145" y="365" width="40" height="15" fill="#c8e6c9"/>
+        <text x="165" y="376" text-anchor="middle" fill="#1b5e20" font-size="9">L4</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📖 课件页面导航</h2>
+    <p>建议从<strong>题目分析</strong>开始，遇到不懂的知识点就点击跳转，层层向下学习。每页底部都有小练习帮助巩固。</p>
+    <div class="nav-grid">
+      <a href="01-problem.html" class="nav-card">
+        <h3>📋 1. 题目分析</h3>
+        <p>原题回顾 + 四问逐空拆解 + 完整答案推理</p>
+      </a>
+      <a href="02-kombucha.html" class="nav-card">
+        <h3>🫖 2. 康普茶发酵</h3>
+        <p>混合微生物发酵原理、发酵阶段变化、菌膜形成</p>
+      </a>
+      <a href="03-metabolism.html" class="nav-card">
+        <h3>🍶 3. 微生物代谢</h3>
+        <p>有氧呼吸、无氧呼吸、兼性厌氧、异化作用类型</p>
+      </a>
+      <a href="04-bacteria-yeast.html" class="nav-card">
+        <h3>🔬 4. 醋酸菌与酵母菌</h3>
+        <p>原核vs真核、代谢特征、为什么"一加一大于二"</p>
+      </a>
+      <a href="05-optimization.html" class="nav-card">
+        <h3>📊 5. 发酵条件优化</h3>
+        <p>响应面法RSM、3D曲面图解读、ANOVA方差分析</p>
+      </a>
+      <a href="06-culture.html" class="nav-card">
+        <h3>🧫 6. 微生物培养技术</h3>
+        <p>稀释涂布平板法、选择培养基、单菌落分离</p>
+      </a>
+      <a href="07-aseptic.html" class="nav-card">
+        <h3>🧪 7. 无菌操作</h3>
+        <p>灭菌原理、接种技术、如何防止杂菌污染</p>
+      </a>
+      <a href="08-practice.html" class="nav-card">
+        <h3>📝 8. 综合练习</h3>
+        <p>改编题目 + 概念辨析 + 答案解析</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔑 本题核心知识点速览</h2>
+    <table>
+      <tr><th>问题</th><th>考点</th><th>核心知识</th></tr>
+      <tr><td>(1) 发酵过程</td><td>微生物代谢类型</td><td>酵母菌（兼性厌氧）+ 醋酸菌（好氧）</td></tr>
+      <tr><td>(2) 菌种筛选</td><td>微生物培养技术</td><td>稀释涂布平板法 → 单菌落 → 筛选指标</td></tr>
+      <tr><td>(3) 发酵优化</td><td>响应面法</td><td>3D曲面图 + ANOVA → 最适条件 + 影响排序</td></tr>
+      <tr><td>(4) 抑菌实验</td><td>实验数据分析</td><td>抑菌圈直径 → 抗菌效果比较</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>

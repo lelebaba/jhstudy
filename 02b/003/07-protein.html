@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7. 蛋白质与氨基酸 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link active">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="06-central-dogma.html" class="nav-back">← 中心法则</a>
+    <div class="nav-title">蛋白质与氨基酸</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot completed" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot completed" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot completed" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot completed" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot completed" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot active" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>🧱 蛋白质与氨基酸</h1>
+    <p class="subtitle">生命的"积木"——从氨基酸到功能蛋白</p>
+  </div>
+
+  <div class="card prereq-card">
+    <h2>📚 前置知识</h2>
+    <div class="btn-group" style="margin-top:12px">
+      <a href="06-central-dogma.html" class="link-btn">中心法则 →</a>
+    </div>
+  </div>
+
+  <div class="card concept-card">
+    <h2>💡 蛋白质是什么？</h2>
+    <p>蛋白质是生命的<strong>核心功能分子</strong>。从肌肉收缩到免疫防御，从催化反应到运输氧气，几乎一切生命活动都离不开蛋白质。</p>
+    <p>在生物体内，蛋白质承担多种角色：</p>
+    <ul>
+      <li><strong>结构蛋白</strong>：如胶原蛋白（皮肤、骨骼）、角蛋白（头发、指甲）</li>
+      <li><strong>功能蛋白</strong>：如血红蛋白（运输氧气）、胰岛素（调节血糖）</li>
+      <li><strong>酶</strong>：如淀粉酶（消化淀粉）、DNA聚合酶（复制DNA）</li>
+      <li><strong>免疫蛋白</strong>：如抗体（抵抗病原体）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🧩 氨基酸：蛋白质的基本单位</h2>
+    <p>所有蛋白质都是由<strong>氨基酸</strong>（Amino Acid）连接而成的长链。</p>
+    <p>人体中常见的氨基酸有<strong>20种</strong>。你可以把氨基酸想象成<strong>20种不同颜色的乐高积木</strong>。通过不同的组合和排列，可以搭出无限多种蛋白质"建筑"。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 600 140" width="100%">
+        <text x="300" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">氨基酸 → 肽链 → 蛋白质</text>
+        
+        <circle cx="60" cy="80" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="60" y="85" text-anchor="middle" font-size="12" fill="#1d4ed8">氨基酸1</text>
+        
+        <line x1="85" y1="80" x2="115" y2="80" stroke="#6b7280" stroke-width="2"/>
+        <text x="100" y="75" font-size="10" fill="#6b7280">肽键</text>
+        
+        <circle cx="140" cy="80" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="140" y="85" text-anchor="middle" font-size="12" fill="#1d4ed8">氨基酸2</text>
+        
+        <line x1="165" y1="80" x2="195" y2="80" stroke="#6b7280" stroke-width="2"/>
+        
+        <circle cx="220" cy="80" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="220" y="85" text-anchor="middle" font-size="12" fill="#1d4ed8">氨基酸3</text>
+        
+        <text x="280" y="85" font-size="16" fill="#6b7280">... ...</text>
+        
+        <circle cx="340" cy="80" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="340" y="85" text-anchor="middle" font-size="12" fill="#1d4ed8">氨基酸n</text>
+        
+        <text x="400" y="85" font-size="20" fill="#6b7280">→</text>
+        
+        <rect x="430" y="50" width="150" height="60" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="505" y="75" text-anchor="middle" font-size="13" fill="#065f46">折叠后的</text>
+        <text x="505" y="95" text-anchor="middle" font-size="13" fill="#065f46">功能蛋白质</text>
+        
+        <text x="300" y="130" text-anchor="middle" font-size="12" fill="#6b7280">氨基酸通过肽键连接成肽链，肽链折叠形成有功能的蛋白质</text>
+      </svg>
+      <div class="diagram-caption">氨基酸通过肽键连接形成肽链，再折叠成蛋白质</div>
+    </div>
+  </div>
+
+  <div class="card metaphor-card">
+    <h2>📿 比喻：串珠成链</h2>
+    <p>想象你在制作一串<strong>项链</strong>：</p>
+    <ul>
+      <li><strong>氨基酸</strong> = 一颗颗不同颜色和形状的珠子</li>
+      <li><strong>肽键</strong> = 把珠子串在一起的线</li>
+      <li><strong>肽链</strong> = 串好的珠子链</li>
+      <li><strong>蛋白质折叠</strong> = 把珠链按照特定方式绕成特定的形状（如螺旋、折叠）</li>
+      <li><strong>功能蛋白质</strong> = 最终成型的首饰，可以佩戴（执行功能）</li>
+    </ul>
+    <p>关键是：珠子的<strong>排列顺序</strong>决定了最终项链的样式。同样，氨基酸的排列顺序决定了蛋白质的功能。</p>
+  </div>
+
+  <div class="card">
+    <h2>🩸 血红蛋白：本题的"主角"</h2>
+    <p>血红蛋白是我们血液中最重要的蛋白质之一，负责<strong>运输氧气</strong>。</p>
+    <p>一个血红蛋白分子由<strong>4条珠蛋白链</strong>组成：</p>
+    <ul>
+      <li><strong>2条α链</strong>：由α珠蛋白基因编码</li>
+      <li><strong>2条β链</strong>：由β珠蛋白基因编码</li>
+    </ul>
+    <p>每条链都围绕着一个<strong>血红素</strong>（含铁的小分子），铁原子能结合氧气。</p>
+    <p>β-地中海贫血的问题就是：<strong>β链出问题</strong>了，导致血红蛋白无法正常工作，红细胞携带氧气的能力下降，从而引发贫血。</p>
+    <div class="answer-box">
+      <h4>✅ 第（1）问①答案</h4>
+      <p>血红蛋白的基本组成单位是<strong>氨基酸</strong>。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🧬 基因 → 蛋白质：一条完整的链条</h2>
+    <p>让我们把整个过程串起来，以血红蛋白β链为例：</p>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><span class="step-text">β珠蛋白基因<br/>(DNA序列)</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">2</span><span class="step-text">转录<br/>产生mRNA</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">3</span><span class="step-text">翻译<br/>产生β链</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">4</span><span class="step-text">4条链组装<br/>形成血红蛋白</span></div>
+    </div>
+    <p>如果β珠蛋白基因发生<strong>突变</strong>（比如序列改变），那么翻译出来的β链氨基酸序列也会改变，可能导致β链功能异常或无法稳定存在。这就是β-地中海贫血的分子基础。</p>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-question">🎯 小练习：蛋白质基础</div>
+    <p>以下关于氨基酸的说法，正确的是？</p>
+    <div class="quiz-options">
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> A. 氨基酸是DNA的基本组成单位
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> B. 氨基酸是蛋白质的基本组成单位
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> C. 氨基酸是RNA的基本组成单位
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> D. 氨基酸是脂肪的基本组成单位
+      </label>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkQuizAnswer()">查看答案</button>
+  </div>
+
+  <div class="card next-card">
+    <h2>🚀 后续学习</h2>
+    <div class="btn-group">
+      <a href="08-stem-cells.html" class="btn btn-primary">干细胞 →</a>
+      <a href="09-practice.html" class="btn btn-secondary">综合练习 →</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="06-central-dogma.html" class="btn btn-outline">← 中心法则</a>
+    <a href="08-stem-cells.html" class="btn btn-primary">干细胞 →</a>
+  </div>
+</div>
+
+<script>
+function selectQuizOption(el) {
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.querySelector('input').checked = true;
+}
+function checkQuizAnswer() {
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const selected = document.querySelector('input[name="q1"]:checked');
+  if (!selected) { feedback.innerHTML = '请先选择一个答案！'; feedback.classList.add('show', 'wrong'); return; }
+  options[0].classList.add('wrong');
+  options[1].classList.add('correct');
+  options[2].classList.add('wrong');
+  options[3].classList.add('wrong');
+  feedback.innerHTML = '<strong>解析：</strong>氨基酸是蛋白质的基本组成单位。DNA的基本组成单位是脱氧核苷酸，RNA的基本组成单位是核糖核苷酸，脂肪的基本组成单位是甘油和脂肪酸。';
+  feedback.classList.add('show', 'correct');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

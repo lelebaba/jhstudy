@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无菌操作技术 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link active">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>🧪 无菌操作技术</h1>
+    <p>灭菌、消毒、无菌操作——微生物实验的"安全守则"</p>
+  </div>
+
+  <div class="card">
+    <h2>为什么要无菌操作？</h2>
+    <p>空气中、手上、桌面上的微生物无处不在。如果不在<strong>无菌条件</strong>下操作，杂菌会污染培养基，导致实验失败。</p>
+
+    <div class="hint-box">
+      <h4>💡 灭菌 vs 消毒</h4>
+      <p><strong>灭菌</strong>：杀死<strong>所有</strong>微生物（包括芽孢），达到完全无菌状态。例：高压蒸汽灭菌。</p>
+      <p><strong>消毒</strong>：杀死<strong>部分</strong>微生物（通常是病原菌），但不一定能杀死芽孢。例：75%酒精擦拭。</p>
+      <p><strong>比喻</strong>：灭菌 = 把房间彻底清空（连蟑螂卵都杀光）；消毒 = 把房间大扫除（表面干净了，但角落可能还有虫卵）。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>常用的灭菌方法</h2>
+    <table>
+      <tr><th>方法</th><th>原理</th><th>适用对象</th><th>本题相关</th></tr>
+      <tr><td><strong>高压蒸汽灭菌</strong></td><td>121℃，0.1MPa，15-30min</td><td>培养基、玻璃器皿、接种工具</td><td>✅ 培养基灭菌</td></tr>
+      <tr><td>干热灭菌</td><td>160-170℃，2h</td><td>玻璃器皿（烧杯、培养皿）</td><td></td></tr>
+      <tr><td>灼烧灭菌</td><td>酒精灯火焰直接烧</td><td>接种环、接种针</td><td>✅ 接种环灭菌</td></tr>
+      <tr><td>紫外线灭菌</td><td>UV破坏DNA</td><td>超净台、接种室空气</td><td>✅ 超净台</td></tr>
+      <tr><td>过滤除菌</td><td>孔径0.22μm滤膜</td><td>不耐热的液体（抗生素等）</td><td></td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 为什么培养基要用高压蒸汽灭菌？</h4>
+      <p>培养基含有蛋白质、糖等营养物质，是微生物的"大餐"。如果不灭菌，空气中的杂菌会在培养基上大量繁殖。高压蒸汽灭菌能在<strong>121℃</strong>下杀死所有微生物（包括最耐热的<strong>芽孢</strong>），确保培养基在接种前完全无菌。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>无菌操作的标准流程</h2>
+
+    <div class="flow-step">
+      <span class="step-num">1</span>
+      <div><strong>准备</strong>：打开超净台紫外灯照射30min → 关闭紫外灯 → 开风机5min → 用75%酒精擦拭台面和双手</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">2</span>
+      <div><strong>灭菌接种工具</strong>：将接种环在酒精灯火焰上灼烧至红热 → 冷却30秒</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">3</span>
+      <div><strong>在火焰旁操作</strong>：在酒精灯火焰半径10cm范围内打开培养基、取菌、涂布。火焰的热气流形成<strong>无菌区</strong>，阻挡空气中的杂菌落入</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">4</span>
+      <div><strong>迅速封口</strong>：操作完成后立即盖上培养皿盖/塞上棉塞 → 倒置培养</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">5</span>
+      <div><strong>培养</strong>：放入恒温培养箱（醋酸菌约30℃，培养24-48h）→ 观察菌落形态</div>
+    </div>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 220">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">酒精灯旁的无菌操作</text>
+
+        <!-- 酒精灯 -->
+        <ellipse cx="340" cy="180" rx="25" ry="8" fill="#424242"/>
+        <rect x="320" y="140" width="40" height="40" rx="5" fill="#616161"/>
+        <rect x="335" y="115" width="10" height="25" fill="#424242"/>
+        <!-- 火焰 -->
+        <path d="M 340 115 Q 330 85 340 60 Q 350 85 340 115" fill="#ff9800"/>
+        <path d="M 340 105 Q 335 90 340 75 Q 345 90 340 105" fill="#fff3e0"/>
+
+        <!-- 无菌区（虚线圆） -->
+        <circle cx="340" cy="130" r="100" fill="none" stroke="#4caf50" stroke-width="2" stroke-dasharray="8,4"/>
+        <text x="340" y="50" text-anchor="middle" font-size="12" fill="#4caf50" font-weight="bold">无菌区（火焰热气流保护范围）</text>
+
+        <!-- 培养皿 -->
+        <ellipse cx="250" cy="130" rx="40" ry="12" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <ellipse cx="250" cy="125" rx="40" ry="10" fill="#fff" stroke="#4caf50" stroke-width="1"/>
+        <text x="250" y="152" text-anchor="middle" font-size="10" fill="#666">培养皿</text>
+
+        <!-- 接种环 -->
+        <line x1="430" y1="100" x2="460" y2="80" stroke="#9e9e9e" stroke-width="2"/>
+        <circle cx="465" cy="78" r="6" fill="none" stroke="#9e9e9e" stroke-width="2"/>
+        <text x="460" y="65" font-size="10" fill="#666">接种环</text>
+
+        <!-- 操作者手 -->
+        <ellipse cx="450" cy="130" rx="30" ry="15" fill="#ffe0b2" stroke="#f57c00" stroke-width="1.5"/>
+        <text x="450" y="135" text-anchor="middle" font-size="10" fill="#e65100">手</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>本题中的无菌操作</h2>
+    <p>回到康普茶题目，第（1）问中提到"传统康普茶发酵通常用<strong>纱布</strong>盖住瓶口"——这其实是一种<strong>简易的无菌操作</strong>：</p>
+    <table>
+      <tr><th>操作</th><th>目的</th><th>原理</th></tr>
+      <tr><td>纱布盖口</td><td>阻挡空气中杂菌落入</td><td>纱布孔径小，物理阻挡大颗粒和大部分微生物</td></tr>
+      <tr><td>醋酸菌形成菌膜</td><td>进一步隔绝空气</td><td>致密菌膜 = 天然"盖子"</td></tr>
+      <tr><td>醋酸积累</td><td>抑制杂菌生长</td><td>酸性环境（pH&lt;4）不利于大多数杂菌繁殖</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 三重防线</h4>
+      <p>传统发酵的"无菌操作"不是实验室那种严格无菌，而是<strong>三重防线</strong>：</p>
+      <p>1️⃣ <strong>纱布</strong>（物理屏障）→ 阻挡大部分杂菌<br>
+      2️⃣ <strong>菌膜</strong>（生物屏障）→ 醋酸菌的纤维素膜进一步隔绝<br>
+      3️⃣ <strong>醋酸</strong>（化学屏障）→ 低pH抑制杂菌繁殖</p>
+      <p>即使有少量杂菌穿过前两道防线，在酸性环境中也"活不长"。这就是为什么康普茶在常温下发酵7-14天也不会轻易变质的原因。</p>
+    </div>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 培养基通常采用什么方法灭菌？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">干热灭菌</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">高压蒸汽灭菌</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">紫外线照射</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">75%酒精浸泡</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 灭菌和消毒的区别是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">灭菌用化学方法，消毒用物理方法</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">灭菌杀死所有微生物（含芽孢），消毒只杀死部分</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">灭菌温度低，消毒温度高</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">两者没有区别</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 在酒精灯火焰旁操作的原因是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">提供光照</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">加热培养基</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">火焰热气流形成无菌区，阻挡杂菌落入</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">杀菌消毒</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

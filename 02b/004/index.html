@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>苦茶碱合成调控 — 互动学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link active">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+          <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+          <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+          <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+          <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+          <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+          <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🍵 苦茶碱合成调控 — 互动学习课件</h1>
+  <p>围绕转录因子T和W调控苦茶碱合成的实验研究，层层递进理解分子生物学核心技术</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>📖 课程说明</h2>
+    <p>本课件以一道"苦茶碱合成调控"的高考/模拟题为蓝本，采用<strong>层层递进</strong>的方式组织知识点。从题目本身出发，逐步深入到每个概念和技术的底层原理。</p>
+    <p>每个知识点都配有<strong>通篇讲解、比喻举例、互动小练习</strong>，最后还有综合练习题检验整体掌握情况。</p>
+    <p>适合对分子生物学了解不多、但想真正理解的同学。</p>
+  </div>
+
+  <div class="card">
+    <h2>🗺️ 知识导航</h2>
+
+    <h3>🎯 第一层：题目核心</h3>
+    <div class="nav-grid">
+      <a href="01-problem.html" class="nav-card">
+        <span class="nc-icon">📋</span>
+        <span class="nc-title">1. 题目分析与逐问拆解</span>
+        <span class="nc-desc">三道小题逐一分析，理解实验设计的逻辑</span>
+        <span class="nc-level">📍 入口</span>
+      </a>
+    </div>
+
+    <h3>🔬 第二层：三大核心技术详解</h3>
+    <div class="nav-grid">
+      <a href="03-antisense.html" class="nav-card">
+        <span class="nc-icon">🔇</span>
+        <span class="nc-title">3. 反义核酸技术（图1）</span>
+        <span class="nc-desc">为什么导入反义序列能"关掉"基因？实验怎么设计？</span>
+      </a>
+      <a href="04-emsa.html" class="nav-card">
+        <span class="nc-icon">⚡</span>
+        <span class="nc-title">4. EMSA凝胶迁移阻滞实验（图2）</span>
+        <span class="nc-desc">DNA和蛋白质结合的证据怎么"看到"？4组实验的逻辑是什么？</span>
+      </a>
+      <a href="05-luciferase.html" class="nav-card">
+        <span class="nc-icon">💡</span>
+        <span class="nc-title">5. 荧光素酶互补技术（图3）</span>
+        <span class="nc-desc">怎么证明两个蛋白质"牵手"了？拆开的酶怎样重新发光？</span>
+      </a>
+    </div>
+
+    <h3>📚 第三层：基础概念</h3>
+    <div class="nav-grid">
+      <a href="02-transcription-factors.html" class="nav-card">
+        <span class="nc-icon">🧬</span>
+        <span class="nc-title">2. 转录因子详解</span>
+        <span class="nc-desc">T蛋白和W蛋白是什么？它们如何"遥控"基因开关？</span>
+      </a>
+      <a href="06-gene-expression.html" class="nav-card">
+        <span class="nc-icon">🎛️</span>
+        <span class="nc-title">6. 基因表达调控基础</span>
+        <span class="nc-desc">启动子是什么？基因怎么"读"出来？</span>
+      </a>
+      <a href="08-plant-engineering.html" class="nav-card">
+        <span class="nc-icon">🌱</span>
+        <span class="nc-title">8. 植物基因工程</span>
+        <span class="nc-desc">基因怎么"送"进植物细胞？农杆菌转化法详解</span>
+      </a>
+    </div>
+
+    <h3>🪨 第四层：底层基石</h3>
+    <div class="nav-grid">
+      <a href="07-central-dogma.html" class="nav-card">
+        <span class="nc-icon">🔄</span>
+        <span class="nc-title">7. 中心法则</span>
+        <span class="nc-desc">DNA → RNA → 蛋白质，生命信息的传递规则</span>
+      </a>
+    </div>
+
+    <h3>✅ 综合检验</h3>
+    <div class="nav-grid">
+      <a href="09-practice.html" class="nav-card">
+        <span class="nc-icon">📝</span>
+        <span class="nc-title">9. 综合练习</span>
+        <span class="nc-desc">类似题目练习，检测全部知识的掌握程度</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💡 学习建议</h2>
+    <ul>
+      <li>建议按编号顺序从上到下学习，每学完一个知识点再进入下一层</li>
+      <li>遇到不熟悉的概念时，点击页面中的链接跳转到更基础的知识</li>
+      <li>每个页面底部都有<strong>小练习</strong>，及时检验学习效果</li>
+      <li>页面左侧的树形目录可以快速跳转到任何知识点</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>远距离输电 — 变压器与远距离输电</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link active">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>📡 远距离输电详解</h1>
+  <p>"升压—输电—降压"三段模型，物理18的核心考点</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 远距离输电</div>
+
+<div class="card">
+  <h2>🏗️ 远距离输电的标准模型</h2>
+  <p>远距离输电系统由<strong>五段</strong>组成，每段有不同的电压、电流和功率：</p>
+
+  <div class="fig-box">
+    <svg viewBox="0 0 680 280">
+      <text x="340" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">远距离输电五段模型</text>
+      <!-- 发电站 -->
+      <rect x="10" y="70" width="55" height="50" rx="4" fill="#fff3e0" stroke="#ff6f00" stroke-width="2"/>
+      <text x="37" y="92" text-anchor="middle" font-size="10" fill="#e65100">发电站</text>
+      <text x="37" y="108" text-anchor="middle" font-size="10" fill="#e65100">U₁, I₁</text>
+      <line x1="65" y1="95" x2="85" y2="95" stroke="#333" stroke-width="1.5"/>
+      <!-- T1 -->
+      <rect x="85" y="60" width="35" height="25" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <rect x="120" y="60" width="35" height="25" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="100" y="52" text-anchor="middle" font-size="10" fill="#1565c0">T₁</text>
+      <line x1="100" y1="60" x2="100" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <line x1="137" y1="60" x2="137" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <line x1="100" y1="40" x2="137" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <line x1="155" y1="85" x2="175" y2="85" stroke="#333" stroke-width="1.5"/>
+      <text x="155" y="78" font-size="9" fill="#1565c0">n₁:n₂=1:100</text>
+      <!-- 输电线 -->
+      <rect x="240" y="75" width="80" height="20" rx="3" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+      <text x="280" y="89" text-anchor="middle" font-size="11" fill="#c62828">R</text>
+      <text x="280" y="65" text-anchor="middle" font-size="9" fill="#c62828">输电线</text>
+      <line x1="175" y1="85" x2="240" y2="85" stroke="#333" stroke-width="1.5"/>
+      <line x1="320" y1="85" x2="385" y2="85" stroke="#333" stroke-width="1.5"/>
+      <text x="195" y="78" font-size="10" fill="#ff6f00">U₂, I₂</text>
+      <text x="335" y="78" font-size="10" fill="#1565c0">U₃</text>
+      <text x="280" y="115" text-anchor="middle" font-size="10" fill="#c62828">ΔU = I₂×R</text>
+      <!-- T2 -->
+      <rect x="385" y="60" width="35" height="25" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <rect x="420" y="60" width="35" height="25" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="403" y="52" text-anchor="middle" font-size="10" fill="#1565c0">T₂</text>
+      <line x1="403" y1="60" x2="403" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <line x1="440" y1="60" x2="440" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <line x1="403" y1="40" x2="440" y2="40" stroke="#1565c0" stroke-width="1"/>
+      <text x="460" y="78" font-size="9" fill="#1565c0">n₃:n₄=200:1</text>
+      <!-- 工厂 -->
+      <line x1="455" y1="85" x2="490" y2="85" stroke="#333" stroke-width="1.5"/>
+      <rect x="490" y="70" width="55" height="50" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="517" y="92" text-anchor="middle" font-size="10" fill="#2e7d32">工厂</text>
+      <text x="517" y="108" text-anchor="middle" font-size="10" fill="#2e7d32">U₄, I₃</text>
+      <!-- 底线 -->
+      <line x1="10" y1="120" x2="545" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="10" y1="95" x2="10" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="85" y1="85" x2="85" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="120" y1="85" x2="120" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="385" y1="85" x2="385" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="420" y1="85" x2="420" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="490" y1="85" x2="490" y2="120" stroke="#333" stroke-width="1.5"/>
+
+      <!-- 五段标注 -->
+      <rect x="10" y="145" width="55" height="30" rx="4" fill="#fff3e0" stroke="#ff6f00" stroke-width="1"/>
+      <text x="37" y="163" text-anchor="middle" font-size="10" fill="#e65100">①发电</text>
+      <rect x="85" y="145" width="70" height="30" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+      <text x="120" y="163" text-anchor="middle" font-size="10" fill="#1565c0">②升压T₁</text>
+      <rect x="175" y="145" width="210" height="30" rx="4" fill="#fce4ec" stroke="#c62828" stroke-width="1"/>
+      <text x="280" y="163" text-anchor="middle" font-size="10" fill="#c62828">③输电（含线路R）</text>
+      <rect x="385" y="145" width="70" height="30" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+      <text x="420" y="163" text-anchor="middle" font-size="10" fill="#1565c0">④降压T₂</text>
+      <rect x="490" y="145" width="55" height="30" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1"/>
+      <text x="517" y="163" text-anchor="middle" font-size="10" fill="#2e7d32">⑤用户</text>
+
+      <!-- 功率关系 -->
+      <text x="340" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">功率关系</text>
+      <text x="340" y="230" text-anchor="middle" font-size="13" fill="#1565c0">P₁ = P₂ + 0（T₁理想）→ P₂ = P₃ + P损 → P₃ = P₄（T₂理想）</text>
+      <text x="340" y="255" text-anchor="middle" font-size="13" fill="#c62828">P总 = P用 + P损 &emsp;|&emsp; P损 = I₂² × R</text>
+    </svg>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📐 五段模型的关键关系</h2>
+  <table>
+    <tr><th>段</th><th>电压</th><th>电流</th><th>功率</th></tr>
+    <tr><td>①发电</td><td>U₁</td><td>I₁</td><td>P₁ = U₁I₁</td></tr>
+    <tr><td>②T₁升压后</td><td>U₂ = U₁×(n₂/n₁)</td><td>I₂ = I₁×(n₁/n₂)</td><td>P₂ = P₁（理想）</td></tr>
+    <tr><td>③输电线</td><td>U₂ → U₃（有压降）</td><td>I₂（不变）</td><td>P₂ = P₃ + P损</td></tr>
+    <tr><td>④T₂降压后</td><td>U₄ = U₃×(n₄/n₃)</td><td>I₃ = I₂×(n₃/n₄)</td><td>P₄ = P₃（理想）</td></tr>
+    <tr><td>⑤用户</td><td>U₄</td><td>I₃</td><td>P₄ = U₄I₃</td></tr>
+  </table>
+
+  <h3>三个核心等式</h3>
+  <div class="formula-box">
+    ① 功率守恒：P₁ = P₂ = P₃ + P损 = P₃ = P₄<br>
+    ② 电压关系：U₂ = U₃ + I₂×R（输电线上有压降）<br>
+    ③ 线损：P损 = I₂² × R = ΔU × I₂ = (U₂ − U₃) × I₂
+  </div>
+</div>
+
+<div class="card">
+  <h2>💡 为什么要升压输电？</h2>
+  <p>这是远距离输电的核心问题，也是物理18的设计思想。</p>
+  <p><strong>问题：</strong>输送功率 P 不变，输电线电阻 R 不变。怎么减少线损？</p>
+  <div class="formula-box">
+    P<sub>损</sub> = I₂² × R &emsp; 其中 I₂ = P / U₂<br>
+    → P<sub>损</sub> = (P/U₂)² × R = P² × R / U₂²
+  </div>
+  <p>功率 P 和电阻 R 都不变，线损与 U₂ 的<strong>平方成反比</strong>！</p>
+  <table>
+    <tr><th>输电电压 U₂</th><th>输电线电流 I₂</th><th>线损 P损 = I₂²R</th><th>效率</th></tr>
+    <tr><td>1kV</td><td>440A</td><td>19.36MW</td><td>4.4%</td></tr>
+    <tr><td>10kV</td><td>44A</td><td>193.6kW</td><td>99.56%</td></tr>
+    <tr><td>44kV（本题）</td><td>10A</td><td>10kW</td><td>97.8%</td></tr>
+    <tr><td>110kV</td><td>4A</td><td>1.6kW</td><td>99.96%</td></tr>
+    <tr><td>500kV（超高压）</td><td>0.88A</td><td>77.4W</td><td>99.998%</td></tr>
+  </table>
+  <div class="hint-box">
+    <p><strong>💡 一句话：</strong>"电压升高 N 倍，线损减小 N² 倍"。这就是为什么电力系统不断追求更高的输电电压——从 10kV → 110kV → 220kV → 500kV → 特高压 1000kV。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧩 物理18解题流程图</h2>
+  <p>把物理18的解题过程整理成标准流程，以后遇到类似题目照着走：</p>
+  <ol>
+    <li><strong>从用户端出发：</strong>已知 U₄ 和 P → I₃ = P/U₄</li>
+    <li><strong>过 T₂ 降压变压器：</strong>U₃ = U₄×(n₃/n₄)，I₂ = I₃×(n₄/n₃)</li>
+    <li><strong>算输电线压降和线损：</strong>ΔU = I₂×R，P损 = I₂²×R</li>
+    <li><strong>算送电端电压：</strong>U₂ = U₃ + ΔU</li>
+    <li><strong>过 T₁ 升压变压器：</strong>U₁ = U₂×(n₁/n₂)</li>
+  </ol>
+  <p>总结：从<strong>用户端</strong>出发，经过"降压变压器→输电线→升压变压器"一路反推回发电站。每一环节用变压器三大关系（电压比、电流比、功率守恒）。</p>
+  <p>📖 变压器三大关系看 <a href="02-transformer.html">变压器原理</a>，串并联分压看 <a href="07-circuit-basics.html">电路基础</a></p>
+</div>
+
+<!-- 随堂小测 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 在远距离输电中，若输电电压提高为原来的 10 倍，其他条件不变，则输电线上损耗的功率变为原来的：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 1/10</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 1/100</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 10 倍</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 100 倍</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 远距离输电系统中，"送电端电压" U₂ 和"受电端电压" U₃ 的关系是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. U₂ = U₃</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. U₂ = U₃ + I₂×R</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. U₂ = U₃ − I₂×R</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. U₂ = U₃ × R</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="03-dynamic-analysis.html" class="nav-link">← 动态分析技巧</a>
+  <a href="05-ac-basics.html" class="nav-link">💡 交流电基础 →</a>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！P损 = P²R/U₂²，电压提高10倍 → P损变为 1/100。这就是"平方反比"关系——升压的效果非常显著。':'❌ 正确选项是B。P损 ∝ 1/U₂²，电压提高10倍，线损变为原来的 1/100。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！送电端电压 = 受电端电压 + 线路压降。电流从高电位流向低电位，途中在电阻R上降压。':'❌ 正确选项是B。U₂ = U₃ + I₂×R，线路压降 = 电流 × 线路电阻。';
+}
+</script>
+</body>
+</html>

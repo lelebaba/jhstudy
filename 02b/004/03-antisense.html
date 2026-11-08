@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>反义核酸技术 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link active">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🔇 反义核酸技术</h1>
+  <p>"反向锁链"——如何用一段反向序列悄悄关掉一个基因？</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 反义核酸技术</div>
+
+<div class="card">
+  <h2>🤔 什么是"反义核酸"？</h2>
+  <p>要理解反义核酸，先要懂"正义"是什么：</p>
+  <ul>
+    <li>基因的<strong>正义链</strong>：编码蛋白质的DNA模板链对应的那条链</li>
+    <li>转录出的mRNA，序列与正义链互补、与"编码信息"方向一致</li>
+    <li><strong>反义核酸</strong>：是一条与mRNA<strong>碱基互补配对</strong>的短核苷酸序列</li>
+  </ul>
+  <p><strong>比喻：</strong> 把mRNA想象成一把<strong>钥匙</strong>（带着特定的齿形），核糖体就是<strong>锁</strong>——钥匙插进去就能开始翻译蛋白。而反义核酸就像一块<strong>嚼过的口香糖</strong>粘在钥匙上——钥匙齿被糊住了，插不进锁里，翻译就停了。</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 180">
+      <!-- Normal -->
+      <text x="120" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">正常情况</text>
+      <rect x="30" y="50" width="180" height="12" rx="6" fill="#1565c0"/>
+      <text x="120" y="75" text-anchor="middle" font-size="12" fill="#333">mRNA (正义链)</text>
+      <ellipse cx="230" cy="56" rx="25" ry="20" fill="#ff9800" opacity="0.6"/>
+      <text x="230" y="61" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">核糖体</text>
+      <text x="120" y="110" text-anchor="middle" font-size="11" fill="#2e7d32">→ 翻译正常进行 → 产生蛋白质</text>
+      <line x1="30" y1="130" x2="230" y2="130" stroke="#ccc" stroke-width="1"/>
+      <!-- Antisense -->
+      <text x="460" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">导入反义序列后</text>
+      <rect x="370" y="50" width="180" height="12" rx="6" fill="#1565c0"/>
+      <rect x="370" y="40" width="180" height="10" rx="5" fill="#c62828" opacity="0.8"/>
+      <text x="460" y="49" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">反义核酸</text>
+      <text x="460" y="75" text-anchor="middle" font-size="12" fill="#333">mRNA (被"锁死")</text>
+      <ellipse cx="570" cy="56" rx="25" ry="20" fill="#ccc"/>
+      <text x="570" y="61" text-anchor="middle" font-size="10" fill="#666">核糖体</text>
+      <text x="460" y="110" text-anchor="middle" font-size="11" fill="#c62828">→ 翻译被阻断 → 不产生蛋白质 ✗</text>
+    </svg>
+    <figcaption>反义核酸与mRNA互补配对，物理阻断核糖体的翻译过程</figcaption>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧪 图1实验的完整流程</h2>
+  <h3>第一步：构建载体</h3>
+  <p>将T基因的<strong>反义序列</strong>插入表达载体中。注意：反义序列的产物不是蛋白质，而是一段与T基因mRNA互补的<strong>反义RNA</strong>。</p>
+
+  <h3>第二步：导入植物细胞</h3>
+  <p>用<strong>农杆菌转化法</strong>将载体导入苦茶树组织。农杆菌将包含反义序列的T-DNA片段"送货上门"，整合到植物的基因组中。</p>
+
+  <h3>第三步：同时设置对照组</h3>
+  <p>对照组用同样的方法导入<strong>空载体</strong>（不含反义序列的载体），除此之外所有条件（温度、光照、培养时间等）完全一致。</p>
+
+  <h3>第四步：检测苦茶碱含量</h3>
+  <p>培养一段时间后，检测两组植物的苦茶碱含量。</p>
+
+  <div class="hint-box">
+    <h4>💡 为什么实验组含量低就是T促进合成？</h4>
+    <p>逻辑链：反义序列抑制T基因表达 → T蛋白减少 → 如果T促进Cs基因表达 → Cs酶减少 → 苦茶碱减少。</p>
+    <p>结果确实看到苦茶碱减少（从~2.0降到~1.0），所以反推出<strong>T基因促进苦茶碱合成</strong>。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚠️ 实验设计的三个关键细节</h2>
+  <ol class="step-list">
+    <li><strong>为什么要用空载体做对照？</strong><br>因为导入载体的过程本身可能对植物有影响（比如农杆菌感染造成的应激反应），如果对照组不导入任何东西，实验组和对照组之间就不只差"有/无反义序列"这一个变量了。所以对照组必须导入空载体，保证除了反义序列之外，其他条件完全一致。</li>
+    <li><strong>反义核酸在哪一步起作用？</strong><br>在<strong>翻译</strong>阶段起作用。它不改变DNA，也不影响转录，而是与mRNA结合，阻止核糖体翻译出T蛋白。所以:<br>T基因仍然正常转录出mRNA → 但mRNA被反义RNA"锁住" → 翻译不出T蛋白。</li>
+    <li><strong>反义序列为什么不会影响其他基因？</strong><br>因为反义序列是<strong>序列特异性</strong>的——它只与T基因的mRNA互补配对，就像一把钥匙只开一把锁，不会干扰其他基因的表达。</li>
+  </ol>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>反义核酸技术通过什么机制抑制基因表达？</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'B')">A. 直接降解DNA</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">B. 与mRNA互补配对，阻断翻译</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">C. 抑制转录因子结合</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">D. 促进蛋白质降解</div>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="02-transcription-factors.html" class="nav-link">← 转录因子详解</a>
+  <a href="04-emsa.html" class="nav-link">⚡ EMSA实验详解 →</a>
+</div>
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){document.querySelectorAll('.quiz-option').forEach(e=>{if(e.textContent.length>0&&'ABCD'.includes(e.textContent[0]))e.classList.remove('correct','wrong');});el.classList.add(el.textContent.startsWith(ans)?'correct':'wrong');var fb=document.getElementById('qfb');fb.className='quiz-feedback show '+(el.textContent.startsWith(ans)?'correct':'wrong');fb.innerHTML=el.textContent.startsWith(ans)?'✅ 正确！反义核酸与靶mRNA碱基互补配对，物理阻断核糖体的翻译，从而抑制蛋白质的合成。':'❌ 正确选项是B。反义核酸通过与mRNA互补结合来阻断翻译，不影响DNA本身。';}
+</script>
+</body>
+</html>

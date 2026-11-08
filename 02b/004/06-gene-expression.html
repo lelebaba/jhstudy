@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>基因表达基础 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link active">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🎛️ 基因表达调控基础</h1>
+  <p>启动子是什么？基因开关如何被"摁"下去？</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 基因表达基础</div>
+
+<div class="card">
+  <h2>🏗️ 一个基因的"三段式"结构</h2>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 200">
+      <text x="340" y="25" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">基因结构示意图</text>
+      <!-- DNA -->
+      <rect x="40" y="50" width="600" height="8" rx="4" fill="#999"/>
+      <!-- 启动子 -->
+      <rect x="70" y="35" width="100" height="38" rx="6" fill="#e8f5e9" stroke="#2c7a4b" stroke-width="2"/>
+      <text x="120" y="58" text-anchor="middle" font-size="12" fill="#2c7a4b" font-weight="bold">启动子</text>
+      <!-- 编码区 -->
+      <rect x="230" y="35" width="280" height="38" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="370" y="58" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold">编码区（Cs基因）</text>
+      <!-- 终止子 -->
+      <rect x="570" y="35" width="60" height="38" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+      <text x="600" y="58" text-anchor="middle" font-size="10" fill="#c62828" font-weight="bold">终止子</text>
+
+      <!-- Descriptions -->
+      <text x="120" y="120" text-anchor="middle" font-size="11" fill="#2c7a4b">"开关"</text>
+      <text x="120" y="138" text-anchor="middle" font-size="11" fill="#2c7a4b">RNA聚合酶</text>
+      <text x="120" y="156" text-anchor="middle" font-size="11" fill="#2c7a4b">结合的位置</text>
+
+      <text x="370" y="120" text-anchor="middle" font-size="11" fill="#1565c0">"生产图纸"</text>
+      <text x="370" y="138" text-anchor="middle" font-size="11" fill="#1565c0">决定酶的</text>
+      <text x="370" y="156" text-anchor="middle" font-size="11" fill="#1565c0">氨基酸序列</text>
+
+      <text x="600" y="120" text-anchor="middle" font-size="11" fill="#c62828">"停止信号"</text>
+      <text x="600" y="138" text-anchor="middle" font-size="11" fill="#c62828">转录</text>
+      <text x="600" y="156" text-anchor="middle" font-size="11" fill="#c62828">到此结束</text>
+    </svg>
+    <figcaption>基因的三段式结构：启动子（开关）、编码区（图纸）、终止子（刹车）</figcaption>
+  </div>
+
+  <h3>启动子——基因的"开关"</h3>
+  <p>启动子是位于基因上游的一段DNA序列，它本身<strong>不编码蛋白质</strong>，但它是<strong>RNA聚合酶（负责"读"基因的酶）识别并开始转录的入口</strong>。</p>
+  <p><strong>比喻：</strong>启动子就像教室的<strong>门</strong>——RNA聚合酶（学生）必须从门（启动子）进入，才能开始在黑板上抄写（转录）。没有门，学生进不去，再好的教案（基因）也没法用。</p>
+  <p>在本题中，Cs基因的启动子就是T蛋白和W蛋白结合的"靶标"。T蛋白绑定到启动子上后，帮助RNA聚合酶"推门进去"或者"加快抄写速度"，从而促进Cs基因的表达。</p>
+</div>
+
+<div class="card">
+  <h2>🔑 调控的四种常见方式</h2>
+  <ol class="step-list">
+    <li><strong>转录调控</strong>（本题重点）<br>控制是否开始转录以及转录快慢。由转录因子（如T、W蛋白）结合启动子来实现。这是最常见、最重要的调控层次。</li>
+    <li><strong>转录后调控</strong><br>mRNA被加工（加帽、加尾、剪接），控制mRNA的稳定性和翻译效率。</li>
+    <li><strong>翻译调控</strong><br>反义核酸就在这一层起作用——阻断核糖体在mRNA上的翻译。</li>
+    <li><strong>翻译后调控</strong><br>蛋白质合成之后，通过磷酸化、降解等方式调节其活性。</li>
+  </ol>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>基因的启动子序列的核心功能是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'B')">A. 编码蛋白质的氨基酸序列</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">B. 提供RNA聚合酶识别和结合的位点，启动转录</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">C. 保护DNA不被降解</div>
+      <div class="quiz-option" onclick="qcheck(this,'B')">D. 直接合成苦茶碱</div>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="05-luciferase.html" class="nav-link">← 荧光素酶互补</a>
+  <a href="07-central-dogma.html" class="nav-link">🔄 中心法则 →</a>
+</div>
+</div>
+</div>
+<script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){document.querySelectorAll('.quiz-option').forEach(e=>{var t=e.textContent.trim();if(t.length>1&&'ABCD'.includes(t[0]))e.classList.remove('correct','wrong');});el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');var fb=document.getElementById('qfb');fb.className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');fb.innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！启动子是基因表达的调控序列，本身不编码蛋白质，但包含RNA聚合酶结合和转录起始所需的关键序列。':'❌ 正确选项是B。启动子是调控序列，不编码蛋白质。';}
+</script>
+</body>
+</html>

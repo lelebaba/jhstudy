@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蛋白质合成与降解 — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt通路</a></li>
+        <li class="tree-item"><a href="05-protein-degradation.html" class="tree-link active">🔬 5. 蛋白质合成与降解</a></li>
+        <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附</a></li>
+        <li class="tree-item"><a href="06-EMT.html" class="tree-link">🎭 6. EMT</a></li>
+        <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. Hp与胃癌</a></li>
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 研究方法</a></li>
+        <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>🔬 蛋白质的合成与降解</h1><p>从核糖体合成到蛋白酶体降解——β-cat蛋白的一生</p></div>
+
+<div class="card">
+  <h2>🏭 蛋白质合成：核糖体</h2>
+  <p>所有蛋白质都在 <strong>核糖体</strong> 上合成（本题第（1）问第一空 = 核糖体）。核糖体由 rRNA 和蛋白质组成，在细胞质中或附着在内质网上。</p>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 680 150">
+      <rect x="10" y="10" width="660" height="130" rx="12" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+      <text x="340" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#6a1b9a">mRNA → 核糖体翻译 → 蛋白质肽链 → 折叠 → 成熟蛋白质</text>
+
+      <rect x="50" y="55" width="120" height="40" rx="6" fill="#ce93d8"/>
+      <text x="110" y="73" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">β-cat mRNA</text>
+      <text x="110" y="88" text-anchor="middle" font-size="9" fill="#fff">（来自细胞核转录）</text>
+
+      <line x1="170" y1="75" x2="210" y2="75" stroke="#9c27b0" stroke-width="2" marker-end="url(#ar)"/>
+
+      <rect x="215" y="55" width="90" height="40" rx="6" fill="#8e24aa"/>
+      <text x="260" y="78" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">核糖体</text>
+
+      <line x1="305" y1="75" x2="345" y2="75" stroke="#9c27b0" stroke-width="2" marker-end="url(#ar)"/>
+
+      <rect x="350" y="55" width="120" height="40" rx="6" fill="#7b1fa2"/>
+      <text x="410" y="78" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">β-cat 蛋白</text>
+
+      <line x1="470" y1="75" x2="510" y2="75" stroke="#9c27b0" stroke-width="2" marker-end="url(#ar)"/>
+
+      <text x="530" y="70" font-size="11" fill="#555">→ 细胞质中</text>
+      <text x="530" y="88" font-size="11" fill="#555">→ 或运往细胞膜</text>
+
+      <defs><marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#9c27b0"/></marker></defs>
+    </svg>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🗑️ 蛋白质降解：泛素-蛋白酶体系统</h2>
+  <p>本题第（1）问的核心就是蛋白质降解过程。β-cat 的正常代谢经历了三个步骤：</p>
+
+  <div class="svg-container">
+    <svg viewBox="0 0 680 200">
+      <rect x="10" y="10" width="660" height="180" rx="12" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">β-cat 降解的"三步走"流程</text>
+
+      <rect x="30" y="55" width="180" height="70" rx="8" fill="#ffcdd2"/>
+      <text x="120" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">步骤① 磷酸化</text>
+      <text x="120" y="96" text-anchor="middle" font-size="10" fill="#555">降解复合体给β-cat</text>
+      <text x="120" y="112" text-anchor="middle" font-size="10" fill="#555">贴上"死亡标签" Ⓟ</text>
+
+      <text x="230" y="95" font-size="18" fill="#c62828">→</text>
+
+      <rect x="250" y="55" width="180" height="70" rx="8" fill="#fff3e0"/>
+      <text x="340" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">步骤② 泛素化</text>
+      <text x="340" y="96" text-anchor="middle" font-size="10" fill="#555">泛素连接酶识别</text>
+      <text x="340" y="112" text-anchor="middle" font-size="10" fill="#555">磷酸化的β-cat→加泛素链</text>
+
+      <text x="450" y="95" font-size="18" fill="#e65100">→</text>
+
+      <rect x="470" y="55" width="180" height="70" rx="8" fill="#c8e6c9"/>
+      <text x="560" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">步骤③ 蛋白酶体水解</text>
+      <text x="560" y="96" text-anchor="middle" font-size="10" fill="#555">泛素化的β-cat被</text>
+      <text x="560" y="112" text-anchor="middle" font-size="10" fill="#555">送入蛋白酶体→切碎</text>
+
+      <rect x="60" y="145" width="560" height="32" rx="6" fill="#fff9c4"/>
+      <text x="340" y="166" text-anchor="middle" font-size="11" fill="#555">ICG/Wnt通路作用在第①步之前：决定降解复合体是否正常工作，从而决定β-cat是否被磷酸化</text>
+    </svg>
+  </div>
+
+  <div class="hint-box">
+    <h4>💡 类比：快递分拣系统</h4>
+    <p>磷酸化 = 贴上"处理"标签 → 泛素化 = 扫描条码登记 → 蛋白酶体 = 碎纸机。Wnt通路决定"碎纸机是否开机"。ICG = 让被关掉的碎纸机重新启动。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📌 本题考点回顾</h2>
+  <table>
+    <tr><th>考点</th><th>答案</th><th>对应知识</th></tr>
+    <tr><td>β-cat在哪合成</td><td>核糖体</td><td>蛋白质合成场所</td></tr>
+    <tr><td>降解复合体使β-cat怎样</td><td>磷酸化</td><td>降解的第一步标记</td></tr>
+    <tr><td>正常状态β-cat含量</td><td>低</td><td>持续降解维持稳态</td></tr>
+    <tr><td>Hp感染时β-cat含量</td><td>高</td><td>Wnt通路抑制降解</td></tr>
+    <tr><td>ICG处理后β-cat含量</td><td>回落</td><td>恢复降解功能</td></tr>
+  </table>
+  <p>📖 基础知识：<a href="08-central-dogma.html">中心法则</a></p>
+</div>
+
+<div class="quiz">
+  <div class="q">🧪 小练习：β-cat要被降解，必须先被什么修饰？</div>
+  <div class="option" onclick="checkQuiz(this,'A')">A. 甲基化</div>
+  <div class="option" onclick="checkQuiz(this,'B')">B. 乙酰化</div>
+  <div class="option" onclick="checkQuiz(this,'C')">C. 磷酸化</div>
+  <div class="option" onclick="checkQuiz(this,'D')">D. 糖基化</div>
+  <div class="feedback"></div>
+</div>
+
+<div class="nav-btns">
+  <a href="06-EMT.html" class="nav-btn back">← EMT</a>
+  <a href="07-research-methods.html" class="nav-btn">下一课：研究方法 →</a>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkQuiz(el, ans) {
+  var all = el.parentElement.querySelectorAll('.option');
+  all.forEach(function(o){ o.classList.remove('correct','wrong'); });
+  var fb = el.parentElement.querySelector('.feedback');
+  if(ans==='C') {
+    el.classList.add('correct');
+    fb.textContent = '✅ 正确！降解复合体中的GSK-3β先将β-cat磷酸化，这是泛素化和水解的前提步骤。';
+    fb.className = 'feedback correct show';
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = '❌ 再想想。β-cat的降解途径是：磷酸化→泛素化→蛋白酶体水解，磷酸化是最关键的第一步标记。';
+    fb.className = 'feedback wrong show';
+  }
+}
+</script>
+</body>
+</html>

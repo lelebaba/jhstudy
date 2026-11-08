@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>细胞黏附与E-cadherin — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt/β-cat通路</a></li>
+        <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link active">🔗 4. 细胞黏附</a></li>
+        <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. Hp与胃癌</a></li>
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 研究方法</a></li>
+        <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>🔗 细胞黏附与 E-cadherin</h1><p>E蛋白-β-cat复合物如何维持上皮组织的完整性？</p></div>
+
+<div class="card">
+  <h2>🧱 细胞间连接的种类</h2>
+  <p>多细胞生物体中的细胞不是独立存在的，它们通过各种结构彼此连接，形成组织。主要连接方式有：</p>
+  <table>
+    <tr><th>连接类型</th><th>比喻</th><th>关键蛋白</th><th>功能</th></tr>
+    <tr><td>紧密连接</td><td>拉链</td><td>Claudin, Occludin</td><td>防止物质从细胞间隙漏过</td></tr>
+    <tr><td style="background:#e8f5e9"><strong>黏着连接</strong></td><td style="background:#e8f5e9"><strong>铆钉</strong></td><td style="background:#e8f5e9"><strong>E-cadherin, β-cat</strong></td><td style="background:#e8f5e9"><strong>细胞间黏附</strong></td></tr>
+    <tr><td>桥粒</td><td>焊接点</td><td>Desmoglein</td><td>更强的机械连接</td></tr>
+    <tr><td>间隙连接</td><td>管道</td><td>Connexin</td><td>小分子物质交换</td></tr>
+  </table>
+  <p>本题重点考查的是 <strong>黏着连接（Adherens Junction）</strong> 中的 E-cadherin/β-cat 复合物。</p>
+</div>
+
+<div class="card">
+  <h2>🏗️ E-cadherin / β-cat 复合物的结构</h2>
+  <div class="svg-container">
+    <svg viewBox="0 0 680 280">
+      <rect x="10" y="10" width="660" height="260" rx="12" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">两个相邻上皮细胞之间的黏着连接</text>
+
+      <!-- Cell A -->
+      <rect x="50" y="55" width="240" height="195" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="170" y="75" text-anchor="middle" font-size="12" fill="#1565c0">细胞 A 的细胞膜</text>
+
+      <!-- E-cadherin A -->
+      <rect x="180" y="100" width="60" height="20" rx="4" fill="#4caf50"/>
+      <text x="210" y="114" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">E蛋白</text>
+
+      <!-- Cell B -->
+      <rect x="390" y="55" width="240" height="195" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+      <text x="510" y="75" text-anchor="middle" font-size="12" fill="#e65100">细胞 B 的细胞膜</text>
+
+      <!-- E-cadherin B -->
+      <rect x="430" y="100" width="60" height="20" rx="4" fill="#ff9800"/>
+      <text x="460" y="114" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">E蛋白</text>
+
+      <!-- Intercellular space -->
+      <text x="340" y="108" text-anchor="middle" font-size="11" fill="#999">细胞间隙</text>
+      <line x1="240" y1="110" x2="430" y2="110" stroke="#4caf50" stroke-width="2"/>
+      <text x="340" y="98" text-anchor="middle" font-size="10" fill="#4caf50">Ca²⁺依赖的同嗜性结合</text>
+
+      <!-- β-catenin A -->
+      <rect x="180" y="135" width="60" height="20" rx="4" fill="#2196f3"/>
+      <text x="210" y="149" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">β-cat</text>
+      <line x1="210" y1="120" x2="210" y2="135" stroke="#333" stroke-width="1.5"/>
+
+      <!-- β-catenin B -->
+      <rect x="430" y="135" width="60" height="20" rx="4" fill="#2196f3"/>
+      <text x="460" y="149" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">β-cat</text>
+      <line x1="460" y1="120" x2="460" y2="135" stroke="#333" stroke-width="1.5"/>
+
+      <!-- Actin A -->
+      <line x1="210" y1="155" x2="210" y2="200" stroke="#999" stroke-width="2"/>
+      <text x="210" y="215" text-anchor="middle" font-size="10" fill="#999">α-cat → 肌动蛋白丝</text>
+
+      <!-- Actin B -->
+      <line x1="460" y1="155" x2="460" y2="200" stroke="#999" stroke-width="2"/>
+      <text x="460" y="215" text-anchor="middle" font-size="10" fill="#999">α-cat → 肌动蛋白丝</text>
+
+      <!-- Labels -->
+      <rect x="50" y="230" width="580" height="28" rx="6" fill="#fff9c4"/>
+      <text x="340" y="249" text-anchor="middle" font-size="11" fill="#555">E蛋白=跨膜"铆钉" | β-cat=铆钉的"锚"连接细胞内骨架 | 两细胞的E蛋白在细胞间隙"互相握手"</text>
+    </svg>
+  </div>
+
+  <div class="hint-box">
+    <h4>💡 比喻理解</h4>
+    <p>E-cadherin 像一个跨膜的<strong>"双手"</strong>：一只手伸向细胞外面，和隔壁细胞的 E-cadherin "握手"；另一只手在细胞内，通过 β-cat 抓住细胞骨架（肌动蛋白丝）。</p>
+    <p>当 M 蛋白把 E-cadherin 水解掉时，相当于把"双手"砍断：</p>
+    <ul>
+      <li>细胞外面的握手断开 → 两个细胞不再黏在一起</li>
+      <li>细胞内的 β-cat 被释放 → 游离 β-cat 增加 → 可能进入细胞核</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚠️ E蛋白/β-cat复合物的双重意义</h2>
+  <table>
+    <tr><th>角度</th><th>意义</th></tr>
+    <tr><td>结构层面</td><td>维持上皮组织的屏障功能和完整性。E蛋白没了→上皮像没有铆钉的布→松散</td></tr>
+    <tr><td>信号层面</td><td>E蛋白在膜上扣押β-cat，限制其入核。E蛋白没了→β-cat被释放→自由入核</td></tr>
+    <tr><td>病理层面</td><td>E蛋白丢失是多种癌症（尤其胃癌）恶化的标志，与侵袭转移能力直接相关</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>📌 "癌细胞脱离原发灶"的含义</h2>
+  <div class="hint-box">
+    <h4>🔍 什么是"原发灶"和"脱离"？</h4>
+    <p><strong>原发灶</strong> = 癌细胞最初长出来的那个地方（如胃黏膜上皮）。</p>
+    <p><strong>脱离</strong>：正常上皮细胞像一群手拉手的人，E蛋白就是他们互相拉着的手。E蛋白被水解→"手被砍断"→癌细胞从肿瘤团块上脱下来→可以到处跑→钻入周围组织（<strong>侵袭</strong>）→钻入血管淋巴管跑到远处（<strong>转移</strong>）。</p>
+    <p>这是肿瘤学"侵袭-转移级联反应"的第一步——细胞必须先"脱得开"，才能"跑得掉"。</p>
+  </div>
+  <p>📖 深入了解：<a href="06-EMT.html">上皮-间质转化（EMT）</a></p>
+</div>
+
+<div class="quiz">
+  <div class="q">🧪 小练习：E蛋白被水解后，会同时产生哪两种效应？</div>
+  <div class="option" onclick="checkQuiz(this,'A')">A. 只影响细胞黏附，不影响β-cat</div>
+  <div class="option" onclick="checkQuiz(this,'B')">B. 细胞黏附丧失 + β-cat被释放入核（两者同时发生）</div>
+  <div class="option" onclick="checkQuiz(this,'C')">C. β-cat立即被降解，细胞黏附也不受影响</div>
+  <div class="option" onclick="checkQuiz(this,'D')">D. E蛋白被水解只影响细胞核内的基因表达</div>
+  <div class="feedback"></div>
+</div>
+
+<div class="nav-btns">
+  <a href="03-hp-gastric-cancer.html" class="nav-btn back">← Hp与胃癌</a>
+  <a href="06-EMT.html" class="nav-btn">下一课：EMT →</a>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkQuiz(el, ans) {
+  var all = el.parentElement.querySelectorAll('.option');
+  all.forEach(function(o){ o.classList.remove('correct','wrong'); });
+  var fb = el.parentElement.querySelector('.feedback');
+  if(ans==='B') {
+    el.classList.add('correct');
+    fb.textContent = '✅ 正确！E蛋白被水解同时产生两种效应：①结构上细胞黏附丧失；②信号上β-cat被释放入核。两者共同推动癌症进展。';
+    fb.className = 'feedback correct show';
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = '❌ 再想想。E蛋白/β-cat复合物的破坏是一个"一石二鸟"的事件——既破坏黏附，又释放信号分子。';
+    fb.className = 'feedback wrong show';
+  }
+}
+</script>
+</body>
+</html>

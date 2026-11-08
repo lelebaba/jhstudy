@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6. 中心法则 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link active">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="05-pcr-cloning.html" class="nav-back">← PCR克隆</a>
+    <div class="nav-title">中心法则</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot completed" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot completed" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot completed" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot completed" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot active" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>🧬 中心法则</h1>
+    <p class="subtitle">生命的"信息高速公路"：DNA → RNA → 蛋白质</p>
+  </div>
+
+  <div class="card concept-card">
+    <h2>💡 什么是中心法则？</h2>
+    <p>中心法则（Central Dogma）是分子生物学的<strong>核心理论</strong>，描述了遗传信息在生物体内的流动方向：</p>
+    <div class="formula-box">
+      DNA → RNA → 蛋白质
+    </div>
+    <p>你可以把它理解为一条<strong>信息传递链</strong>：</p>
+    <ul>
+      <li><strong>DNA</strong> = 原始蓝图（藏在细胞核里的设计图）</li>
+      <li><strong>RNA</strong> = 工作副本（把设计图复印一份，送到施工现场）</li>
+      <li><strong>蛋白质</strong> = 实际产品（根据图纸造出来的机器，执行具体功能）</li>
+    </ul>
+  </div>
+
+  <div class="card metaphor-card">
+    <h2>🏗️ 比喻：建筑工地的信息传递</h2>
+    <p>想象一个建筑工地：</p>
+    <ul>
+      <li><strong>DNA</strong> = 建筑公司的<strong>总设计图纸</strong>，保存在保险库里，不轻易拿出</li>
+      <li><strong>转录</strong> = 把设计图纸复印一份<strong>施工副本</strong>（mRNA），送到工地现场</li>
+      <li><strong>翻译</strong> = 工人们根据施工副本，把<strong>原材料（氨基酸）</strong>组装成<strong>建筑构件（蛋白质）</strong></li>
+    </ul>
+    <p>为什么DNA不直接指导蛋白质合成？因为DNA太珍贵了，就像设计图纸不能拿到满是泥水的工地现场，容易损坏。所以要先复印一份（mRNA），复印件损坏了也不心疼。</p>
+  </div>
+
+  <div class="card">
+    <h2>🔄 第一步：DNA复制（DNA → DNA）</h2>
+    <p>在细胞分裂之前，DNA需要先复制一份，确保两个子细胞都能获得完整的遗传信息。</p>
+    <p>DNA复制是<strong>半保留复制</strong>：每个新的DNA分子都包含一条旧链和一条新链。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 500 160" width="100%">
+        <text x="250" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">DNA半保留复制</text>
+        
+        <rect x="150" y="35" width="200" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="52" text-anchor="middle" font-size="12" fill="#1d4ed8">亲代DNA双链</text>
+        
+        <line x1="250" y1="60" x2="250" y2="80" stroke="#6b7280" stroke-width="2"/>
+        <text x="265" y="75" font-size="12" fill="#6b7280">解旋</text>
+        
+        <rect x="50" y="90" width="200" height="25" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="150" y="107" text-anchor="middle" font-size="12" fill="#065f46">子代DNA 1</text>
+        
+        <rect x="250" y="90" width="200" height="25" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="350" y="107" text-anchor="middle" font-size="12" fill="#065f46">子代DNA 2</text>
+        
+        <text x="250" y="145" text-anchor="middle" font-size="12" fill="#6b7280">每个子代DNA都含有一条旧链和一条新链</text>
+      </svg>
+      <div class="diagram-caption">DNA半保留复制示意图</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 第二步：转录（DNA → RNA）</h2>
+    <p><strong>转录</strong>是以DNA为模板合成RNA的过程。</p>
+    <ul>
+      <li><strong>模板链</strong>：DNA的一条链被读取</li>
+      <li><strong>RNA聚合酶</strong>：沿着DNA模板移动，合成互补的RNA链</li>
+      <li><strong>启动子</strong>：告诉RNA聚合酶"从这里开始转录"的信号</li>
+    </ul>
+    <p>不同类型的RNA有不同的功能：</p>
+    <table class="compare-table">
+      <tr>
+        <th>RNA类型</th>
+        <th>功能</th>
+        <th>比喻</th>
+      </tr>
+      <tr>
+        <td><strong>mRNA</strong><br/>（信使RNA）</td>
+        <td>携带遗传信息，从细胞核到细胞质</td>
+        <td>施工副本</td>
+      </tr>
+      <tr>
+        <td><strong>tRNA</strong><br/>（转运RNA）</td>
+        <td>转运氨基酸到核糖体</td>
+        <td>搬运工人</td>
+      </tr>
+      <tr>
+        <td><strong>rRNA</strong><br/>（核糖体RNA）</td>
+        <td>构成核糖体的结构</td>
+        <td>工厂车间</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🏭 第三步：翻译（RNA → 蛋白质）</h2>
+    <p><strong>翻译</strong>是以mRNA为模板合成蛋白质的过程，发生在<strong>核糖体</strong>上。</p>
+    <p>翻译过程可以比喻为：</p>
+    <ul>
+      <li><strong>mRNA</strong> = 一本写着密码的纸条</li>
+      <li><strong>密码子</strong> = 每3个核苷酸（碱基）组成一个密码，对应一种氨基酸</li>
+      <li><strong>tRNA</strong> = 搬运工人，一端识别密码子，另一端携带对应的氨基酸</li>
+      <li><strong>核糖体</strong> = 装配车间，把氨基酸一个一个连起来</li>
+    </ul>
+    <div class="diagram">
+      <svg viewBox="0 0 500 180" width="100%">
+        <text x="250" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">翻译过程：mRNA → 蛋白质</text>
+        
+        <rect x="50" y="40" width="400" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="60" text-anchor="middle" font-size="14" fill="#92400e">mRNA：AUG - GGC - UUA - CGA - UAA</text>
+        
+        <rect x="80" y="85" width="50" height="40" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="105" y="105" text-anchor="middle" font-size="11" fill="#1d4ed8">tRNA</text>
+        <text x="105" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Met</text>
+        
+        <rect x="150" y="85" width="50" height="40" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="175" y="105" text-anchor="middle" font-size="11" fill="#1d4ed8">tRNA</text>
+        <text x="175" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Gly</text>
+        
+        <rect x="220" y="85" width="50" height="40" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="245" y="105" text-anchor="middle" font-size="11" fill="#1d4ed8">tRNA</text>
+        <text x="245" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Leu</text>
+        
+        <rect x="290" y="85" width="50" height="40" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="315" y="105" text-anchor="middle" font-size="11" fill="#1d4ed8">tRNA</text>
+        <text x="315" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Arg</text>
+        
+        <line x1="105" y1="85" x2="105" y2="75" stroke="#2563eb" stroke-width="1"/>
+        <line x1="175" y1="85" x2="175" y2="75" stroke="#2563eb" stroke-width="1"/>
+        <line x1="245" y1="85" x2="245" y2="75" stroke="#2563eb" stroke-width="1"/>
+        <line x1="315" y1="85" x2="315" y2="75" stroke="#2563eb" stroke-width="1"/>
+        
+        <rect x="50" y="140" width="400" height="25" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="157" text-anchor="middle" font-size="13" fill="#065f46">蛋白质：甲硫氨酸 - 甘氨酸 - 亮氨酸 - 精氨酸</text>
+      </svg>
+      <div class="diagram-caption">翻译过程：核糖体读取mRNA上的密码子，tRNA运送对应的氨基酸，连成蛋白质链</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🧬 DNA的结构基础</h2>
+    <p>DNA是<strong>脱氧核糖核酸</strong>（Deoxyribonucleic Acid），由两条链组成<strong>双螺旋结构</strong>。</p>
+    <p>DNA的基本单位是<strong>核苷酸</strong>，每个核苷酸包含三部分：</p>
+    <ul>
+      <li><strong>磷酸基团</strong></li>
+      <li><strong>脱氧核糖</strong>（五碳糖）</li>
+      <li><strong>含氮碱基</strong>：A（腺嘌呤）、T（胸腺嘧啶）、G（鸟嘌呤）、C（胞嘧啶）</li>
+    </ul>
+    <p><strong>碱基互补配对原则</strong>：A与T配对，G与C配对。这是DNA复制和转录的基础。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 400 120" width="100%">
+        <text x="200" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">碱基互补配对</text>
+        
+        <rect x="50" y="40" width="60" height="50" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="80" y="58" text-anchor="middle" font-size="18" fill="#1d4ed8" font-weight="bold">A</text>
+        <text x="80" y="80" text-anchor="middle" font-size="11" fill="#6b7280">腺嘌呤</text>
+        
+        <text x="150" y="75" text-anchor="middle" font-size="24" fill="#10b981">⇄</text>
+        
+        <rect x="190" y="40" width="60" height="50" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="220" y="58" text-anchor="middle" font-size="18" fill="#065f46" font-weight="bold">T</text>
+        <text x="220" y="80" text-anchor="middle" font-size="11" fill="#6b7280">胸腺嘧啶</text>
+        
+        <rect x="280" y="40" width="60" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="310" y="58" text-anchor="middle" font-size="18" fill="#92400e" font-weight="bold">G</text>
+        <text x="310" y="80" text-anchor="middle" font-size="11" fill="#6b7280">鸟嘌呤</text>
+        
+        <text x="370" y="75" text-anchor="middle" font-size="24" fill="#10b981">⇄</text>
+        
+        <text x="200" y="110" text-anchor="middle" font-size="12" fill="#6b7280">A=T（双氢键），G≡C（三氢键）</text>
+      </svg>
+      <div class="diagram-caption">DNA中的碱基配对规则</div>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-question">🎯 小练习：中心法则</div>
+    <p>在中心法则中，DNA → RNA 的过程被称为什么？</p>
+    <div class="quiz-options">
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> A. 翻译
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> B. 转录
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> C. 复制
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> D. 逆转录
+      </label>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkQuizAnswer()">查看答案</button>
+  </div>
+
+  <div class="card next-card">
+    <h2>🚀 后续学习</h2>
+    <div class="btn-group">
+      <a href="07-protein.html" class="btn btn-primary">蛋白质与氨基酸 →</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="05-pcr-cloning.html" class="btn btn-outline">← PCR克隆</a>
+    <a href="07-protein.html" class="btn btn-primary">蛋白质与氨基酸 →</a>
+  </div>
+</div>
+
+<script>
+function selectQuizOption(el) {
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.querySelector('input').checked = true;
+}
+function checkQuizAnswer() {
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const selected = document.querySelector('input[name="q1"]:checked');
+  if (!selected) { feedback.innerHTML = '请先选择一个答案！'; feedback.classList.add('show', 'wrong'); return; }
+  options[0].classList.add('wrong');
+  options[1].classList.add('correct');
+  options[2].classList.add('wrong');
+  options[3].classList.add('wrong');
+  feedback.innerHTML = '<strong>解析：</strong>DNA → RNA 的过程称为<strong>转录</strong>（Transcription），由RNA聚合酶催化。RNA → 蛋白质的过程称为翻译（Translation）。DNA → DNA 是复制（Replication）。逆转录（Reverse Transcription）是RNA → DNA，某些病毒具有这种能力。';
+  feedback.classList.add('show', 'correct');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

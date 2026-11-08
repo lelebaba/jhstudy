@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>电路基础 — 变压器与远距离输电</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link active">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🔧 电路基础</h1>
+  <p>串并联、欧姆定律、功率——理解变压器电路的最底层工具</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="04-long-distance.html">远距离输电</a> <span>›</span> 电路基础</div>
+
+<div class="card">
+  <h2>📏 欧姆定律</h2>
+  <div class="formula-box">
+    I = U / R &emsp;|&emsp; U = I × R &emsp;|&emsp; R = U / I
+    <span class="label">电流 = 电压 ÷ 电阻</span>
+  </div>
+  <p>这是电路分析的基石。在本题中：</p>
+  <ul>
+    <li>物理7：I₂ = U₂ / (R₁ + R负载) —— 副线圈回路的总电流</li>
+    <li>物理18：I₂ = P / U₂ —— 输电线电流（用功率和电压求）</li>
+    <li>物理18：ΔU = I₂ × R —— 输电线上的压降</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🔗 串联电路</h2>
+  <p>在物理7和物理18中，副线圈回路都是<strong>串联结构</strong>：变压器输出 → 输电线电阻 R₁ → 负载。</p>
+
+  <div class="fig-box">
+    <svg viewBox="0 0 680 120">
+      <text x="340" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">串联电路：U₂ = U_R₁ + U_负载</text>
+      <rect x="100" y="50" width="80" height="20" rx="3" fill="#fff3e0" stroke="#ff6f00" stroke-width="2"/>
+      <text x="140" y="64" text-anchor="middle" font-size="11" fill="#e65100">R₁（输电线）</text>
+      <rect x="280" y="50" width="80" height="20" rx="3" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="320" y="64" text-anchor="middle" font-size="11" fill="#2e7d32">R负载</text>
+      <line x1="50" y1="60" x2="100" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="180" y1="60" x2="280" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="360" y1="60" x2="450" y2="60" stroke="#333" stroke-width="1.5"/>
+      <text x="50" y="45" font-size="12" fill="#1565c0">U₂</text>
+      <text x="140" y="40" text-anchor="middle" font-size="11" fill="#ff6f00">U_R₁ ↓</text>
+      <text x="320" y="40" text-anchor="middle" font-size="11" fill="#2e7d32">U_负载 ↑</text>
+    </svg>
+  </div>
+
+  <h3>串联三原则</h3>
+  <div class="formula-box">
+    ① 电流处处相等：I₁ = I₂ = I₃ = ...<br>
+    ② 电压相加：U_总 = U₁ + U₂ + ...<br>
+    ③ 电阻相加：R_总 = R₁ + R₂ + ...
+  </div>
+  <p><strong>在物理7中：</strong>U₂（副线圈电压）= U_R₁ + U_负载。当 I₂ 减小时，U_R₁ = I₂×R₁ 减小，所以 U_负载 = U₂ − U_R₁ 增大。这就是为什么"负载电压变大"。</p>
+  <p><strong>在物理18中：</strong>U₂（送电端）= U₃（受电端）+ ΔU（线路压降）。当 I₂ 增大时，ΔU 增大，需要提高 U₂ 来保持 U₃ 不变。这就是第(3)问的核心逻辑。</p>
+</div>
+
+<div class="card">
+  <h2>🔀 并联电路</h2>
+  <p>在物理7中，R₂ 和 R₃ 是<strong>并联</strong>的——两个用电器同时接在电路中。</p>
+
+  <h3>并联三原则</h3>
+  <div class="formula-box">
+    ① 电压处处相等：U₁ = U₂ = U₃ = ...<br>
+    ② 电流相加：I_总 = I₁ + I₂ + ...<br>
+    ③ 电阻倒数相加：1/R_总 = 1/R₁ + 1/R₂ + ...
+  </div>
+  <p><strong>关键结论：</strong>并联电阻的总电阻<strong>小于任何一个支路电阻</strong>。</p>
+  <p>当 S 断开时，R₃ 支路断开，总电阻从 R₂∥R₃ 变为 R₂ → <strong>总电阻增大</strong>。这就是物理7动态分析的起点。</p>
+
+  <div class="hint-box">
+    <p><strong>💡 比喻：</strong>并联像"多开了一条路"。两条路并排走，总流量（电流）更大，整体"阻力"更小。关掉一条路，总流量减小，整体"阻力"增大。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚡ 电功率</h2>
+  <p>电路中的功率有三种表达方式：</p>
+  <div class="formula-box">
+    P = U × I &emsp;|&emsp; P = I² × R &emsp;|&emsp; P = U² / R
+  </div>
+  <table>
+    <tr><th>公式</th><th>适用场景</th><th>在题目中用于</th></tr>
+    <tr><td>P = UI</td><td>已知电压和电流</td><td>求工厂功率 P = U₄×I₃</td></tr>
+    <tr><td>P = I²R</td><td>已知电流和电阻</td><td>求线损 P损 = I₂²×R</td></tr>
+    <tr><td>P = U²/R</td><td>已知电压和电阻</td><td>求负载功率</td></tr>
+  </table>
+  <p><strong>物理7中的功率分析：</strong></p>
+  <ul>
+    <li>P_总 = U₂ × I₂ → I₂↓ → P_总↓（选项C的判断依据）</li>
+    <li>P_R₁ = I₂² × R₁ → I₂↓ → P_R₁↓（选项D的判断依据）✅</li>
+    <li>注意：P = I²R 和 P = U²/R 不能混用！R₁ 的功率用 I²R（因为电流已知），负载功率用 U²/R（因为电压已知）</li>
+  </ul>
+  <p><strong>物理18中的功率分析：</strong></p>
+  <ul>
+    <li>P_损 = I₂² × R = 10² × 100 = 10kW（第2问）</li>
+    <li>P_总 = P_用 + P_损 = 440 + 10 = 450kW（验证）</li>
+    <li>功率翻倍后：I₂ 翻倍 → P_损 变为 4 倍（I² 的平方效应）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📝 为什么线损用 P = I²R 而不是 P = UI？</h2>
+  <p>这是很多同学容易混淆的点：</p>
+  <ul>
+    <li><strong>P = UI</strong>：U 是<strong>该元件两端的电压</strong>。对于输电线，U_R₁ = I₂×R₁（线路压降），所以 P_R₁ = I₂ × (I₂×R₁) = I₂²×R₁ ✓</li>
+    <li>如果用输电电压 U₂ 来算：P = U₂×I₂ 算的是<strong>总输电功率</strong>，不是线损！</li>
+  </ul>
+  <p><strong>本质原因：</strong>线损是电流流过电阻R₁时"浪费"的能量，它只取决于电流和线路电阻，与输电电压无关。这就是为什么升压能减少线损——升压→电流减小→I²R减小。</p>
+</div>
+
+<!-- 随堂小测 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 两个 10Ω 的电阻并联，总电阻为：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 20Ω</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 10Ω</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 5Ω</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 100Ω</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 输电线电阻为 R，输电电流为 I，则输电线上损耗的功率为：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. P = UI（U为输电电压）</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. P = I²R</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. P = U²/R（U为输电电压）</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. P = IR</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="06-electromagnetic-induction.html" class="nav-link">← 电磁感应</a>
+  <a href="08-practice.html" class="nav-link">📝 综合练习 →</a>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('C');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！1/R = 1/10 + 1/10 = 1/5 → R = 5Ω。并联总电阻小于任何一个支路电阻。':'❌ 正确选项是C。两个10Ω并联，总电阻 = 10/2 = 5Ω。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！线损 = I²R，取决于电流和线路电阻。A和C中的U是输电电压（总电压），不是线路压降，算出的不是线损。':'❌ 正确选项是B。线损 P = I²R。用输电电压U算的P=UI是总输电功率，不是线损。';
+}
+</script>
+</body>
+</html>

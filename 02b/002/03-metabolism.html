@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微生物代谢 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link active">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>🍶 微生物代谢：呼吸作用</h1>
+    <p>有氧、无氧、兼性厌氧——微生物怎么"吃饭"和"呼吸"</p>
+  </div>
+
+  <div class="card">
+    <h2>什么是异化作用？</h2>
+    <p><strong>异化作用</strong>（也叫分解代谢）是指生物体把大分子物质（如葡萄糖）分解为小分子，同时<strong>释放能量</strong>的过程。</p>
+    <p>对于微生物来说，异化作用的核心就是<strong>呼吸作用</strong>——把葡萄糖氧化分解，获取ATP能量。</p>
+
+    <div class="hint-box">
+      <h4>💡 一个简单的比喻</h4>
+      <p>把细胞想象成一个工厂：</p>
+      <p><strong>葡萄糖</strong> = 原材料（煤）<br>
+      <strong>ATP</strong> = 工厂的能量（电）<br>
+      <strong>呼吸作用</strong> = 发电机（把煤烧了发电）<br>
+      <strong>有氧呼吸</strong> = 用氧气烧煤（效率高，一吨煤发很多电）<br>
+      <strong>无氧呼吸</strong> = 不用氧气烧煤（效率低，一吨煤发很少电，但产生酒精或乳酸等"副产品"）</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>三种呼吸方式对比</h2>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 360">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">三种呼吸方式的对比</text>
+
+        <!-- 有氧呼吸 -->
+        <rect x="10" y="40" width="200" height="150" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="110" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">有氧呼吸</text>
+        <text x="110" y="85" text-anchor="middle" font-size="12" fill="#333">需要：O₂</text>
+        <text x="110" y="108" text-anchor="middle" font-size="11" fill="#333">C₆H₁₂O₆ + 6O₂</text>
+        <text x="110" y="125" text-anchor="middle" font-size="11" fill="#333">↓</text>
+        <text x="110" y="142" text-anchor="middle" font-size="11" fill="#333">6CO₂ + 6H₂O</text>
+        <text x="110" y="162" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold">能量：大量 ATP</text>
+        <text x="110" y="180" text-anchor="middle" font-size="11" fill="#666">效率：~36 ATP/葡萄糖</text>
+
+        <!-- 无氧呼吸（酒精发酵） -->
+        <rect x="240" y="40" width="200" height="150" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+        <text x="340" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">无氧呼吸（酒精发酵）</text>
+        <text x="340" y="85" text-anchor="middle" font-size="12" fill="#333">不需要：O₂</text>
+        <text x="340" y="108" text-anchor="middle" font-size="11" fill="#333">C₆H₁₂O₆</text>
+        <text x="340" y="125" text-anchor="middle" font-size="11" fill="#333">↓</text>
+        <text x="340" y="142" text-anchor="middle" font-size="11" fill="#333">2C₂H₅OH + 2CO₂</text>
+        <text x="340" y="162" text-anchor="middle" font-size="11" fill="#f57c00" font-weight="bold">能量：少量 ATP</text>
+        <text x="340" y="180" text-anchor="middle" font-size="11" fill="#666">效率：~2 ATP/葡萄糖</text>
+
+        <!-- 无氧呼吸（乳酸发酵） -->
+        <rect x="470" y="40" width="200" height="150" rx="10" fill="#fce4ec" stroke="#e91e63" stroke-width="2"/>
+        <text x="570" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#880e4f">无氧呼吸（乳酸发酵）</text>
+        <text x="570" y="85" text-anchor="middle" font-size="12" fill="#333">不需要：O₂</text>
+        <text x="570" y="108" text-anchor="middle" font-size="11" fill="#333">C₆H₁₂O₆</text>
+        <text x="570" y="125" text-anchor="middle" font-size="11" fill="#333">↓</text>
+        <text x="570" y="142" text-anchor="middle" font-size="11" fill="#333">2C₃H₆O₃（乳酸）</text>
+        <text x="570" y="162" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold">能量：少量 ATP</text>
+        <text x="570" y="180" text-anchor="middle" font-size="11" fill="#666">效率：~2 ATP/葡萄糖</text>
+
+        <!-- 微生物分类 -->
+        <rect x="10" y="220" width="200" height="130" rx="10" fill="#f1f8f1" stroke="#81c784" stroke-width="1.5"/>
+        <text x="110" y="242" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">好氧菌</text>
+        <text x="110" y="265" text-anchor="middle" font-size="12" fill="#333">只能有氧呼吸</text>
+        <text x="110" y="285" text-anchor="middle" font-size="12" fill="#333">没有氧气 = 死亡</text>
+        <text x="110" y="310" text-anchor="middle" font-size="11" fill="#4caf50">例：醋酸菌</text>
+        <text x="110" y="330" text-anchor="middle" font-size="11" fill="#4caf50">结核杆菌</text>
+
+        <rect x="240" y="220" width="200" height="130" rx="10" fill="#fff8e1" stroke="#ffe082" stroke-width="1.5"/>
+        <text x="340" y="242" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">兼性厌氧菌</text>
+        <text x="340" y="265" text-anchor="middle" font-size="12" fill="#333">有氧：有氧呼吸</text>
+        <text x="340" y="285" text-anchor="middle" font-size="12" fill="#333">无氧：酒精/乳酸发酵</text>
+        <text x="340" y="310" text-anchor="middle" font-size="11" fill="#f57c00">例：酵母菌</text>
+        <text x="340" y="330" text-anchor="middle" font-size="11" fill="#f57c00">大肠杆菌</text>
+
+        <rect x="470" y="220" width="200" height="130" rx="10" fill="#fce4ec" stroke="#f48fb1" stroke-width="1.5"/>
+        <text x="570" y="242" text-anchor="middle" font-size="13" font-weight="bold" fill="#880e4f">专性厌氧菌</text>
+        <text x="570" y="265" text-anchor="middle" font-size="12" fill="#333">只能无氧呼吸</text>
+        <text x="570" y="285" text-anchor="middle" font-size="12" fill="#333">有氧气 = 死亡</text>
+        <text x="570" y="310" text-anchor="middle" font-size="11" fill="#e91e63">例：破伤风杆菌</text>
+        <text x="570" y="330" text-anchor="middle" font-size="11" fill="#e91e63">产甲烷菌</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔬 本题中两种菌的代谢类型</h2>
+
+    <table>
+      <tr><th></th><th>酵母菌</th><th>醋酸菌</th></tr>
+      <tr><td>呼吸类型</td><td><strong>兼性厌氧</strong></td><td><strong>好氧</strong></td></tr>
+      <tr><td>有氧时</td><td>有氧呼吸：C₆H₁₂O₆+6O₂→6CO₂+6H₂O</td><td>有氧呼吸（同左）</td></tr>
+      <tr><td>无氧时</td><td>酒精发酵：C₆H₁₂O₆→2C₂H₅OH+2CO₂</td><td>❌ 无法生存</td></tr>
+      <tr><td>异化作用类型</td><td><strong>兼性厌氧型</strong>（有氧+无氧均可）</td><td><strong>需氧型</strong>（必须有氧）</td></tr>
+      <tr><td>在康普茶中的角色</td><td>前期有氧繁殖 → 后期无氧产酒精</td><td>全程有氧 → 把酒精变醋酸</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 为什么有氧呼吸效率高？</h4>
+      <p>有氧呼吸能彻底氧化葡萄糖（最终产物是CO₂+H₂O），把葡萄糖里的能量"榨干"——1分子葡萄糖产出约36个ATP。</p>
+      <p>无氧呼吸不彻底，产物中（酒精或乳酸）还保留了大量化学能——1分子葡萄糖只产出约2个ATP。但无氧呼吸的优势是<strong>不需要氧气</strong>，在缺氧环境下也能生存。</p>
+      <p><strong>比喻：</strong>有氧呼吸就像"充分燃烧"（木柴烧成灰，能量全释放），无氧呼吸就像"闷烧"（木柴烧成木炭，只释放一部分能量，但不需要太多空气）。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📖 同化作用 vs 异化作用</h2>
+    <p>在题目中经常被问到"异化作用类型"，需要区分清楚：</p>
+    <table>
+      <tr><th></th><th>同化作用</th><th>异化作用</th></tr>
+      <tr><td>方向</td><td>小分子 → 大分子（合成）</td><td>大分子 → 小分子（分解）</td></tr>
+      <tr><td>能量</td><td>消耗能量（吸能）</td><td>释放能量（放能）</td></tr>
+      <tr><td>比喻</td><td>用砖头盖房子</td><td>拆房子回收材料</td></tr>
+      <tr><td>本题对应</td><td>微生物利用糖合成菌体成分</td><td>微生物分解糖获取ATP（呼吸作用）</td></tr>
+    </table>
+    <p><strong>异化作用的分类</strong>（按是否需要氧气）：</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+      <li><strong>需氧型</strong>（好氧）：必须有氧气才能生存 → 醋酸菌</li>
+      <li><strong>厌氧型</strong>：有氧气反而活不了 → 破伤风杆菌</li>
+      <li><strong>兼性厌氧型</strong>：有氧无氧都行 → 酵母菌</li>
+    </ul>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 酵母菌在有氧条件下的产物是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">酒精 + CO₂</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">CO₂ + H₂O</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">乳酸</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">醋酸</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 1分子葡萄糖有氧呼吸和无氧呼吸产生的ATP数量比约为？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">1:1</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">3:1</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">18:1（36 ATP vs 2 ATP）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">100:1</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 醋酸菌的异化作用类型是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">兼性厌氧型</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">需氧型</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">厌氧型</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

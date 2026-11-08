@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3. 基因表达调控 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link active">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="02-gene-therapy.html" class="nav-back">← 基因治疗</a>
+    <div class="nav-title">基因表达调控</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot completed" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot active" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>🎛️ 基因表达调控</h1>
+    <p class="subtitle">基因的"开关"与"音量"——谁说了算？</p>
+  </div>
+
+  <!-- 前置知识 -->
+  <div class="card prereq-card">
+    <h2>📚 前置知识</h2>
+    <div class="btn-group" style="margin-top:12px">
+      <a href="06-central-dogma.html" class="link-btn">中心法则 →</a>
+      <a href="07-protein.html" class="link-btn">蛋白质与氨基酸 →</a>
+    </div>
+  </div>
+
+  <!-- 基因表达调控概述 -->
+  <div class="card concept-card">
+    <h2>💡 什么是基因表达调控？</h2>
+    <p>人体有大约<strong>2万多个基因</strong>，但不是所有基因都在"干活"。比如：</p>
+    <ul>
+      <li>眼睛的细胞会让"视觉相关基因"表达，但不会让"消化酶基因"表达</li>
+      <li>胎儿期的细胞会让"γ珠蛋白基因"表达，但出生后这个基因就被"关闭"了</li>
+    </ul>
+    <p><strong>基因表达调控</strong>就是细胞决定"哪个基因开、哪个基因关、开多大"的一套精密机制。</p>
+  </div>
+
+  <!-- 比喻 -->
+  <div class="card metaphor-card">
+    <h2>🎚️ 比喻：基因表达的"调音台"</h2>
+    <p>想象一个音乐厅的<strong>调音台</strong>：</p>
+    <ul>
+      <li><strong>启动子（Promoter）</strong> = 电源开关。没有它，音箱根本不会响。启动子是基因上游的一段DNA序列，是RNA聚合酶结合的位点，是转录的<strong>起点</strong>。</li>
+      <li><strong>调控序列（Regulatory Sequence）</strong> = 音量旋钮和音效调节器。它们可以<strong>增强</strong>或<strong>减弱</strong>基因的表达水平。</li>
+      <li><strong>转录因子/调控蛋白（如BCL）</strong> = 调音师。他们伸手去拧旋钮，决定这个基因最终输出多少"音量"。</li>
+    </ul>
+  </div>
+
+  <!-- 启动子 -->
+  <div class="card">
+    <h2>🔌 启动子：基因的"电源开关"</h2>
+    <p>每个基因都有一个<strong>启动子</strong>，位于基因的上游（前面）。你可以把启动子理解为基因的<strong>"入口"</strong>。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 600 100" width="100%">
+        <rect x="20" y="30" width="120" height="40" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="80" y="55" text-anchor="middle" font-size="14" fill="#92400e">调控序列</text>
+        
+        <rect x="160" y="30" width="100" height="40" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="210" y="55" text-anchor="middle" font-size="14" fill="#1d4ed8">启动子</text>
+        
+        <rect x="280" y="30" width="300" height="40" rx="5" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="430" y="55" text-anchor="middle" font-size="14" fill="#065f46">基因编码区（实际产物的模板）</text>
+        
+        <text x="20" y="90" font-size="12" fill="#6b7280">← 上游（5'端）</text>
+        <text x="580" y="90" text-anchor="end" font-size="12" fill="#6b7280">下游（3'端）→</text>
+      </svg>
+      <div class="diagram-caption">基因的基本结构：调控序列 → 启动子 → 编码区</div>
+    </div>
+    <p><strong>关键点：</strong>启动子本身<strong>不编码蛋白质</strong>，它只是告诉细胞"从这里开始读取这个基因"。如果把基因比作一本书，启动子就是书的<strong>封面和目录</strong>——它告诉你书在哪里、从哪里开始读。</p>
+  </div>
+
+  <!-- BCL蛋白与调控 -->
+  <div class="card">
+    <h2>🛑 BCL蛋白：基因的"刹车"</h2>
+    <p>在本题中，<strong>BCL蛋白</strong>是一个重要的调控因子。它的作用机制是：</p>
+    <ol>
+      <li>BCL蛋白在细胞中存在（由BCL基因编码）</li>
+      <li>BCL蛋白能够识别并结合到γ基因启动子<strong>上游</strong>的特定DNA序列（BCL蛋白结合位点）</li>
+      <li>一旦结合上去，BCL蛋白就像<strong>踩了刹车</strong>一样，阻止RNA聚合酶启动γ基因的转录</li>
+      <li>结果：γ基因的表达被<strong>抑制</strong>（silenced）</li>
+    </ol>
+    <div class="diagram">
+      <svg viewBox="0 0 600 160" width="100%">
+        <rect x="20" y="30" width="120" height="40" rx="5" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+        <text x="80" y="55" text-anchor="middle" font-size="13" fill="#991b1b">BCL结合位点</text>
+        
+        <rect x="160" y="30" width="100" height="40" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="210" y="55" text-anchor="middle" font-size="14" fill="#1d4ed8">启动子</text>
+        
+        <rect x="280" y="30" width="300" height="40" rx="5" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="430" y="55" text-anchor="middle" font-size="14" fill="#065f46">γ基因编码区</text>
+        
+        <circle cx="80" cy="120" r="25" fill="#ef4444" opacity="0.8"/>
+        <text x="80" y="125" text-anchor="middle" font-size="11" fill="white" font-weight="bold">BCL</text>
+        <line x1="80" y1="95" x2="80" y2="70" stroke="#ef4444" stroke-width="3" stroke-dasharray="4"/>
+        <text x="80" y="155" text-anchor="middle" font-size="12" fill="#991b1b">BCL蛋白结合 → γ基因被"刹车"</text>
+      </svg>
+      <div class="diagram-caption">BCL蛋白结合到调控序列上，抑制γ基因的表达</div>
+    </div>
+  </div>
+
+  <!-- 实验设计解析 -->
+  <div class="card example-card">
+    <h2>🧪 题目实验设计解析</h2>
+    <p>这道题第（2）（3）问涉及一个经典的<strong>"缺失作图"实验</strong>，用来精确定位BCL蛋白结合位点。让我用通俗易懂的方式解释：</p>
+    
+    <h3>实验思路</h3>
+    <p>研究者想知道：BCL蛋白到底结合在γ基因上游的<strong>哪个位置</strong>？</p>
+    <p>方法：把γ基因上游的不同长度的片段（F1-R、F2-R、F3-R、F4-R、F5-R）分别插入到<strong>载体</strong>中，然后观察<strong>荧光蛋白是否表达</strong>。</p>
+    
+    <div class="diagram">
+      <svg viewBox="0 0 600 220" width="100%">
+        <text x="300" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">不同长度的片段</text>
+        
+        <line x1="20" y1="50" x2="580" y2="50" stroke="#e2e8f0" stroke-width="2"/>
+        <text x="20" y="70" font-size="12" fill="#2563eb">F1</text>
+        <text x="120" y="70" font-size="12" fill="#2563eb">F2</text>
+        <text x="220" y="70" font-size="12" fill="#2563eb">F3</text>
+        <text x="320" y="70" font-size="12" fill="#2563eb">F4</text>
+        <text x="420" y="70" font-size="12" fill="#2563eb">F5</text>
+        <text x="520" y="70" font-size="12" fill="#ef4444">R</text>
+        
+        <line x1="30" y1="75" x2="30" y2="55" stroke="#2563eb" stroke-width="2"/>
+        <line x1="130" y1="75" x2="130" y2="55" stroke="#2563eb" stroke-width="2"/>
+        <line x1="230" y1="75" x2="230" y2="55" stroke="#2563eb" stroke-width="2"/>
+        <line x1="330" y1="75" x2="330" y2="55" stroke="#2563eb" stroke-width="2"/>
+        <line x1="430" y1="75" x2="430" y2="55" stroke="#2563eb" stroke-width="2"/>
+        <line x1="530" y1="75" x2="530" y2="55" stroke="#ef4444" stroke-width="2"/>
+        
+        <rect x="30" y="90" width="500" height="20" fill="#dbeafe" stroke="#2563eb" stroke-width="1" opacity="0.6"/>
+        <text x="280" y="105" text-anchor="middle" font-size="11" fill="#1d4ed8">F1-R 片段（最长）</text>
+        
+        <rect x="130" y="120" width="400" height="20" fill="#dbeafe" stroke="#2563eb" stroke-width="1" opacity="0.6"/>
+        <text x="330" y="135" text-anchor="middle" font-size="11" fill="#1d4ed8">F2-R 片段</text>
+        
+        <rect x="230" y="150" width="300" height="20" fill="#dbeafe" stroke="#2563eb" stroke-width="1" opacity="0.6"/>
+        <text x="380" y="165" text-anchor="middle" font-size="11" fill="#1d4ed8">F3-R 片段</text>
+        
+        <rect x="330" y="180" width="200" height="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+        <text x="430" y="195" text-anchor="middle" font-size="11" fill="#92400e">F4-R 片段（有荧光）</text>
+      </svg>
+      <div class="diagram-caption">F1到F5是不同位置的正向引物，R是共用反向引物。F1-R最长，F4-R较短。</div>
+    </div>
+
+    <h3>实验结果</h3>
+    <table class="compare-table">
+      <tr>
+        <th>片段</th>
+        <th>荧光结果</th>
+        <th>含义</th>
+      </tr>
+      <tr>
+        <td>F1-R、F2-R、F3-R</td>
+        <td>❌ 无荧光</td>
+        <td>BCL蛋白结合在这些片段中 → 抑制荧光蛋白表达</td>
+      </tr>
+      <tr>
+        <td>F4-R</td>
+        <td>✅ 有荧光</td>
+        <td>BCL蛋白无法结合 → 荧光蛋白正常表达</td>
+      </tr>
+    </table>
+
+    <h3>推理过程</h3>
+    <p>F1-R、F2-R、F3-R都<strong>包含</strong>某个区域，而F4-R<strong>不包含</strong>这个区域。这个区域就是<strong>BCL蛋白结合位点</strong>所在的位置。</p>
+    <p>F3-R 和 F4-R 的区别在于：F3-R 多了一段位于F3和F4之间的序列。这段序列正是<strong>BCL蛋白结合位点</strong>所在。</p>
+    <div class="answer-box">
+      <h4>✅ 答案</h4>
+      <p>受体细胞需要<strong>不含</strong>BCL基因</p>
+      <p>BCL蛋白结合位点位于<strong>F3和F4</strong>引物对应序列之间</p>
+    </div>
+
+    <div style="background:#fffbeb;border-left:4px solid #f59e0b;padding:16px;margin:16px 0;border-radius:8px;">
+      <p style="margin:0"><strong>🔍 深入分析：为什么是"不含"而不是"含"？</strong></p>
+      <p style="margin-top:8px"><strong>1. 载体已经携带了BCL基因。</strong>从载体结构可以看到，启动子P的下游就有BCL基因。当载体导入受体细胞后，细胞会通过载体上的启动子P表达BCL蛋白。因此<strong>不需要受体细胞自身含有BCL基因</strong>。</p>
+      <p style="margin-top:8px"><strong>2. 如果受体细胞自身含BCL基因会怎样？</strong></p>
+      <ul style="margin-top:4px">
+        <li>细胞自身的BCL基因可能在不受控的情况下表达，产生额外的BCL蛋白</li>
+        <li>这些"计划外"的BCL蛋白会造成<strong>背景干扰</strong>，影响实验结果的准确性</li>
+        <li>无法确保观察到的抑制效果完全来自载体上的BCL基因</li>
+        <li>不符合实验设计的<strong>单一变量原则</strong></li>
+      </ul>
+      <p style="margin-top:8px"><strong>3. "不论含不含都不影响实验效果"——这个观点对吗？</strong></p>
+      <p style="margin-top:4px">有一定道理但不完全正确。确实，本实验中所有组都导入了含BCL基因的载体，载体都会提供BCL蛋白，实验比较的是不同片段（F1-F3 vs F4）的荧光差异，在这个层面含不含都能看到差异。但<strong>标准实验设计要求消除无关变量</strong>——如果受体细胞自身有BCL基因，未导入载体的对照细胞也会产生BCL蛋白，干扰结果解读。选择"不含"是严谨实验设计的基本要求。</p>
+    </div>
+  </div>
+
+  <!-- 小练习 -->
+  <div class="quiz-container">
+    <div class="quiz-question">🎯 小练习：调控逻辑</div>
+    <p>如果用CRISPR/Cas9切除了BCL蛋白结合位点，γ基因的表达会怎样？</p>
+    <div class="quiz-options">
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> A. 仍然被抑制，不受影响
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> B. 表达被解除抑制，γ基因重新表达
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> C. γ基因被完全破坏，无法表达
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> D. 所有珠蛋白基因都被激活
+      </label>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkQuizAnswer()">查看答案</button>
+  </div>
+
+  <div class="card next-card">
+    <h2>🚀 后续学习</h2>
+    <div class="btn-group">
+      <a href="04-crispr.html" class="btn btn-primary">CRISPR/Cas9基因编辑 →</a>
+      <a href="05-pcr-cloning.html" class="btn btn-secondary">PCR与基因克隆 →</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="02-gene-therapy.html" class="btn btn-outline">← 基因治疗</a>
+    <a href="04-crispr.html" class="btn btn-primary">CRISPR/Cas9 →</a>
+  </div>
+</div>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('active');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function selectQuizOption(el) {
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.querySelector('input').checked = true;
+}
+function checkQuizAnswer() {
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const selected = document.querySelector('input[name="q1"]:checked');
+  if (!selected) { feedback.innerHTML = '请先选择一个答案！'; feedback.classList.add('show', 'wrong'); return; }
+  options[0].classList.add('wrong');
+  options[1].classList.add('correct');
+  options[2].classList.add('wrong');
+  options[3].classList.add('wrong');
+  feedback.innerHTML = '<strong>解析：</strong>BCL蛋白结合位点被切除后，BCL蛋白无法结合到γ基因上，因此无法抑制γ基因的表达。γ基因的表达被"解除抑制"，重新活化。这就是CRISPR治疗β-地中海贫血的核心原理！';
+  feedback.classList.add('show', 'correct');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

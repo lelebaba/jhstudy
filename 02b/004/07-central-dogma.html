@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>中心法则 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link active">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🔄 中心法则</h1>
+  <p>生命信息的"流水线"：DNA → RNA → 蛋白质</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="06-gene-expression.html">基因表达基础</a> <span>›</span> 中心法则</div>
+
+<div class="card">
+  <h2>📜 中心法则：三站流水线</h2>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 280">
+      <!-- DNA station -->
+      <rect x="20" y="40" width="180" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="110" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#1565c0">DNA</text>
+      <text x="110" y="95" text-anchor="middle" font-size="11" fill="#333">"永久档案"</text>
+      <text x="110" y="112" text-anchor="middle" font-size="11" fill="#333">A, T, G, C</text>
+
+      <!-- Arrow 1: 转录 -->
+      <line x1="200" y1="80" x2="280" y2="80" stroke="#ff9800" stroke-width="3"/>
+      <polygon points="275,75 290,80 275,85" fill="#ff9800"/>
+      <text x="245" y="70" text-anchor="middle" font-size="12" fill="#e65100" font-weight="bold">转录</text>
+
+      <!-- RNA station -->
+      <rect x="290" y="40" width="180" height="80" rx="8" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+      <text x="380" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#c62828">mRNA</text>
+      <text x="380" y="95" text-anchor="middle" font-size="11" fill="#333">"工作复印件"</text>
+      <text x="380" y="112" text-anchor="middle" font-size="11" fill="#333">A, U, G, C</text>
+
+      <!-- Arrow 2: 翻译 -->
+      <line x1="470" y1="80" x2="550" y2="80" stroke="#4caf50" stroke-width="3"/>
+      <polygon points="545,75 560,80 545,85" fill="#4caf50"/>
+      <text x="515" y="70" text-anchor="middle" font-size="12" fill="#2e7d32" font-weight="bold">翻译</text>
+
+      <!-- Protein station -->
+      <rect x="560" y="40" width="100" height="80" rx="8" fill="#e8f5e9" stroke="#2c7a4b" stroke-width="2"/>
+      <text x="610" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c7a4b">蛋白质</text>
+      <text x="610" y="95" text-anchor="middle" font-size="11" fill="#333">"执行者"</text>
+      <text x="610" y="112" text-anchor="middle" font-size="11" fill="#333">氨基酸序列</text>
+
+      <!-- Cs基因流水线 -->
+      <rect x="60" y="145" width="560" height="45" rx="8" fill="#fff8e1" stroke="#e8a838" stroke-width="2"/>
+      <text x="340" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#b8860b">Cs基因的流水线：</text>
+      <text x="340" y="182" text-anchor="middle" font-size="12" fill="#333">
+        Cs基因(DNA) —→ Cs-mRNA —→ 苦茶碱合成酶 —→ 苦茶碱
+      </text>
+      <text x="110" y="198" text-anchor="middle" font-size="11" fill="#999">
+        ↑ T蛋白在此促进转录
+      </text>
+      <!-- T基因流水线 -->
+      <rect x="60" y="210" width="560" height="45" rx="8" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+      <text x="340" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">T基因的流水线（反义核酸的攻击目标）：</text>
+      <text x="340" y="247" text-anchor="middle" font-size="12" fill="#333">
+        T基因(DNA) —→ ⬡ T-mRNA × 被反义RNA锁死 → ✗ 翻译不出T蛋白
+      </text>
+    </svg>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔗 中心法则与本题的关系</h2>
+  <table>
+    <tr><th>步骤</th><th>本题对应</th><th>T/W蛋白的作用</th><th>反义核酸的作用</th></tr>
+    <tr>
+      <td>DNA → mRNA（转录）</td>
+      <td>Cs基因 → Cs-mRNA</td>
+      <td><strong>促进</strong>（T蛋白结合Cs启动子，启动转录）</td>
+      <td>无直接作用（反义核酸作用于T基因，不作用于Cs基因）</td>
+    </tr>
+    <tr>
+      <td>mRNA → 蛋白质（翻译）</td>
+      <td><strong>T-mRNA → T蛋白</strong> ⚠ 反义核酸在此阻断</td>
+      <td>—（T蛋白不调控自身的翻译）</td>
+      <td>🔴 <strong>直接阻断</strong>（反义RNA与T-mRNA互补配对，阻止核糖体翻译）</td>
+    </tr>
+    <tr>
+      <td>mRNA → 蛋白质（翻译）→ 产物</td>
+      <td>Cs-mRNA → 苦茶碱合成酶 → 苦茶碱</td>
+      <td>间接促进（T蛋白增加→Cs转录增加→酶量增加）</td>
+      <td>间接抑制（T蛋白减少→Cs转录减少→酶量减少）</td>
+    </tr>
+  </table>
+  <p>💡 <strong>关键区分：</strong>反义核酸阻断的是<strong>T基因自己的mRNA翻译</strong>（T-mRNA → T蛋白），不是Cs基因的mRNA。T蛋白减少后，Cs基因失去转录激活，Cs-mRNA本身就少了——这是一个<strong>间接后果</strong>，不是反义核酸直接作用的靶点。</p>
+  <p>同理，<strong>T蛋白在转录水平起作用</strong>（结合Cs基因DNA启动子），<strong>反义核酸在翻译水平起作用</strong>（结合T基因mRNA）——两者作用于中心法则的不同环节、不同基因。</p>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>关于中心法则，以下描述不正确的是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'C')">A. 转录是以DNA为模板合成RNA的过程</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">B. 翻译是以mRNA为模板合成蛋白质的过程</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">C. 蛋白质可以作为模板逆向合成RNA</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">D. DNA通过转录和翻译两个步骤来指导蛋白质的合成</div>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="06-gene-expression.html" class="nav-link">← 基因表达基础</a>
+  <a href="08-plant-engineering.html" class="nav-link">🌱 植物基因工程 →</a>
+</div>
+</div>
+</div>
+<script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){document.querySelectorAll('.quiz-option').forEach(e=>{var t=e.textContent.trim();if(t.length>1&&'ABCD'.includes(t[0]))e.classList.remove('correct','wrong');});el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');var fb=document.getElementById('qfb');fb.className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');fb.innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！蛋白质不能作为模板逆向合成RNA。中心法则是单向的：DNA→RNA→蛋白质。':'❌ 正确选项是C。蛋白质不能逆向作为RNA合成的模板（逆转录是RNA→DNA，不是蛋白质→RNA）。';}
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2. 基因治疗 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link active">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="01-problem.html" class="nav-back">← 题目分析</a>
+    <div class="nav-title">基因治疗</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot active" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>💉 基因治疗</h1>
+    <p class="subtitle">从根源上治疗遗传病——修改"生命说明书"</p>
+  </div>
+
+  <!-- 前置知识 -->
+  <div class="card prereq-card">
+    <h2>📚 前置知识</h2>
+    <p>如果以下概念你不太清楚，建议先点击学习：</p>
+    <div class="btn-group" style="margin-top:12px">
+      <a href="06-central-dogma.html" class="link-btn">中心法则 →</a>
+      <a href="07-protein.html" class="link-btn">蛋白质与氨基酸 →</a>
+      <a href="08-stem-cells.html" class="link-btn">干细胞 →</a>
+    </div>
+  </div>
+
+  <!-- 什么是β-地中海贫血 -->
+  <div class="card">
+    <h2>🩸 什么是β-地中海贫血？</h2>
+    <p>健康人的血红蛋白由两条<strong>α链</strong>和两条<strong>β链</strong>组成（可以记作 α₂β₂）。你可以把血红蛋白想象成一个<strong>四节车厢的小火车</strong>：α链和β链手拉手，一起组成一个完整的功能单位，负责在血液中运送氧气。</p>
+    
+    <div class="diagram">
+      <svg viewBox="0 0 500 140" width="100%">
+        <text x="250" y="20" text-anchor="middle" font-size="14" fill="#6b7280">正常血红蛋白结构</text>
+        <circle cx="100" cy="80" r="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="100" y="85" text-anchor="middle" font-size="16" fill="#1d4ed8" font-weight="bold">α链</text>
+        <circle cx="200" cy="80" r="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="200" y="85" text-anchor="middle" font-size="16" fill="#1d4ed8" font-weight="bold">α链</text>
+        <circle cx="300" cy="80" r="35" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="300" y="85" text-anchor="middle" font-size="16" fill="#065f46" font-weight="bold">β链</text>
+        <circle cx="400" cy="80" r="35" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="400" y="85" text-anchor="middle" font-size="16" fill="#065f46" font-weight="bold">β链</text>
+        <line x1="135" y1="80" x2="165" y2="80" stroke="#6b7280" stroke-width="2" stroke-dasharray="4"/>
+        <line x1="235" y1="80" x2="265" y2="80" stroke="#6b7280" stroke-width="2" stroke-dasharray="4"/>
+        <line x1="335" y1="80" x2="365" y2="80" stroke="#6b7280" stroke-width="2" stroke-dasharray="4"/>
+        <text x="250" y="130" text-anchor="middle" font-size="13" fill="#6b7280">α₂β₂ 四聚体，共同携带氧气</text>
+      </svg>
+      <div class="diagram-caption">正常血红蛋白由2条α链和2条β链组成</div>
+    </div>
+
+    <p>β-地中海贫血患者的问题在于：<strong>β珠蛋白基因有缺陷</strong>，导致β链无法正常合成或功能异常。结果呢？β链"缺货"了，但α链还在大量生产。多余的α链就像<strong>"没人配对的单身狗"</strong>，孤独地堆积在红细胞里，最终把红细胞撑破，造成<strong>溶血性贫血</strong>。</p>
+  </div>
+
+  <!-- 类比说明 -->
+  <div class="card metaphor-card">
+    <h2>🧩 生活类比：组装玩具</h2>
+    <p>想象你在组装一套乐高玩具，说明书上说需要：<strong>2个红色零件 + 2个蓝色零件</strong>。</p>
+    <p>正常情况下，红色零件（α链）和蓝色零件（β链）完美匹配，组装出一辆漂亮的小车。</p>
+    <p>但有一天，蓝色零件的<strong>模具坏了</strong>（β基因突变），蓝色零件生产不出来，或者生产出来的都是残次品。可是红色零件的模具还在疯狂运转，生产了一大堆红色零件。</p>
+    <p>结果：<strong>红色零件堆积如山</strong>，没有蓝色零件来配对，这些堆积的红色零件把工厂（红细胞）搞得一团糟，最终工厂倒塌（溶血）。这就是β-地中海贫血的"悲剧"。</p>
+  </div>
+
+  <!-- 治疗思路 -->
+  <div class="card">
+    <h2>💊 治疗思路分析</h2>
+    <p>题目问的是：以下治疗思路可行的是？让我们一个一个分析：</p>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        A. 导入正常的α珠蛋白基因
+      </div>
+      <div class="accordion-body">
+        <p>❌ <strong>不可行</strong>。患者的问题不是α链不够，而是<strong>α链太多了</strong>！游离的α链已经在堆积并破坏红细胞。再导入α基因，只会让α链更多，加重病情。</p>
+        <p>类比：红色零件已经堆成山了，你还加大红色零件的生产？这不是火上浇油吗？</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        B. 导入正常的β珠蛋白基因
+      </div>
+      <div class="accordion-body">
+        <p>✅ <strong>可行</strong>。这是经典的<strong>基因替代疗法</strong>——把好的β基因"快递"到患者体内，让它产生正常的β链，与α链配对，恢复血红蛋白功能。</p>
+        <p>类比：蓝色零件的模具坏了，我们从外面买来好的蓝色零件（正常β基因），问题就解决了。</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        C. 修复异常的β珠蛋白基因
+      </div>
+      <div class="accordion-body">
+        <p>✅ <strong>可行</strong>。这是<strong>基因修复</strong>的思路——用基因编辑技术（如CRISPR/Cas9）把坏掉的β基因直接修好，让它重新生产正常的β链。</p>
+        <p>类比：蓝色零件的模具有个裂缝，我们不买新模具，而是把裂缝焊好，让它重新正常工作。</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        D. 重新表达γ珠蛋白基因
+      </div>
+      <div class="accordion-body">
+        <p>✅ <strong>可行</strong>。这是本题最巧妙的地方！在胎儿时期，我们的血红蛋白主要是<strong>α₂γ₂</strong>（两条α链和两条γ链）。γ链和β链功能相似，都能与α链配对。</p>
+        <p>出生后，γ基因被"关闭"，β基因被"打开"。如果能让γ基因重新表达，γ链就可以替代β链的功能，缓解病情。</p>
+        <p>类比：虽然蓝色零件坏了，但工厂里还有以前设计图的绿色零件（γ链），它也能和红色零件配对。我们重新启动绿色零件的生产线，不就能解决问题了吗？</p>
+      </div>
+    </div>
+
+    <div class="answer-box" style="margin-top:20px">
+      <h4>✅ 答案：B、C、D</h4>
+      <p>三种思路的核心都是让患者能重新产生<strong>能与α链配对的功能性珠蛋白链</strong>——无论是用正常的β链（B）、修复后的β链（C），还是替代用的γ链（D）。</p>
+    </div>
+  </div>
+
+  <!-- 基因治疗类型 -->
+  <div class="card">
+    <h2>📋 基因治疗的三种策略</h2>
+    <table class="compare-table">
+      <tr>
+        <th>策略</th>
+        <th>原理</th>
+        <th>类比</th>
+        <th>本题对应</th>
+      </tr>
+      <tr>
+        <td><strong>基因替代</strong></td>
+        <td>导入正常基因，补充缺陷基因的功能</td>
+        <td>买新零件替换坏零件</td>
+        <td>B选项</td>
+      </tr>
+      <tr>
+        <td><strong>基因修复</strong></td>
+        <td>直接修复突变基因，恢复其正常功能</td>
+        <td>把坏掉的模具修好</td>
+        <td>C选项</td>
+      </tr>
+      <tr>
+        <td><strong>基因重激活</strong></td>
+        <td>重新激活原本沉默的基因（如γ基因）</td>
+        <td>启用备用的绿色零件生产线</td>
+        <td>D选项</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 小练习 -->
+  <div class="quiz-container">
+    <div class="quiz-question">🎯 小练习：治疗思路</div>
+    <p>β-地中海贫血患者体内，以下哪种情况是正确的？</p>
+    <div class="quiz-options">
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> A. α链和β链都减少
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> B. α链正常或偏多，β链减少或异常
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> C. α链和β链都偏多
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> D. α链减少，β链正常
+      </label>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkQuizAnswer()">查看答案</button>
+  </div>
+
+  <!-- 后续学习 -->
+  <div class="card next-card">
+    <h2>🚀 后续学习</h2>
+    <p>想了解γ基因是如何被"关闭"的？点击学习基因表达调控：</p>
+    <div class="btn-group">
+      <a href="03-gene-regulation.html" class="btn btn-primary">基因表达调控 →</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="01-problem.html" class="btn btn-outline">← 题目分析</a>
+    <a href="03-gene-regulation.html" class="btn btn-primary">基因表达调控 →</a>
+  </div>
+</div>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('active');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function selectQuizOption(el) {
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.querySelector('input').checked = true;
+}
+
+function checkQuizAnswer() {
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const selected = document.querySelector('input[name="q1"]:checked');
+  
+  if (!selected) {
+    feedback.innerHTML = '请先选择一个答案！';
+    feedback.classList.add('show', 'wrong');
+    return;
+  }
+  
+  options[0].classList.add('wrong');
+  options[1].classList.add('correct');
+  options[2].classList.add('wrong');
+  options[3].classList.add('wrong');
+  
+  feedback.innerHTML = '<strong>解析：</strong>β-地中海贫血是β珠蛋白基因缺陷，导致β链减少或异常。但α基因正常，所以α链正常甚至因为无法配对而相对"过剩"，堆积在细胞内。';
+  feedback.classList.add('show', 'correct');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

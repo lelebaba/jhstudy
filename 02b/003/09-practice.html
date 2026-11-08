@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9. 综合练习 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link active">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="08-stem-cells.html" class="nav-back">← 干细胞</a>
+    <div class="nav-title">综合练习</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot completed" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot completed" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot completed" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot completed" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot completed" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot completed" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot completed" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot active" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>📝 综合练习</h1>
+    <p class="subtitle">来一道类似的题目，检验你的学习成果！</p>
+  </div>
+
+  <div class="card concept-card">
+    <h2>💡 练习说明</h2>
+    <p>下面这道题目与原题高度相似，涉及相同的知识点和解题思路。建议你<strong>先自己做</strong>，然后再看答案和解析。每个小题后面都有详细的讲解，如果做错了，可以点击对应的链接回到知识点页面复习。</p>
+  </div>
+
+  <div class="card">
+    <h2>📝 练习题</h2>
+    <div class="problem-box">
+      <h3>20.（12分）【改编题】</h3>
+      <p>镰状细胞贫血是一种遗传性血液疾病，患者的血红蛋白β链第6位氨基酸由谷氨酸突变为缬氨酸，导致红细胞在低氧条件下变成镰刀状，容易破裂造成溶血性贫血。研究发现，在胎儿期表达的γ珠蛋白链可以部分替代β链的功能，与α链组成胎儿血红蛋白（HbF），缓解贫血症状。但出生后，γ基因的表达被一种称为BCL11A的转录抑制因子沉默。</p>
+      <p><strong>（1）</strong>血红蛋白的基本组成单位是______。从分子水平看，镰状细胞贫血的病因是控制血红蛋白β链的DNA发生了______（填"碱基对的替换/增添/缺失"），导致β链的______结构改变。</p>
+      <p><strong>（2）</strong>基于上述信息，以下治疗思路可行的是______。</p>
+      <p style="margin-left:20px">A. 导入正常的β珠蛋白基因</p>
+      <p style="margin-left:20px">B. 用基因编辑修复突变的β珠蛋白基因</p>
+      <p style="margin-left:20px">C. 重新激活γ珠蛋白基因的表达</p>
+      <p style="margin-left:20px">D. 导入更多的α珠蛋白基因</p>
+      <p><strong>（3）</strong>研究者利用CRISPR/Cas9技术治疗镰状细胞贫血。从患者体内分离造血干细胞，设计向导RNA靶向BCL11A结合位点，由Cas9蛋白切割该位点，从而______γ基因的表达。经体外培养扩增后，将造血干细胞回输患者体内。</p>
+      <p><strong>（4）</strong>研究者用PCR技术扩增γ基因上游的调控片段，引物设计如图所示。为了将扩增产物插入表达载体，需在引物末端添加限制酶的识别序列。已知载体上有EcoR I和BamH I的酶切位点，引物F末端应添加______的识别序列，引物R末端应添加______的识别序列。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>✅ 答案与解析</h2>
+    
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        （1）答案与解析
+      </div>
+      <div class="accordion-body">
+        <div class="answer-box">
+          <h4>答案：氨基酸；碱基对的替换；空间</h4>
+        </div>
+        <p><strong>解析：</strong></p>
+        <ul>
+          <li>血红蛋白是蛋白质，基本组成单位是<strong>氨基酸</strong>。</li>
+          <li>题目说"第6位氨基酸由谷氨酸突变为缬氨酸"——只是一个氨基酸改变，说明DNA上只有一个碱基对发生了变化（一个氨基酸由3个碱基编码），属于<strong>碱基对的替换</strong>。</li>
+          <li>如果是增添或缺失，会导致多个氨基酸改变（移码突变）。</li>
+          <li>氨基酸序列改变导致蛋白质的<strong>空间结构</strong>改变，进而功能异常。</li>
+        </ul>
+        <p>📖 相关知识点：<a href="07-protein.html" class="link-btn">蛋白质与氨基酸 →</a> <a href="06-central-dogma.html" class="link-btn">中心法则 →</a></p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        （2）答案与解析
+      </div>
+      <div class="accordion-body">
+        <div class="answer-box">
+          <h4>答案：A、B、C</h4>
+        </div>
+        <p><strong>解析：</strong></p>
+        <ul>
+          <li><strong>A</strong>：导入正常β基因 → 基因替代疗法，正确。</li>
+          <li><strong>B</strong>：修复突变的β基因 → 基因编辑，直接治本，正确。</li>
+          <li><strong>C</strong>：重新激活γ基因 → γ链可以替代β链功能，正确。</li>
+          <li><strong>D</strong>：导入更多α基因 → 错误。患者本身α链正常，问题出在β链，增加α链无济于事。</li>
+        </ul>
+        <p>📖 相关知识点：<a href="02-gene-therapy.html" class="link-btn">基因治疗 →</a></p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        （3）答案与解析
+      </div>
+      <div class="accordion-body">
+        <div class="answer-box">
+          <h4>答案：解除抑制，重新激活（或：促进/增强）</h4>
+        </div>
+        <p><strong>解析：</strong></p>
+        <p>BCL11A是<strong>转录抑制因子</strong>，它结合到γ基因上抑制其表达。用CRISPR/Cas9切断BCL11A的结合位点后，BCL11A无法结合，γ基因的抑制被<strong>解除</strong>，从而重新表达γ珠蛋白。</p>
+        <p>γ珠蛋白与α珠蛋白组成胎儿血红蛋白，功能正常，可以缓解镰状细胞贫血的症状。</p>
+        <p>📖 相关知识点：<a href="04-crispr.html" class="link-btn">CRISPR/Cas9 →</a> <a href="03-gene-regulation.html" class="link-btn">基因表达调控 →</a></p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        （4）答案与解析
+      </div>
+      <div class="accordion-body">
+        <div class="answer-box">
+          <h4>答案：EcoR I；BamH I</h4>
+        </div>
+        <p><strong>解析：</strong></p>
+        <p>PCR产物要插入载体，需要用与载体上相同的限制酶切割。引物F末端添加<strong>EcoR I</strong>的识别序列，引物R末端添加<strong>BamH I</strong>的识别序列。</p>
+        <p>这样PCR产物两端就分别带上了EcoR I和BamH I的切口，可以被相应的限制酶切开，然后插入到载体上的对应位点之间。</p>
+        <p>📖 相关知识点：<a href="05-pcr-cloning.html" class="link-btn">PCR与基因克隆 →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 知识自测清单</h2>
+    <p>做完这道题，请检查以下知识点是否都掌握了：</p>
+    <ul class="checklist">
+      <li>蛋白质的基本组成单位是氨基酸</li>
+      <li>基因突变类型：替换、增添、缺失的区别</li>
+      <li>基因治疗的三种策略：基因替代、基因修复、基因重激活</li>
+      <li>CRISPR/Cas9的组成和工作原理</li>
+      <li>基因表达调控：启动子、调控序列、抑制因子</li>
+      <li>PCR引物设计和限制酶选择</li>
+      <li>基因克隆的基本流程</li>
+      <li>造血干细胞在基因治疗中的应用</li>
+    </ul>
+  </div>
+
+  <div class="card next-card">
+    <h2>🎉 恭喜完成学习！</h2>
+    <p>你已经系统地学习了这道基因工程题目的所有相关知识点。如果需要复习某个部分，可以随时点击上方的导航栏跳转。</p>
+    <p>如果还有不清楚的地方，建议回到对应的知识点页面再学习一遍。记住：<strong>理解原理比死记硬背更重要</strong>！</p>
+    <div class="btn-group" style="margin-top:16px">
+      <a href="index.html" class="btn btn-primary">返回首页</a>
+      <a href="01-problem.html" class="btn btn-outline">回到题目分析</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="08-stem-cells.html" class="btn btn-outline">← 干细胞</a>
+    <a href="index.html" class="btn btn-primary">返回首页</a>
+  </div>
+</div>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('active');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

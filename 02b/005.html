@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高中生物：线粒体代谢调控深度解析</title>
+    <style>
+        .jixian-share-guide{
+            display: none!important;
+        }
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            overflow: hidden; /* 防止双重滚动条 */
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #ecf0f1;
+            text-align: left;
+            padding: 12px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--accent-color);
+            padding-left: 20px;
+        }
+
+        /* 右侧内容区 */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: none; /* 默认隐藏，通过JS控制显示 */
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--primary-color); border-left: 5px solid var(--accent-color); padding-left: 15px; margin-bottom: 20px; }
+        h3 { color: var(--accent-color); margin-top: 25px; margin-bottom: 10px; }
+        
+        .answer-box {
+            background-color: #e8f6f3;
+            border: 1px solid #d4efdf;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .correction {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .analogy {
+            background-color: #fff8e1;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        /* 互动练习样式 */
+        .quiz-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 4px;
+        }
+        .options button:hover { background-color: #f0f0f0; }
+        .feedback { margin-top: 10px; font-weight: bold; display: none; }
+        .correct { color: var(--success-color); }
+        .wrong { color: var(--error-color); }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow: auto; }
+            .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; box-sizing: border-box;}
+            .nav-btn { white-space: nowrap; margin-right: 10px; margin-bottom: 0; }
+            .main-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <h2>课程目录</h2>
+        <button class="nav-btn active" onclick="showSection('p1')">1. 题目解析与答案</button>
+        <button class="nav-btn" onclick="showSection('p2')">2. 核心概念：线粒体</button>
+        <button class="nav-btn" onclick="showSection('p3')">3. 难点突破：代谢竞争</button>
+        <button class="nav-btn" onclick="showSection('p4')">4. 实验分析：图表解读</button>
+        <button class="nav-btn" onclick="showSection('p5')">5. 综合模拟练习</button>
+    </div>
+
+    <!-- 右侧内容区 -->
+    <div class="main-content">
+        
+        <!-- 第一部分：题目解析 -->
+        <div id="p1" class="section active">
+            <h1>1. 题目解析与标准答案</h1>
+            <p>这里是对原题的直接解答。请注意，<strong>图片中的手写答案在第(3)问存在错误</strong>，请以这里的解析为准。</p>
+            
+            <div class="answer-box">
+                <h3>(1) 基础填空</h3>
+                <p><strong>答案：</strong>内膜</p>
+                <p><em>解析：</em>有氧呼吸第三阶段（氧化磷酸化）发生在线粒体内膜上，那里分布着ATP合酶。</p>
+            </div>
+
+            <div class="answer-box">
+                <h3>(2) 细胞培养条件</h3>
+                <p><strong>答案：</strong>氨基酸、维生素、动物血清</p>
+                <p><em>解析：</em>动物细胞培养需要“糖、盐、水、Vit、氨基酸”，且必须加入血清等天然成分。</p>
+            </div>
+
+            <div class="answer-box">
+                <h3>(3) 图表分析（重点纠错）</h3>
+                <p><strong>第一空答案：</strong>氧化磷酸化（或有氧呼吸第三阶段）</p>
+                <p><em>解析：</em>图乙显示缺葡萄糖组耗氧量极高，说明细胞在拼命通过线粒体消耗氧气来产能。</p>
+                <p><strong>第二空答案：</strong><span class="correction">基本不变（或维持稳定）</span></p>
+                <p class="correction">纠错：</strong>图中手写答案是“受阻”，这是错的！请看图丙，缺葡萄糖组（斜纹柱）的高度与对照组（空白柱）几乎持平。这说明虽然能量紧缺，但细胞依然顽强地维持了脯氨酸的合成。</p>
+            </div>
+
+            <div class="answer-box">
+                <h3>(4) 机制推导</h3>
+                <p><strong>答案：</strong>促进氨基酸（脯氨酸）的合成</p>
+                <p><em>解析：</em>I型线粒体富含P5CS（合成酶），说明它的功能转向了合成原料，而不是产生能量。</p>
+            </div>
+        </div>
+
+        <!-- 第二部分：基础知识 -->
+        <div id="p2" class="section">
+            <h1>2. 核心概念：线粒体——细胞的“超级工厂”</h1>
+            <p>要懂这道题，先得把线粒体想象成一个工厂。</p>
+            
+            <div class="analogy">
+                <strong>🏭 比喻时间：</strong><br>
+                线粒体就像是一个<b>“多功能加工厂”</b>。
+                <ul>
+                    <li><strong>发电车间（氧化磷酸化）：</strong>利用氧气燃烧燃料（NADH），产生电能（ATP）。这发生在<strong>内膜</strong>上。</li>
+                    <li><strong>化工车间（三羧酸循环）：</strong>处理原材料，产生中间产物。</li>
+                    <li><strong>组装车间（氨基酸合成）：</strong>利用中间产物组装成零件（如脯氨酸）。</li>
+                </ul>
+            </div>
+
+            <h3>📝 小测验：工厂选址</h3>
+            <div class="quiz-container">
+                <p>线粒体的“发电车间”（ATP合酶所在位置）位于哪里？</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false)">A. 外膜</button>
+                    <button onclick="checkAnswer(this, true)">B. 内膜</button>
+                    <button onclick="checkAnswer(this, false)">C. 基质</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- 第三部分：代谢竞争 -->
+        <div id="p3" class="section">
+            <h1>3. 难点突破：左右互搏的代谢竞争</h1>
+            <p>这是本题最难理解的地方（图甲）。为什么题目说这两个过程是“相互竞争”的？</p>
+
+            <div class="analogy">
+                <strong>⚖️ 比喻时间：</strong><br>
+                想象你有一笔钱（谷氨酸/α-酮戊二酸）。
+                <ul>
+                    <li><strong>选择A：</strong>把钱拿去投资建电厂（进入三羧酸循环 -> 氧化磷酸化），目的是赚大钱（产生大量ATP）。</li>
+                    <li><strong>选择B：</strong>把钱拿去买砖头盖房子（在P5CS催化下 -> 合成脯氨酸），目的是获得建筑材料。</li>
+                </ul>
+                <strong>结论：</strong>你的钱是有限的。如果你把钱都拿去盖房子（合成脯氨酸），就没钱建电厂（产ATP）了；反之亦然。这就是<b>“竞争”</b>。
+            </div>
+
+            <h3>📝 小测验：资源分配</h3>
+            <div class="quiz-container">
+                <p>如果细胞急需大量ATP，根据竞争原理，流向“脯氨酸合成”路径的物质会？</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, true)">A. 减少</button>
+                    <button onclick="checkAnswer(this, false)">B. 增加</button>
+                    <button onclick="checkAnswer(this, false)">C. 不变</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- 第四部分：实验分析 -->
+        <div id="p4" class="section">
+            <h1>4. 实验分析：细胞在“饥饿”时的智慧</h1>
+            <p>让我们回到题目中的图乙和图丙，看看细胞在缺葡萄糖（饥饿）时是怎么做的。</p>
+
+            <h3>📊 数据解读</h3>
+            <ul>
+                <li><strong>图乙（耗氧量）：</strong>缺糖组柱子很高 $\rightarrow$ 耗氧多 $\rightarrow$ 说明细胞在疯狂运转“发电车间”（氧化磷酸化）来保命。</li>
+                <li><strong>图丙（脯氨酸）：</strong>缺糖组柱子和对照组一样高 $\rightarrow$ 说明脯氨酸含量没变。</li>
+            </ul>
+
+            <div class="analogy">
+                <strong>🤔 深度思考：</strong><br>
+                通常我们认为，缺糖时能量不够，应该停止“盖房子”（合成脯氨酸），全力“发电”。<br>
+                <strong>但是！</strong>图丙告诉我们，细胞并没有停止合成脯氨酸。<br>
+                <strong>为什么？</strong>这说明脯氨酸对细胞在饥饿状态下生存非常重要（可能用于抗氧化或保护蛋白）。细胞即使勒紧裤腰带（缺糖），也要保证脯氨酸的供应。
+            </div>
+        </div>
+
+        <!-- 第五部分：综合练习 -->
+        <div id="p5" class="section">
+            <h1>5. 举一反三：综合模拟练习</h1>
+            <p>做一道类似的题目，检验一下你是否真的掌握了。</p>
+            
+            <div class="quiz-container" style="background: #fff;">
+                <p><strong>【模拟题】</strong>若科研人员使用一种药物特异性抑制了线粒体内的 P5CS 酶活性，请预测在“缺乏葡萄糖”的培养液中，MEF细胞的耗氧量和脯氨酸水平会发生什么变化？</p>
+                
+                <div class="options">
+                    <button onclick="checkSim(this, 'A')">A. 耗氧量增加，脯氨酸水平下降</button>
+                    <button onclick="checkSim(this, 'B')">B. 耗氧量减少，脯氨酸水平下降</button>
+                    <button onclick="checkSim(this, 'C')">C. 耗氧量增加，脯氨酸水平不变</button>
+                </div>
+                <div id="sim-feedback" class="feedback"></div>
+            </div>
+            
+            <div id="sim-explanation" style="display:none; margin-top:15px; padding:10px; background:#e8f6f3; border-radius:5px;">
+                <strong>解析：</strong>选 A。<br>
+                1. 抑制 P5CS $\rightarrow$ 脯氨酸合成路径被堵死 $\rightarrow$ 脯氨酸水平必然<strong>下降</strong>。<br>
+                2. 原本用于合成脯氨酸的原料（谷氨酸等）没地方去了，加上细胞缺糖急需能量，这些原料会被迫全部涌入“三羧酸循环”去发电 $\rightarrow$ 导致耗氧量进一步<strong>增加</strong>。
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 页面跳转逻辑
+        function showSection(id) {
+            // 隐藏所有部分
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // 显示目标部分
+            document.getElementById(id).classList.add('active');
+
+            // 更新按钮状态
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            // 找到对应的按钮添加active（简单匹配）
+            event.target.classList.add('active');
+        }
+
+        // 通用测验逻辑
+        function checkAnswer(btn, isCorrect) {
+            const feedback = btn.parentElement.nextElementSibling;
+            feedback.style.display = 'block';
+            if (isCorrect) {
+                feedback.textContent = "✅ 回答正确！";
+                feedback.className = "feedback correct";
+                btn.style.backgroundColor = "#d4efdf";
+            } else {
+                feedback.textContent = "❌ 再想想看？提示：回顾一下‘发电车间’的位置。";
+                feedback.className = "feedback wrong";
+                btn.style.backgroundColor = "#fadbd8";
+            }
+        }
+
+        // 模拟题逻辑
+        function checkSim(btn, option) {
+            const feedback = document.getElementById('sim-feedback');
+            const explanation = document.getElementById('sim-explanation');
+            
+            feedback.style.display = 'block';
+            explanation.style.display = 'block';
+
+            if (option === 'A') {
+                feedback.textContent = "✅ 完全正确！逻辑非常清晰。";
+                feedback.className = "feedback correct";
+                btn.style.backgroundColor = "#d4efdf";
+            } else {
+                feedback.textContent = "❌ 稍微有点偏差，请看下方的详细解析。";
+                feedback.className = "feedback wrong";
+                btn.style.backgroundColor = "#fadbd8";
+            }
+        }
+    </script>
+</body>
+</html>

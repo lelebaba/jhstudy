@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>β-地中海贫血与基因工程 - 互动学习课件</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link active">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <div class="nav-title">🧬 基因工程学习课件</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot active" title="首页"><span class="tooltip">首页</span></a>
+      <a href="01-problem.html" class="nav-dot" title="题目分析"><span class="tooltip">题目分析</span></a>
+      <a href="02-gene-therapy.html" class="nav-dot" title="基因治疗"><span class="tooltip">基因治疗</span></a>
+      <a href="03-gene-regulation.html" class="nav-dot" title="基因调控"><span class="tooltip">基因调控</span></a>
+      <a href="04-crispr.html" class="nav-dot" title="CRISPR"><span class="tooltip">CRISPR</span></a>
+      <a href="05-pcr-cloning.html" class="nav-dot" title="PCR克隆"><span class="tooltip">PCR克隆</span></a>
+      <a href="06-central-dogma.html" class="nav-dot" title="中心法则"><span class="tooltip">中心法则</span></a>
+      <a href="07-protein.html" class="nav-dot" title="蛋白质"><span class="tooltip">蛋白质</span></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"><span class="tooltip">干细胞</span></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"><span class="tooltip">综合练习</span></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>🧬 β-地中海贫血与基因工程</h1>
+    <p class="subtitle">一道高中生物题带你走进基因工程的奇妙世界</p>
+  </div>
+
+  <div class="card concept-card">
+    <h2>💡 学习导航</h2>
+    <p>本课件围绕一道高中生物真题，采用<strong>层层递进</strong>的方式，从最贴近题目的知识点开始，逐步深入到更基础的概念。每个知识点都配有<strong>通俗比喻</strong>、<strong>生活例子</strong>和<strong>小练习</strong>，帮助你真正理解，而不是死记硬背。</p>
+    <p style="margin-top:16px"><strong>学习路径建议：</strong>点击下方的卡片，按顺序学习；遇到不懂的概念，随时点击链接跳转到更基础的知识。</p>
+  </div>
+
+  <div class="card">
+    <h2>📚 课程目录</h2>
+    <div class="nav-grid">
+      <a href="01-problem.html" class="nav-card">
+        <span class="tag tag-primary">起点</span>
+        <h3>1. 题目分析</h3>
+        <p>先看看这道题在考什么，拆解关键信息和涉及的知识点</p>
+      </a>
+      <a href="02-gene-therapy.html" class="nav-card">
+        <span class="tag tag-secondary">核心概念</span>
+        <h3>2. 基因治疗</h3>
+        <p>β-地中海贫血是什么？有哪些治疗方法？基因治疗的基本思路</p>
+      </a>
+      <a href="03-gene-regulation.html" class="nav-card">
+        <span class="tag tag-secondary">核心概念</span>
+        <h3>3. 基因表达调控</h3>
+        <p>启动子、调控序列、BCL蛋白……基因如何被"开关"控制？</p>
+      </a>
+      <a href="04-crispr.html" class="nav-card">
+        <span class="tag tag-secondary">核心概念</span>
+        <h3>4. CRISPR/Cas9基因编辑</h3>
+        <p>"分子剪刀"如何精准修改DNA？基因编辑的原理和应用</p>
+      </a>
+      <a href="05-pcr-cloning.html" class="nav-card">
+        <span class="tag tag-accent">实验技术</span>
+        <h3>5. PCR与基因克隆</h3>
+        <p>PCR就像"DNA复印机"？限制酶、载体、重组DNA技术</p>
+      </a>
+      <a href="06-central-dogma.html" class="nav-card">
+        <span class="tag tag-accent">基础概念</span>
+        <h3>6. 中心法则</h3>
+        <p>DNA→RNA→蛋白质，生命的"信息高速公路"</p>
+      </a>
+      <a href="07-protein.html" class="nav-card">
+        <span class="tag tag-accent">基础概念</span>
+        <h3>7. 蛋白质与氨基酸</h3>
+        <p>血红蛋白的基本单位是什么？蛋白质如何"串珠成链"？</p>
+      </a>
+      <a href="08-stem-cells.html" class="nav-card">
+        <span class="tag tag-accent">基础概念</span>
+        <h3>8. 干细胞</h3>
+        <p>为什么用造血干细胞做基因治疗？干细胞的神奇之处</p>
+      </a>
+      <a href="09-practice.html" class="nav-card">
+        <span class="tag tag-primary">终点</span>
+        <h3>9. 综合练习</h3>
+        <p>来一道类似的题目，检验你的学习成果！</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="card metaphor-card">
+    <h2>🎯 学习提示</h2>
+    <ul class="checklist">
+      <li><strong>不懂就点</strong>：每个页面都有"前置知识"链接，随时可以跳转到更基础的内容</li>
+      <li><strong>先理解再记忆</strong>：每个知识点都有比喻和例子，先理解原理，再记专业术语</li>
+      <li><strong>边学边练</strong>：每个知识点后面都有小练习，做完再看答案，效果更好</li>
+      <li><strong>不必按顺序</strong>：如果你已经有一定基础，可以直接跳到感兴趣的章节</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span></span>
+    <a href="01-problem.html" class="btn btn-primary">开始：题目分析 →</a>
+  </div>
+</div>
+
+<script>
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+</body>
+</html>

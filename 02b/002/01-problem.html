@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>题目分析 - 康普茶发酵</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link active">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>📋 题目分析：康普茶发酵</h1>
+    <p>逐问拆解，每一步都讲清楚"为什么"</p>
+  </div>
+
+  <!-- 题目回顾 -->
+  <div class="card">
+    <h2>📝 原题回顾</h2>
+    <p><strong>题目：</strong>康普茶是由醋酸菌、酵母菌等微生物以茶和蔗糖为底物发酵而成的饮料。</p>
+    <div class="hint-box">
+      <h4>🫖 什么是康普茶？</h4>
+      <p>康普茶（Kombucha）是一种发酵茶饮料，用<strong>茶+糖</strong>做底料，接种<strong>醋酸菌+酵母菌</strong>的混合菌群（叫"SCOBY菌膜"），在室温下发酵7-14天而成。味道酸甜带气泡，有"茶界酸奶"之称。</p>
+    </div>
+  </div>
+
+  <!-- 第(1)问 -->
+  <div class="card">
+    <h2>第（1）问：发酵过程中微生物代谢</h2>
+    <p><strong>题干：</strong>传统康普茶发酵通常用纱布盖住瓶口，利于发酵初期酵母菌进行有氧呼吸。随着发酵的进行，醋酸菌逐渐形成致密菌膜覆盖整个液面，发酵液中的氧气逐渐被消耗，酵母菌无氧呼吸产生的______被醋酸菌在______（有氧/无氧）状态下转化成醋酸。醋酸的积累不仅有利于康普茶风味的形成，还能______。</p>
+
+    <div class="answer-box">
+      <h4>✅ 答案</h4>
+      <p>① <strong>酒精（乙醇）</strong> &emsp; ② <strong>有氧</strong> &emsp; ③ <strong>抑制杂菌的生长</strong></p>
+    </div>
+
+    <h3>逐步推理</h3>
+
+    <div class="flow-step">
+      <span class="step-num">1</span>
+      <div>
+        <strong>为什么用纱布盖瓶口？</strong><br>
+        纱布透气不透菌——空气能进去（供酵母菌有氧呼吸），杂菌进不去。发酵初期有氧气，酵母菌大量繁殖。
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <span class="step-num">2</span>
+      <div>
+        <strong>为什么氧气逐渐消耗？</strong><br>
+        酵母菌有氧呼吸消耗O₂，醋酸菌也需要O₂（好氧菌）。同时醋酸菌在液面形成<strong>致密菌膜</strong>，像一层"保鲜膜"一样隔绝了空气进入，氧气越来越少。
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <span class="step-num">3</span>
+      <div>
+        <strong>酵母菌无氧呼吸产生什么？</strong><br>
+        酵母菌是<strong>兼性厌氧菌</strong>——有氧时进行有氧呼吸（产生CO₂+H₂O），无氧时进行无氧呼吸（酒精发酵）：C₆H₁₂O₆ → 2C₂H₅OH（酒精）+ 2CO₂。<br>
+        所以第一空填 <strong>酒精（乙醇）</strong>。
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <span class="step-num">4</span>
+      <div>
+        <strong>醋酸菌在有氧还是无氧条件下转化？</strong><br>
+        醋酸菌是<strong>好氧菌</strong>，必须有氧气才能将乙醇氧化为醋酸（乙酸）：C₂H₅OH + O₂ → CH₃COOH + H₂O。<br>
+        注意：虽然菌膜覆盖了液面，但菌膜内层仍有<strong>醋酸菌和残留氧气的微环境</strong>，醋酸菌在<strong>有氧</strong>条件下工作。所以第二空填 <strong>有氧</strong>。
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <span class="step-num">5</span>
+      <div>
+        <strong>醋酸还有什么作用？</strong><br>
+        醋酸是<strong>酸性物质</strong>，使发酵液pH降低。大多数杂菌不耐酸，所以醋酸能<strong>抑制杂菌生长</strong>，保证康普茶不被污染。这也是为什么康普茶可以常温放置较久的原因。
+      </div>
+    </div>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 320">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">康普茶发酵过程示意图</text>
+
+        <!-- 发酵初期 -->
+        <rect x="20" y="40" width="180" height="120" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="110" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">发酵初期（有氧）</text>
+        <text x="110" y="82" text-anchor="middle" font-size="12" fill="#333">🧫 纱布盖口</text>
+        <text x="110" y="102" text-anchor="middle" font-size="12" fill="#333">酵母菌：有氧呼吸</text>
+        <text x="110" y="120" text-anchor="middle" font-size="12" fill="#333">C₆H₁₂O₆ → CO₂ + H₂O</text>
+        <text x="110" y="138" text-anchor="middle" font-size="12" fill="#333">大量繁殖 ↑↑</text>
+
+        <!-- 箭头 -->
+        <polygon points="210,100 230,100 220,90 230,80 210,80" fill="#4caf50"/>
+        <text x="220" y="115" text-anchor="middle" font-size="11" fill="#666">氧气↓</text>
+
+        <!-- 发酵后期 -->
+        <rect x="240" y="40" width="180" height="120" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+        <text x="330" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">发酵后期（缺氧）</text>
+        <text x="330" y="82" text-anchor="middle" font-size="12" fill="#333">🦠 菌膜覆盖</text>
+        <text x="330" y="102" text-anchor="middle" font-size="12" fill="#333">酵母菌：无氧呼吸</text>
+        <text x="330" y="120" text-anchor="middle" font-size="12" fill="#333">C₆H₁₂O₆ → 酒精 + CO₂</text>
+        <text x="330" y="138" text-anchor="middle" font-size="12" fill="#333">醋酸菌：有氧→醋酸</text>
+
+        <!-- 箭头 -->
+        <polygon points="430,100 450,100 440,90 450,80 430,80" fill="#f57c00"/>
+        <text x="440" y="115" text-anchor="middle" font-size="11" fill="#666">醋酸↑</text>
+
+        <!-- 结果 -->
+        <rect x="460" y="40" width="200" height="120" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="560" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">发酵产物</text>
+        <text x="560" y="85" text-anchor="middle" font-size="12" fill="#333">✅ 酒精 → 被醋酸菌转化</text>
+        <text x="560" y="105" text-anchor="middle" font-size="12" fill="#333">✅ 醋酸 → 风味 + 抑菌</text>
+        <text x="560" y="125" text-anchor="middle" font-size="12" fill="#333">✅ pH降低 → 抑制杂菌</text>
+        <text x="560" y="145" text-anchor="middle" font-size="12" fill="#333">✅ CO₂ → 气泡感</text>
+
+        <!-- 下方：两种菌的分工 -->
+        <rect x="20" y="190" width="310" height="110" rx="10" fill="#f1f8f1" stroke="#81c784" stroke-width="1.5"/>
+        <text x="175" y="212" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">酵母菌（兼性厌氧菌）</text>
+        <text x="35" y="235" font-size="12" fill="#333">有氧：C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 大量能量</text>
+        <text x="35" y="255" font-size="12" fill="#333">无氧：C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 少量能量</text>
+        <text x="35" y="278" font-size="12" fill="#666">角色：产酒精（给醋酸菌当"原料"）</text>
+
+        <rect x="350" y="190" width="310" height="110" rx="10" fill="#fff8e1" stroke="#ffe082" stroke-width="1.5"/>
+        <text x="505" y="212" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">醋酸菌（好氧菌）</text>
+        <text x="365" y="235" font-size="12" fill="#333">有氧：C₂H₅OH + O₂ → CH₃COOH + H₂O</text>
+        <text x="365" y="255" font-size="12" fill="#333">无氧：无法生存（需氧！）</text>
+        <text x="365" y="278" font-size="12" fill="#666">角色：产醋酸（风味+抑菌）</text>
+      </svg>
+    </div>
+
+    <p>📖 <strong>涉及知识：</strong><a href="02-kombucha.html">康普茶发酵原理</a> → <a href="03-metabolism.html">微生物代谢</a> → <a href="04-bacteria-yeast.html">醋酸菌与酵母菌</a></p>
+  </div>
+
+  <!-- 第(2)问 -->
+  <div class="card">
+    <h2>第（2）问：菌种优选</h2>
+    <p><strong>题干：</strong>为优选菌种进行工业化生产，首先利用______法将发酵液接种至选择培养基，获得单菌落后，再进行鉴定和筛选，请列举两项筛选指标______。</p>
+
+    <div class="answer-box">
+      <h4>✅ 答案</h4>
+      <p>① <strong>稀释涂布平板法</strong>（平板划线法也可）</p>
+      <p>② 筛选指标（任选两项）：<strong>产酸能力（总酸产量/产酸速度）</strong>；<strong>菌膜形成速度与稳定性</strong>；耐酒精能力；耐酸能力；发酵周期长短；风味物质种类与含量</p>
+    </div>
+
+    <h3>为什么是"稀释涂布平板法"？</h3>
+    <p>工业化生产需要从混合菌群中<strong>分离出单一菌种</strong>。稀释涂布平板法能将发酵液中的菌液逐级稀释，涂布到固体培养基上，使每个菌落都来自<strong>单个细胞</strong>，形成肉眼可见的"单菌落"。</p>
+
+    <div class="hint-box">
+      <h4>💡 "选择培养基" vs "鉴别培养基"</h4>
+      <p><strong>选择培养基</strong>：只让目标菌种生长，其他菌被抑制（比如加特定抗生素、用特定碳源）。本题要筛选醋酸菌/酵母菌，可以选产酸菌专用的选择培养基。</p>
+      <p><strong>鉴别培养基</strong>：所有菌都能长，但不同菌看起来不一样（比如伊红美蓝培养基上大肠杆菌呈金属光泽菌落）。</p>
+    </div>
+
+    <h3>为什么选这些筛选指标？</h3>
+    <table>
+      <tr><th>指标</th><th>为什么要测</th><th>怎么测</th></tr>
+      <tr><td><strong>产酸能力</strong></td><td>醋酸菌的核心功能就是产醋酸，产酸越多越快 = 菌种越好</td><td>酸碱滴定法测总酸浓度</td></tr>
+      <tr><td><strong>菌膜形成</strong></td><td>醋酸菌能形成菌膜是优良菌种的特征，菌膜厚而密 = 活力强</td><td>观察菌膜厚度和致密程度</td></tr>
+      <tr><td>耐酒精能力</td><td>酵母菌产酒精后，酒精浓度升高会抑制菌的活性，耐受力高的菌种更适合工业化生产</td><td>不同酒精浓度下测存活率</td></tr>
+      <tr><td>耐酸能力</td><td>醋酸积累后pH下降，耐酸的菌种能在更低pH下继续工作</td><td>不同pH下测产酸速率</td></tr>
+    </table>
+
+    <p>📖 <strong>涉及知识：</strong><a href="06-culture.html">微生物培养技术</a> → <a href="07-aseptic.html">无菌操作</a></p>
+  </div>
+
+  <!-- 第(3)问 -->
+  <div class="card">
+    <h2>第（3）问：3D曲面图与发酵条件优化</h2>
+    <p><strong>题干：</strong>研究者以发酵6天后的总酸浓度为评价指标，研究了部分发酵条件对最终总酸浓度的影响。3D曲面图坡度代表影响强度，曲面越陡峭，该因素影响越大。</p>
+
+    <h3>① 最适条件</h3>
+    <div class="answer-box">
+      <h4>✅ 答案</h4>
+      <p>最适培养温度约 <strong>30℃</strong>，茶叶浓度约 <strong>0.6%</strong>，菌种接种量约 <strong>7%</strong></p>
+    </div>
+
+    <p>这三个数值来自原始论文的<strong>中心点实验</strong>——在茶叶浓度0.6%、接种量7%、温度30℃条件下，总酸浓度达到最高值36.3 mg/mL。</p>
+
+    <div class="hint-box warning">
+      <h4>⚠️ 注意：不要被3D图的"视觉高度"迷惑</h4>
+      <p>3D曲面图的"最高点"看起来很直观，但不同坐标轴的刻度范围会影响视觉判断。论文的<strong>方差分析表（ANOVA）</strong>才是判断影响大小的金标准。</p>
+    </div>
+
+    <h3>② 三种因素影响程度排序</h3>
+    <div class="answer-box">
+      <h4>✅ 答案</h4>
+      <p><strong>菌种接种量 > 茶叶浓度 > 培养温度</strong></p>
+    </div>
+
+    <p>这个排序来自论文的ANOVA方差分析表：</p>
+    <table>
+      <tr><th>因素</th><th>F值</th><th>P值</th><th>显著性</th><th>排序</th></tr>
+      <tr><td>C-菌种接种量</td><td><strong>58.94</strong></td><td>&lt;0.0001</td><td>极显著 ***</td><td>1（最大）</td></tr>
+      <tr><td>B-茶叶浓度</td><td><strong>28.48</strong></td><td>0.0001</td><td>极显著 ***</td><td>2</td></tr>
+      <tr><td>D-培养温度</td><td>2.82</td><td>0.115</td><td>不显著</td><td>3（最小）</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 什么是F值和P值？</h4>
+      <p><strong>F值</strong>：衡量某因素对结果影响大小的统计量。F值越大，说明该因素的影响越显著。</p>
+      <p><strong>P值</strong>：判断结果是否可信的标准。P &lt; 0.05 = 显著，P &lt; 0.01 = 极显著，P &gt; 0.05 = 不显著。</p>
+      <p>本题中培养温度的P=0.115 &gt; 0.05，说明在28-32℃范围内温度变化对产酸量<strong>没有显著影响</strong>——这跟"温度对微生物影响最大"的直觉恰恰相反！</p>
+    </div>
+
+    <p>📖 <strong>涉及知识：</strong><a href="05-optimization.html">发酵条件优化方法</a></p>
+  </div>
+
+  <!-- 第(4)问 -->
+  <div class="card">
+    <h2>第（4）问：抑菌实验分析</h2>
+    <p><strong>题干：</strong>为开发康普茶的保健作用，研究者选择三种不同茶底的康普茶进行了抑菌实验，结果如下表。</p>
+
+    <h3>抑菌实验数据</h3>
+    <table>
+      <tr><th>组别</th><th>茶底</th><th>发酵0天 大肠杆菌 (mm)</th><th>发酵0天 金葡菌 (mm)</th><th>发酵7天 大肠杆菌 (mm)</th><th>发酵7天 金葡菌 (mm)</th></tr>
+      <tr><td>1</td><td>茶底1</td><td>0</td><td>0</td><td>22.06</td><td>21.82</td></tr>
+      <tr><td>2</td><td>茶底2</td><td>0</td><td>11.37</td><td>27.74</td><td>32.24</td></tr>
+      <tr><td>3</td><td>茶底3</td><td>9.96</td><td>13.96</td><td>30.40</td><td>30.94</td></tr>
+    </table>
+
+    <div class="answer-box">
+      <h4>✅ 可得出的结论</h4>
+      <p><strong>1. 发酵显著增强康普茶的抑菌效果。</strong>三组茶底在发酵0天时抑菌圈普遍很小（0~14mm），发酵7天后抑菌圈普遍达到22~32mm，差异非常显著。</p>
+      <p><strong>2. 三种茶底的康普茶对两种致病菌均有抑菌作用。</strong>发酵7天后对大肠杆菌（革兰氏阴性菌）和金黄色葡萄球菌（革兰氏阳性菌）的抑菌圈均 &gt; 20mm，说明抗菌谱较广。</p>
+      <p><strong>3. 不同茶底的抑菌效果有差异。</strong>发酵7天后，组别3效果最好（30.40、30.94mm），组别1最弱（22.06、21.82mm），组别2居中。说明<strong>茶底种类对康普茶抑菌能力有显著影响</strong>。</p>
+      <p><strong>4. 部分茶底本身具有天然抑菌活性。</strong>茶底3在发酵0天时已有抑菌圈（9.96、13.96mm），但经过发酵后抑菌能力大幅提升（约3倍），说明发酵过程中微生物代谢产生了新的抑菌物质。</p>
+    </div>
+
+    <h3>什么是抑菌圈？</h3>
+    <div class="hint-box">
+      <h4>💡 抑菌圈实验原理</h4>
+      <p>在铺满细菌的琼脂培养基上放一个含待测物质的滤纸片。如果该物质有抑菌作用，纸片周围的细菌无法生长，形成一个透明的"圈"。圈的直径越大 = 抑菌能力越强。</p>
+      <p><strong>比喻：</strong>想象一片草地（培养基上的细菌），上面放了一块带除草剂的布。布周围草死了，形成了一个圆形的秃斑——秃斑越大，除草剂越强。</p>
+    </div>
+
+    <h3>为什么发酵后抑菌效果变强？</h3>
+    <div class="flow-step">
+      <span class="step-num">1</span>
+      <div>发酵过程中，醋酸菌产生<strong>醋酸</strong>（有机酸），降低pH → 酸性环境本身有抑菌作用</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">2</span>
+      <div>酵母菌和醋酸菌可能产生<strong>细菌素</strong>、<strong>多酚类物质</strong>等次级代谢产物，直接抑制致病菌</div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">3</span>
+      <div>茶叶本身含有的<strong>茶多酚</strong>在发酵过程中被微生物转化，释放出更多的活性抑菌成分</div>
+    </div>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 酵母菌无氧呼吸的产物是什么？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">乳酸 + CO₂</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">酒精（乙醇） + CO₂</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">醋酸 + H₂O</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">丙酮酸 + H₂O</div>
+      <div class="quiz-feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 醋酸菌将酒精转化为醋酸需要什么条件？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">无氧条件</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">有氧条件</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">高温条件</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">酸性条件</div>
+      <div class="quiz-feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 根据ANOVA数据，影响程度最小的因素是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">菌种接种量（F=58.94）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">茶叶浓度（F=28.48）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">培养温度（F=2.82, P=0.115）</div>
+      <div class="quiz-feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => {
+    o.classList.remove('correct', 'wrong');
+  });
+  if (isCorrect) {
+    el.classList.add('correct');
+    const fb = quiz.querySelector('.quiz-feedback');
+    fb.className = 'quiz-feedback show correct';
+    fb.textContent = '✅ 回答正确！';
+  } else {
+    el.classList.add('wrong');
+    const fb = quiz.querySelector('.quiz-feedback');
+    fb.className = 'quiz-feedback show wrong';
+    fb.textContent = '❌ 再想想，看一下上面的讲解～';
+  }
+}
+</script>
+</body>
+</html>

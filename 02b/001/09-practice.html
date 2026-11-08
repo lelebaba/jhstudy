@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>综合练习 — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="09-practice.html" class="tree-link active">📝 9. 综合练习</a></li>
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt通路</a></li>
+        <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附</a></li>
+        <li class="tree-item"><a href="06-EMT.html" class="tree-link">🎭 6. EMT</a></li>
+        <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. Hp与胃癌</a></li>
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 研究方法</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>📝 综合练习</h1><p>改编题检验学习效果——结肠癌中的 Wnt/β-catenin 通路</p></div>
+
+<div class="card">
+  <h2>🧪 改编题</h2>
+  <p>结直肠癌是全球第三大常见癌症。研究表明，超过 <strong>80%</strong> 的结直肠癌患者存在 Wnt/β-catenin 信号通路的异常激活。<strong>APC 蛋白</strong>是 β-cat 降解复合体的核心成员，负责将磷酸化的 β-cat 呈递给泛素连接酶。APC 基因突变是结直肠癌中最常见的基因突变之一。</p>
+
+  <h3>（1）填空</h3>
+  <p>正常细胞内，APC 蛋白参与 β-cat 降解复合体的组装。β-cat 在细胞质中被降解复合体<span class="hl">______</span>后，再经泛素化标记，最终被<span class="hl">______</span>水解。APC 基因发生突变后，降解复合体功能受损，β-cat 在细胞质中<span class="hl">______</span>。</p>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">查看答案</div>
+    <div class="accordion-body">
+      <p><strong>第一空：</strong>磷酸化 | <strong>第二空：</strong>蛋白酶体 | <strong>第三空：</strong>积累（升高）</p>
+    </div>
+  </div>
+
+  <h3>（2）实验分析</h3>
+  <p>为验证 APC 基因突变对 Wnt 通路的影响，研究者用 <strong>XAV939</strong>（一种促进 β-cat 降解的小分子药物）处理 APC 突变的结肠癌细胞，检测 β-cat 含量和细胞侵袭能力。结果如下表：</p>
+
+  <table>
+    <tr><th>组别</th><th>β-cat 含量</th><th>侵袭细胞数（个）</th></tr>
+    <tr><td>正常结肠上皮细胞</td><td>1.0</td><td>5</td></tr>
+    <tr><td>APC突变癌细胞</td><td>3.5</td><td>85</td></tr>
+    <tr><td>APC突变 + XAV939</td><td>1.3</td><td>12</td></tr>
+  </table>
+
+  <p><strong>①</strong> 与正常细胞相比，APC 突变癌细胞的 β-cat 含量和侵袭能力发生了怎样的变化？</p>
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">查看答案</div>
+    <div class="accordion-body">
+      <p>β-cat含量显著升高（3.5倍），侵袭细胞数大幅增加（85 vs 5）。</p>
+    </div>
+  </div>
+
+  <p><strong>②</strong> XAV939 处理后的结果说明了什么？</p>
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">查看答案</div>
+    <div class="accordion-body">
+      <p>XAV939通过促进β-cat降解，使β-cat含量回落至接近正常水平，并显著降低了癌细胞的侵袭能力。这说明APC突变导致的β-cat积累是癌细胞侵袭能力增强的关键原因，且这一过程是可逆的。</p>
+    </div>
+  </div>
+
+  <h3>（3）开放题</h3>
+  <p>根据以上研究，提出一种针对 APC 突变型结直肠癌的潜在治疗策略，并简述原理。</p>
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">查看答案</div>
+    <div class="accordion-body">
+      <p><strong>策略：</strong>使用类似XAV939的小分子药物促进β-cat降解。</p>
+      <p><strong>原理：</strong>APC突变导致降解复合体功能丧失，但其他降解途径（如通过Axin直接招募β-cat）仍可能被药物激活。XAV939通过抑制tankyrase酶来稳定Axin蛋白，Axin增多后可在不依赖APC的情况下促进β-cat降解，从而恢复β-cat的正常代谢。</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📚 概念辨析</h2>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">Wnt 通路"开"和"关"的本质区别是什么？</div>
+    <div class="accordion-body">
+      <p><strong>"开"：</strong>Wnt蛋白与受体结合 → 降解复合体被抑制 → β-cat不降解 → β-cat积累 → 入核激活靶基因。</p>
+      <p><strong>"关"：</strong>无Wnt信号 → 降解复合体正常工作 → β-cat被磷酸化→泛素化→水解 → β-cat维持低浓度。</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">β-cat 在膜上和核内的作用有何不同？</div>
+    <div class="accordion-body">
+      <p><strong>膜上：</strong>作为黏附分子的一部分，与E-cadherin结合维持细胞间连接，属于<strong>结构功能</strong>。</p>
+      <p><strong>核内：</strong>作为转录共激活因子，与TCF/LEF结合激活靶基因转录，属于<strong>信号功能</strong>。</p>
+      <p>正常细胞中膜上功能为主；癌细胞中核内功能被异常激活。</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">E蛋白被水解后为什么癌细胞侵袭能力增强？（两种效应都要答）</div>
+    <div class="accordion-body">
+      <p><strong>效应① 结构层面：</strong>E蛋白-β-cat复合物被破坏 → 细胞间黏附丧失 → 上皮完整性破坏 → 癌细胞易脱离原发灶。</p>
+      <p><strong>效应② 信号层面：</strong>β-cat从膜上被释放 → 进入细胞核 → 激活EMT相关基因 → 癌细胞获得主动侵袭和迁移能力。</p>
+      <p>两种效应共同作用，推动癌症进展。</p>
+    </div>
+  </div>
+</div>
+
+<div class="nav-btns">
+  <a href="08-central-dogma.html" class="nav-btn back">← 中心法则</a>
+  <a href="index.html" class="nav-btn">返回首页 🏠</a>
+</div>
+</div>
+
+<script>
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('show');
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>

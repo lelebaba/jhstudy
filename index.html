@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初高中学科辅导课件集</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+  header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 36px;
+  }
+  header h1 { font-size: 32px; margin-bottom: 10px; letter-spacing: 2px; }
+  header p { font-size: 15px; opacity: 0.85; }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .tab {
+    padding: 12px 48px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.25s;
+    user-select: none;
+  }
+  .tab:hover { background: rgba(255,255,255,0.28); }
+  .tab.active {
+    background: #fff;
+    color: #5a4a9e;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+
+  .search-box {
+    max-width: 520px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 14px 44px 14px 20px;
+    border: none;
+    border-radius: 999px;
+    font-size: 15px;
+    outline: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+  .search-box input:focus {
+    box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  }
+  .search-box .clear-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    background: #ddd;
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+  }
+  .search-box .clear-btn:hover { background: #ccc; }
+
+  .subject-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .no-result {
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    padding: 20px;
+    display: none;
+  }
+  mark {
+    background: #ffe58f;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+  .subject-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    color: #333;
+    border-left: 5px solid #667eea;
+    padding-left: 12px;
+    margin-bottom: 18px;
+  }
+  .subject-title .badge {
+    font-size: 12px;
+    background: #eef0fb;
+    color: #667eea;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .course-list { list-style: none; }
+  .course-list li { margin-bottom: 10px; }
+  .course-list li:last-child { margin-bottom: 0; }
+  .course-list a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: #f7f8fc;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .course-list a:hover {
+    background: #eef0fb;
+    border-color: #667eea;
+    transform: translateX(4px);
+  }
+  .num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 28px;
+    border-radius: 6px;
+    background: #667eea;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .course-name { flex: 1; }
+  .arrow { color: #aaa; font-size: 14px; }
+  .empty-tip {
+    color: #999;
+    font-size: 14px;
+    padding: 12px 4px;
+  }
+  footer {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    margin-top: 30px;
+  }
+  @media (max-width: 600px) {
+    .tab { padding: 10px 28px; font-size: 15px; }
+    .subject-section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>初高中学科辅导课件集</h1>
+    <p>选择学段与学科，点击课件即可开始学习</p>
+  </header>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索课件名称…（如：线粒体、变压器）" autocomplete="off">
+    <button class="clear-btn" id="clearBtn" title="清除">&times;</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-stage="junior">初中</div>
+    <div class="tab" data-stage="senior">高中</div>
+  </div>
+
+  <div class="no-result" id="noResult">未找到匹配的课件，请换个关键词试试。</div>
+
+  <!-- 初中 -->
+  <div id="junior">
+    <div class="subject-section">
+      <div class="subject-title">初中英语 <span class="badge">01e</span></div>
+      <ul class="course-list">
+        <li><a href="01e/001.html"><span class="num">001</span><span class="course-name">英语主谓一致</span><span class="arrow">&#8250;</span></a></li>
+      </ul>
+    </div>
+    <div class="subject-section">
+      <div class="subject-title">初中物理 <span class="badge">01p</span></div>
+      <div class="empty-tip">暂无课件，敬请期待。</div>
+    </div>
+  </div>
+
+  <!-- 高中 -->
+  <div id="senior" style="display:none;">
+    <div class="subject-section">
+      <div class="subject-title">高中生物 <span class="badge">02b</span></div>
+      <ul class="course-list">
+        <li><a href="02b/001/index.html"><span class="num">001</span><span class="course-name">幽门螺杆菌与胃癌</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/002/index.html"><span class="num">002</span><span class="course-name">康普茶发酵与微生物培养</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/003/index.html"><span class="num">003</span><span class="course-name">β-地中海贫血与基因工程</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/004/index.html"><span class="num">004</span><span class="course-name">苦茶碱合成调控</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/005.html"><span class="num">005</span><span class="course-name">线粒体代谢调控深度解析</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/006.html"><span class="num">006</span><span class="course-name">线粒体的"分身术"</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/007.html"><span class="num">007</span><span class="course-name">线粒体双重翻译模式</span><span class="arrow">&#8250;</span></a></li>
+        <li><a href="02b/008.html"><span class="num">008</span><span class="course-name">蓝光与线粒体（有氧呼吸·ATP·电子传递链）</span><span class="arrow">&#8250;</span></a></li>
+      </ul>
+    </div>
+    <div class="subject-section">
+      <div class="subject-title">高中物理 <span class="badge">02p</span></div>
+      <ul class="course-list">
+        <li><a href="02p/001/index.html"><span class="num">001</span><span class="course-name">变压器与远距离输电</span><span class="arrow">&#8250;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>共 10 个课件 · 持续更新中</footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const junior = document.getElementById('junior');
+  const senior = document.getElementById('senior');
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  const noResult = document.getElementById('noResult');
+
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const stage = t.dataset.stage;
+      junior.style.display = stage === 'junior' ? '' : 'none';
+      senior.style.display = stage === 'senior' ? '' : 'none';
+      applySearch();
+    });
+  });
+
+  // 每个 li 记录原文，方便取消高亮时还原
+  document.querySelectorAll('.course-list li').forEach(li => {
+    li._nameEl = li.querySelector('.course-name');
+    li._original = li._nameEl.textContent;
+  });
+
+  function applySearch() {
+    const kw = searchInput.value.trim();
+    clearBtn.style.display = kw ? 'block' : 'none';
+    let total = 0;
+
+    // 搜索时两个学段都参与；无关键词时按当前选项卡过滤
+    const searching = kw.length > 0;
+    if (searching) {
+      junior.style.display = '';
+      senior.style.display = '';
+    } else {
+      const stage = document.querySelector('.tab.active').dataset.stage;
+      junior.style.display = stage === 'junior' ? '' : 'none';
+      senior.style.display = stage === 'senior' ? '' : 'none';
+    }
+
+    document.querySelectorAll('.subject-section').forEach(sec => {
+      const list = sec.querySelector('.course-list');
+      let visible = 0;
+      if (list) {
+        list.querySelectorAll('li').forEach(li => {
+          const name = li._original;
+          const hit = !searching || name.toLowerCase().includes(kw.toLowerCase());
+          li.style.display = hit ? '' : 'none';
+          if (hit) {
+            visible++;
+            total++;
+            // 高亮关键词
+            if (searching) {
+              const idx = name.toLowerCase().indexOf(kw.toLowerCase());
+              li._nameEl.innerHTML =
+                escapeHtml(name.slice(0, idx)) +
+                '<mark>' + escapeHtml(name.slice(idx, idx + kw.length)) + '</mark>' +
+                escapeHtml(name.slice(idx + kw.length));
+            } else {
+              li._nameEl.textContent = name;
+            }
+          }
+        });
+        // 该学科下没有匹配项时隐藏整个学科区块（始终有内容的学段区域才隐藏）
+        sec.style.display = (searching && visible === 0) ? 'none' : '';
+      } else {
+        // “暂无课件”区块：搜索时隐藏
+        sec.style.display = searching ? 'none' : '';
+      }
+    });
+
+    noResult.style.display = (searching && total === 0) ? 'block' : 'none';
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  searchInput.addEventListener('input', applySearch);
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    applySearch();
+    searchInput.focus();
+  });
+</script>
+</body>
+</html>

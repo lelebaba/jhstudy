@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>综合练习 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link active">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>📝 综合练习</h1>
+  <p>检测转录因子调控、EMSA、荧光素酶互补三大核心知识的掌握程度</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> 综合练习</div>
+
+<!-- 改编题 -->
+<div class="card">
+  <h2>📋 改编练习：研究转录因子A对花青素合成酶基因（ANS）的调控</h2>
+  <p>花青素是植物花瓣中重要的色素，转录因子A被认为调控花青素合成酶基因（ANS）的表达。花青素合成酶催化花青素的生成。研究者设计了以下实验：</p>
+
+  <h3>实验一：反义抑制实验</h3>
+  <p>用农杆菌转化法将A基因的反义核酸序列导入玫瑰花瓣组织（实验组），对照组导入空载体。检测花青素含量，结果对照组花青素含量显著高于实验组。</p>
+
+  <hr style="margin:16px 0;border:1px dashed #ddd;">
+
+  <p><strong>（1）</strong> 根据实验一可以得出结论：________________。反义核酸的作用机制是________。</p>
+
+  <div class="answer-box" style="display:none" id="a1">
+    <h4>✅ 答案</h4>
+    <p>结论：<strong>转录因子A促进花青素合成（或A基因促进ANS基因表达）</strong>。机制：<strong>反义核酸与A基因的mRNA互补配对，阻断核糖体的翻译过程，减少A蛋白的合成</strong>。</p>
+  </div>
+  <button class="btn btn-primary" onclick="document.getElementById('a1').style.display='block'" style="margin-top:8px;">查看答案</button>
+
+  <h3 style="margin-top:24px;">实验二：EMSA实验</h3>
+  <p>研究者合成ANS基因启动子片段作为探针，设计EMSA实验检测A蛋白与ANS启动子的结合，实验分组如下表：</p>
+  <table>
+    <tr><th>组别</th><th>A蛋白</th><th>标记探针(ANS启动子)</th><th>未标记探针(野生型)</th><th>未标记探针(突变型)</th></tr>
+    <tr><td>1</td><td>−</td><td>+</td><td>−</td><td>−</td></tr>
+    <tr><td>2</td><td>+</td><td>+</td><td>−</td><td>−</td></tr>
+    <tr><td>3</td><td>+</td><td>+</td><td>+</td><td>−</td></tr>
+    <tr><td>4</td><td>+</td><td>+</td><td>−</td><td>+</td></tr>
+  </table>
+
+  <p><strong>（2）</strong> 第2组预期的电泳条带是________________。第3组复合物条带变细的原因是________竞争性结合A蛋白。若第4组的突变破坏了A蛋白结合位点，其复合物条带应与第________组相近。</p>
+
+  <div class="answer-box" style="display:none" id="a2">
+    <h4>✅ 答案</h4>
+    <p>第2组：<strong>出现复合物条带和游离探针条带</strong>；原因：<strong>未被标记的野生型ANS启动子探针</strong>；第4组条带应与<strong>第2</strong>组相近。</p>
+  </div>
+  <button class="btn btn-primary" onclick="document.getElementById('a2').style.display='block'" style="margin-top:8px;">查看答案</button>
+
+  <p><strong>（3）</strong> 结合实验一和实验二，可得出结论：________________。</p>
+
+  <div class="answer-box" style="display:none" id="a3">
+    <h4>✅ 答案</h4>
+    <p><strong>A蛋白通过直接结合ANS基因启动子来促进ANS基因的表达，进而促进花青素的合成。</strong></p>
+  </div>
+  <button class="btn btn-primary" onclick="document.getElementById('a3').style.display='block'" style="margin-top:8px;">查看答案</button>
+</div>
+
+<div class="card">
+  <h2>📋 改编练习二：验证A与B的相互作用</h2>
+  <p>已知转录因子B也能结合ANS启动子并促进ANS表达。利用荧光素酶互补技术验证A蛋白与B蛋白的相互作用。荧光素酶（Luc）可被分割成N端（N-Luc）和C端（C-Luc），二者在空间上靠近时可激活酶活性。</p>
+  <p>构建以下融合基因：a. N-Luc；b. C-Luc；c. N-Luc-A融合基因；d. C-Luc-B融合基因</p>
+
+  <p><strong>（4）</strong> 将叶片分为四个区域，请填写各区域应导入的基因组合：</p>
+  <table>
+    <tr><th>区域①</th><th>区域②</th><th>区域③</th><th>区域④</th></tr>
+    <tr><td>a, b</td><td>?</td><td>?</td><td>c, d</td></tr>
+  </table>
+
+  <div class="answer-box" style="display:none" id="a4">
+    <h4>✅ 答案</h4>
+    <p>区域②：<strong>a, d</strong>（N-Luc + C-Luc-B，排除B非特异性作用）；区域③：<strong>b, c</strong>（C-Luc + N-Luc-A，排除A非特异性作用）。</p>
+  </div>
+  <button class="btn btn-primary" onclick="document.getElementById('a4').style.display='block'" style="margin-top:8px;">查看答案</button>
+
+  <p><strong>（5）</strong> 若已知A与B能相互作用，且A和B均能单独结合ANS启动子并促进转录。能否得出"A和B共同结合ANS启动子促进转录"的结论？为什么？</p>
+
+  <div class="answer-box" style="display:none" id="a5">
+    <h4>✅ 答案</h4>
+    <p><strong>不能。</strong>虽然荧光素酶互补实验证明A和B在细胞中能相互作用，但"蛋白质在细胞中能碰到"不等于"它们能在DNA启动子上肩并肩结合"。缺乏直接的生化证据（如超迁移EMSA实验）证明A和B共同结合在同一DNA序列上形成复合物。</p>
+  </div>
+  <button class="btn btn-primary" onclick="document.getElementById('a5').style.display='block'" style="margin-top:8px;">查看答案</button>
+</div>
+
+<div class="nav-section">
+  <a href="08-plant-engineering.html" class="nav-link">← 植物基因工程</a>
+  <a href="index.html" class="nav-link">🏠 返回首页</a>
+</div>
+</div>
+</div>
+<script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+</script>
+</body>
+</html>

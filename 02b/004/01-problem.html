@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>题目分析 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link active">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+          <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+          <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+          <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+          <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+          <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+          <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>📋 题目分析与逐问拆解</h1>
+  <p>原题回顾 + 每问详细解析</p>
+</div>
+
+<div class="container">
+
+<div class="breadcrumb">
+  <a href="index.html">首页</a> <span>›</span> 题目分析
+</div>
+
+<!-- 原题 -->
+<div class="card">
+  <h2>📝 原题</h2>
+  <p>苦茶碱是苦茶树合成的天然生物碱，具有镇静、抗抑郁及镇痛等功效，但天然含量较低。研究者探究了转录因子T和W对苦茶碱合成酶基因（Cs基因）表达的调控作用。</p>
+</div>
+
+<!-- 第1问 -->
+<div class="card">
+  <h2>第（1）问：基因功能验证——反义核酸实验</h2>
+
+  <p>苦茶碱由苦茶碱合成酶 ___ 生成。图1结果表明T基因促进苦茶碱合成，实验组用 ___ 法将T基因的反义核苷酸序列导入苦茶树组织，对照组导入的是 ___。</p>
+
+  <div class="answer-box">
+    <h4>✅ 答案</h4>
+    <p>第一空：<strong>催化</strong>；第二空：<strong>农杆菌转化</strong>；第三空：<strong>空载体</strong>（或不含T基因反义序列的载体）</p>
+  </div>
+
+  <h3>🔍 逐空解析</h3>
+
+  <h4>第一空：为什么填"催化"？</h4>
+  <p>所有的酶都是<strong>催化剂</strong>。苦茶碱合成酶是一种酶，它的作用就是<strong>催化</strong>底物转化为苦茶碱。就像一把钥匙开一把锁，酶专门催化特定反应，降低反应所需的能量门槛。</p>
+
+  <h4>第二空：用什么法导入基因？</h4>
+  <p>向植物细胞导入外源基因，最经典高效的方法是<strong>农杆菌转化法</strong>。农杆菌是天然的"基因快递员"——它感染植物时会将自己的一段DNA（T-DNA）插入植物基因组。科学家利用这个特性，把要导入的基因装在T-DNA上，让农杆菌"送货上门"。</p>
+  <p>📖 详细原理参见：<a href="08-plant-engineering.html">植物基因工程</a></p>
+
+  <h4>第三空：对照组导入什么？</h4>
+  <p>实验变量是"T基因的反义序列"，其他条件必须一致。所以对照组导入<strong>空载体</strong>——也就是"空的快递包裹"，有载体但没有反义序列。这样可以排除载体本身对实验的干扰。</p>
+
+  <h3>📊 图1实验结果解读</h3>
+  <div class="fig-box">
+    <svg viewBox="0 0 500 280">
+      <text x="250" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">苦茶碱含量（mg/g）</text>
+      <line x1="80" y1="50" x2="80" y2="240" stroke="#333" stroke-width="2"/>
+      <line x1="80" y1="240" x2="480" y2="240" stroke="#333" stroke-width="2"/>
+      <text x="80" y="260" text-anchor="middle" font-size="12" fill="#666">0</text>
+      <text x="480" y="260" text-anchor="middle" font-size="12" fill="#666">2.5</text>
+      <line x1="80" y1="240" x2="80" y2="235" stroke="#333"/>
+      <line x1="180" y1="240" x2="180" y2="235" stroke="#333"/><text x="180" y="260" text-anchor="middle" font-size="12" fill="#666">1.0</text>
+      <line x1="280" y1="240" x2="280" y2="235" stroke="#333"/><text x="280" y="260" text-anchor="middle" font-size="12" fill="#666">1.5</text>
+      <line x1="380" y1="240" x2="380" y2="235" stroke="#333"/><text x="380" y="260" text-anchor="middle" font-size="12" fill="#666">2.0</text>
+      <line x1="480" y1="240" x2="480" y2="235" stroke="#333"/><text x="480" y="260" text-anchor="middle" font-size="12" fill="#666">2.5</text>
+      <!-- 对照组柱 -->
+      <rect x="160" y="40" width="80" height="200" fill="#4caf50" rx="4"/>
+      <text x="200" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">对照组</text>
+      <text x="200" y="140" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">~2.0</text>
+      <!-- 实验组柱 -->
+      <rect x="300" y="140" width="80" height="100" fill="#ff9800" rx="4"/>
+      <text x="340" y="130" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">实验组</text>
+      <text x="340" y="200" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">~1.0</text>
+    </svg>
+    <figcaption>图1示意：对照组（空载体）苦茶碱含量高，实验组（导入反义T）含量降低一半</figcaption>
+  </div>
+  <p><span class="tag tag-info">结论</span> 反义T序列抑制了T基因的表达 → T蛋白减少 → Cs基因表达下降 → 苦茶碱合成减少 → 说明<strong>T基因促进苦茶碱合成</strong>。</p>
+
+  <p>📖 反义核酸实验的设计逻辑参见：<a href="03-antisense.html">反义核酸技术</a></p>
+</div>
+
+<!-- 第2问 -->
+<div class="card">
+  <h2>第（2）问：EMSA实验——T蛋白与Cs启动子的结合</h2>
+
+  <p>为进一步探究T蛋白作用机制，研究者用Cs基因启动子作为探针，检测其与T蛋白结合情况。检测原理是：DNA与蛋白质结合形成复合物后，电泳迁移速率慢于游离探针。</p>
+
+  <table>
+    <tr><th>组别</th><th>T蛋白</th><th>被标记的Cs启动子探针</th><th>未被标记的Cs启动子探针</th><th>未被标记的Cs启动子突变探针</th></tr>
+    <tr><td>1</td><td>−</td><td>+</td><td>−</td><td>−</td></tr>
+    <tr><td>2</td><td>+</td><td>+</td><td>−</td><td>−</td></tr>
+    <tr><td>3</td><td>+</td><td>+</td><td>+</td><td>−</td></tr>
+    <tr><td>4</td><td>+</td><td>+</td><td>−</td><td>+</td></tr>
+  </table>
+  <p style="font-size:13px;color:#666;text-indent:0;">注："+"表示添加，"−"表示不添加</p>
+
+  <h4>① 第3组复合物条带变细的原因</h4>
+  <div class="answer-box">
+    <p>原因是<strong>未被标记的Cs基因启动子探针</strong>竞争性结合T蛋白。</p>
+  </div>
+  <p><strong>通俗理解：</strong>把T蛋白想象成"停车位"，被标记的探针是"红色车"，未标记的探针是"白色车"。两群车都想停T蛋白这个车位。白车数量多→白车抢到更多车位→红车能停的就少了→看到的红色信号就弱了（复合物条带变细）。</p>
+
+  <h4>② 第4组的电泳条带</h4>
+  <div class="answer-box">
+    <p>在"复合物"位置出现<strong>与第2组相近的清晰条带</strong>。</p>
+  </div>
+  <p><strong>为什么？</strong> 第4组加的未标记探针是<strong>突变型</strong>——它的T蛋白结合位点"坏掉了"，认不出T蛋白。所以无法参与竞争。被标记的探针仍然正常地全部与T蛋白结合，复合物条带完全不受影响。</p>
+
+  <h4>③ 结合图1和图2的结论</h4>
+  <div class="answer-box">
+    <p><strong>T蛋白通过直接结合Cs基因的启动子来促进Cs基因的转录/表达</strong>，进而促进苦茶碱的合成。</p>
+  </div>
+  <p>图1告诉我们"T能促进合成"，图2告诉我们"T能结合Cs基因的开关（启动子）"。两图结合，就是把"能做什么"和"怎么做"串起来了。</p>
+
+  <p>📖 实验原理和完整流程参见：<a href="04-emsa.html">EMSA实验详解</a></p>
+</div>
+
+<!-- 第3问 -->
+<div class="card">
+  <h2>第（3）问：荧光素酶互补——验证T和W的相互作用</h2>
+
+  <p>研究者将叶片分为四个区域，分别导入不同基因，利用荧光素酶互补技术验证"T蛋白与W蛋白结合"。</p>
+  <p>荧光素酶（Luc）可被分割成N端（N-Luc）和C端（C-Luc），二者在空间上靠近时可激活酶，使荧光素发光。</p>
+
+  <p>可选基因：<br>
+  a. N-Luc（单独荧光素酶N端）<br>
+  b. C-Luc（单独荧光素酶C端）<br>
+  c. N-Luc-T融合基因（荧光素酶N端+T蛋白，连在一起）<br>
+  d. C-Luc-W融合基因（荧光素酶C端+W蛋白，连在一起）</p>
+
+  <h4>① 各区域导入的基因</h4>
+  <div class="answer-box">
+    <p>区域①：a, b（已给出）&emsp; 区域<strong>②</strong>：<strong>a, d</strong>&emsp; 区域<strong>③</strong>：<strong>b, c</strong>&emsp; 区域<strong>④</strong>：<strong>c, d</strong></p>
+  </div>
+
+  <table>
+    <tr><th>区域</th><th>导入基因组合</th><th>实际导入的蛋白质</th><th>预期结果</th><th>目的</th></tr>
+    <tr><td>①</td><td>a, b</td><td>N-Luc + C-Luc</td><td>无荧光</td><td>阴性对照：排除两个半截酶自身重组</td></tr>
+    <tr><td>②</td><td>a, d</td><td>N-Luc + C-Luc-W</td><td>无荧光</td><td>排除W蛋白与N-Luc非特异性作用</td></tr>
+    <tr><td>③</td><td>b, c</td><td>C-Luc + N-Luc-T</td><td>无荧光</td><td>排除T蛋白与C-Luc非特异性作用</td></tr>
+    <tr><td>④</td><td>c, d</td><td>N-Luc-T + C-Luc-W</td><td><strong>有荧光</strong></td><td>实验组：T和W靠近→N-Luc和C-Luc靠近→发光！</td></tr>
+  </table>
+
+  <p><strong>核心逻辑：</strong> 半截的荧光素酶无法独立发光，只有当N-Luc和C-Luc足够靠近时才能重组发光。我们把N-Luc挂在T蛋白上、C-Luc挂在W蛋白上。如果T和W"牵手"，两个半截的酶就被拉到一起→发光。如果不牵手，两个半截离得远远的→不发光。</p>
+
+  <p>📖 实验设计完整思路参见：<a href="05-luciferase.html">荧光素酶互补技术详解</a></p>
+
+  <h4>② 能否总结出全部三条路径？</h4>
+  <div class="answer-box">
+    <p><strong>不能。</strong></p>
+  </div>
+  <p>图中的三条路径分别是：</p>
+  <ol>
+    <li>W 单独结合Cs启动子 → 促进转录</li>
+    <li>W和T 共同结合Cs启动子 → 促进转录</li>
+    <li>T 单独结合Cs启动子 → 促进转录</li>
+  </ol>
+
+  <p><strong>为什么不能得出路径2？</strong></p>
+  <p>现有证据：路径1（题干已知W能结合启动子）、路径3（图2证明T能单独结合）。图3确实证明T和W两种蛋白能相互作用（"牵手"），但<strong>"两个蛋白能在细胞中碰到一起"不等于"它们能在DNA上肩并肩结合"</strong>。</p>
+  <p>打个比方：你和同学课间能聊天（T和W相互作用），老师在讲台上讲课（启动子），不等于你和同学都坐在讲台上一起上课（共同结合启动子）。你们可能在操场上碰的面，而不是在讲台上。</p>
+  <p>要证明路径2，需要更直接的实验，例如：同时加入T蛋白和W蛋白做EMSA，看是否出现"超迁移"条带（比T单独结合时更慢的条带）。</p>
+  <p>🤔 延伸思考：那验证T和W能结合的意义何在？<a href="05-luciferase.html">详见荧光素酶互补页 → 深度追问卡片</a>。简言之：它排除了"T和W是敌人（互斥）"这一假说，为"协同调控"提供了物理前提；虽不足以直接跳到"共同结合DNA"，但这是论证链条上不可跳过的一块拼图。</p>
+</div>
+
+<!-- 练习 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 图1实验的对照组导入空载体，主要目的是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 保证实验组和对照组细胞数量相同</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 排除载体本身对实验结果的干扰</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 增加苦茶碱的合成量</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 检测农杆菌的转化效率</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 图2中第3组复合物条带变细，本质是发生了：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. 共价结合</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. 竞争性结合</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. 酶促反应</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. DNA复制</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="index.html" class="nav-link">🏠 首页</a>
+  <a href="02-transcription-factors.html" class="nav-link">🧬 转录因子详解 →</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>{if(e.textContent.startsWith('A')||e.textContent.startsWith('B')||e.textContent.startsWith('C')||e.textContent.startsWith('D')){e.classList.remove('correct','wrong');}});
+  el.classList.add(el.textContent.startsWith('B')?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(el.textContent.startsWith('B')?'correct':'wrong');
+  fb.innerHTML=el.textContent.startsWith('B')?'✅ 正确！对照组的空载体排除了"载体本身"这个干扰因素，确保实验结果的差异只来自"是否有反义序列"。':'❌ 正确选项是B。实验设计的关键是控制单一变量。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>{if(e.textContent.startsWith('A')||e.textContent.startsWith('B')||e.textContent.startsWith('C')||e.textContent.startsWith('D')){e.classList.remove('correct','wrong');}});
+  el.classList.add(el.textContent.startsWith('B')?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(el.textContent.startsWith('B')?'correct':'wrong');
+  fb.innerHTML=el.textContent.startsWith('B')?'✅ 正确！未标记探针与标记探针竞争性结合T蛋白，导致标记探针结合的减少，条带变细。':'❌ 正确选项是B。这是经典的竞争实验。';
+}
+</script>
+</body>
+</html>

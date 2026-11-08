@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4. CRISPR/Cas9基因编辑 - β-地中海贫血与基因工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-gene-therapy.html" class="tree-link">🧬 2. 基因治疗</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="08-stem-cells.html" class="tree-link">🧫 8. 干细胞</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="03-gene-regulation.html" class="tree-link">🎛️ 3. 基因表达调控</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="06-central-dogma.html" class="tree-link">🔄 6. 中心法则</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="07-protein.html" class="tree-link">🥩 7. 蛋白质与氨基酸</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="04-crispr.html" class="tree-link active">✂️ 4. CRISPR/Cas9</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="05-pcr-cloning.html" class="tree-link">🧪 5. PCR与基因克隆</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="top-nav">
+  <div class="nav-inner">
+    <a href="03-gene-regulation.html" class="nav-back">← 基因调控</a>
+    <div class="nav-title">CRISPR/Cas9</div>
+    <div class="nav-progress">
+      <a href="index.html" class="nav-dot completed" title="首页"></a>
+      <a href="01-problem.html" class="nav-dot completed" title="题目分析"></a>
+      <a href="02-gene-therapy.html" class="nav-dot completed" title="基因治疗"></a>
+      <a href="03-gene-regulation.html" class="nav-dot completed" title="基因调控"></a>
+      <a href="04-crispr.html" class="nav-dot active" title="CRISPR"></a>
+      <a href="05-pcr-cloning.html" class="nav-dot" title="PCR克隆"></a>
+      <a href="06-central-dogma.html" class="nav-dot" title="中心法则"></a>
+      <a href="07-protein.html" class="nav-dot" title="蛋白质"></a>
+      <a href="08-stem-cells.html" class="nav-dot" title="干细胞"></a>
+      <a href="09-practice.html" class="nav-dot" title="综合练习"></a>
+    </div>
+    <span></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>✂️ CRISPR/Cas9 基因编辑</h1>
+    <p class="subtitle">自带GPS的"分子剪刀"——精准修改DNA</p>
+  </div>
+
+  <div class="card prereq-card">
+    <h2>📚 前置知识</h2>
+    <div class="btn-group" style="margin-top:12px">
+      <a href="03-gene-regulation.html" class="link-btn">基因表达调控 →</a>
+      <a href="06-central-dogma.html" class="link-btn">中心法则 →</a>
+    </div>
+  </div>
+
+  <div class="card concept-card">
+    <h2>💡 什么是CRISPR/Cas9？</h2>
+    <p>CRISPR/Cas9是当今生物科学领域<strong>最革命性的技术之一</strong>，它让科学家能够像编辑Word文档一样，<strong>精准地修改DNA</strong>。</p>
+    <p>这个名字听起来很科幻，但实际上它是从细菌身上"偷学"来的：</p>
+    <ul>
+      <li>细菌有一种<strong>"免疫系统"</strong>，能记住入侵过的病毒DNA片段</li>
+      <li>当同样的病毒再次入侵时，细菌用这些片段作为<strong>"通缉令"</strong>，指导一种叫Cas9的蛋白质找到病毒DNA并把它切断</li>
+      <li>科学家把这个机制改造成了<strong>基因编辑工具</strong></li>
+    </ul>
+  </div>
+
+  <div class="card metaphor-card">
+    <h2>🎯 比喻：分子版的"GPS + 剪刀"</h2>
+    <p>CRISPR/Cas9系统由两个核心组件组成，就像一个<strong>精准的拆弹小组</strong>：</p>
+    <table class="compare-table">
+      <tr>
+        <th>组件</th>
+        <th>功能</th>
+        <th>比喻</th>
+      </tr>
+      <tr>
+        <td><strong>向导RNA（gRNA）</strong></td>
+        <td>识别并结合目标DNA序列</td>
+        <td>GPS导航，告诉系统"目标在哪里"</td>
+      </tr>
+      <tr>
+        <td><strong>Cas9蛋白</strong></td>
+        <td>切割DNA双链</td>
+        <td>分子剪刀，负责"剪断"</td>
+      </tr>
+    </table>
+    <p>工作流程：</p>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><span class="step-text">设计向导RNA<br/>匹配目标DNA</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">2</span><span class="step-text">gRNA引导<br/>Cas9定位</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">3</span><span class="step-text">Cas9切割<br/>DNA双链</span></div>
+      <span class="step-arrow">→</span>
+      <div class="step"><span class="step-num">4</span><span class="step-text">细胞修复<br/>DNA</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔬 本题的CRISPR治疗原理</h2>
+    <p>回到本题：如何用CRISPR/Cas9治疗β-地中海贫血？</p>
+    <div class="diagram">
+      <svg viewBox="0 0 600 280" width="100%">
+        <text x="300" y="20" text-anchor="middle" font-size="14" fill="#6b7280" font-weight="bold">CRISPR治疗β-地中海贫血流程</text>
+        
+        <rect x="20" y="40" width="160" height="50" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="100" y="65" text-anchor="middle" font-size="13" fill="#1d4ed8">分离造血干细胞</text>
+        <text x="100" y="82" text-anchor="middle" font-size="11" fill="#6b7280">从患者骨髓中提取</text>
+        
+        <line x1="180" y1="65" x2="210" y2="65" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="210" y="40" width="160" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="290" y="65" text-anchor="middle" font-size="13" fill="#92400e">CRISPR编辑</text>
+        <text x="290" y="82" text-anchor="middle" font-size="11" fill="#6b7280">切断BCL结合位点</text>
+        
+        <line x1="370" y1="65" x2="400" y2="65" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="400" y="40" width="180" height="50" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="490" y="65" text-anchor="middle" font-size="13" fill="#065f46">体外培养扩增</text>
+        <text x="490" y="82" text-anchor="middle" font-size="11" fill="#6b7280">让细胞数量增加</text>
+        
+        <line x1="490" y1="90" x2="490" y2="120" stroke="#6b7280" stroke-width="2"/>
+        <line x1="490" y1="120" x2="100" y2="120" stroke="#6b7280" stroke-width="2"/>
+        <line x1="100" y1="120" x2="100" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="20" y="150" width="160" height="50" rx="8" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+        <text x="100" y="175" text-anchor="middle" font-size="13" fill="#0f766e">回输患者体内</text>
+        <text x="100" y="192" text-anchor="middle" font-size="11" fill="#6b7280">治愈性治疗</text>
+        
+        <rect x="210" y="150" width="370" height="100" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+        <text x="395" y="175" text-anchor="middle" font-size="13" fill="#1f2937">体内发生了什么？</text>
+        <text x="395" y="200" text-anchor="middle" font-size="12" fill="#6b7280">BCL结合位点被切除 → BCL蛋白无法结合</text>
+        <text x="395" y="220" text-anchor="middle" font-size="12" fill="#6b7280">→ γ基因被"解除抑制" → 产生γ珠蛋白</text>
+        <text x="395" y="240" text-anchor="middle" font-size="12" fill="#6b7280">→ γ链与α链配对 → 贫血缓解！</text>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#6b7280" />
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-caption">CRISPR/Cas9治疗β-地中海贫血的流程</div>
+    </div>
+
+    <p><strong>核心原理：</strong></p>
+    <ol>
+      <li>设计一个向导RNA，让它识别<strong>γ基因启动子上游BCL蛋白的结合位点</strong></li>
+      <li>Cas9蛋白在gRNA引导下，精准<strong>切断</strong>这个BCL结合位点</li>
+      <li>BCL结合位点被破坏后，BCL蛋白无法结合上去</li>
+      <li>γ基因的抑制被<strong>解除</strong>，重新表达γ珠蛋白</li>
+      <li>γ珠蛋白与α珠蛋白配对，形成有功能的血红蛋白，<strong>贫血症状缓解</strong></li>
+    </ol>
+
+    <div class="answer-box">
+      <h4>✅ 第（4）问答案</h4>
+      <p>解除<strong>BCL蛋白对γ珠蛋白基因的抑制作用</strong></p>
+      <p>（或答：解除BCL蛋白与启动子上游调控序列的结合）</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🧩 为什么用造血干细胞？</h2>
+    <p>这是本题隐含的一个重要知识点。治疗步骤中明确说了"从患者体内分离<strong>造血干细胞</strong>"。</p>
+    <p>原因有三：</p>
+    <ul>
+      <li><strong>造血干细胞</strong>是血液细胞的"源头工厂"，可以分化为所有类型的血细胞（红细胞、白细胞、血小板）</li>
+      <li>在体外编辑造血干细胞后，回输体内，它们会持续产生<strong>正常的红细胞</strong>，理论上<strong>终身有效</strong></li>
+      <li>造血干细胞在体外容易培养和处理，是基因治疗的<strong>理想靶细胞</strong></li>
+    </ul>
+    <p>📖 想了解更多？跳转到：<a href="08-stem-cells.html" class="link-btn">干细胞 →</a></p>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-question">🎯 小练习：CRISPR原理</div>
+    <p>CRISPR/Cas9系统中，负责"识别目标DNA序列"的是哪个组件？</p>
+    <div class="quiz-options">
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> A. Cas9蛋白
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> B. 向导RNA（gRNA）
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> C. DNA聚合酶
+      </label>
+      <label class="quiz-option" onclick="selectQuizOption(this)">
+        <input type="radio" name="q1"> D. RNA聚合酶
+      </label>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkQuizAnswer()">查看答案</button>
+  </div>
+
+  <div class="card next-card">
+    <h2>🚀 后续学习</h2>
+    <div class="btn-group">
+      <a href="05-pcr-cloning.html" class="btn btn-primary">PCR与基因克隆 →</a>
+      <a href="08-stem-cells.html" class="btn btn-secondary">造血干细胞 →</a>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="03-gene-regulation.html" class="btn btn-outline">← 基因调控</a>
+    <a href="05-pcr-cloning.html" class="btn btn-primary">PCR与基因克隆 →</a>
+  </div>
+</div>
+
+<script>
+function selectQuizOption(el) {
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  el.querySelector('input').checked = true;
+}
+function checkQuizAnswer() {
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const selected = document.querySelector('input[name="q1"]:checked');
+  if (!selected) { feedback.innerHTML = '请先选择一个答案！'; feedback.classList.add('show', 'wrong'); return; }
+  options[0].classList.add('wrong');
+  options[1].classList.add('correct');
+  options[2].classList.add('wrong');
+  options[3].classList.add('wrong');
+  feedback.innerHTML = '<strong>解析：</strong>向导RNA（gRNA）负责识别并结合目标DNA序列，就像GPS导航一样。Cas9蛋白是负责切割的"分子剪刀"，本身不能识别目标。DNA聚合酶和RNA聚合酶是细胞正常的复制/转录酶，不属于CRISPR系统。';
+  feedback.classList.add('show', 'correct');
+}
+
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+</script>
+
+</body>
+</html>

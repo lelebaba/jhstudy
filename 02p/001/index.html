@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>变压器与远距离输电 — 互动学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link active">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>⚡ 变压器与远距离输电</h1>
+  <p>从两道高考真题出发，层层扩展到最基础的物理知识</p>
+</div>
+<div class="container">
+
+<div class="card">
+  <h2>📚 课件导读</h2>
+  <p>本课件围绕两道高考物理题，将涉及的知识点层层拆解，用比喻和举例讲明白。</p>
+  <p><strong>学习方式：</strong>先看题目分析了解考点，不懂的知识点点击链接进入对应详解页面，每个知识点有小练习检验学习效果，最后用综合练习复习巩固。</p>
+</div>
+
+<div class="card">
+  <h2>🔑 知识导航</h2>
+  <p>点击下列卡片进入对应页面，也可以从左侧目录树中选择：</p>
+  <div class="nav-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+    <a href="01-problem.html" class="nav-link" style="text-align:center;padding:20px;">📋 1. 题目分析<br><small>两道真题逐问拆解</small></a>
+    <a href="02-transformer.html" class="nav-link" style="text-align:center;padding:20px;">🔌 2. 变压器原理<br><small>互感、理想变压器、三大关系</small></a>
+    <a href="03-dynamic-analysis.html" class="nav-link" style="text-align:center;padding:20px;">📊 3. 动态分析技巧<br><small>负载变化时各量怎么变</small></a>
+    <a href="04-long-distance.html" class="nav-link" style="text-align:center;padding:20px;">📡 4. 远距离输电<br><small>升压-输电-降压模型、线损计算</small></a>
+    <a href="05-ac-basics.html" class="nav-link" style="text-align:center;padding:20px;">💡 5. 交流电基础<br><small>交流电产生、有效值与峰值</small></a>
+    <a href="06-electromagnetic-induction.html" class="nav-link" style="text-align:center;padding:20px;">⚡ 6. 电磁感应<br><small>法拉第定律、互感现象</small></a>
+    <a href="07-circuit-basics.html" class="nav-link" style="text-align:center;padding:20px;">🔧 7. 电路基础<br><small>串并联、欧姆定律、功率</small></a>
+    <a href="08-practice.html" class="nav-link" style="text-align:center;padding:20px;">📝 8. 综合练习<br><small>改编题复习巩固</small></a>
+  </div>
+</div>
+
+<div class="card">
+  <h2>💡 知识层次结构</h2>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 380">
+      <!-- Title -->
+      <text x="340" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#1565c0">知识层次树状图</text>
+      <!-- Level 0: 题目分析 -->
+      <rect x="240" y="45" width="200" height="40" rx="8" fill="#1565c0"/>
+      <text x="340" y="70" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">📋 题目分析（两道真题）</text>
+      <!-- Lines to Level 1 -->
+      <line x1="340" y1="85" x2="120" y2="115" stroke="#90a4ae" stroke-width="1.5"/>
+      <line x1="340" y1="85" x2="340" y2="115" stroke="#90a4ae" stroke-width="1.5"/>
+      <line x1="340" y1="85" x2="560" y2="115" stroke="#90a4ae" stroke-width="1.5"/>
+      <!-- Level 1: 变压器原理 -->
+      <rect x="40" y="115" width="160" height="35" rx="6" fill="#ff6f00"/>
+      <text x="120" y="138" text-anchor="middle" font-size="12" fill="#fff">🔌 变压器原理</text>
+      <!-- Level 1: 动态分析 -->
+      <rect x="260" y="115" width="160" height="35" rx="6" fill="#2e7d32"/>
+      <text x="340" y="138" text-anchor="middle" font-size="12" fill="#fff">📊 动态分析技巧</text>
+      <!-- Level 1: 远距离输电 -->
+      <rect x="480" y="115" width="160" height="35" rx="6" fill="#1565c0"/>
+      <text x="560" y="138" text-anchor="middle" font-size="12" fill="#fff">📡 远距离输电</text>
+      <!-- Lines to Level 2 -->
+      <line x1="120" y1="150" x2="120" y2="180" stroke="#90a4ae" stroke-width="1.5"/>
+      <line x1="340" y1="150" x2="340" y2="180" stroke="#90a4ae" stroke-width="1.5"/>
+      <line x1="560" y1="150" x2="560" y2="180" stroke="#90a4ae" stroke-width="1.5"/>
+      <!-- Level 2 -->
+      <rect x="40" y="180" width="160" height="32" rx="6" fill="#fff3e0" stroke="#ff6f00" stroke-width="1.5"/>
+      <text x="120" y="201" text-anchor="middle" font-size="11" fill="#e65100">⚡ 电磁感应</text>
+      <rect x="260" y="180" width="160" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="340" y="201" text-anchor="middle" font-size="11" fill="#2e7d32">💡 交流电基础</text>
+      <rect x="480" y="180" width="160" height="32" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="560" y="201" text-anchor="middle" font-size="11" fill="#1565c0">🔧 电路基础</text>
+      <!-- Lines to Level 3 -->
+      <line x1="120" y1="212" x2="120" y2="240" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="560" y1="212" x2="560" y2="240" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <!-- Level 3 -->
+      <rect x="40" y="240" width="160" height="30" rx="6" fill="#fafafa" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="120" y="260" text-anchor="middle" font-size="10" fill="#757575">磁场、磁通量、法拉第定律</text>
+      <rect x="480" y="240" width="160" height="30" rx="6" fill="#fafafa" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="560" y="260" text-anchor="middle" font-size="10" fill="#757575">串并联、欧姆定律、功率</text>
+      <!-- Bottom note -->
+      <rect x="140" y="300" width="400" height="50" rx="8" fill="#f5f5f5" stroke="#e0e0e0"/>
+      <text x="340" y="320" text-anchor="middle" font-size="12" fill="#555">从题目出发 → 核心知识（3大模块）→ 基础知识（3层基础）</text>
+      <text x="340" y="340" text-anchor="middle" font-size="12" fill="#555">每层都可点击进入详解，底层知识是理解上层的根基</text>
+    </svg>
+  </div>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信号通路研究方法 — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link active">🧪 7. 研究方法</a></li>
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt通路</a></li>
+        <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附</a></li>
+        <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. Hp与胃癌</a></li>
+        <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>🧪 信号通路研究方法</h1><p>ICG抑制剂、Western Blot——科学家如何"看清"细胞内的信号？</p></div>
+
+<div class="card">
+  <h2>🎯 ICG：Wnt 通路特异性抑制剂</h2>
+  <p><strong>ICG</strong>（Inhibitor of β-Catenin/TCF）是本题实验设计的核心工具。</p>
+
+  <div class="info-box">
+    <h4>🔬 ICG 的作用机制</h4>
+    <p>ICG 阻断的是 Wnt 蛋白与降解复合体<strong>结合的能力</strong>（即 Wnt 的"信号功能"），但<strong>不降低 Wnt 蛋白本身的表达量</strong>。这就是为什么图2中 Hp+ICG 组的 Wnt 蛋白仍有约 1.5（Hp 诱导的 Wnt 还在），但 β-cat 含量回落到了正常水平（因为降解复合体恢复了工作）。</p>
+  </div>
+
+  <div class="hint-box">
+    <h4>💡 抑制剂实验的逻辑</h4>
+    <p>使用抑制剂是验证信号通路的经典方法：</p>
+    <ol>
+      <li>如果 Wnt→ICG→β-cat下降，说明 β-cat 确实在 Wnt 的下游</li>
+      <li>ICG 不能把 β-cat 降到零，说明 Wnt 不是调控 β-cat 的唯一因素</li>
+      <li>对照+ICG 也是重要设计（本题中对照组无额外Wnt，如果用ICG应该不影响β-cat）</li>
+    </ol>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📊 图2 补图实验设计详解</h2>
+  <p>图2是典型的 <strong>Western Blot（蛋白质印迹）</strong> 实验结果，检测特定蛋白的表达量。实验分三组：</p>
+
+  <table>
+    <tr><th>组别</th><th>处理</th><th>Wnt蛋白</th><th>β-cat蛋白</th></tr>
+    <tr><td>对照组</td><td>正常胃癌细胞</td><td>≈1.2</td><td>≈1.2</td></tr>
+    <tr><td>Hp组</td><td>Hp感染</td><td>≈2.0 ↑</td><td>🟥 ≈1.9 ↑</td></tr>
+    <tr><td>Hp+ICG组</td><td>Hp感染 + ICG处理</td><td>≈1.5 ↑</td><td>🟥 ≈1.2 →</td></tr>
+  </table>
+
+  <div class="card" style="box-shadow:none;border:1px dashed #ccc;">
+    <h3>每组的设计意图</h3>
+    <p><strong>对照组：</strong>基线数据——正常状态下Wnt和β-cat的基础水平。</p>
+    <p><strong>Hp组：</strong>证明 "Hp感染 → Wnt↑ → β-cat↑" 这条通路——如果Hp处理后两者都升，说明Hp通过激活Wnt来稳定β-cat。</p>
+    <p><strong>Hp+ICG组（关键）：</strong>验证因果关系——加了ICG后，虽然Wnt还在（1.5），但β-cat回落（1.2），说明ICG阻断了Wnt的<strong>下游功能</strong>而非Wnt本身。这排除了"β-cat升高与Wnt无关"的可能性。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🖼️ Western Blot 实验简介</h2>
+  <p>图2和图3的结果看起来像一条条"柱子"，这是对 Western Blot 结果的柱状图量化。<strong>Western Blot（蛋白质印迹法）</strong> 是检测细胞中特定蛋白质含量的标准方法：</p>
+  <ol>
+    <li><strong>提取蛋白：</strong>裂解细胞，提取总蛋白</li>
+    <li><strong>电泳分离：</strong>按分子量大小将不同蛋白分开</li>
+    <li><strong>转膜：</strong>将蛋白转移到膜上</li>
+    <li><strong>抗体孵育：</strong>用针对目标蛋白的特异性抗体"钓出"目标蛋白</li>
+    <li><strong>显影：</strong>条带越粗=蛋白越多</li>
+    <li><strong>定量：</strong>将条带灰度值转为数字（即图中的柱形高度）</li>
+  </ol>
+
+  <div class="hint-box">
+    <h4>💡 通俗比喻</h4>
+    <p>Western Blot 像 <strong>"钓鱼"</strong>：把细胞里所有蛋白（一池鱼）按大小排好，然后用特定的"鱼饵"（抗体）去钓你想要的那种蛋白。钓上来的鱼越多（条带越粗），说明细胞里那种蛋白越多。</p>
+  </div>
+</div>
+
+<div class="quiz">
+  <div class="q">🧪 小练习：ICG处理后，Hp+ICG组的Wnt蛋白仍有1.5，但β-cat回落到1.2。这说明了什么？</div>
+  <div class="option" onclick="checkQuiz(this,'A')">A. ICG直接降解了Wnt蛋白</div>
+  <div class="option" onclick="checkQuiz(this,'B')">B. ICG阻断的是Wnt的下游信号功能，不是Wnt蛋白本身</div>
+  <div class="option" onclick="checkQuiz(this,'C')">C. Wnt蛋白对β-cat没有影响</div>
+  <div class="option" onclick="checkQuiz(this,'D')">D. ICG促进了β-cat的合成</div>
+  <div class="feedback"></div>
+</div>
+
+<div class="nav-btns">
+  <a href="05-protein-degradation.html" class="nav-btn back">← 蛋白质降解</a>
+  <a href="08-central-dogma.html" class="nav-btn">下一课：中心法则 →</a>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkQuiz(el, ans) {
+  var all = el.parentElement.querySelectorAll('.option');
+  all.forEach(function(o){ o.classList.remove('correct','wrong'); });
+  var fb = el.parentElement.querySelector('.feedback');
+  if(ans==='B') {
+    el.classList.add('correct');
+    fb.textContent = '✅ 正确！这是一个经典的"抑制剂+回复实验"设计——ICG不降解Wnt蛋白本身，而是阻断它的下游信号功能。';
+    fb.className = 'feedback correct show';
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = '❌ 再想想。Wnt蛋白仍在（1.5），说明ICG不降解Wnt；β-cat回落了，说明ICG阻断了Wnt的下游功能。';
+    fb.className = 'feedback wrong show';
+  }
+}
+</script>
+</body>
+</html>

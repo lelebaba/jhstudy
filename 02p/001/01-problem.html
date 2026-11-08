@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>题目分析 — 变压器与远距离输电</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link active">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>📋 题目分析与逐问拆解</h1>
+  <p>两道高考真题：一道选择题 + 一道计算题</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> 题目分析</div>
+
+<!-- ===== 物理7 ===== -->
+<div class="card">
+  <h2>物理7：变压器供电·开关断开时的动态分析（选择题）</h2>
+
+  <h3>📝 原题概述</h3>
+  <p>变压器给用户供电的示意图。输入电压恒定（市区电网电压），两条输电线总电阻为 <strong>R₁</strong>，电阻 <strong>R₂</strong> 和 <strong>R₃</strong> 代表用户用电器（定值电阻），电表均为理想交流电表。开关 S 由闭合切换为断开，判断哪个说法正确。</p>
+
+  <div class="fig-box">
+    <svg viewBox="0 0 680 240">
+      <!-- 变压器 -->
+      <rect x="30" y="80" width="60" height="80" rx="4" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="60" y="75" text-anchor="middle" font-size="11" fill="#1565c0">原线圈</text>
+      <rect x="90" y="80" width="60" height="80" rx="4" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="120" y="75" text-anchor="middle" font-size="11" fill="#1565c0">副线圈</text>
+      <!-- 铁芯竖线 -->
+      <line x1="80" y1="80" x2="80" y2="160" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,2"/>
+      <line x1="100" y1="80" x2="100" y2="160" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,2"/>
+      <!-- 原线圈回路 -->
+      <line x1="30" y1="80" x2="30" y2="50" stroke="#333" stroke-width="1.5"/>
+      <line x1="30" y1="50" x2="150" y2="50" stroke="#333" stroke-width="1.5"/>
+      <line x1="150" y1="50" x2="150" y2="80" stroke="#333" stroke-width="1.5"/>
+      <!-- 电流表 A -->
+      <circle cx="90" cy="50" r="12" fill="#fff" stroke="#c62828" stroke-width="2"/>
+      <text x="90" y="54" text-anchor="middle" font-size="10" fill="#c62828">A</text>
+      <text x="20" y="125" text-anchor="middle" font-size="12" fill="#555">u₁</text>
+      <!-- 副线圈回路 -->
+      <line x1="150" y1="80" x2="200" y2="80" stroke="#333" stroke-width="1.5"/>
+      <!-- R1 输电线 -->
+      <rect x="200" y="70" width="80" height="20" rx="3" fill="#fff3e0" stroke="#ff6f00" stroke-width="2"/>
+      <text x="240" y="84" text-anchor="middle" font-size="12" fill="#e65100">R₁</text>
+      <line x1="280" y1="80" x2="620" y2="80" stroke="#333" stroke-width="1.5"/>
+      <!-- R2 负载 -->
+      <line x1="380" y1="80" x2="380" y2="110" stroke="#333" stroke-width="1.5"/>
+      <rect x="368" y="110" width="24" height="50" rx="3" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="380" y="140" text-anchor="middle" font-size="11" fill="#2e7d32">R₂</text>
+      <line x1="380" y1="160" x2="380" y2="200" stroke="#333" stroke-width="1.5"/>
+      <!-- R3 + S 负载 -->
+      <line x1="520" y1="80" x2="520" y2="110" stroke="#333" stroke-width="1.5"/>
+      <rect x="508" y="110" width="24" height="35" rx="3" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="520" y="132" text-anchor="middle" font-size="11" fill="#1565c0">R₃</text>
+      <!-- 开关 S -->
+      <line x1="520" y1="145" x2="520" y2="165" stroke="#333" stroke-width="1.5"/>
+      <line x1="510" y1="170" x2="530" y2="170" stroke="#333" stroke-width="2"/>
+      <line x1="510" y1="170" x2="525" y2="162" stroke="#333" stroke-width="2"/>
+      <text x="540" y="172" font-size="11" fill="#c62828">S</text>
+      <line x1="520" y1="170" x2="520" y2="200" stroke="#333" stroke-width="1.5"/>
+      <!-- 底线 -->
+      <line x1="30" y1="200" x2="620" y2="200" stroke="#333" stroke-width="1.5"/>
+      <line x1="30" y1="160" x2="30" y2="200" stroke="#333" stroke-width="1.5"/>
+      <line x1="150" y1="160" x2="150" y2="200" stroke="#333" stroke-width="1.5"/>
+      <!-- V1 V2 -->
+      <circle cx="380" cy="90" r="14" fill="#fff" stroke="#1565c0" stroke-width="2"/>
+      <text x="380" y="93" text-anchor="middle" font-size="10" fill="#1565c0">V₁</text>
+      <circle cx="520" cy="90" r="14" fill="#fff" stroke="#1565c0" stroke-width="2"/>
+      <text x="520" y="93" text-anchor="middle" font-size="10" fill="#1565c0">V₂</text>
+    </svg>
+    <figcaption>电路结构：变压器副线圈 → R₁（输电线）→ R₂ ∥ (R₃+S) 并联负载</figcaption>
+  </div>
+
+  <h3>🔑 解题关键：理清电路结构</h3>
+  <p><strong>R₂ 和 R₃ 是并联关系</strong>，S 控制的是 R₃ 所在的支路。</p>
+  <ul>
+    <li>S 闭合：负载 = R₂ ∥ R₃（两个用电器并联，总电阻较小）</li>
+    <li>S 断开：负载 = R₂（只用一个用电器，总电阻增大）</li>
+  </ul>
+  <p>变压器输入电压恒定 → 副线圈输出电压 U₂ 恒定（理想变压器）。</p>
+  <p>📖 不清楚变压器为什么"输入恒定→输出恒定"？看 <a href="02-transformer.html">变压器原理详解</a></p>
+</div>
+
+<div class="card">
+  <h3>🔄 逐项分析</h3>
+  <p><strong>第一步：判断总电阻变化</strong></p>
+  <p>S 断开 → R₃ 支路断开 → 负载从 R₂∥R₃ 变为只有 R₂ → <strong>R 并联增大</strong>。</p>
+  <div class="formula-box">
+    R<sub>并联</sub> = R₂∥R₃ &lt; R₂ → 断开后 R<sub>并联</sub> = R₂（增大）
+  </div>
+
+  <p><strong>第二步：判断电流变化</strong></p>
+  <div class="formula-box">
+    I₂ = U₂ / (R₁ + R<sub>并联</sub>) → R<sub>并联</sub>↑ → I₂↓（减小）<br>
+    <span class="label">副线圈电流减小</span>
+  </div>
+  <p>原线圈电流也减小：I₁ = I₂ × (n₂/n₁) → I₁↓</p>
+
+  <p><strong>第三步：判断电压变化</strong></p>
+  <div class="formula-box">
+    U<sub>R₁</sub> = I₂ × R₁ → I₂↓ → U<sub>R₁</sub>↓（减小）<br>
+    U<sub>负载</sub> = U₂ − U<sub>R₁</sub> → U<sub>R₁</sub>↓ → U<sub>负载</sub>↑（增大）
+  </div>
+  <p>V₂ 测的是负载电压 → V₂ <strong>增大</strong>。</p>
+
+  <p><strong>第四步：判断功率变化</strong></p>
+  <div class="formula-box">
+    P<sub>总</sub> = U₂ × I₂ → I₂↓ → P<sub>总</sub>↓（减小）<br>
+    P<sub>R₁</sub> = I₂² × R₁ → I₂↓ → P<sub>R₁</sub>↓（减小）
+  </div>
+
+  <table>
+    <tr><th>选项</th><th>内容</th><th>分析</th><th>结论</th></tr>
+    <tr><td>A</td><td>V₂ 示数不变</td><td>V₂ 测负载电压，负载电压增大</td><td>❌</td></tr>
+    <tr><td>B</td><td>A 示数增大</td><td>A 测原线圈电流，电流减小</td><td>❌</td></tr>
+    <tr><td>C</td><td>总功率增大</td><td>P = U₂I₂，I₂ 减小 → P 减小</td><td>❌</td></tr>
+    <tr><td>D</td><td>R₁ 的功率减小</td><td>P = I₂²R₁，I₂ 减小 → P 减小</td><td style="color:#2e7d32;font-weight:bold;">✅</td></tr>
+  </table>
+
+  <div class="answer-box">
+    <h4>✅ 答案：D</h4>
+    <p>开关 S 断开后，R₃ 支路断开，负载总电阻增大，副线圈电流减小，R₁ 上的功率 P = I₂²R₁ 随之减小。</p>
+  </div>
+
+  <div class="hint-box">
+    <p><strong>💡 解题口诀：</strong>"断负载 → 电阻增 → 电流降 → 线损降、负载电压升"。这一类型的动态分析题，核心是抓住 <strong>"谁恒定、谁变化"</strong>，然后沿着 U→I→P 的链条逐步推导。</p>
+    <p>📖 详细动态分析技巧参见：<a href="03-dynamic-analysis.html">变压器动态分析技巧</a></p>
+  </div>
+</div>
+
+<!-- ===== 物理18 ===== -->
+<div class="card">
+  <h2>物理18：远距离输电（计算题）</h2>
+
+  <h3>📝 原题概述</h3>
+  <p>发电站通过远距离输电给工厂供电。升压变压器 T₁ 匝数比 n₁:n₂ = 1:100，输电线等效电阻 R = 100Ω，降压变压器 T₂ 匝数比 n₃:n₄ = 200:1，变压器均为理想变压器。工厂输入电压 U₄ = 220V，用电功率 P = 440kW。</p>
+
+  <div class="fig-box">
+    <svg viewBox="0 0 680 200">
+      <!-- 发电站 -->
+      <rect x="10" y="60" width="60" height="60" rx="4" fill="#fff3e0" stroke="#ff6f00" stroke-width="2"/>
+      <text x="40" y="85" text-anchor="middle" font-size="11" fill="#e65100">发电站</text>
+      <text x="40" y="100" text-anchor="middle" font-size="10" fill="#e65100">u₁</text>
+      <line x1="70" y1="90" x2="100" y2="90" stroke="#333" stroke-width="1.5"/>
+      <!-- T1 升压 -->
+      <rect x="100" y="50" width="40" height="30" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <rect x="140" y="50" width="40" height="30" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="110" y="70" text-anchor="middle" font-size="9" fill="#1565c0">n₁</text>
+      <text x="160" y="70" text-anchor="middle" font-size="9" fill="#1565c0">n₂</text>
+      <text x="120" y="40" text-anchor="middle" font-size="10" fill="#1565c0">T₁</text>
+      <line x1="120" y1="50" x2="120" y2="20" stroke="#333" stroke-width="1"/>
+      <line x1="160" y1="50" x2="160" y2="20" stroke="#333" stroke-width="1"/>
+      <line x1="120" y1="20" x2="160" y2="20" stroke="#333" stroke-width="1"/>
+      <!-- T1 副线圈回路 -->
+      <line x1="180" y1="80" x2="200" y2="80" stroke="#333" stroke-width="1.5"/>
+      <line x1="180" y1="50" x2="180" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="100" y1="50" x2="100" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="100" y1="130" x2="500" y2="130" stroke="#333" stroke-width="1.5"/>
+      <!-- 输电线 R -->
+      <rect x="260" y="70" width="80" height="20" rx="3" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+      <text x="300" y="84" text-anchor="middle" font-size="11" fill="#c62828">R=100Ω</text>
+      <!-- 电流标注 -->
+      <text x="240" y="70" font-size="11" fill="#ff6f00">I₂ →</text>
+      <text x="200" y="100" font-size="10" fill="#1565c0">U₂</text>
+      <text x="420" y="100" font-size="10" fill="#1565c0">U₃</text>
+      <!-- T2 降压 -->
+      <rect x="440" y="50" width="40" height="30" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <rect x="480" y="50" width="40" height="30" rx="3" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="450" y="70" text-anchor="middle" font-size="9" fill="#1565c0">n₃</text>
+      <text x="500" y="70" text-anchor="middle" font-size="9" fill="#1565c0">n₄</text>
+      <text x="460" y="40" text-anchor="middle" font-size="10" fill="#1565c0">T₂</text>
+      <line x1="440" y1="50" x2="440" y2="20" stroke="#333" stroke-width="1"/>
+      <line x1="500" y1="50" x2="500" y2="20" stroke="#333" stroke-width="1"/>
+      <line x1="440" y1="20" x2="500" y2="20" stroke="#333" stroke-width="1"/>
+      <!-- T2 原线圈回路 -->
+      <line x1="440" y1="80" x2="420" y2="80" stroke="#333" stroke-width="1.5"/>
+      <line x1="500" y1="50" x2="500" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="520" y1="80" x2="600" y2="80" stroke="#333" stroke-width="1.5"/>
+      <!-- 工厂 -->
+      <rect x="600" y="60" width="60" height="60" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="630" y="85" text-anchor="middle" font-size="11" fill="#2e7d32">工厂</text>
+      <text x="630" y="100" text-anchor="middle" font-size="10" fill="#2e7d32">U₄=220V</text>
+      <line x1="500" y1="130" x2="600" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="600" y1="80" x2="600" y2="130" stroke="#333" stroke-width="1.5"/>
+      <text x="560" y="70" font-size="11" fill="#2e7d32">I₃ →</text>
+    </svg>
+    <figcaption>远距离输电模型：发电站 → T₁(升压) → 输电线(R) → T₂(降压) → 工厂</figcaption>
+  </div>
+
+  <p>📖 远距离输电的完整模型分析参见：<a href="04-long-distance.html">远距离输电详解</a></p>
+</div>
+
+<div class="card">
+  <h3>第(1)问：工厂干路电流 I₃</h3>
+  <p>工厂消耗的功率和电压已知，直接用 P = UI 求电流。</p>
+  <div class="formula-box">
+    I₃ = P / U₄ = 440 000 W / 220 V = <strong>2000 A</strong>
+  </div>
+  <div class="answer-box">
+    <h4>✅ 答案：I₃ = 2000 A</div>
+    <p>这一步最简单，工厂侧的功率和电压已知，电流 = 功率 ÷ 电压。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>第(2)问：输电线损耗功率 P损</h3>
+  <p>关键：输电线上的电流不是 I₃，而是 I₂（输电线中的电流）。需要通过变压器变流关系求出 I₂。</p>
+
+  <h4>步骤1：求 T₂ 原线圈电压 U₃</h4>
+  <div class="formula-box">
+    U₃ / U₄ = n₃ / n₄ = 200 / 1 = 200<br>
+    U₃ = U₄ × 200 = 220 × 200 = 44 000 V
+  </div>
+
+  <h4>步骤2：求输电线电流 I₂</h4>
+  <div class="formula-box">
+    I₂ / I₃ = n₄ / n₃ = 1 / 200<br>
+    I₂ = I₃ / 200 = 2000 / 200 = 10 A
+  </div>
+  <p>💡 <strong>理解：</strong>T₂ 是降压变压器，电压降 200 倍，电流就升 200 倍。工厂侧 2000A 的大电流，到输电线侧变成了 10A 的小电流——这就是"升压输电减少线损"的原理。</p>
+
+  <h4>步骤3：求线损功率</h4>
+  <div class="formula-box">
+    P<sub>损</sub> = I₂² × R = 10² × 100 = 10 000 W = <strong>10 kW</strong>
+  </div>
+  <div class="answer-box">
+    <h4>✅ 答案：P损 = 10 kW</h4>
+    <p>工厂消耗 440kW，线路损耗仅 10kW，效率 = 440/(440+10) ≈ 97.8%。高压输电的优越性体现在这里。</p>
+  </div>
+  <p>📖 为什么线损用 I²R 而不是 UI？为什么升压能减小线损？看 <a href="04-long-distance.html">远距离输电详解</a></p>
+</div>
+
+<div class="card">
+  <h3>第(3)问：功率提升后发电站输出电压 U₁</h3>
+  <p>工厂功率提升到 P' = 880kW，U₄ 保持 220V 不变，求新的 U₁。</p>
+
+  <h4>步骤1：求新的工厂电流</h4>
+  <div class="formula-box">
+    I₃' = P' / U₄ = 880 000 / 220 = 4000 A
+  </div>
+
+  <h4>步骤2：求新的输电线电流</h4>
+  <div class="formula-box">
+    I₂' = I₃' / 200 = 4000 / 200 = 20 A
+  </div>
+
+  <h4>步骤3：求新的线路压降</h4>
+  <div class="formula-box">
+    ΔU' = I₂' × R = 20 × 100 = 2000 V
+  </div>
+  <p>注意：U₃ 不变！因为 U₄ 固定、T₂ 匝数比固定 → U₃ = 44 000V 始终不变。</p>
+
+  <h4>步骤4：求 T₁ 副线圈电压（送电端）</h4>
+  <div class="formula-box">
+    U₂' = U₃ + ΔU' = 44 000 + 2 000 = 46 000 V
+  </div>
+  <p>💡 <strong>关键点：</strong>送电端电压 = 受电端电压 + 线路压降。电流增大了，线路压降增大了，送电端必须提高电压来补偿。</p>
+
+  <h4>步骤5：求发电站输出电压</h4>
+  <div class="formula-box">
+    U₁' = U₂' / (n₂/n₁) = 46 000 / 100 = <strong>460 V</strong>
+  </div>
+  <div class="answer-box">
+    <h4>✅ 答案：U₁ = 460 V</h4>
+    <p>原状态 U₁ = 450V，功率翻倍后需要 460V。提高的 10V 用来补偿增加的线路压降。</p>
+  </div>
+
+  <div class="hint-box">
+    <p><strong>💡 验算：</strong>新状态下线损 = I₂'² × R = 20² × 100 = 40kW，是原来的 4 倍（电流翻倍 → 线损 ×4）。这就是为什么电力系统要尽量用更高的输电电压。</p>
+  </div>
+</div>
+
+<!-- 随堂小测 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 远距离输电中，升压变压器的作用是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 提高输电线上的电压，增大线路损耗</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 提高输电线上的电压，减小输电线上的电流</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 增大输电线上的电流，减小线路损耗</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 提高用户端电压</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 变压器供电电路中，开关断开使并联负载减少，以下哪个量一定增大？</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. 输电线上的电流</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. 输电线上的功率损耗</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. 负载两端的电压</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. 原线圈中的电流</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="index.html" class="nav-link">🏠 首页</a>
+  <a href="02-transformer.html" class="nav-link">🔌 变压器原理详解 →</a>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！升压变压器提高电压，在传输功率不变的情况下，P=UI，电压升高则电流减小，线损 P=I²R 随之减小。':'❌ 正确选项是B。升压 → 电压升高 → 电流减小 → 线损减小。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('C');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！并联负载减少 → 总电阻增大 → 电流减小 → 线路压降减小 → 负载电压 = U₂ − 线路压降 → 负载电压增大。':'❌ 正确选项是C。负载电压 = U₂ − I×R₁，电流减小，线路压降减小，所以负载电压增大。';
+}
+</script>
+</body>
+</html>

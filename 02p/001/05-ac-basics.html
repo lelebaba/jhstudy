@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>交流电基础 — 变压器与远距离输电</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link active">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>💡 交流电基础</h1>
+  <p>变压器依赖交流电工作——先搞懂什么是交流电</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="03-dynamic-analysis.html">动态分析</a> <span>›</span> 交流电基础</div>
+
+<div class="card">
+  <h2>🔄 什么是交流电？</h2>
+  <p><strong>直流电（DC）</strong>：电流方向不变，像水管里一直朝一个方向流的水。电池就是直流电源。</p>
+  <p><strong>交流电（AC）</strong>：电流方向<strong>周期性变化</strong>，像钟摆一样来回摆。家用插座就是交流电源（频率50Hz，方向每秒改变100次）。</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 180">
+      <text x="170" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">直流电 DC</text>
+      <line x1="40" y1="60" x2="300" y2="60" stroke="#1565c0" stroke-width="3"/>
+      <text x="340" y="100" text-anchor="middle" font-size="12" fill="#555">电流方向不变，大小恒定</text>
+      <text x="500" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#ff6f00">交流电 AC</text>
+      <path d="M 370 60 Q 400 20 430 60 T 490 60 T 550 60 T 610 60 T 670 60" fill="none" stroke="#ff6f00" stroke-width="3"/>
+      <text x="540" y="100" text-anchor="middle" font-size="12" fill="#555">电流方向周期性变化（正弦波）</text>
+    </svg>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚙️ 交流电的产生</h2>
+  <p>交流电是通过<strong>发电机</strong>产生的。原理：线圈在磁场中匀速旋转 → 穿过线圈的磁通量周期性变化 → 产生周期性变化的感应电动势。</p>
+  <p>这本质就是<strong>电磁感应</strong>的应用——法拉第电磁感应定律的直接体现。📖 详见 <a href="06-electromagnetic-induction.html">电磁感应</a></p>
+
+  <div class="formula-box">
+    e = E<sub>m</sub> × sin(ωt)<br>
+    <span class="label">瞬时电动势 = 峰值 × sin(角频率 × 时间)</span>
+  </div>
+  <ul>
+    <li><strong>E<sub>m</sub></strong>：电动势峰值（最大值）</li>
+    <li><strong>ω</strong>：角频率，ω = 2πf（f 是频率，中国电网 f = 50Hz）</li>
+    <li><strong>T</strong>：周期，T = 1/f = 0.02s</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📐 有效值与峰值</h2>
+  <p>交流电的电压/电流是不断变化的，那题目中的"220V"是指什么？——<strong>有效值</strong>。</p>
+  <p><strong>有效值</strong>的定义：让交流电和直流电通过同样的电阻，如果它们在相同时间内产生的热量相等，就把这个直流电的值称为交流电的<strong>有效值</strong>。</p>
+  <div class="formula-box">
+    U<sub>有效</sub> = U<sub>m</sub> / √2 &emsp; I<sub>有效</sub> = I<sub>m</sub> / √2
+    <span class="label">有效值 = 峰值 ÷ √2 ≈ 峰值 × 0.707</span>
+  </div>
+  <table>
+    <tr><th></th><th>峰值</th><th>有效值</th><th>关系</th></tr>
+    <tr><td>家用电压</td><td>311V</td><td>220V</td><td>311 = 220 × √2</td></tr>
+    <tr><td>题目中 U₄ = 220V</td><td>—</td><td>220V</td><td>有效值</td></tr>
+  </table>
+  <div class="hint-box">
+    <p><strong>💡 重要约定：</strong>题目中给定的电压、电流数值（如 220V、2000A）都是<strong>有效值</strong>，除非特别说明。交流电表的读数也是有效值。计算功率 P = UI 用的也是有效值。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔗 交流电与变压器的关系</h2>
+  <p>回到本题，两道题都涉及变压器，而<strong>变压器只对交流电有效</strong>：</p>
+  <ul class="checklist">
+    <li>物理7：市区电网 → 交流电 → 变压器工作 → 改变电压给用户</li>
+    <li>物理18：发电站产生交流电 → 升压变压器 → 远距离输电 → 降压变压器 → 工厂使用</li>
+  </ul>
+  <p>变压器改变电压的本质是电磁感应（互感），而电磁感应要求磁通量必须<strong>变化</strong>——只有交流电才能让磁通量不断变化。</p>
+</div>
+
+<!-- 随堂小测 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 我国家用照明电路电压为 220V，这里的 220V 指的是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 交流电压的峰值</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 交流电压的有效值</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 交流电压的平均值</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 直流电压</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 某交流电压的峰值为 311V，其有效值约为：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. 311V</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. 220V</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. 155V</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. 440V</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="04-long-distance.html" class="nav-link">← 远距离输电</a>
+  <a href="06-electromagnetic-induction.html" class="nav-link">⚡ 电磁感应 →</a>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！日常说的220V、380V等交流电压数值都是有效值。':'❌ 正确选项是B。交流电的额定电压值（如220V）均指有效值。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！U有效 = Um/√2 = 311/1.414 ≈ 220V。这就是家用220V的来源。':'❌ 正确选项是B。311/√2 ≈ 220V。';
+}
+</script>
+</body>
+</html>

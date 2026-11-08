@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线粒体双重翻译模式 · 学习课件</title>
+<style>
+/* ===== 全局重置 & 基础 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: #2c6e9c;
+  --primary-light: #4a90c4;
+  --primary-dark: #1a4a6e;
+  --accent: #e67e22;
+  --accent-light: #f39c12;
+  --bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --border: #dce1e8;
+  --sidebar-bg: #1a2a3a;
+  --sidebar-text: #c8d6e5;
+  --sidebar-hover: #2c3e50;
+  --sidebar-active: var(--primary);
+  --success: #27ae60;
+  --error: #e74c3c;
+  --warning: #f39c12;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --radius: 10px;
+  --font: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  display: flex;
+  min-height: 100vh;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-light); }
+
+/* ===== 侧边栏 ===== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-header {
+  padding: 20px 18px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.sidebar-header h2 {
+  font-size: 16px;
+  color: #ecf0f1;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.sidebar-header p {
+  font-size: 11px;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+.sidebar-nav { padding: 8px 0; flex: 1; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+  font-size: 14px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+.nav-item:hover { background: var(--sidebar-hover); color: #fff; }
+.nav-item.active {
+  background: rgba(44,110,156,0.25);
+  border-left-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.nav-item .icon { margin-right: 10px; font-size: 16px; width: 22px; text-align: center; }
+.nav-item .badge {
+  margin-left: auto;
+  font-size: 10px;
+  background: rgba(255,255,255,0.12);
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+.nav-sub {
+  padding-left: 50px;
+  font-size: 13px;
+}
+.nav-sub .nav-item { padding: 6px 18px; font-size: 13px; }
+
+/* 汉堡菜单按钮（移动端） */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 1100;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+}
+.menu-toggle:hover { background: var(--primary-dark); }
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+/* ===== 主内容区 ===== */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 30px 40px 60px;
+  max-width: 1000px;
+}
+.section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.section.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 卡片 ===== */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.card h2 {
+  font-size: 22px;
+  color: var(--primary-dark);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+.card h3 {
+  font-size: 18px;
+  color: var(--primary);
+  margin: 20px 0 10px;
+}
+.card h4 {
+  font-size: 16px;
+  color: var(--text);
+  margin: 16px 0 8px;
+}
+.card p { margin-bottom: 12px; }
+.card ul, .card ol { margin: 8px 0 12px 24px; }
+.card li { margin-bottom: 6px; }
+
+/* 高亮框 */
+.highlight-box {
+  background: #eaf4fc;
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 0 6px 6px 0;
+}
+.highlight-box.warning {
+  background: #fef9e7;
+  border-left-color: var(--warning);
+}
+.highlight-box.success {
+  background: #e8f8f0;
+  border-left-color: var(--success);
+}
+.highlight-box.error {
+  background: #fdedec;
+  border-left-color: var(--error);
+}
+
+/* 类比框 */
+.analogy-box {
+  background: linear-gradient(135deg, #fdf2e9, #fef9e7);
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.analogy-box .label {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* 练习框 */
+.exercise-box {
+  background: #f8f9fa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.exercise-box .q-label {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.exercise-box .options { margin: 10px 0; }
+.exercise-box .option {
+  display: block;
+  padding: 8px 14px;
+  margin: 4px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid var(--border);
+}
+.exercise-box .option:hover { background: #eaf4fc; }
+.exercise-box .option.correct {
+  background: #d4edda;
+  border-color: var(--success);
+}
+.exercise-box .option.wrong {
+  background: #f8d7da;
+  border-color: var(--error);
+}
+.exercise-box .option.show-correct {
+  background: #d4edda;
+  border-color: var(--success);
+}
+.exercise-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 6px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+  margin-right: 8px;
+  margin-top: 8px;
+}
+.exercise-btn:hover { background: var(--primary-dark); }
+.exercise-btn.again { background: var(--text-light); }
+.exercise-btn.again:hover { background: var(--text); }
+.exercise-feedback {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: none;
+}
+.exercise-feedback.show { display: block; }
+.exercise-feedback.correct {
+  background: #d4edda;
+  color: #155724;
+}
+.exercise-feedback.wrong {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* 深入链接 */
+.deep-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 4px 4px 4px 0;
+  text-decoration: none;
+}
+.deep-link:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* 模型图 */
+.model-diagram {
+  background: #fafbfc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 16px 0;
+  text-align: center;
+  overflow-x: auto;
+}
+.model-diagram svg { max-width: 100%; height: auto; }
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-right: 4px;
+  font-weight: 600;
+}
+.tag-basic { background: #e8f8f0; color: #27ae60; }
+.tag-core { background: #eaf4fc; color: #2c6e9c; }
+.tag-advanced { background: #fef9e7; color: #e67e22; }
+
+/* 进度指示 */
+.progress-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.progress-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.progress-dot.active { background: var(--primary); color: #fff; }
+.progress-dot.done { background: var(--success); color: #fff; }
+
+/* 表格 */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+.data-table th, .data-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.data-table th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.data-table tr:nth-child(even) { background: #f8f9fa; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.show { display: block; }
+  .main-content {
+    margin-left: 0;
+    padding: 60px 16px 40px;
+  }
+  .card { padding: 18px 16px; }
+  .card h2 { font-size: 19px; }
+  .nav-item { padding: 10px 14px; font-size: 13px; }
+  .sidebar { width: 260px; }
+}
+
+/* 打印 */
+@media print {
+  .sidebar, .menu-toggle, .sidebar-overlay { display: none !important; }
+  .main-content { margin-left: 0; padding: 20px; }
+  .section { display: block !important; page-break-before: always; }
+  .section:first-child { page-break-before: avoid; }
+  .exercise-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 汉堡菜单按钮 ===== -->
+<button class="menu-toggle" id="menuToggle" aria-label="切换菜单">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ===== 侧边栏 ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>🧬 线粒体双重翻译</h2>
+    <p>学习课件 · 2025西城一模</p>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <a class="nav-item active" data-section="section0" href="#section0">
+      <span class="icon">📌</span> 题目展示与解析
+      <span class="badge">核心</span>
+    </a>
+    <a class="nav-item" data-section="section1" href="#section1">
+      <span class="icon">🔬</span> ① 线粒体与有氧呼吸
+      <span class="badge">基础</span>
+    </a>
+    <a class="nav-item nav-sub" data-section="section1-1" href="#section1-1">
+      <span class="icon">└</span> 细胞呼吸全过程
+    </a>
+    <a class="nav-item" data-section="section2" href="#section2">
+      <span class="icon">⚡</span> ② 电子传递链 & ATP合成
+      <span class="badge">核心</span>
+    </a>
+    <a class="nav-item nav-sub" data-section="section2-1" href="#section2-1">
+      <span class="icon">└</span> 化学渗透假说
+    </a>
+    <a class="nav-item" data-section="section3" href="#section3">
+      <span class="icon">🧬</span> ③ 遗传密码的奥秘
+      <span class="badge">核心</span>
+    </a>
+    <a class="nav-item nav-sub" data-section="section3-1" href="#section3-1">
+      <span class="icon">└</span> 转录与翻译
+    </a>
+    <a class="nav-item nav-sub" data-section="section3-2" href="#section3-2">
+      <span class="icon">└</span> 密码子对照表
+    </a>
+    <a class="nav-item" data-section="section4" href="#section4">
+      <span class="icon">🔄</span> ④ 双重翻译模型
+      <span class="badge">核心</span>
+    </a>
+    <a class="nav-item" data-section="section5" href="#section5">
+      <span class="icon">🤝</span> ⑤ C-187与SL蛋白协作
+      <span class="badge">进阶</span>
+    </a>
+    <a class="nav-item" data-section="section6" href="#section6">
+      <span class="icon">📝</span> ⑥ 综合小练习
+      <span class="badge">巩固</span>
+    </a>
+    <a class="nav-item" data-section="section7" href="#section7">
+      <span class="icon">🎯</span> ⑦ 同类题目挑战
+      <span class="badge">检测</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- ===== 主内容区 ===== -->
+<main class="main-content" id="mainContent">
+
+  <!-- ============================================================ -->
+  <!-- 第0节：题目展示与解析 -->
+  <!-- ============================================================ -->
+  <section class="section active" id="section0">
+    <div class="card">
+      <h2>📌 题目展示与解析</h2>
+      <div class="progress-bar" id="progress0"></div>
+
+      <h3>📄 题目原文</h3>
+      <div class="highlight-box">
+        <p><strong>学习以下材料，回答(1)~(4)题。</strong></p>
+        <p style="margin-top:8px;"><strong>线粒体基因编码蛋白质双重翻译模式的新发现</strong></p>
+        <p>真核细胞生命活动所需能量约95%来自线粒体。线粒体正常运转需要上千种蛋白质，但线粒体基因组DNA (mtDNA)只编码13种蛋白，其中包括线粒体内膜上的细胞色素b (Cytb)。Cytb由380个氨基酸组成，是电子传递链复合体Ⅲ的一个亚基，参与电子传递，驱动ATP合成。</p>
+        <p>线粒体遗传密码与核遗传密码(标准密码子)相似但不完全相同。如标准异亮氨酸密码子AUA在线粒体中编码甲硫氨酸，精氨酸密码子AGA和AGG在线粒体中则为终止密码子，而终止密码子UGA在线粒体中编码色氨酸。</p>
+        <p>以往认为，线粒体中的CYTB基因只编码Cytb。我国科研人员发现CYTB基因还能编码由187个氨基酸组成的蛋白质C-187，且C-187是在细胞质基质中的核糖体上按照标准密码子翻译出来的。C-187合成后，再由特定的序列引导其返回线粒体基质中。</p>
+        <p>研究发现，C-187能与线粒体内膜上的SL蛋白结合。SL蛋白由核基因编码，可跨膜转运磷酸盐。若C-187合成障碍则会导致细胞内ATP含量下降，而SL基因过表达则能够恢复细胞内ATP水平，二者在能量代谢中共同发挥作用。</p>
+        <p>该研究不仅改写了"线粒体基因组编码13个蛋白"的论断，提出的线粒体双重翻译模式也为研究能量代谢调控提供了新视角。</p>
+      </div>
+
+      <h3>📝 题目设问</h3>
+
+      <div class="exercise-box">
+        <div class="q-label">第(1)题</div>
+        <p>线粒体是真核细胞进行<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>的主要场所，前两阶段产生的[H]通过电子传递链最终传递给O₂生成<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。</p>
+      </div>
+
+      <div class="exercise-box">
+        <div class="q-label">第(2)题（多选）</div>
+        <p>下列能为"C-187来源于mtDNA"提供证据支持的实验有______。</p>
+        <p>A. 用抑制线粒体基因转录的药物处理细胞，检测Cytb和C-187含量<br>
+        B. 用抑制细胞质基质核糖体翻译的药物处理细胞，检测Cytb和C-187含量<br>
+        C. 用C-187特异性抗体检测正常细胞和mtDNA缺失细胞中C-187的含量</p>
+      </div>
+
+      <div class="exercise-box">
+        <div class="q-label">第(3)题</div>
+        <p>在下图中补充文字、箭头、Cytb(用■表示)和C-187(用●表示)，完善线粒体基因编码蛋白质的双重翻译模型。</p>
+        <div class="model-diagram" style="font-size:14px; line-height:2;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div style="border:2px solid #2c6e9c; padding:8px 20px; border-radius:8px; background:#eaf4fc; font-weight:700;">mtDNA</div>
+            <div style="font-size:20px; margin:2px 0;">↓</div>
+            <div style="border:2px solid #2c6e9c; padding:8px 20px; border-radius:8px; background:#eaf4fc; font-weight:700;">CYTB基因</div>
+            <div style="font-size:20px; margin:2px 0;">↓ 转录</div>
+            <div style="border:2px solid #2c6e9c; padding:8px 20px; border-radius:8px; background:#eaf4fc; font-weight:700;">CYTB-mRNA</div>
+            <div style="font-size:20px; margin:2px 0;">↓ 翻译</div>
+            <div style="display:flex; gap:40px; margin-top:4px; flex-wrap:wrap; justify-content:center;">
+              <div style="border:2px dashed #e67e22; padding:8px 16px; border-radius:8px; background:#fef9e7;">
+                <span style="display:inline-block; width:20px; height:20px; background:#333; margin-right:6px; vertical-align:middle;"></span> Cytb → 复合体Ⅲ
+              </div>
+              <div style="border:2px dashed #27ae60; padding:8px 16px; border-radius:8px; background:#e8f8f0;">
+                <span style="display:inline-block; width:20px; height:20px; background:#e67e22; border-radius:50%; margin-right:6px; vertical-align:middle;"></span> C-187 → 与SL蛋白结合
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-box">
+        <div class="q-label">第(4)题</div>
+        <p>阐述C-187和Cytb在合成ATP过程中的协调配合。</p>
+      </div>
+    </div>
+
+    <!-- 答案与解析 -->
+    <div class="card">
+      <h3>✅ 正确答案与详细解析</h3>
+
+      <h4>第(1)题</h4>
+      <div class="highlight-box success">
+        <p><strong>答案：</strong>有氧呼吸；H₂O</p>
+      </div>
+      <p><strong>解析：</strong></p>
+      <ul>
+        <li>线粒体是<strong>有氧呼吸</strong>的主要场所（有氧呼吸第二阶段在线粒体基质，第三阶段在线粒体内膜）。</li>
+        <li>前两阶段（糖酵解和柠檬酸循环）产生的NADH和FADH₂（即[H]）将电子传递给电子传递链，最终电子受体是<strong>氧气（O₂）</strong>，生成<strong>水（H₂O）</strong>。</li>
+      </ul>
+
+      <h4>第(2)题</h4>
+      <div class="highlight-box success">
+        <p><strong>答案：</strong>A、C</p>
+      </div>
+      <p><strong>解析：</strong></p>
+      <ul>
+        <li><strong>A ✓</strong>：抑制线粒体基因转录 → 如果C-187含量下降 → 说明C-187的合成依赖于mtDNA的转录 → 支持"来源于mtDNA"。</li>
+        <li><strong>B ✗</strong>：抑制细胞质基质核糖体翻译 → C-187下降 → 这只证明C-187<strong>在细胞质中翻译</strong>（这是题目已知的），但不能证明其基因<strong>来源于mtDNA</strong>。</li>
+        <li><strong>C ✓</strong>：mtDNA缺失细胞中检测不到C-187 → 直接证明C-187必须由mtDNA编码 → 最强证据。</li>
+      </ul>
+      <div class="analogy-box">
+        <div class="label">💡 类比理解</div>
+        <p>想象一个工厂（细胞）有两个仓库：<strong>总仓库（细胞核）</strong>和<strong>分仓库（线粒体）</strong>。</p>
+        <p><strong>A选项</strong>：关闭分仓库的出货通道（抑制转录）→ 如果某个产品（C-187）拿不到了 → 说明它来自分仓库 ✓</p>
+        <p><strong>B选项</strong>：堵住总仓库到车间的路（抑制细胞质翻译）→ 产品拿不到了 → 但这只说明产品在总仓库外的车间组装，不说明原材料来自哪个仓库 ✗</p>
+        <p><strong>C选项</strong>：直接把分仓库拆了（mtDNA缺失）→ 产品完全消失了 → 实锤产品来自分仓库 ✓</p>
+      </div>
+
+      <h4>第(3)题</h4>
+      <div class="highlight-box success">
+        <p><strong>答案：</strong>见下方完整模型图</p>
+      </div>
+      <p><strong>解析：</strong>双重翻译模型的核心是：<strong>同一个CYTB-mRNA</strong>在<strong>两个不同位置</strong>、按照<strong>两套不同密码子规则</strong>，翻译出<strong>两种不同蛋白质</strong>。</p>
+      <div class="model-diagram">
+        <div style="display:flex; flex-direction:column; align-items:center; line-height:2.2; font-size:15px;">
+          <div style="border:2px solid #2c6e9c; padding:8px 24px; border-radius:8px; background:#dbeafe; font-weight:700;">mtDNA</div>
+          <div style="font-size:22px; color:#2c6e9c;">↓</div>
+          <div style="border:2px solid #2c6e9c; padding:8px 24px; border-radius:8px; background:#dbeafe; font-weight:700;">CYTB 基因</div>
+          <div style="font-size:22px; color:#2c6e9c;">↓ 转录</div>
+          <div style="border:2px solid #2c6e9c; padding:8px 24px; border-radius:8px; background:#dbeafe; font-weight:700;">CYTB-mRNA</div>
+          <div style="font-size:22px; color:#2c6e9c;">↓ 翻译</div>
+          <div style="display:flex; gap:60px; margin-top:6px; flex-wrap:wrap; justify-content:center;">
+            <div style="text-align:center;">
+              <div style="border:2px solid #e67e22; padding:10px 18px; border-radius:8px; background:#fff3e0;">
+                <span style="display:inline-block; width:22px; height:22px; background:#333; margin-right:6px; vertical-align:middle;"></span> <strong>Cytb</strong>
+              </div>
+              <div style="font-size:12px; color:#666; margin-top:4px;">在线粒体核糖体翻译<br>（线粒体密码子）</div>
+              <div style="font-size:14px; margin-top:4px;">↓</div>
+              <div style="border:1px solid #999; padding:4px 12px; border-radius:6px; background:#f5f5f5;">复合体Ⅲ亚基</div>
+              <div style="font-size:12px; color:#666; margin-top:2px;">参与电子传递</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="border:2px solid #27ae60; padding:10px 18px; border-radius:8px; background:#e8f8f0;">
+                <span style="display:inline-block; width:22px; height:22px; background:#e67e22; border-radius:50%; margin-right:6px; vertical-align:middle;"></span> <strong>C-187</strong>
+              </div>
+              <div style="font-size:12px; color:#666; margin-top:4px;">在细胞质核糖体翻译<br>（标准密码子）</div>
+              <div style="font-size:14px; margin-top:4px;">↓ 返回线粒体</div>
+              <div style="border:1px solid #999; padding:4px 12px; border-radius:6px; background:#f5f5f5;">与SL蛋白结合</div>
+              <div style="font-size:12px; color:#666; margin-top:2px;">转运磷酸盐</div>
+            </div>
+          </div>
+          <div style="margin-top:12px; font-size:13px; color:#888;">⬆ 同一基因 → 同一mRNA → 两种蛋白质</div>
+        </div>
+      </div>
+
+      <h4>第(4)题</h4>
+      <div class="highlight-box success">
+        <p><strong>答案：</strong></p>
+        <p>Cytb作为电子传递链复合体Ⅲ的亚基，参与电子传递过程，建立线粒体内膜两侧的质子梯度，为ATP合成提供<strong>能量（动力）</strong>；C-187与SL蛋白结合，SL蛋白将磷酸盐（Pi）转运进入线粒体，为ATP合成提供<strong>底物（原料）</strong>。两者分别从"能量供应"和"原料供应"两个维度协同配合，共同驱动ATP的合成。</p>
+      </div>
+      <p><strong>解析：</strong></p>
+      <ul>
+        <li><strong>Cytb的角色</strong>：像"水电站"——通过电子传递建立质子梯度，产生驱动ATP合成的动力（质子动力势）</li>
+        <li><strong>C-187/SL的角色</strong>：像"原材料运输队"——把磷酸盐（Pi）运进线粒体，ATP的合成需要ADP + Pi</li>
+        <li><strong>缺一不可</strong>：只有动力没有原料（Pi）不行，只有原料没有动力也不行</li>
+      </ul>
+      <div class="analogy-box">
+        <div class="label">🍳 生活类比</div>
+        <p><strong>做一道菜（合成ATP）：</strong></p>
+        <ul>
+          <li><strong>Cytb = 炉灶（提供火/能量）</strong>——没有火，菜做不熟</li>
+          <li><strong>C-187/SL = 食材配送员（提供原料）</strong>——没有食材，火再大也没用</li>
+          <li>两者<strong>协同配合</strong>，才能做出一道菜（合成ATP）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin: 20px 0;">
+      <a class="deep-link" href="#section1" onclick="navigateTo('section1')">👉 进入下一节：线粒体与有氧呼吸</a>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第1节：线粒体与有氧呼吸 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section1">
+    <div class="card">
+      <h2>🔬 ① 线粒体与有氧呼吸</h2>
+      <div class="tag tag-basic">基础知识</div>
+
+      <h3>线粒体——细胞的"发电厂"</h3>
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻</div>
+        <p>想象一下：你的手机需要电池才能工作，而你的身体里每个细胞都有自己的"充电电池"——<strong>线粒体</strong>就是给这些电池充电的<strong>"发电厂"</strong>。</p>
+        <p>你吃进去的食物（比如米饭、肉）就是"煤炭"，线粒体这个发电厂把"煤炭"烧掉，产生能量，给细胞的一切活动供电。</p>
+      </div>
+
+      <h3>线粒体的结构</h3>
+      <p>线粒体有两层膜：</p>
+      <ul>
+        <li><strong>外膜</strong>：最外面的一层，比较通透</li>
+        <li><strong>内膜</strong>：向里折叠形成<strong>嵴（cristae）</strong>，增大了表面积——就像把一张纸折成手风琴状，能放更多"机器"（电子传递链复合体）</li>
+        <li><strong>膜间隙</strong>：内外膜之间的空间</li>
+        <li><strong>基质</strong>：最里面的空间，含有线粒体自己的DNA（mtDNA）和核糖体</li>
+      </ul>
+
+      <h3>有氧呼吸三阶段</h3>
+      <p>有氧呼吸分为三个阶段，好比"发电"的三个步骤：</p>
+
+      <table class="data-table">
+        <tr><th>阶段</th><th>发生场所</th><th>核心变化</th><th>产物</th></tr>
+        <tr>
+          <td>① 糖酵解</td>
+          <td>细胞质基质</td>
+          <td>葡萄糖分解为丙酮酸</td>
+          <td>少量ATP + [H]（NADH）</td>
+        </tr>
+        <tr>
+          <td>② 柠檬酸循环（三羧酸循环）</td>
+          <td>线粒体基质</td>
+          <td>丙酮酸进一步分解</td>
+          <td>少量ATP + [H]（NADH、FADH₂）+ CO₂</td>
+        </tr>
+        <tr>
+          <td>③ 氧化磷酸化（电子传递链）</td>
+          <td>线粒体内膜</td>
+          <td>[H]中的电子传递，最终交给O₂</td>
+          <td><strong>大量ATP + H₂O</strong></td>
+        </tr>
+      </table>
+
+      <div class="highlight-box">
+        <p><strong>🔑 与本题相关：</strong></p>
+        <p>第(1)题考的就是"线粒体是<strong>有氧呼吸</strong>的主要场所"，以及前两阶段产生的[H]在第三阶段与O₂结合生成<strong>H₂O</strong>。</p>
+      </div>
+
+      <!-- 小练习 -->
+      <div class="exercise-box" data-exercise="1-1">
+        <div class="q-label">📝 小练习 1.1</div>
+        <p>有氧呼吸的三个阶段中，产生ATP最多的是哪个阶段？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex1-1" value="A"> A. 糖酵解（第一阶段）</label>
+          <label class="option" data-index="1"><input type="radio" name="ex1-1" value="B"> B. 柠檬酸循环（第二阶段）</label>
+          <label class="option" data-index="2"><input type="radio" name="ex1-1" value="C"> C. 氧化磷酸化（第三阶段）</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('1-1', 'C')">检查答案</button>
+        <div class="exercise-feedback" id="fb-1-1"></div>
+      </div>
+
+      <div class="exercise-box" data-exercise="1-2">
+        <div class="q-label">📝 小练习 1.2</div>
+        <p>线粒体内膜向内折叠形成的结构叫什么？它的作用是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex1-2" value="A"> A. 基质，进行糖酵解</label>
+          <label class="option" data-index="1"><input type="radio" name="ex1-2" value="B"> B. 嵴，增大反应面积</label>
+          <label class="option" data-index="2"><input type="radio" name="ex1-2" value="C"> C. 囊泡，运输蛋白质</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('1-2', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-1-2"></div>
+      </div>
+
+      <div style="text-align:center; margin: 20px 0;">
+        <a class="deep-link" href="#section1-1" onclick="navigateTo('section1-1')">🔍 深入学习：细胞呼吸全过程</a>
+        <a class="deep-link" href="#section2" onclick="navigateTo('section2')">👉 下一节：电子传递链 & ATP合成</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第1-1节：细胞呼吸全过程（更基础） -->
+  <!-- ============================================================ -->
+  <section class="section" id="section1-1">
+    <div class="card">
+      <h2>🔬 细胞呼吸全过程</h2>
+      <div class="tag tag-basic">基础知识</div>
+
+      <div class="analogy-box">
+        <div class="label">🔥 生活类比："烧煤发电"的全过程</div>
+        <p>把细胞呼吸想象成<strong>火力发电厂烧煤发电</strong>的过程：</p>
+        <ul>
+          <li><strong>糖酵解</strong> = 把大块煤敲碎成小块（葡萄糖→丙酮酸）</li>
+          <li><strong>柠檬酸循环</strong> = 把小块煤进一步粉碎成煤粉（丙酮酸→CO₂+[H]）</li>
+          <li><strong>氧化磷酸化</strong> = 把煤粉送进炉膛燃烧，推动涡轮发电（[H]→电子传递→ATP）</li>
+        </ul>
+      </div>
+
+      <h3>总反应式</h3>
+      <div class="highlight-box">
+        <p><strong>C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 能量（约30-32 ATP）</strong></p>
+      </div>
+      <p>这个反应式告诉我们：细胞呼吸就是"吃进去葡萄糖，吸入氧气，呼出二氧化碳，产生水和能量"。</p>
+
+      <h3>什么是[H]？</h3>
+      <p>题目中提到的"[H]"其实是一个简写，指的是<strong>还原型辅酶</strong>：</p>
+      <ul>
+        <li><strong>NADH</strong>（烟酰胺腺嘌呤二核苷酸，还原型）</li>
+        <li><strong>FADH₂</strong>（黄素腺嘌呤二核苷酸，还原型）</li>
+      </ul>
+      <p>它们就像"电子快递员"——把从食物中提取的电子运送到电子传递链。</p>
+
+      <div class="exercise-box" data-exercise="1-1-1">
+        <div class="q-label">📝 小练习 1.1.1</div>
+        <p>有氧呼吸的总反应式中，反应物和生成物分别是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex1-1-1" value="A"> A. 葡萄糖+O₂→CO₂+H₂O+能量</label>
+          <label class="option" data-index="1"><input type="radio" name="ex1-1-1" value="B"> B. 葡萄糖→乳酸+能量</label>
+          <label class="option" data-index="2"><input type="radio" name="ex1-1-1" value="C"> C. 葡萄糖+CO₂→O₂+H₂O+能量</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('1-1-1', 'A')">检查答案</button>
+        <div class="exercise-feedback" id="fb-1-1-1"></div>
+      </div>
+
+      <div style="text-align:center; margin: 20px 0;">
+        <a class="deep-link" href="#section1" onclick="navigateTo('section1')">🔙 返回：线粒体与有氧呼吸</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第2节：电子传递链 & ATP合成 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section2">
+    <div class="card">
+      <h2>⚡ ② 电子传递链 & ATP合成</h2>
+      <div class="tag tag-core">核心知识</div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻"接力赛"</div>
+        <p>电子传递链就像一场<strong>接力赛</strong>：</p>
+        <ul>
+          <li><strong>运动员</strong> = 电子传递链上的蛋白质复合体（Ⅰ、Ⅱ、Ⅲ、Ⅳ）</li>
+          <li><strong>接力棒</strong> = 电子</li>
+          <li><strong>终点线</strong> = 氧气（O₂）——最终接收电子</li>
+          <li>每传一次棒，就"释放"一点能量，用来把H⁺泵到膜间隙——就像在给"水坝"蓄水</li>
+        </ul>
+      </div>
+
+      <h3>电子传递链（位于线粒体内膜）</h3>
+      <p>电子传递链由四个蛋白质复合体（Ⅰ、Ⅱ、Ⅲ、Ⅳ）和两个移动电子载体（CoQ、Cytc）组成。其中<strong>复合体Ⅲ</strong>就是本题中Cytb所在的位置。</p>
+      <p><strong>流程：</strong></p>
+      <div style="background:#f0f4f8; padding:14px 18px; border-radius:8px; margin:10px 0; font-size:14px; text-align:center;">
+        NADH/FADH₂ → 复合体Ⅰ/Ⅱ → CoQ → <strong style="color:#e67e22;">复合体Ⅲ（含Cytb）</strong> → Cytc → 复合体Ⅳ → O₂
+      </div>
+      <p>每一步电子传递，都伴随着H⁺从线粒体基质泵到膜间隙，建立起<strong>质子梯度</strong>（H⁺浓度差）。</p>
+
+      <h3>ATP合成酶——"水力发电机"</h3>
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻</div>
+        <p>质子梯度就像一个<strong>水坝</strong>——膜间隙的H⁺多（水位高），基质的H⁺少（水位低）。</p>
+        <p>H⁺通过ATP合成酶流回基质时，就像水从高处流下推动水轮机——ATP合成酶就利用这股"水流"的能量，把ADP和Pi合成为ATP。</p>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>🔑 与本题相关：</strong></p>
+        <p>第(4)题中，Cytb是<strong>复合体Ⅲ</strong>的一个亚基，负责电子传递和质子泵出，为ATP合成提供"动力"。</p>
+      </div>
+
+      <div class="exercise-box" data-exercise="2-1">
+        <div class="q-label">📝 小练习 2.1</div>
+        <p>电子传递链最终接受电子的物质是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex2-1" value="A"> A. 二氧化碳（CO₂）</label>
+          <label class="option" data-index="1"><input type="radio" name="ex2-1" value="B"> B. 氧气（O₂）</label>
+          <label class="option" data-index="2"><input type="radio" name="ex2-1" value="C"> C. 水（H₂O）</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('2-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-2-1"></div>
+      </div>
+
+      <div class="exercise-box" data-exercise="2-2">
+        <div class="q-label">📝 小练习 2.2</div>
+        <p>ATP合成酶利用什么"动力"来合成ATP？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex2-2" value="A"> A. 葡萄糖分解的直接能量</label>
+          <label class="option" data-index="1"><input type="radio" name="ex2-2" value="B"> B. 质子（H⁺）顺浓度梯度回流产生的能量</label>
+          <label class="option" data-index="2"><input type="radio" name="ex2-2" value="C"> C. 电子本身的能量</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('2-2', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-2-2"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section2-1" onclick="navigateTo('section2-1')">🔍 深入学习：化学渗透假说</a>
+        <a class="deep-link" href="#section3" onclick="navigateTo('section3')">👉 下一节：遗传密码的奥秘</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第2-1节：化学渗透假说（更基础） -->
+  <!-- ============================================================ -->
+  <section class="section" id="section2-1">
+    <div class="card">
+      <h2>⚡ 化学渗透假说</h2>
+      <div class="tag tag-basic">基础知识</div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻："水坝发电"</div>
+        <p>化学渗透假说可以这样理解：</p>
+        <ol>
+          <li><strong>建坝蓄水</strong>：电子传递链把H⁺从基质泵到膜间隙 → 就像用水泵把水抽到高处的水库</li>
+          <li><strong>水位差形成</strong>：膜间隙H⁺浓度高（高水位），基质H⁺浓度低（低水位）→ 形成<strong>质子动力势</strong></li>
+          <li><strong>开闸放水</strong>：H⁺通过ATP合成酶流回基质 → 就像水从高处流下推动水轮机</li>
+          <li><strong>发电</strong>：ATP合成酶利用这股力量把ADP+Pi合成ATP → 就像水轮机带动发电机发电</li>
+        </ol>
+      </div>
+
+      <p>这个理论由英国科学家<strong>彼得·米切尔</strong>提出，并因此获得1978年诺贝尔化学奖。</p>
+
+      <div class="exercise-box" data-exercise="2-1-1">
+        <div class="q-label">📝 小练习 2.1.1</div>
+        <p>化学渗透假说中，ATP合成的直接动力是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex2-1-1" value="A"> A. 电子传递链传递电子</label>
+          <label class="option" data-index="1"><input type="radio" name="ex2-1-1" value="B"> B. 质子浓度梯度（质子动力势）</label>
+          <label class="option" data-index="2"><input type="radio" name="ex2-1-1" value="C"> C. 氧气与电子结合</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('2-1-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-2-1-1"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section2" onclick="navigateTo('section2')">🔙 返回：电子传递链 & ATP合成</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第3节：遗传密码的奥秘 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section3">
+    <div class="card">
+      <h2>🧬 ③ 遗传密码的奥秘</h2>
+      <div class="tag tag-core">核心知识</div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻"字典"</div>
+        <p>遗传密码就像一本<strong>翻译字典</strong>：</p>
+        <ul>
+          <li><strong>DNA</strong>（基因） = 一本用"密码子"写成的菜谱</li>
+          <li><strong>mRNA</strong> = 菜谱的复印件</li>
+          <li><strong>核糖体</strong> = 厨师（按照菜谱做菜）</li>
+          <li><strong>氨基酸</strong> = 食材</li>
+          <li><strong>蛋白质</strong> = 做好的菜</li>
+        </ul>
+        <p>每个"密码子"（3个核苷酸一组）对应一种氨基酸——就像"番茄炒蛋"这个菜名对应番茄和鸡蛋这两种食材。</p>
+      </div>
+
+      <h3>中心法则</h3>
+      <div style="background:#f0f4f8; padding:14px 18px; border-radius:8px; margin:10px 0; text-align:center; font-size:16px;">
+        <strong>DNA</strong> <span style="color:#e67e22;">→（转录）→</span> <strong>mRNA</strong> <span style="color:#e67e22;">→（翻译）→</span> <strong>蛋白质</strong>
+      </div>
+      <ul>
+        <li><strong>转录</strong>：以DNA为模板合成mRNA（在细胞核/线粒体中进行）</li>
+        <li><strong>翻译</strong>：以mRNA为模板合成蛋白质（在核糖体上进行）</li>
+      </ul>
+
+      <h3>标准密码子 vs 线粒体密码子</h3>
+      <p>本题最核心的考点之一：<strong>线粒体有自己的"方言"</strong>！</p>
+      <table class="data-table">
+        <tr><th>密码子</th><th>标准密码子（核）</th><th>线粒体密码子</th></tr>
+        <tr><td>AUA</td><td>异亮氨酸</td><td><strong>甲硫氨酸</strong></td></tr>
+        <tr><td>AGA / AGG</td><td>精氨酸</td><td><strong>终止密码子</strong></td></tr>
+        <tr><td>UGA</td><td>终止密码子</td><td><strong>色氨酸</strong></td></tr>
+      </table>
+      <div class="analogy-box">
+        <div class="label">💡 通俗理解</div>
+        <p>想象一下：<strong>标准密码子</strong>是"普通话"，<strong>线粒体密码子</strong>是"方言"。</p>
+        <p>同样一个词，在普通话和方言里意思不一样：</p>
+        <ul>
+          <li>UGA在普通话里是"停下"（终止），在方言里是"做菜"（色氨酸）</li>
+          <li>AUA在普通话里是"番茄"（异亮氨酸），在方言里是"鸡蛋"（甲硫氨酸）</li>
+        </ul>
+        <p>所以，<strong>同一个mRNA</strong>，用普通话翻译和用方言翻译，会得到<strong>不同的蛋白质</strong>！</p>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>🔑 与本题相关：</strong></p>
+        <p>这就是"双重翻译模型"的核心机制！CYTB-mRNA在<strong>线粒体核糖体</strong>上用"方言"翻译 → Cytb（380aa）；在<strong>细胞质核糖体</strong>上用"普通话"翻译 → C-187（187aa）。</p>
+      </div>
+
+      <div class="exercise-box" data-exercise="3-1">
+        <div class="q-label">📝 小练习 3.1</div>
+        <p>在线粒体中，密码子UGA编码什么氨基酸？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex3-1" value="A"> A. 终止（不编码氨基酸）</label>
+          <label class="option" data-index="1"><input type="radio" name="ex3-1" value="B"> B. 色氨酸</label>
+          <label class="option" data-index="2"><input type="radio" name="ex3-1" value="C"> C. 精氨酸</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('3-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-3-1"></div>
+      </div>
+
+      <div class="exercise-box" data-exercise="3-2">
+        <div class="q-label">📝 小练习 3.2</div>
+        <p>标准密码子中，AGA编码什么？而在线粒体中，AGA编码什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex3-2" value="A"> A. 标准：精氨酸；线粒体：终止</label>
+          <label class="option" data-index="1"><input type="radio" name="ex3-2" value="B"> B. 标准：终止；线粒体：精氨酸</label>
+          <label class="option" data-index="2"><input type="radio" name="ex3-2" value="C"> C. 标准：精氨酸；线粒体：色氨酸</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('3-2', 'A')">检查答案</button>
+        <div class="exercise-feedback" id="fb-3-2"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section3-1" onclick="navigateTo('section3-1')">🔍 深入学习：转录与翻译</a>
+        <a class="deep-link" href="#section3-2" onclick="navigateTo('section3-2')">🔍 深入学习：密码子对照表</a>
+        <a class="deep-link" href="#section4" onclick="navigateTo('section4')">👉 下一节：双重翻译模型</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第3-1节：转录与翻译（更基础） -->
+  <!-- ============================================================ -->
+  <section class="section" id="section3-1">
+    <div class="card">
+      <h2>🧬 转录与翻译</h2>
+      <div class="tag tag-basic">基础知识</div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻"做菜"</div>
+        <p><strong>转录</strong> = 把菜谱从<strong>珍藏本</strong>（DNA）复印到<strong>便签纸</strong>（mRNA）上——珍藏本不能带进厨房，但便签纸可以</p>
+        <p><strong>翻译</strong> = 厨师（核糖体）照着便签纸（mRNA）上的菜谱，从冰箱（细胞质）拿食材（氨基酸），做出一道菜（蛋白质）</p>
+      </div>
+
+      <h3>转录（Transcription）</h3>
+      <ul>
+        <li><strong>场所</strong>：细胞核（核基因）或线粒体基质（线粒体基因）</li>
+        <li><strong>模板</strong>：DNA的一条链</li>
+        <li><strong>酶</strong>：RNA聚合酶</li>
+        <li><strong>产物</strong>：mRNA（信使RNA）</li>
+      </ul>
+
+      <h3>翻译（Translation）</h3>
+      <ul>
+        <li><strong>场所</strong>：核糖体（细胞质核糖体 或 线粒体核糖体）</li>
+        <li><strong>模板</strong>：mRNA</li>
+        <li><strong>"搬运工"</strong>：tRNA（转运RNA）——每个tRNA携带一种氨基酸，一端有反密码子，与mRNA上的密码子配对</li>
+        <li><strong>产物</strong>：多肽链（蛋白质）</li>
+      </ul>
+
+      <div class="exercise-box" data-exercise="3-1-1">
+        <div class="q-label">📝 小练习 3.1.1</div>
+        <p>转录的产物是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex3-1-1" value="A"> A. 蛋白质</label>
+          <label class="option" data-index="1"><input type="radio" name="ex3-1-1" value="B"> B. mRNA</label>
+          <label class="option" data-index="2"><input type="radio" name="ex3-1-1" value="C"> C. DNA</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('3-1-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-3-1-1"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section3" onclick="navigateTo('section3')">🔙 返回：遗传密码的奥秘</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第3-2节：密码子对照表 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section3-2">
+    <div class="card">
+      <h2>🧬 密码子对照表</h2>
+      <div class="tag tag-basic">基础知识</div>
+
+      <p>密码子是mRNA上每3个相邻的核苷酸组成的一组，对应一种氨基酸（或终止信号）。</p>
+      <p>4种碱基（A、U、G、C）× 3个一组 = 4³ = 64种密码子。</p>
+      <p>而常见氨基酸只有20种，所以<strong>多种密码子可以对应同一种氨基酸</strong>——这叫做"密码子的简并性"。</p>
+
+      <h3>本题中关键的密码子差异</h3>
+      <table class="data-table">
+        <tr><th>密码子</th><th>标准密码子（核基因组）</th><th>线粒体密码子</th></tr>
+        <tr><td>AUA</td><td>异亮氨酸 (Ile)</td><td style="background:#fef9e7;"><strong>甲硫氨酸 (Met)</strong></td></tr>
+        <tr><td>AGA</td><td>精氨酸 (Arg)</td><td style="background:#fef9e7;"><strong>终止密码子 (Stop)</strong></td></tr>
+        <tr><td>AGG</td><td>精氨酸 (Arg)</td><td style="background:#fef9e7;"><strong>终止密码子 (Stop)</strong></td></tr>
+        <tr><td>UGA</td><td>终止密码子 (Stop)</td><td style="background:#fef9e7;"><strong>色氨酸 (Trp)</strong></td></tr>
+      </table>
+
+      <div class="highlight-box warning">
+        <p><strong>⚠️ 重要提示：</strong></p>
+        <p>正因为线粒体密码子和标准密码子不同，<strong>同一个CYTB-mRNA</strong>在两种翻译系统中会得到<strong>两种不同的蛋白质</strong>：</p>
+        <ul>
+          <li><strong>在线粒体核糖体翻译</strong>：遇到UGA读作"色氨酸"→ 得到380个氨基酸的Cytb</li>
+          <li><strong>在细胞质核糖体翻译</strong>：遇到UGA读作"终止"→ 翻译提前终止 → 得到187个氨基酸的C-187</li>
+        </ul>
+      </div>
+
+      <div class="exercise-box" data-exercise="3-2-1">
+        <div class="q-label">📝 小练习 3.2.1</div>
+        <p>为什么同一个CYTB-mRNA在线粒体核糖体中翻译出Cytb（380aa），而在细胞质核糖体中翻译出C-187（187aa）？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex3-2-1" value="A"> A. 因为细胞质核糖体更小，翻译能力有限</label>
+          <label class="option" data-index="1"><input type="radio" name="ex3-2-1" value="B"> B. 因为线粒体和细胞质使用的密码子表不同，UGA在细胞质中是终止密码子，提前终止了翻译</label>
+          <label class="option" data-index="2"><input type="radio" name="ex3-2-1" value="C"> C. 因为C-187是从Cytb上切下来的一段</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('3-2-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-3-2-1"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section3" onclick="navigateTo('section3')">🔙 返回：遗传密码的奥秘</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第4节：双重翻译模型（核心） -->
+  <!-- ============================================================ -->
+  <section class="section" id="section4">
+    <div class="card">
+      <h2>🔄 ④ 双重翻译模型</h2>
+      <div class="tag tag-core">本题核心</div>
+
+      <div class="highlight-box">
+        <p><strong>🎯 什么是"双重翻译"？</strong></p>
+        <p>一个基因（CYTB）的mRNA，在<strong>两个不同的地方</strong>，用<strong>两套不同的密码子规则</strong>，翻译出<strong>两种不同的蛋白质</strong>。</p>
+      </div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻"双语说明书"</div>
+        <p>想象一份<strong>双语说明书</strong>（就是CYTB-mRNA）：</p>
+        <ul>
+          <li><strong>用中文读</strong>（线粒体密码子）→ 得到一份完整的说明书（Cytb，380页）</li>
+          <li><strong>用英文读</strong>（标准密码子）→ 只读到一半就结束了（C-187，187页）</li>
+        </ul>
+        <p>为什么？因为在中文里"UGA"是"继续"（色氨酸），在英文里"UGA"是"到此为止"（终止密码子）！</p>
+      </div>
+
+      <h3>双重翻译模型示意图</h3>
+      <div class="model-diagram">
+        <div style="display:flex; flex-direction:column; align-items:center; line-height:2; font-size:15px;">
+          <div style="border:2px solid #2c6e9c; padding:6px 20px; border-radius:8px; background:#dbeafe;"><strong>CYTB 基因</strong>（在mtDNA上）</div>
+          <div style="font-size:20px; color:#2c6e9c;">↓ 转录</div>
+          <div style="border:2px solid #2c6e9c; padding:6px 20px; border-radius:8px; background:#dbeafe;"><strong>CYTB-mRNA</strong></div>
+          <div style="display:flex; gap:30px; margin-top:8px; flex-wrap:wrap; justify-content:center;">
+            <div style="flex:1; min-width:200px; border:2px solid #e67e22; border-radius:10px; padding:14px; background:#fff3e0;">
+              <div style="font-weight:700; color:#e67e22; margin-bottom:6px;">📍 线粒体核糖体</div>
+              <div style="font-size:13px; color:#666;">使用：<strong>线粒体密码子</strong></div>
+              <div style="font-size:24px; margin:4px 0;">↓</div>
+              <div style="background:#333; display:inline-block; width:24px; height:24px; margin-right:4px; vertical-align:middle;"></div>
+              <strong>Cytb</strong>（380个氨基酸）
+              <div style="font-size:12px; color:#888; margin-top:4px;">→ 复合体Ⅲ → 电子传递 → 提供ATP合成动力</div>
+            </div>
+            <div style="flex:1; min-width:200px; border:2px solid #27ae60; border-radius:10px; padding:14px; background:#e8f8f0;">
+              <div style="font-weight:700; color:#27ae60; margin-bottom:6px;">📍 细胞质核糖体</div>
+              <div style="font-size:13px; color:#666;">使用：<strong>标准密码子</strong></div>
+              <div style="font-size:24px; margin:4px 0;">↓</div>
+              <div style="background:#e67e22; display:inline-block; width:24px; height:24px; border-radius:50%; margin-right:4px; vertical-align:middle;"></div>
+              <strong>C-187</strong>（187个氨基酸）
+              <div style="font-size:12px; color:#888; margin-top:4px;">→ 返回线粒体 → 与SL蛋白结合 → 转运磷酸盐</div>
+            </div>
+          </div>
+          <div style="margin-top:12px; padding:8px 16px; background:#f0f4f8; border-radius:6px; font-size:13px;">
+            <strong>同一mRNA · 两种翻译 · 两种蛋白质 · 协同工作</strong>
+          </div>
+        </div>
+      </div>
+
+      <h3>为什么C-187在线粒体核糖体翻译不出来？</h3>
+      <p>在线粒体核糖体中，mRNA上的密码子按线粒体规则翻译。当遇到UGA时，线粒体读作"色氨酸"，所以翻译<strong>不会终止</strong>，一直翻译到380个氨基酸的Cytb。</p>
+      <p>而在细胞质核糖体中，UGA被读作"终止密码子"，所以翻译<strong>提前终止</strong>，只得到187个氨基酸的C-187。</p>
+
+      <div class="exercise-box" data-exercise="4-1">
+        <div class="q-label">📝 小练习 4.1</div>
+        <p>双重翻译模型中的"双重"指的是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex4-1" value="A"> A. 两个不同的基因</label>
+          <label class="option" data-index="1"><input type="radio" name="ex4-1" value="B"> B. 两种不同的mRNA</label>
+          <label class="option" data-index="2"><input type="radio" name="ex4-1" value="C"> C. 同一个mRNA在两个位置用两套密码子规则翻译出两种蛋白质</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('4-1', 'C')">检查答案</button>
+        <div class="exercise-feedback" id="fb-4-1"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section5" onclick="navigateTo('section5')">👉 下一节：C-187与SL蛋白协作</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第5节：C-187与SL蛋白协作 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section5">
+    <div class="card">
+      <h2>🤝 ⑤ C-187与SL蛋白的协作</h2>
+      <div class="tag tag-advanced">进阶知识</div>
+
+      <div class="analogy-box">
+        <div class="label">💡 通俗比喻"外卖配送"</div>
+        <p>把线粒体想象成一个<strong>厨房</strong>，ATP是一道菜：</p>
+        <ul>
+          <li><strong>Cytb</strong> = 厨师（负责炒菜——提供能量）</li>
+          <li><strong>磷酸盐（Pi）</strong> = 食材（做ATP的原料之一）</li>
+          <li><strong>SL蛋白</strong> = 送菜窗口（把食材从外面送进厨房）</li>
+          <li><strong>C-187</strong> = 服务员（站在送菜窗口旁边，确保食材顺利送达）</li>
+        </ul>
+        <p>C-187和SL蛋白结合，就像服务员和送菜窗口配合——确保食材（磷酸盐）源源不断地送进厨房，厨师（Cytb）才能一直做菜（合成ATP）。</p>
+      </div>
+
+      <h3>关键信息梳理</h3>
+      <table class="data-table">
+        <tr><th>蛋白质</th><th>基因位置</th><th>翻译位置</th><th>功能</th></tr>
+        <tr>
+          <td><strong>Cytb</strong></td>
+          <td>mtDNA（线粒体基因组）</td>
+          <td>线粒体核糖体</td>
+          <td>复合体Ⅲ亚基，电子传递，建立质子梯度</td>
+        </tr>
+        <tr>
+          <td><strong>C-187</strong></td>
+          <td>mtDNA（线粒体基因组）</td>
+          <td>细胞质核糖体（按标准密码子）</td>
+          <td>与SL蛋白结合，促进磷酸盐转运</td>
+        </tr>
+        <tr>
+          <td><strong>SL蛋白</strong></td>
+          <td>细胞核基因组</td>
+          <td>细胞质核糖体</td>
+          <td>跨膜转运磷酸盐（Pi）进线粒体</td>
+        </tr>
+      </table>
+
+      <div class="highlight-box success">
+        <p><strong>🔑 第(4)题完整答案：</strong></p>
+        <p><strong>Cytb</strong>作为电子传递链复合体Ⅲ的亚基，参与电子传递，建立起线粒体内膜两侧的质子梯度，为ATP合成提供<strong>能量（质子动力势）</strong>。</p>
+        <p><strong>C-187</strong>与线粒体内膜上的SL蛋白结合，SL蛋白负责将磷酸盐（Pi）转运进入线粒体基质，为ATP合成提供<strong>底物（Pi）</strong>。</p>
+        <p>两者分别从<strong>能量供应</strong>和<strong>原料供应</strong>两个维度协同配合，缺一不可，共同驱动ATP的合成。</p>
+      </div>
+
+      <h3>实验证据</h3>
+      <ul>
+        <li><strong>C-187合成障碍 → ATP含量下降</strong>：说明没有C-187，磷酸盐运不进来，ATP合成缺原料</li>
+        <li><strong>SL基因过表达 → ATP水平恢复</strong>：说明即使C-187出问题，多装几个"送菜窗口"（SL蛋白）也能弥补一些</li>
+        <li>这证明了C-187和SL蛋白在能量代谢中<strong>共同发挥作用</strong></li>
+      </ul>
+
+      <div class="exercise-box" data-exercise="5-1">
+        <div class="q-label">📝 小练习 5.1</div>
+        <p>SL蛋白的基因位于哪里？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex5-1" value="A"> A. 线粒体DNA（mtDNA）</label>
+          <label class="option" data-index="1"><input type="radio" name="ex5-1" value="B"> B. 细胞核DNA</label>
+          <label class="option" data-index="2"><input type="radio" name="ex5-1" value="C"> C. 细胞质中的质粒</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('5-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-5-1"></div>
+      </div>
+
+      <div class="exercise-box" data-exercise="5-2">
+        <div class="q-label">📝 小练习 5.2</div>
+        <p>C-187合成障碍导致ATP含量下降，最可能的原因是什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex5-2" value="A"> A. 电子传递链无法正常工作</label>
+          <label class="option" data-index="1"><input type="radio" name="ex5-2" value="B"> B. 磷酸盐无法有效转运进线粒体，ATP合成缺乏原料</label>
+          <label class="option" data-index="2"><input type="radio" name="ex5-2" value="C"> C. 线粒体DNA被降解</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('5-2', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-5-2"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section6" onclick="navigateTo('section6')">👉 下一节：综合小练习</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第6节：综合小练习 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section6">
+    <div class="card">
+      <h2>📝 ⑥ 综合小练习</h2>
+
+      <p>以下练习覆盖了本题涉及的各个知识点，试试你能做对几道？</p>
+
+      <!-- 练习1 -->
+      <div class="exercise-box" data-exercise="6-1">
+        <div class="q-label">📝 练习 1（基础）</div>
+        <p>线粒体是细胞进行有氧呼吸的主要场所，有氧呼吸第三阶段发生在线粒体的哪个部位？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex6-1" value="A"> A. 线粒体基质</label>
+          <label class="option" data-index="1"><input type="radio" name="ex6-1" value="B"> B. 线粒体内膜</label>
+          <label class="option" data-index="2"><input type="radio" name="ex6-1" value="C"> C. 线粒体外膜</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('6-1', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-6-1"></div>
+      </div>
+
+      <!-- 练习2 -->
+      <div class="exercise-box" data-exercise="6-2">
+        <div class="q-label">📝 练习 2（理解）</div>
+        <p>某药物能抑制线粒体基因的转录，但不影响细胞核基因的转录。用该药物处理细胞后，预期会出现什么结果？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex6-2" value="A"> A. Cytb和C-187的含量都下降</label>
+          <label class="option" data-index="1"><input type="radio" name="ex6-2" value="B"> B. Cytb含量下降，但C-187含量不变</label>
+          <label class="option" data-index="2"><input type="radio" name="ex6-2" value="C"> C. Cytb含量不变，C-187含量下降</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('6-2', 'A')">检查答案</button>
+        <div class="exercise-feedback" id="fb-6-2"></div>
+      </div>
+
+      <!-- 练习3 -->
+      <div class="exercise-box" data-exercise="6-3">
+        <div class="q-label">📝 练习 3（应用）</div>
+        <p>线粒体密码子中，AUA编码甲硫氨酸，而标准密码子中AUA编码异亮氨酸。如果一个线粒体基因的mRNA中含有AUA密码子，在线粒体核糖体中和在细胞质核糖体中分别会被翻译成什么？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex6-3" value="A"> A. 线粒体：甲硫氨酸；细胞质：异亮氨酸</label>
+          <label class="option" data-index="1"><input type="radio" name="ex6-3" value="B"> B. 线粒体：异亮氨酸；细胞质：甲硫氨酸</label>
+          <label class="option" data-index="2"><input type="radio" name="ex6-3" value="C"> C. 都是甲硫氨酸</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('6-3', 'A')">检查答案</button>
+        <div class="exercise-feedback" id="fb-6-3"></div>
+      </div>
+
+      <!-- 练习4 -->
+      <div class="exercise-box" data-exercise="6-4">
+        <div class="q-label">📝 练习 4（分析）</div>
+        <p>以下哪项实验最能直接证明C-187由mtDNA编码？</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex6-4" value="A"> A. 用抑制细胞质翻译的药物处理细胞，检测C-187含量</label>
+          <label class="option" data-index="1"><input type="radio" name="ex6-4" value="B"> B. 比较正常细胞和mtDNA缺失细胞中C-187的含量</label>
+          <label class="option" data-index="2"><input type="radio" name="ex6-4" value="C"> C. 用抑制核基因转录的药物处理细胞，检测C-187含量</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('6-4', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-6-4"></div>
+      </div>
+
+      <!-- 练习5 -->
+      <div class="exercise-box" data-exercise="6-5">
+        <div class="q-label">📝 练习 5（综合）</div>
+        <p>下列关于C-187和Cytb的叙述，错误的是：</p>
+        <div class="options">
+          <label class="option" data-index="0"><input type="radio" name="ex6-5" value="A"> A. 两者都由同一个基因（CYTB）编码</label>
+          <label class="option" data-index="1"><input type="radio" name="ex6-5" value="B"> B. 两者都在线粒体核糖体上翻译</label>
+          <label class="option" data-index="2"><input type="radio" name="ex6-5" value="C"> C. C-187在细胞质中翻译后返回线粒体</label>
+        </div>
+        <button class="exercise-btn" onclick="checkExercise('6-5', 'B')">检查答案</button>
+        <div class="exercise-feedback" id="fb-6-5"></div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a class="deep-link" href="#section7" onclick="navigateTo('section7')">👉 进入最终挑战：同类题目</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 第7节：同类题目挑战 -->
+  <!-- ============================================================ -->
+  <section class="section" id="section7">
+    <div class="card">
+      <h2>🎯 ⑦ 同类题目挑战</h2>
+      <div class="tag tag-advanced">综合检测</div>
+
+      <div class="highlight-box">
+        <p><strong>💪 下面这道题和刚刚学过的题目类似，试试你能不能独立完成！</strong></p>
+      </div>
+
+      <div style="border:2px solid var(--primary); border-radius:var(--radius); padding:24px; margin:16px 0; background:#f8faff;">
+        <h3 style="color:var(--primary-dark); margin-bottom:12px;">📄 阅读以下材料，回答(1)~(3)题</h3>
+
+        <p style="font-weight:700; margin-bottom:8px;">线粒体基因COX2的新发现</p>
+
+        <p>线粒体是真核细胞进行有氧呼吸的主要场所。线粒体基因组（mtDNA）编码的蛋白质中，细胞色素c氧化酶（Complex Ⅳ）的亚基Ⅱ（COX2）是电子传递链的重要组分。</p>
+
+        <p>已知线粒体遗传密码与标准遗传密码存在差异：在线粒体中，AUA编码甲硫氨酸，AGA和AGG为终止密码子，UGA编码色氨酸。</p>
+
+        <p>以往认为，线粒体COX2基因只编码COX2蛋白（由259个氨基酸组成）。近期研究发现，该基因还能编码一种由148个氨基酸组成的蛋白质——MOTS-k。MOTS-k在细胞质核糖体上按照标准密码子翻译，合成后定位于线粒体基质，参与调控细胞代谢。</p>
+
+        <p>进一步研究发现，MOTS-k能够与线粒体内膜上的转运蛋白MTM结合，MTM负责将丙酮酸转运进入线粒体基质。若MOTS-k合成受阻，丙酮酸进入线粒体的效率降低，导致细胞ATP合成减少。</p>
+
+        <br>
+
+        <p><strong>(1)</strong> 线粒体是进行有氧呼吸第______阶段的主要场所，此阶段产生的[H]在第三阶段与______结合生成水。</p>
+
+        <br>
+
+        <p><strong>(2)</strong> 下列证据中，能支持"MOTS-k来源于mtDNA"的有______（多选，填字母）。</p>
+        <p>A. 用抑制线粒体基因转录的药物处理细胞，MOTS-k含量下降</p>
+        <p>B. 用抑制细胞质核糖体翻译的药物处理细胞，MOTS-k含量下降</p>
+        <p>C. 在mtDNA缺失的细胞中检测不到MOTS-k</p>
+
+        <br>
+
+        <p><strong>(3)</strong> 阐述COX2和MOTS-k在ATP合成过程中的协调配合。</p>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <button class="exercise-btn" onclick="showAnswer7()" style="font-size:16px; padding:10px 30px;">📖 查看答案与解析</button>
+      </div>
+
+      <div id="answer7" style="display:none;">
+        <div class="highlight-box success">
+          <h4>✅ 参考答案与解析</h4>
+
+          <p><strong>第(1)题</strong></p>
+          <p><strong>答案：</strong>二（或"二"）；O₂</p>
+          <p><strong>解析：</strong>有氧呼吸第二阶段（柠檬酸循环）发生在线粒体基质中，产生的[H]（NADH、FADH₂）在第三阶段通过电子传递链将电子传递给O₂，生成H₂O。</p>
+
+          <hr style="margin:16px 0; border:none; border-top:1px solid var(--border);">
+
+          <p><strong>第(2)题</strong></p>
+          <p><strong>答案：</strong>A、C</p>
+          <p><strong>解析：</strong></p>
+          <ul>
+            <li><strong>A ✓</strong>：抑制线粒体基因转录 → MOTS-k下降 → 说明MOTS-k合成依赖mtDNA转录</li>
+            <li><strong>B ✗</strong>：抑制细胞质核糖体翻译 → MOTS-k下降 → 只能证明MOTS-k在细胞质翻译，不能证明基因来源</li>
+            <li><strong>C ✓</strong>：mtDNA缺失细胞中检测不到MOTS-k → 直接证明MOTS-k由mtDNA编码</li>
+          </ul>
+
+          <hr style="margin:16px 0; border:none; border-top:1px solid var(--border);">
+
+          <p><strong>第(3)题</strong></p>
+          <p><strong>答案：</strong></p>
+          <p>COX2作为电子传递链复合体Ⅳ的亚基，参与电子传递，建立质子梯度，为ATP合成提供<strong>能量（质子动力势）</strong>。</p>
+          <p>MOTS-k与线粒体内膜上的转运蛋白MTM结合，MTM负责将丙酮酸转运进入线粒体基质，为柠檬酸循环提供<strong>底物</strong>，从而保证有氧呼吸的持续进行和ATP的持续合成。</p>
+          <p>两者分别从"能量供应"和"底物供应"两个维度协同配合，共同维持ATP的正常合成。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:30px 0 20px;">
+        <a class="deep-link" href="#section0" onclick="navigateTo('section0')" style="font-size:15px;">🔙 返回开头，再复习一遍</a>
+      </div>
+    </div>
+
+    <!-- 结语 -->
+    <div class="card" style="text-align:center; background:linear-gradient(135deg, #eaf4fc, #f0f8ff);">
+      <h2 style="border:none;">🎉 恭喜完成学习！</h2>
+      <p>你已经系统地学习了线粒体双重翻译模式的相关知识。</p>
+      <p style="font-size:14px; color:var(--text-light); margin-top:8px;">
+        记住这个核心：<strong>同一基因 · 同一mRNA · 两种翻译系统 · 两种蛋白质 · 协同工作</strong>
+      </p>
+      <div style="margin-top:16px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <a class="deep-link" href="#section0" onclick="navigateTo('section0')">📌 题目与解析</a>
+        <a class="deep-link" href="#section4" onclick="navigateTo('section4')">🔄 双重翻译模型</a>
+        <a class="deep-link" href="#section6" onclick="navigateTo('section6')">📝 综合练习</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== JavaScript ===== -->
+<script>
+// ===== 导航 =====
+function navigateTo(sectionId) {
+  // 隐藏所有section
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  // 显示目标section
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+  // 更新导航高亮
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector(`.nav-item[data-section="${sectionId}"]`);
+  if (navItem) navItem.classList.add('active');
+  // 更新URL hash
+  window.location.hash = sectionId;
+  // 移动端关闭侧边栏
+  closeSidebar();
+  // 滚动到顶部
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 侧边栏点击事件
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    const sectionId = this.getAttribute('data-section');
+    if (sectionId) navigateTo(sectionId);
+  });
+});
+
+// ===== 侧边栏切换 =====
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('show');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+}
+menuToggle.addEventListener('click', () => {
+  if (sidebar.classList.contains('open')) closeSidebar();
+  else openSidebar();
+});
+overlay.addEventListener('click', closeSidebar);
+
+// ===== 练习系统 =====
+function checkExercise(exId, correctAnswer) {
+  const exBox = document.querySelector(`[data-exercise="${exId}"]`);
+  if (!exBox) return;
+  const selected = exBox.querySelector('input[type="radio"]:checked');
+  const feedback = document.getElementById(`fb-${exId}`);
+  const options = exBox.querySelectorAll('.option');
+
+  if (!selected) {
+    feedback.textContent = '⚠️ 请先选择一个选项！';
+    feedback.className = 'exercise-feedback show wrong';
+    return;
+  }
+
+  const userAnswer = selected.value;
+  const isCorrect = userAnswer === correctAnswer;
+
+  // 清除之前的样式
+  options.forEach(opt => {
+    opt.classList.remove('correct', 'wrong', 'show-correct');
+  });
+
+  // 标记用户选择的选项
+  const selectedOpt = exBox.querySelector(`input[value="${userAnswer}"]`).closest('.option');
+  if (isCorrect) {
+    selectedOpt.classList.add('correct');
+    feedback.textContent = '✅ 回答正确！太棒了！';
+    feedback.className = 'exercise-feedback show correct';
+  } else {
+    selectedOpt.classList.add('wrong');
+    // 显示正确答案
+    const correctOpt = exBox.querySelector(`input[value="${correctAnswer}"]`).closest('.option');
+    if (correctOpt) correctOpt.classList.add('show-correct');
+    feedback.textContent = `❌ 回答错误。正确答案是 ${correctAnswer}。`;
+    feedback.className = 'exercise-feedback show wrong';
+  }
+}
+
+// ===== 第7题答案显示 =====
+function showAnswer7() {
+  const div = document.getElementById('answer7');
+  if (div.style.display === 'none') {
+    div.style.display = 'block';
+    div.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    div.style.display = 'none';
+  }
+}
+
+// ===== 初始化：根据URL hash导航 =====
+function initFromHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) {
+    navigateTo(hash);
+  }
+}
+
+// 页面加载和hash变化时处理
+window.addEventListener('hashchange', initFromHash);
+window.addEventListener('load', initFromHash);
+
+// 如果没有任何hash，默认显示section0
+if (!window.location.hash) {
+  navigateTo('section0');
+}
+
+// ===== 键盘快捷键 =====
+document.addEventListener('keydown', function(e) {
+  // 左右方向键切换section
+  if (e.key === 'Escape') closeSidebar();
+});
+</script>
+</body>
+</html>

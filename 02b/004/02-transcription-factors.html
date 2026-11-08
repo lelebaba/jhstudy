@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>转录因子详解 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link active">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🧬 转录因子详解</h1>
+  <p>T蛋白和W蛋白是什么？它们如何"远程遥控"基因的开关？</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 转录因子详解</div>
+
+<div class="card">
+  <h2>🤔 T蛋白和W蛋白到底是什么？</h2>
+  <p>T蛋白和W蛋白都属于<strong>转录因子</strong>——它们是专门调控基因"开"和"关"的蛋白质。可以理解成：</p>
+  <ul>
+    <li><strong>基因 = 一套"生产机器"</strong>（比如生产苦茶碱合成酶的机器）</li>
+    <li><strong>启动子 = 机器的"电源开关"</strong></li>
+    <li><strong>转录因子 = 按开关的"手指"</strong></li>
+    <li><strong>T和W = 两只不同的手指</strong>，都可以按这个开关</li>
+  </ul>
+  <p>在本题中，T蛋白和W蛋白都能<strong>结合Cs基因的启动子</strong>（按电源开关），从而<strong>促进Cs基因的转录</strong>（启动生产），最终增加苦茶碱合成酶的量，促进苦茶碱的合成。</p>
+</div>
+
+<div class="card">
+  <h2>🔬 转录因子怎么工作？</h2>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 260">
+      <!-- DNA -->
+      <rect x="80" y="100" width="520" height="8" rx="4" fill="#1565c0"/>
+      <text x="340" y="130" text-anchor="middle" font-size="14" fill="#333">DNA双链</text>
+      <!-- Promoter -->
+      <rect x="140" y="80" width="100" height="40" rx="6" fill="#e8f5e9" stroke="#2c7a4b" stroke-width="2"/>
+      <text x="190" y="105" text-anchor="middle" font-size="12" fill="#2c7a4b">启动子(P)</text>
+      <!-- Gene -->
+      <rect x="350" y="80" width="200" height="40" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="450" y="105" text-anchor="middle" font-size="12" fill="#1565c0">Cs基因（编码区）</text>
+      <!-- Arrow from promoter to gene -->
+      <line x1="240" y1="100" x2="345" y2="100" stroke="#666" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <!-- T protein -->
+      <circle cx="160" cy="65" r="16" fill="#ff9800"/>
+      <text x="160" y="70" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">T</text>
+      <line x1="160" y1="65" x2="175" y2="90" stroke="#ff9800" stroke-width="2"/>
+      <!-- RNA Pol -->
+      <circle cx="400" cy="50" r="18" fill="#4caf50"/>
+      <text x="400" y="55" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">RNA Pol</text>
+      <!-- Labels -->
+      <text x="160" y="165" text-anchor="middle" font-size="12" fill="#e65100">T蛋白结合</text>
+      <text x="160" y="182" text-anchor="middle" font-size="12" fill="#e65100">到启动子</text>
+      <text x="400" y="165" text-anchor="middle" font-size="12" fill="#2e7d32">RNA聚合酶</text>
+      <text x="400" y="182" text-anchor="middle" font-size="12" fill="#2e7d32">开始转录</text>
+      <!-- mRNA -->
+      <rect x="370" y="200" width="160" height="20" rx="10" fill="#ffebee" stroke="#c62828" stroke-width="1.5"/>
+      <text x="450" y="215" text-anchor="middle" font-size="11" fill="#c62828">mRNA</text>
+      <line x1="450" y1="50" x2="450" y2="195" stroke="#666" stroke-width="1" stroke-dasharray="4,4"/>
+    </svg>
+    <figcaption>转录因子结合启动子 → 招募RNA聚合酶 → 开始转录 → 产生mRNA</figcaption>
+  </div>
+  <p>整个过程的关键：<strong>转录因子就像一个"召集令"</strong>，它结合到启动子上后，就会"招呼"RNA聚合酶过来，RNA聚合酶才开始沿着DNA模板转录产生mRNA。</p>
+</div>
+
+<div class="card">
+  <h2>📋 为什么要研究"两个"转录因子（T和W）？</h2>
+  <p>很多基因不只受一个转录因子调控。像Cs基因，可能有多个转录因子都可以"按开关"：</p>
+  <ul>
+    <li>有的转录因子单独工作（如T蛋白单独结合启动子）</li>
+    <li>有的需要"搭档"一起工作（如T和W可能形成复合物共同调控）</li>
+    <li>有的互相竞争启动子上的结合位点</li>
+  </ul>
+  <p>研究者需要回答的关键问题是：<strong>T和W是各自独立工作，还是互相配合？</strong></p>
+  <p>这就引出了本题的三个实验：图1验证T的功能（反义核酸），图2验证T的"作案地点"（结合启动子），图3验证T和W是否"牵手合作"（蛋白互作）。</p>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 关于转录因子的描述，正确的是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'C')">A. 转录因子就是RNA聚合酶</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">B. 转录因子只存在于细胞质中</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">C. 转录因子通过结合DNA上的特定序列来调控基因表达</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">D. 一个基因只能受一个转录因子调控</div>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="01-problem.html" class="nav-link">← 题目分析</a>
+  <a href="03-antisense.html" class="nav-link">🔇 反义核酸技术 →</a>
+</div>
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){
+  document.querySelectorAll('.quiz-option').forEach(e=>{if(e.textContent.startsWith('A')||e.textContent.startsWith('B')||e.textContent.startsWith('C')||e.textContent.startsWith('D'))e.classList.remove('correct','wrong');});
+  el.classList.add(el.textContent.startsWith(ans)?'correct':'wrong');
+  var fb=document.getElementById('qfb');
+  fb.className='quiz-feedback show '+(el.textContent.startsWith(ans)?'correct':'wrong');
+  fb.innerHTML=el.textContent.startsWith(ans)?'✅ 正确！转录因子通过识别并结合DNA上的特定序列（如启动子区域）来调控下游基因的转录。':'❌ 正确选项是C。A错误（转录因子和RNA聚合酶是不同的蛋白），B错误（转录因子在核内工作），D错误（多个转录因子可以共同调控一个基因）。';
+}
+</script>
+</body>
+</html>

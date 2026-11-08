@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>荧光素酶互补技术 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link active">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>💡 荧光素酶互补技术</h1>
+  <p>把一只萤火虫掰成两半，只有"牵手"时才能重新发光</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 荧光素酶互补</div>
+
+<div class="card">
+  <h2>🔥 萤火虫发光的秘密</h2>
+  <p>萤火虫为什么会发光？因为它体内有一种叫<strong>荧光素酶</strong>（Luciferase）的蛋白质，它能催化底物<strong>荧光素</strong>（Luciferin）氧化发光。就像打火机点燃气体一样——荧光素酶是"打火机"，荧光素是"气体"，两者一碰就亮。</p>
+  <p>荧光素酶有一个非常特别的属性：可以<strong>从中间掰成两半</strong>——N端（N-Luc）和C端（C-Luc），分开时单独哪一半都没有催化活性。但如果在空间上把两半<strong>拉到一起</strong>，它们又能自我组装恢复活性，催化荧光素发光！</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 180">
+      <!-- Intact enzyme -->
+      <ellipse cx="120" cy="60" rx="50" ry="30" fill="#4caf50" opacity="0.7"/>
+      <text x="120" y="55" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">完整荧光素酶</text>
+      <text x="120" y="70" text-anchor="middle" font-size="10" fill="#fff">N-Luc + C-Luc</text>
+      <polygon points="200,60 220,50 220,70" fill="#ff9800"/>
+      <text x="260" y="65" font-size="11" fill="#333">+ 荧光素 → 💡 发光</text>
+
+      <!-- Split apart -->
+      <ellipse cx="120" cy="140" rx="25" ry="18" fill="#4caf50" opacity="0.5"/>
+      <text x="120" y="143" text-anchor="middle" font-size="9" fill="#333">N-Luc</text>
+      <text x="80" y="120" text-anchor="middle" font-size="10" fill="#c62828">✗ 不发光</text>
+      <ellipse cx="200" cy="140" rx="25" ry="18" fill="#8bc34a" opacity="0.5"/>
+      <text x="200" y="143" text-anchor="middle" font-size="9" fill="#333">C-Luc</text>
+      <text x="250" y="120" text-anchor="middle" font-size="10" fill="#c62828">✗ 不发光</text>
+
+      <!-- Fusion proteins bring together -->
+      <text x="450" y="50" text-anchor="middle" font-size="13" fill="#2e7d32" font-weight="bold">融合蛋白策略</text>
+      <rect x="380" y="70" width="70" height="22" rx="6" fill="#4caf50" opacity="0.6"/>
+      <text x="415" y="85" text-anchor="middle" font-size="9" fill="#333">N-Luc</text>
+      <rect x="450" y="70" width="40" height="22" rx="6" fill="#ff9800" opacity="0.7"/>
+      <text x="470" y="85" text-anchor="middle" font-size="9" fill="#fff">T蛋白</text>
+      <text x="415" y="115" text-anchor="middle" font-size="9" fill="#333">N-Luc-T融合蛋白</text>
+
+      <rect x="530" y="70" width="70" height="22" rx="6" fill="#8bc34a" opacity="0.6"/>
+      <text x="565" y="85" text-anchor="middle" font-size="9" fill="#333">C-Luc</text>
+      <rect x="600" y="70" width="50" height="22" rx="6" fill="#1565c0" opacity="0.7"/>
+      <text x="625" y="85" text-anchor="middle" font-size="9" fill="#fff">W蛋白</text>
+      <text x="580" y="115" text-anchor="middle" font-size="9" fill="#333">C-Luc-W融合蛋白</text>
+
+      <!-- If T and W interact -->
+      <text x="520" y="150" text-anchor="middle" font-size="11" fill="#2e7d32">↕ T和W"牵手"</text>
+      <text x="520" y="168" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">→ N-Luc靠近C-Luc → 💡发光!</text>
+    </svg>
+    <figcaption>荧光素酶互补原理：完整的酶能发光 → 掰开两半不能发光 → 通过融合蛋白将两半拉近 → 恢复发光</figcaption>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧪 实验设计全流程——为什么每步这样做？</h2>
+
+  <h3>🎯 研究目标：验证"T蛋白与W蛋白能否结合（相互作用）"</h3>
+  <p>这是典型的<strong>蛋白质-蛋白质相互作用</strong>（protein-protein interaction, PPI）检测实验。研究者已经知道T和W都能调控Cs基因，现在想确认：<strong>它们是独立工作的，还是互相配合的？</strong></p>
+
+  <h3>🔧 工具准备：构建融合蛋白</h3>
+  <p>研究者分别构建了两种融合蛋白——就像给两个"快递员"各自拴了一根"绳子"：</p>
+  <ul>
+    <li><strong>N-Luc-T融合蛋白</strong>：荧光素酶的N端片段 + T蛋白，连在一起（c选项）</li>
+    <li><strong>C-Luc-W融合蛋白</strong>：荧光素酶的C端片段 + W蛋白，连在一起（d选项）</li>
+  </ul>
+  <p>同时保留单独的N-Luc（a选项）和C-Luc（b选项）作为"不拴绳子的裸片段"。</p>
+
+  <h3>🤔 为什么不直接用完整的荧光素酶？</h3>
+  <p>如果完整酶本身就能发光，你无法分辨"T和W真的牵手了"还是"只要导入酶到细胞里就先亮了"。用<strong>拆分再重组</strong>的方式，发光必须依赖T和W的相互作用来把两半拉在一起，因果关系非常清晰：<strong>发光 = 相互作用</strong>。</p>
+</div>
+
+<div class="card">
+  <h2>📊 四区域设计逐格拆解</h2>
+  <p>实验将同一片叶子分成四个区域，分别导入不同基因组合。为什么不是四片独立的叶子？——因为同一片叶子内部的环境完全一致，排除了叶间差异。</p>
+
+  <div class="fig-box">
+    <svg viewBox="0 0 420 320">
+      <rect x="10" y="10" width="188" height="140" rx="10" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+      <text x="104" y="35" text-anchor="middle" font-size="11" fill="#999">区域①: a,b</text>
+      <text x="104" y="55" text-anchor="middle" font-size="10" fill="#999">N-Luc + C-Luc</text>
+      <text x="104" y="75" text-anchor="middle" font-size="16">🌑</text>
+      <text x="104" y="95" text-anchor="middle" font-size="10" fill="#c62828">无荧光</text>
+      <text x="104" y="115" text-anchor="middle" font-size="9" fill="#999">阴性对照</text>
+
+      <rect x="210" y="10" width="188" height="140" rx="10" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+      <text x="304" y="35" text-anchor="middle" font-size="11" fill="#999">区域④: c,d</text>
+      <text x="304" y="55" text-anchor="middle" font-size="10" fill="#999">N-Luc-T + C-Luc-W</text>
+      <text x="304" y="75" text-anchor="middle" font-size="20">💡</text>
+      <text x="304" y="95" text-anchor="middle" font-size="10" fill="#2e7d32">有荧光！</text>
+      <text x="304" y="115" text-anchor="middle" font-size="9" fill="#999">实验组</text>
+
+      <rect x="10" y="160" width="188" height="140" rx="10" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+      <text x="104" y="185" text-anchor="middle" font-size="11" fill="#999">区域②: a,d</text>
+      <text x="104" y="205" text-anchor="middle" font-size="10" fill="#999">N-Luc + C-Luc-W</text>
+      <text x="104" y="225" text-anchor="middle" font-size="16">🌑</text>
+      <text x="104" y="245" text-anchor="middle" font-size="10" fill="#c62828">无荧光</text>
+      <text x="104" y="265" text-anchor="middle" font-size="9" fill="#999">对照（无T）</text>
+
+      <rect x="210" y="160" width="188" height="140" rx="10" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+      <text x="304" y="185" text-anchor="middle" font-size="11" fill="#999">区域③: b,c</text>
+      <text x="304" y="205" text-anchor="middle" font-size="10" fill="#999">C-Luc + N-Luc-T</text>
+      <text x="304" y="225" text-anchor="middle" font-size="16">🌑</text>
+      <text x="304" y="245" text-anchor="middle" font-size="10" fill="#c62828">无荧光</text>
+      <text x="304" y="265" text-anchor="middle" font-size="9" fill="#999">对照（无W）</text>
+    </svg>
+    <figcaption>四个区域的导入方案和预期结果</figcaption>
+  </div>
+
+  <h3>区域①：阴性对照（a+b）</h3>
+  <p><strong>导入：N-Luc + C-Luc（裸的两个半截）</strong></p>
+  <p><strong>设计意图：</strong>排除N-Luc和C-Luc自身重组发光的可能。虽然理论上两半截在溶液中浓度很低不会自发重组，但需要实验验证。如果这一组发光了，就说明两半截自己在细胞里凑到一起了，后面的实验全部失去意义。</p>
+  <p><strong>预期结果：</strong>不发光。</p>
+
+  <h3>区域②：W蛋白对照（a+d）</h3>
+  <p><strong>导入：N-Luc + C-Luc-W（裸的N端 + W融合的C端）</strong></p>
+  <p><strong>设计意图：</strong>排除C-Luc-W融合蛋白中的W蛋白与裸的N-Luc发生非特异性相互作用的可能。只有"C-Luc-W"，没有"N-Luc-T"——T不在场，两半截没有被拉到一起的理由。</p>
+  <p><strong>预期结果：</strong>不发光。如果在"缺T"的情况下还发微弱的光，说明W蛋白会非特异性地"粘"N-Luc。</p>
+
+  <h3>区域③：T蛋白对照（b+c）</h3>
+  <p><strong>导入：C-Luc + N-Luc-T（裸的C端 + T融合的N端）</strong></p>
+  <p><strong>设计意图：</strong>与区域②对称，排除裸的C-Luc与N-Luc-T发生非特异性相互作用的可能。</p>
+  <p><strong>预期结果：</strong>不发光。</p>
+
+  <h3>区域④：实验组（c+d）</h3>
+  <p><strong>导入：N-Luc-T + C-Luc-W（两种融合蛋白都表达）</strong></p>
+  <p><strong>设计意图：</strong>这是真正的实验组。如果T和W蛋白能够相互作用，它们会"牵手"——N-Luc-T和C-Luc-W被拉到非常近的距离 → N-Luc和C-Luc重组形成完整荧光素酶 → 加入荧光素底物后发光。</p>
+  <p><strong>预期结果：</strong>💡发光！（图3中已显示发光斑点）</p>
+  <p><strong>结论：T蛋白和W蛋白在植物细胞内能够相互作用。</strong></p>
+</div>
+
+<div class="card">
+  <h2>🧩 总结：为什么必须设计成四个区域？</h2>
+  <p>如果把四个区域去掉两个对照，只保留①和④，结果能说明问题吗？</p>
+  <ul>
+    <li>仅①和④：①不亮、④亮 → 只能说明"当有融合蛋白时两半截能凑到一起"，但不知道是T-W的<strong>特异性</strong>相互作用导致的，还是融合蛋白上的"多余部分"非特异性粘合。</li>
+    <li>加上②和③：②不亮（有W无T）、③不亮（有T无W），证明只有在<strong>T和W同时存在</strong>时才会发光 → 结论是特异的。</li>
+  </ul>
+  <p><strong>比喻：</strong>①是"两半截钥匙自己试"、②是"有W没T"、③是"有T没W"、④是"T和W都在"——只有④亮了，就像只有两把半截钥匙都对上时才转得动锁。</p>
+</div>
+
+<div class="card">
+  <h2>🤔 深度追问：既然不能直接推到"共同结合DNA"，做这个实验还有什么意义？</h2>
+  <p>这个问题非常好，它触及到了<strong>科研实验设计的核心逻辑</strong>——一个实验的价值不一定在于"一步登天"直接证明最终结论，而在于<strong>为论证链条提供必要的中间证据</strong>。</p>
+
+  <h3>🔬 科学研究的"拼图"逻辑</h3>
+  <p>科学研究不是"做一次实验就能宣布大结论"，而是一块一块地拼图。每一块拼图回答一个<strong>具体的问题</strong>，拼在一起才能得出完整的结论。</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 260">
+      <text x="340" y="25" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">验证"T和W共同结合Cs启动子"需要几步？</text>
+
+      <!-- Step 1 -->
+      <rect x="40" y="50" width="175" height="65" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+      <text x="127" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">步骤一 ✓</text>
+      <text x="127" y="90" text-anchor="middle" font-size="10" fill="#333">T蛋白能结合Cs启动子</text>
+      <text x="127" y="106" text-anchor="middle" font-size="9" fill="#999">图2 EMSA（第2组）已证明</text>
+
+      <!-- Arrow -->
+      <text x="225" y="87" text-anchor="middle" font-size="20" fill="#999">→</text>
+
+      <!-- Step 2 -->
+      <rect x="240" y="50" width="200" height="65" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+      <text x="340" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">步骤二 ✓  <tspan fill="#c62828" font-size="9">（图3正在做！）</tspan></text>
+      <text x="340" y="90" text-anchor="middle" font-size="10" fill="#333">T蛋白和W蛋白能"牵手"</text>
+      <text x="340" y="106" text-anchor="middle" font-size="9" fill="#999">图3荧光素酶互补已证明</text>
+
+      <!-- Arrow -->
+      <text x="450" y="87" text-anchor="middle" font-size="20" fill="#999">→</text>
+
+      <!-- Step 3 -->
+      <rect x="470" y="50" width="175" height="65" rx="8" fill="#fce4ec" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="557" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#c62828">步骤三 ✗</text>
+      <text x="557" y="90" text-anchor="middle" font-size="10" fill="#333">T和W牵手后能一起</text>
+      <text x="557" y="106" text-anchor="middle" font-size="10" fill="#333">坐在Cs启动子上</text>
+      <text x="557" y="122" text-anchor="middle" font-size="9" fill="#c62828">缺少直接实验证据！</text>
+
+      <!-- Bottom message -->
+      <rect x="100" y="150" width="480" height="40" rx="6" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="168" text-anchor="middle" font-size="12" fill="#555">如果没有步骤二，直接跳过就宣称"T和W共同结合启动子"，这叫"跳步骤"</text>
+      <text x="340" y="185" text-anchor="middle" font-size="12" fill="#555">图3就是那块不可跳过的拼图——它把T和W从"两个陌生人"变成了"可能搭档"</text>
+
+      <!-- Ban icon over a jumping arrow -->
+      <text x="340" y="230" text-anchor="middle" font-size="11" fill="#c62828">如果T和W根本碰不到一块→那"共同结合"就直接被排除了</text>
+    </svg>
+  </div>
+
+  <h3>意义一：排除"不可能"，划定可能范围</h3>
+  <p>在科学中，"排除错误答案"和"找到正确答案"几乎同等重要。T和W都调控Cs基因，它们之间的关系至少有三种可能的模型：</p>
+  <table>
+    <tr><th>模型</th><th>描述</th><th>图3的结果支持还是否定？</th></tr>
+    <tr><td>🅐 互斥模型</td><td>T和W<strong>竞争</strong>同一个结合位点，一个上去另一个就被挤跑</td><td><span style="color:#c62828;font-weight:bold;">❌ 否定</span>——如果互斥，它们应该互相躲避，不会"牵手"</td></tr>
+    <tr><td>🅑 独立模型</td><td>T和W各结合启动子上<strong>不同位置</strong>，各自干活互不干扰</td><td><span style="color:#ff9800;font-weight:bold;">⚠ 不排除</span>——它们可能在别处牵手，但在DNA上各干各的</td></tr>
+    <tr><td>🅒 协同模型</td><td>T和W<strong>形成复合物</strong>，共同结合在Cs启动子上发挥作用</td><td><span style="color:#4caf50;font-weight:bold;">✅ 支持前提成立</span>——但需要更多证据才能完全证实</td></tr>
+  </table>
+  <p><strong>图3排除了模型A（互斥），为协同调控提供了物理基础。</strong>这就是它的核心价值——它告诉你T和W<strong>不是敌人</strong>，而是有可能当搭档的。</p>
+
+  <h3>意义二：建立"蛋白-蛋白相互作用"是建立"蛋白-DNA复合物"的前提</h3>
+  <p>要证明"T和W共同结合在Cs启动子上"需要两个前提同时成立：</p>
+  <ol>
+    <li><strong>前提A</strong>：T和W蛋白之间能发生物理上的相互作用（蛋白-蛋白层面）→ <span style="color:#4caf50;">图3证明</span></li>
+    <li><strong>前提B</strong>：这个相互作用就发生在Cs启动子DNA上（蛋白-DNA层面）→ <span style="color:#c62828;">需要额外实验（如下图所示）</span></li>
+  </ol>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 180">
+      <!-- Left: protein-protein -->
+      <rect x="20" y="20" width="290" height="140" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+      <text x="165" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">前提A：蛋白-蛋白相互作用</text>
+      <text x="165" y="65" text-anchor="middle" font-size="11" fill="#333">图3 荧光素酶互补</text>
+      <circle cx="100" cy="110" r="22" fill="#ff9800" opacity="0.7"/>
+      <text x="100" y="114" text-anchor="middle" font-size="11" fill="#fff">T</text>
+      <circle cx="180" cy="110" r="22" fill="#1565c0" opacity="0.7"/>
+      <text x="180" y="114" text-anchor="middle" font-size="11" fill="#fff">W</text>
+      <line x1="122" y1="110" x2="158" y2="110" stroke="#333" stroke-width="2"/>
+      <text x="245" y="100" text-anchor="middle" font-size="10" fill="#2e7d32">✓ 能牵手</text>
+
+      <!-- Arrow between -->
+      <text x="340" y="95" text-anchor="middle" font-size="24" fill="#999">+</text>
+
+      <!-- Right: protein-DNA -->
+      <rect x="360" y="20" width="300" height="140" rx="8" fill="#fce4ec" stroke="#c62828" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="510" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">前提B：这个牵手发生在Cs启动子上</text>
+      <text x="510" y="65" text-anchor="middle" font-size="11" fill="#333">需要额外实验验证</text>
+      <rect x="420" y="80" width="180" height="10" rx="3" fill="#795548"/>
+      <text x="510" y="72" text-anchor="middle" font-size="8" fill="#666">Cs启动子DNA</text>
+      <circle cx="460" cy="115" r="18" fill="#ff9800" opacity="0.7"/>
+      <text x="460" y="119" text-anchor="middle" font-size="10" fill="#fff">T</text>
+      <circle cx="530" cy="115" r="18" fill="#1565c0" opacity="0.7"/>
+      <text x="530" y="119" text-anchor="middle" font-size="10" fill="#fff">W</text>
+      <text x="510" y="150" text-anchor="middle" font-size="10" fill="#c62828">✗ 未知！</text>
+
+      <!-- Bottom explanation -->
+      <text x="340" y="175" text-anchor="middle" font-size="11" fill="#555">前提B需要的实验：同时加入T+W+Cs启动子DNA做EMSA，看是否有"超迁移"条带</text>
+    </svg>
+  </div>
+  <p><strong>没有前提A就直接讨论"共同结合"是空中楼阁。图3的价值恰恰在于把第一块地基打牢了。</strong></p>
+
+  <h3>意义三：本题教育意图——考"证据不足时不下结论"</h3>
+  <p>作为一道高中生物题，这里有一个重要的科学素养考点：</p>
+  <div class="hint-box">
+    <p><strong>🔑 核心考点：</strong>图3证明了T和W能相互作用，学生容易顺着惯性直接下结论"所以T和W共同结合启动子"。出题人特意问"能否总结出全部路径"，就是要考查学生是否具备<strong>"证据链不完整时不下结论"</strong>的严谨思维。</p>
+  </div>
+  <p>这道题想考的不是"你知道T和W能结合"，而是"你知道'能结合'和'在启动子上结合'是两回事"。</p>
+
+  <p><strong>总结一句话：</strong>图3证明T和W之间存在物理相互作用，这是整个调控模型的<strong>必要但不充分的中间证据</strong>——它排除了互斥假说，为协同调控提供了物理前提，但要完全斩钉截铁地证明"共同结合在DNA上"，还需要更直接的蛋白-DNA实验。</p>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 荧光素酶互补实验中，区域①（a+b）不发光的直接原因是：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'D')">A. T蛋白和W蛋白没有相互作用</div>
+      <div class="quiz-option" onclick="qcheck(this,'D')">B. N-Luc和C-Luc被降解了</div>
+      <div class="quiz-option" onclick="qcheck(this,'D')">C. 荧光素底物用完了</div>
+      <div class="quiz-option" onclick="qcheck(this,'D')">D. N-Luc和C-Luc在细胞中没有被拉到足够近的距离来重组</div>
+    </div>
+    <div class="quiz-feedback" id="qfb1"></div>
+
+    <p style="margin-top:16px;">2. 如果区域②（a+d）意外发光了，最可能的原因是什么？</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck2(this,'C')">A. T和W相互作用导致发光</div>
+      <div class="quiz-option" onclick="qcheck2(this,'C')">B. N-Luc-T融合蛋白被错误地导入了区域②</div>
+      <div class="quiz-option" onclick="qcheck2(this,'C')">C. C-Luc-W融合蛋白与裸的N-Luc发生了非特异性结合</div>
+      <div class="quiz-option" onclick="qcheck2(this,'C')">D. 叶子本身就发光</div>
+    </div>
+    <div class="quiz-feedback" id="qfb2"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="04-emsa.html" class="nav-link">← EMSA实验</a>
+  <a href="06-gene-expression.html" class="nav-link">🎛️ 基因表达基础 →</a>
+</div>
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){
+  document.querySelectorAll('#qfb1').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb1').className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb1').innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！N-Luc和C-Luc在没有外力帮助时，在细胞中的浓度太低，无法自发重组到能发光的距离。':'❌ 正确选项是D。两半截单独在细胞中浓度太低，不能自发重组。';}
+function qcheck2(el,ans){
+  document.querySelectorAll('#qfb2').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb2').className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');
+  document.getElementById('qfb2').innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！若区域②发光，说明C-Luc-W融合蛋白中的W蛋白或C-Luc部分与裸的N-Luc发生了非特异性结合，导致两半截靠近。这正是设置此对照的原因——排除这种假阳性。':'❌ 正确选项是C。';}
+</script>
+</body>
+</html>

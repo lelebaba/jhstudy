@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目分析 — Hp与胃癌课件</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link active">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt/β-cat信号通路</a></li>
+          <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附与E-cadherin</a></li>
+          <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. 幽门螺杆菌与胃癌</a></li>
+          <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 信号通路研究方法</a></li>
+          <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+
+<div class="header">
+  <h1>📋 题目分析与解答</h1>
+  <p>幽门螺杆菌（Hp）感染与胃癌 — 高考真题逐问拆解</p>
+</div>
+
+<div class="card">
+  <h2>原题回顾</h2>
+  <p>幽门螺杆菌（Hp）感染是胃癌的重要诱因。研究表明 Hp 感染可通过影响细胞信号通路影响细胞的增殖与侵袭。β-cat 蛋白是细胞内信号转导的关键分子，其在细胞膜、细胞质和细胞核含量的精准调控对维持细胞正常生理状态至关重要。</p>
+  <p>图1 显示 β-cat 蛋白在细胞膜上与 E 蛋白形成复合物、在细胞质中被降解复合体降解的过程。</p>
+</div>
+
+<!-- (1) -->
+<div class="card">
+  <h2>🔍 第（1）问：三个填空</h2>
+  <p>β-cat 蛋白在细胞的<span class="hl">______</span>中合成。图1 显示，在细胞膜上 E 蛋白与 β-cat 蛋白形成复合物，参与细胞间的黏附，维持上皮组织的完整性。正常生理状态下，细胞质中过多的游离 β-cat 蛋白被降解复合体识别使其<span class="hl">______</span>，进而被水解，维持其含量在细胞质内的<span class="hl">______</span>水平。</p>
+
+  <div class="answer-box">
+    <h4>✅ 答案</h4>
+    <table>
+      <tr><th>空</th><th>答案</th><th>解析</th></tr>
+      <tr><td>第一空</td><td><strong>核糖体</strong></td><td>所有蛋白质的合成场所都是核糖体</td></tr>
+      <tr><td>第二空</td><td><strong>磷酸化</strong></td><td>降解复合体（含GSK-3β）先将β-cat磷酸化标记，然后才能被泛素化并送入蛋白酶体降解</td></tr>
+      <tr><td>第三空</td><td><strong>低（较低）</strong></td><td>正常细胞中游离β-cat持续被降解，维持低浓度；浓度升高是癌变的前兆信号</td></tr>
+    </table>
+  </div>
+
+  <div class="hint-box">
+    <h4>💡 比喻理解</h4>
+    <p>β-cat 就像仓库里的<strong>备用零件</strong>——正常情况下只留少量（低浓度），多了就被"贴上标签→送入碎纸机"处理掉（磷酸化→降解）。如果送碎纸机的人偷懒了（降解复合体被抑制），零件就会堆积如山（β-cat积累→癌变风险）。</p>
+  </div>
+
+  <p>📖 涉及知识：<a href="08-central-dogma.html">中心法则（蛋白质合成）</a> | <a href="05-protein-degradation.html">蛋白质降解</a></p>
+</div>
+
+<!-- (2)① -->
+<div class="card">
+  <h2>🔍 第（2）问①：图2补充实验结果</h2>
+  <p>Wnt 蛋白是位于细胞质中的信号蛋白，作用是与降解复合体结合，抑制细胞中游离的 β-cat 蛋白降解。ICG 是 Wnt 蛋白的特异性信号通路抑制剂。请在答题卡相应位置将图2中 β-cat 蛋白缺失的两组实验结果补充完整。</p>
+
+  <div class="hint-box">
+    <h4>🖼️ 图2结构还原</h4>
+    <p>图2共 <strong>3 组</strong>：对照组 / Hp感染组 / Hp+ICG组，每组检测 <strong>2 个蛋白</strong>（Wnt 和 β-cat）。Wnt 蛋白的 3 组柱形全部已给出，β-cat 蛋白已给出<strong>对照组</strong>（≈1.2），<strong>待补充的是 Hp 组和 Hp+ICG 组</strong>（红圈位置）。</p>
+  </div>
+
+  <div class="answer-box">
+    <h4>✅ 补充画法</h4>
+    <table>
+      <tr><th>蛋白</th><th>对照组</th><th>Hp组</th><th>Hp+ICG组</th></tr>
+      <tr><td>Wnt蛋白</td><td>≈1.2 ✅已给</td><td>≈2.0 ✅已给</td><td>≈1.5 ✅已给</td></tr>
+      <tr><td>β-cat蛋白</td><td>≈1.2 ✅已给</td><td><strong>🟥 ≈1.8~2.0</strong></td><td><strong>🟥 ≈1.2~1.3</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="box-shadow:none;border:1px dashed #ccc;">
+    <h3>推理过程</h3>
+    <p><strong>Hp 组 β-cat ≈ 1.8~2.0（显著升高）：</strong>Hp 感染 → Wnt 蛋白↑（图2左侧柱证实）→ Wnt 与降解复合体结合 → 抑制 β-cat 降解 → β-cat 在细胞质中积累。</p>
+    <p><strong>Hp+ICG 组 β-cat ≈ 1.2（回落至对照水平）：</strong>ICG 是 Wnt 信号通路特异性抑制剂，它阻断的是 Wnt 对降解复合体的<strong>信号功能</strong>，不降低 Wnt 蛋白本身（该组 Wnt 仍有 1.5）。降解复合体恢复工作 → β-cat 被正常磷酸化、泛素化、水解 → 含量回落。</p>
+  </div>
+
+  <div class="answer-box">
+    <h4>✅ 补图后可得结论</h4>
+    <p>Hp 感染通过上调 Wnt 蛋白表达，抑制 β-cat 降解复合体活性，导致 β-cat 蛋白在细胞内大量积累；<strong>ICG 作为 Wnt 信号通路的特异性抑制剂，能够逆转 Hp 感染对 β-cat 的积累效应</strong>，使 β-cat 含量恢复至接近正常水平。</p>
+  </div>
+
+  <p>📖 涉及知识：<a href="02-wnt-signaling.html">Wnt/β-cat 信号通路</a> | <a href="07-research-methods.html">信号通路研究方法</a></p>
+</div>
+
+<!-- (2)② -->
+<div class="card">
+  <h2>🔍 第（2）问②：信号通路总结</h2>
+  <p>研究者继续检测了相关蛋白的表达和侵袭细胞数目，结果如图3和图4。β-cat 蛋白是 M 蛋白基因的转录因子，M 蛋白可催化 E 蛋白水解。综合以上信息，总结 Hp 感染促进胃癌细胞侵袭的信号通路。</p>
+
+  <div class="answer-box">
+    <h4>✅ 答案</h4>
+    <div class="pathway">
+Hp感染
+   ↓
+Wnt蛋白激活 → 与β-cat降解复合体结合 → 抑制β-cat降解
+   ↓
+β-cat在细胞质中大量积累
+   ↓
+β-cat进入细胞核 → 激活M蛋白基因转录 → M蛋白合成↑
+   ↓
+M蛋白催化E蛋白水解 → E蛋白被降解
+   ↓
+   ├─ ① E蛋白-β-cat复合物破坏 → 细胞间黏附丧失
+   │     → 上皮组织完整性破坏 → 癌细胞易脱离原发灶
+   │
+   └─ ② β-cat从膜上被释放 → 更多β-cat入核
+         → 激活EMT相关基因 → 癌细胞获得侵袭和迁移能力
+   ↓
+癌细胞侵袭能力增强 → 胃癌进展
+    </div>
+  </div>
+
+  <div class="hint-box">
+    <h4>💡 关键理解</h4>
+    <p><strong>β-cat 的双重角色：</strong>① 在细胞膜上与 E 蛋白形成复合物 → 维持细胞黏附（正常功能）；② 在细胞核内作为转录因子 → 激活 M 蛋白基因（致癌角色）。</p>
+    <p><strong>正反馈恶性循环：</strong>β-cat越多 → M蛋白越多 → E蛋白水解越多 → β-cat更多被释放入核 → 又促进更多M蛋白合成。这就像雪崩，一旦启动就加速恶化。</p>
+  </div>
+
+  <p>📖 涉及知识：<a href="04-cell-adhesion.html">细胞黏附</a> | <a href="06-EMT.html">上皮-间质转化(EMT)</a></p>
+</div>
+
+<!-- (3) -->
+<div class="card">
+  <h2>🔍 第（3）问：检测指标与治疗方向</h2>
+  <p>根据本研究，从癌症的检测指标和治疗方向两方面提出可行性建议。</p>
+
+  <div class="answer-box">
+    <h4>✅ 答案</h4>
+    <table>
+      <tr><th style="width:80px">方向</th><th>具体建议</th></tr>
+      <tr>
+        <td><strong>检测</strong></td>
+        <td>
+          ① 检测细胞质中游离 β-cat 蛋白含量（升高→癌变风险）<br>
+          ② 检测 M 蛋白表达水平及 E 蛋白含量（M↑+E↓→侵袭风险增加）<br>
+          ③ 检测 β-cat 磷酸化水平（降低→降解功能受损）
+        </td>
+      </tr>
+      <tr>
+        <td><strong>治疗</strong></td>
+        <td>
+          ① <strong>根除幽门螺杆菌</strong>（抗菌治疗，消除源头）<br>
+          ② <strong>Wnt 通路抑制剂</strong>（如 ICG），恢复 β-cat 正常降解<br>
+          ③ <strong>M 蛋白抑制剂</strong>，阻止 E 蛋白水解，维持细胞黏附<br>
+          ④ <strong>β-cat 降解复合体激活剂</strong>，直接促进 β-cat 降解
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="nav-btns">
+  <a href="index.html" class="nav-btn back">← 首页</a>
+  <a href="02-wnt-signaling.html" class="nav-btn">下一课：Wnt信号通路 →</a>
+</div>
+
+</div>
+
+<script>
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('show');
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>

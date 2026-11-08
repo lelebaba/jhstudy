@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发酵条件优化 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link active">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>📊 发酵条件优化</h1>
+    <p>响应面法、3D曲面图、方差分析——科学实验设计</p>
+  </div>
+
+  <div class="card">
+    <h2>为什么要优化发酵条件？</h2>
+    <p>工业化生产康普茶，需要找到<strong>最佳发酵条件</strong>（温度、茶叶浓度、接种量等），使产酸量最大化、成本最小化、品质最稳定。</p>
+    <p>但问题来了：影响发酵的因素很多，如果每个因素都试一遍，实验次数会爆炸性增长。</p>
+
+    <div class="hint-box">
+      <h4>💡 穷举法 vs 优化法</h4>
+      <p>假设有3个因素（温度、茶叶浓度、接种量），每个因素5个水平：</p>
+      <p><strong>穷举法</strong>：5 × 5 × 5 = 125 次实验 → 太多了！</p>
+      <p><strong>响应面法（RSM）</strong>：只需要约17次实验 → 大幅减少实验量，同时能找到最优条件。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>什么是响应面法（RSM）？</h2>
+    <p><strong>响应面法</strong>（Response Surface Methodology，RSM）是一种<strong>实验设计和优化的统计方法</strong>，用较少的实验次数找到多因素系统的最优条件。</p>
+
+    <h3>三个步骤</h3>
+    <div class="flow-step">
+      <span class="step-num">1</span>
+      <div>
+        <strong>单因素实验</strong>：先单独测试每个因素的影响范围（比如温度从25℃试到35℃，找到大致最优点附近）
+      </div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">2</span>
+      <div>
+        <strong>中心组合设计（CCD）</strong>：在最优点附近设计实验，通常包含<strong>中心点</strong>（多次重复）和<strong>轴向点</strong>（上下偏移）
+      </div>
+    </div>
+    <div class="flow-step">
+      <span class="step-num">3</span>
+      <div>
+        <strong>拟合模型 + 画3D曲面图</strong>：用实验数据拟合一个二次方程，画出3D响应面曲面图，直观看出最优条件和各因素影响大小
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📈 3D曲面图怎么读？</h2>
+    <p>3D曲面图有三个轴：两个自变量（如温度和茶叶浓度）在水平面上，一个因变量（总酸浓度）在垂直方向。曲面"最高点"就是<strong>最优条件</strong>。</p>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 280">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">3D曲面图解读示意</text>
+
+        <!-- 模拟3D曲面 -->
+        <defs>
+          <linearGradient id="surface1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1565c0" stop-opacity="0.7"/>
+            <stop offset="50%" stop-color="#4caf50" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#f57c00" stop-opacity="0.7"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 等高线图（模拟俯视3D曲面） -->
+        <rect x="50" y="50" width="280" height="200" rx="8" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+        <text x="190" y="42" text-anchor="middle" font-size="13" fill="#333">等高线视图（俯视）</text>
+
+        <ellipse cx="190" cy="150" rx="120" ry="70" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5" opacity="0.5"/>
+        <ellipse cx="190" cy="150" rx="90" ry="50" fill="#c8e6c9" stroke="#4caf50" stroke-width="1.5" opacity="0.6"/>
+        <ellipse cx="190" cy="150" rx="55" ry="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="190" cy="150" r="8" fill="#d32f2f"/>
+        <text x="190" y="153" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">★</text>
+        <text x="205" y="148" font-size="11" fill="#d32f2f" font-weight="bold">最优点</text>
+
+        <text x="60" y="270" font-size="11" fill="#666">← 茶叶浓度</text>
+        <text x="260" y="270" font-size="11" fill="#666">接种量 →</text>
+        <text x="10" y="155" font-size="11" fill="#666" transform="rotate(-90 10 155)">总酸浓度</text>
+
+        <!-- 3D侧视图 -->
+        <rect x="370" y="50" width="280" height="200" rx="8" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+        <text x="510" y="42" text-anchor="middle" font-size="13" fill="#333">3D侧视图</text>
+
+        <!-- X-Y轴 -->
+        <line x1="400" y1="230" x2="620" y2="230" stroke="#333" stroke-width="2"/>
+        <line x1="400" y1="230" x2="400" y2="70" stroke="#333" stroke-width="2"/>
+        <text x="510" y="250" text-anchor="middle" font-size="11" fill="#666">温度（℃）</text>
+        <text x="380" y="150" text-anchor="middle" font-size="11" fill="#666" transform="rotate(-90 380 150)">总酸</text>
+
+        <!-- 模拟曲面（抛物线） -->
+        <path d="M 410 200 Q 510 60 610 200" fill="url(#surface1)" stroke="#1565c0" stroke-width="2" opacity="0.6"/>
+        <circle cx="510" cy="75" r="6" fill="#d32f2f"/>
+        <text x="520" y="78" font-size="11" fill="#d32f2f" font-weight="bold">峰值=最优</text>
+
+        <text x="410" y="245" font-size="10" fill="#666">28</text>
+        <text x="505" y="245" font-size="10" fill="#666">30</text>
+        <text x="605" y="245" font-size="10" fill="#666">32</text>
+
+        <text x="370" y="270" font-size="11" fill="#999">曲面越陡 = 该因素影响越大</text>
+      </svg>
+    </div>
+
+    <h3>本题的3D曲面图</h3>
+    <p>题目给了三幅3D曲面图，分别展示三种因素两两组合对总酸浓度的影响。关键信息：</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+      <li><strong>曲面最高点</strong> = 最优条件组合</li>
+      <li><strong>曲面坡度越陡</strong> = 该因素影响越大</li>
+    </ul>
+
+    <div class="hint-box warning">
+      <h4>⚠️ 光看图可能误判！</h4>
+      <p>3D曲面图的视觉感知容易被<strong>坐标轴范围、视角角度、颜色映射</strong>误导。最可靠的方法是看<strong>方差分析表（ANOVA）的F值</strong>。</p>
+      <p>本题的原始论文（段林言等，2026）给出了完整的ANOVA数据，直接用F值排序即可。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📊 方差分析（ANOVA）——金标准</h2>
+    <p>方差分析是判断各因素影响大小的统计方法，比看图可靠得多。</p>
+
+    <h3>本题论文的ANOVA数据</h3>
+    <table>
+      <tr><th>因素</th><th>F值</th><th>P值</th><th>显著性</th></tr>
+      <tr><td>A-葡萄糖浓度</td><td>11.42</td><td>0.0045</td><td>极显著 **</td></tr>
+      <tr><td><strong>B-茶叶浓度</strong></td><td><strong>28.48</strong></td><td><strong>0.0001</strong></td><td><strong>极显著 ***</strong></td></tr>
+      <tr><td><strong>C-菌种接种量</strong></td><td><strong>58.94</strong></td><td><strong>&lt;0.0001</strong></td><td><strong>极显著 ***</strong></td></tr>
+      <tr><td><strong>D-培养温度</strong></td><td><strong>2.82</strong></td><td><strong>0.115</strong></td><td>不显著</td></tr>
+    </table>
+
+    <h3>怎么读F值和P值？</h3>
+    <table>
+      <tr><th>指标</th><th>含义</th><th>判断标准</th></tr>
+      <tr><td><strong>F值</strong></td><td>因素变化引起的差异 vs 随机误差的比值</td><td>F越大 → 影响越大</td></tr>
+      <tr><td><strong>P值</strong></td><td>该结果由"运气"造成的概率</td><td>P&lt;0.05 = 显著；P&lt;0.01 = 极显著；P&gt;0.05 = 不显著</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 比喻理解F值和P值</h4>
+      <p><strong>F值</strong>：想象你比较两种减肥药的效果。如果药A组平均瘦了10斤、药B组瘦了1斤，且组内差异很小（各人都差不多瘦那么多），说明药A确实有效——F值就大。如果组内差异也很大（有人瘦20斤有人胖了），说明效果不稳定——F值就小。</p>
+      <p><strong>P值</strong>：P=0.0001意味着"这个结果纯属运气的概率只有万分之一" → 非常可信。P=0.115意味着"有11.5%的概率只是运气" → 不够可信。</p>
+    </div>
+
+    <h3>本题的结论</h3>
+    <div class="answer-box">
+      <h4>影响因素排序</h4>
+      <p>菌种接种量（F=58.94） &gt; 茶叶浓度（F=28.48） &gt; 培养温度（F=2.82，不显著）</p>
+    </div>
+
+    <div class="hint-box warning">
+      <h4>⚠️ 反直觉结论</h4>
+      <p>通常认为"温度对微生物发酵影响最大"，但在这项研究中，培养温度在28-32℃范围内的影响<strong>不显著</strong>（P=0.115 &gt; 0.05）。</p>
+      <p>原因：醋酸菌和酵母菌在28-32℃都能良好生长，这个温度区间已经足够"舒适"，温度小幅波动不会造成显著差异。相比之下，接种量直接决定菌的初始浓度，对产酸量的影响最大。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📐 最适条件的确定</h2>
+    <p>原始论文通过<strong>中心组合设计</strong>实验，发现最优条件组合为：</p>
+    <table>
+      <tr><th>因素</th><th>最优值</th><th>对应总酸浓度</th></tr>
+      <tr><td>培养温度</td><td><strong>30℃</strong></td><td rowspan="3">36.3 mg/mL</td></tr>
+      <tr><td>茶叶浓度</td><td><strong>0.6%</strong></td></tr>
+      <tr><td>菌种接种量</td><td><strong>7%</strong></td></tr>
+    </table>
+    <p>这组条件在实验中反复出现5次（中心点重复实验），总酸浓度稳定在36.3 mg/mL，是所有实验组中的最高值。</p>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 判断某因素影响是否显著，应该看哪个指标？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">3D曲面图的颜色</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">实验次数</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">ANOVA的F值和P值</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">中心点的数值</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: P=0.115意味着什么？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">该因素影响极显著</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">该因素影响显著</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">该因素影响不显著（P&gt;0.05）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">该因素完全无影响</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 响应面法（RSM）相比穷举法的最大优势是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">实验精度更高</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">用更少的实验次数找到最优条件</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">不需要任何统计分析</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">只适合单因素实验</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

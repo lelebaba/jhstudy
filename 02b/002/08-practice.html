@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>综合练习 - 康普茶发酵</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link active">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>📝 综合练习</h1>
+    <p>改编题目 + 概念辨析——检测你的掌握程度</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 改编题：酸菜发酵</h2>
+    <p>下面这道改编题考察的知识点和康普茶题目类似，但换了情境。试试看能不能独立解答。</p>
+
+    <div class="hint-box">
+      <p><strong>题目：</strong>酸菜是利用乳酸菌在无氧条件下发酵蔬菜制成的传统食品。制作酸菜时，先将蔬菜洗净切碎，加入适量食盐后密封发酵。</p>
+      <p><strong>（1）</strong> 制作酸菜时加入食盐的主要目的是______。密封发酵的原因是______。</p>
+      <p><strong>（2）</strong> 乳酸菌与本题中的醋酸菌在细胞结构上最大的区别是______。乳酸菌的异化作用类型属于______。</p>
+      <p><strong>（3）</strong> 若要从酸菜发酵液中分离纯化乳酸菌，应采用______法接种到以______为唯一碳源的培养基上（选择/鉴别）。</p>
+      <p><strong>（4）</strong> 发酵过程中pH逐渐降低，这是否有利于抑制杂菌生长？为什么？</p>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">查看答案与解析 ▼</div>
+      <div class="accordion-body">
+        <h3>（1）两个填空</h3>
+        <p>① 食盐的主要目的：<strong>抑制杂菌生长</strong>（高盐渗透压使杂菌脱水死亡，但乳酸菌耐受高盐）</p>
+        <p>② 密封的原因：<strong>创造无氧环境</strong>（乳酸菌是厌氧菌或兼性厌氧菌，无氧条件下才能进行乳酸发酵；同时隔绝氧气防止好氧杂菌繁殖）</p>
+
+        <h3>（2）细胞结构与异化类型</h3>
+        <p>① 乳酸菌与醋酸菌都是<strong>原核生物</strong>，在细胞结构上没有本质区别（都是原核，无核膜，只有核糖体）。如果要找一个区别，可以说乳酸菌是<strong>球菌或杆菌</strong>，醋酸菌是<strong>杆菌</strong>——但这不是核心区别。实际上此空考的是乳酸菌和醋酸菌都属原核生物这个共性。</p>
+        <p>② 乳酸菌的异化作用类型：<strong>厌氧型</strong>（专性厌氧或兼性厌氧，但主要在无氧条件下进行乳酸发酵）</p>
+
+        <h3>（3）分离方法</h3>
+        <p>① <strong>稀释涂布平板法</strong></p>
+        <p>② 以<strong>乳酸</strong>为代谢产物，可选择含特定碳源（如葡萄糖+碳酸钙）的培养基——乳酸菌产酸后碳酸钙溶解形成<strong>透明圈</strong>，这是鉴别培养基的功能。如果题目问的是"选择"，则可以加特定抑制剂抑制其他菌。此空填<strong>选择</strong>。</p>
+
+        <h3>（4）pH降低的影响</h3>
+        <p><strong>是的，有利于抑制杂菌生长。</strong>因为大多数杂菌（如大肠杆菌、腐败菌）不耐酸，在低pH环境下无法繁殖。而乳酸菌本身耐酸，能在pH 3.5-4.0的环境中继续生长。这种"自我保护"机制和康普茶中醋酸积累抑菌的原理相同——都是利用<strong>代谢产物（酸）降低pH来创造不利于杂菌的环境</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📋 选择题练习</h2>
+
+    <div class="quiz">
+      <h3>Q1: 下列关于酵母菌和醋酸菌的比较，正确的是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">两者都是原核生物</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">两者都是兼性厌氧菌</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">酵母菌是真核生物（兼性厌氧），醋酸菌是原核生物（好氧）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">两者细胞壁成分相同</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 在康普茶发酵过程中，下列变化正确的是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">糖含量逐渐增加，酒精含量逐渐减少</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">pH逐渐升高，抑菌能力逐渐减弱</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">氧气逐渐消耗，酵母菌从有氧呼吸转向无氧呼吸</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">醋酸菌在无氧条件下将酒精转化为醋酸</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 某实验研究温度(25-35℃)、pH(3-7)和接种量(5-15%)对发酵产酸量的影响。ANOVA结果：温度F=45.3(P&lt;0.001)，pH F=12.1(P=0.003)，接种量F=1.8(P=0.21)。下列说法正确的是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">接种量的影响最大</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">影响程度排序为：温度 > pH > 接种量</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">三个因素都极显著</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">pH的影响不显著</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q4: 关于稀释涂布平板法，下列说法错误的是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">可以用于活菌计数</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">需要逐级稀释菌液</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">不需要在无菌条件下操作</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">最终能获得分散的单菌落</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📋 概念辨析</h2>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">1. 有氧呼吸 vs 无氧呼吸 ▼</div>
+      <div class="accordion-body">
+        <table>
+          <tr><th></th><th>有氧呼吸</th><th>无氧呼吸</th></tr>
+          <tr><td>是否需要O₂</td><td>需要</td><td>不需要</td></tr>
+          <tr><td>产物</td><td>CO₂ + H₂O</td><td>酒精+CO₂ 或 乳酸</td></tr>
+          <tr><td>ATP产量</td><td>~36</td><td>~2</td></tr>
+          <tr><td>分解程度</td><td>彻底</td><td>不彻底</td></tr>
+          <tr><td>能量利用率</td><td>高</td><td>低</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">2. 好氧菌 vs 兼性厌氧菌 vs 专性厌氧菌 ▼</div>
+      <div class="accordion-body">
+        <table>
+          <tr><th></th><th>好氧菌</th><th>兼性厌氧菌</th><th>专性厌氧菌</th></tr>
+          <tr><td>有氧时</td><td>✅ 有氧呼吸</td><td>✅ 有氧呼吸</td><td>❌ 死亡</td></tr>
+          <tr><td>无氧时</td><td>❌ 死亡</td><td>✅ 无氧呼吸</td><td>✅ 无氧呼吸</td></tr>
+          <tr><td>举例</td><td>醋酸菌、结核杆菌</td><td>酵母菌、大肠杆菌</td><td>破伤风杆菌、产甲烷菌</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">3. 灭菌 vs 消毒 ▼</div>
+      <div class="accordion-body">
+        <table>
+          <tr><th></th><th>灭菌</th><th>消毒</th></tr>
+          <tr><td>杀死范围</td><td>所有微生物（含芽孢）</td><td>部分微生物（通常不含芽孢）</td></tr>
+          <tr><td>方法</td><td>高压蒸汽灭菌、干热灭菌、灼烧灭菌</td><td>75%酒精、紫外线、煮沸</td></tr>
+          <tr><td>结果</td><td>完全无菌</td><td>减少菌量，但非完全无菌</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">4. 选择培养基 vs 鉴别培养基 ▼</div>
+      <div class="accordion-body">
+        <table>
+          <tr><th></th><th>选择培养基</th><th>鉴别培养基</th></tr>
+          <tr><td>功能</td><td>只让目标菌生长，抑制其他菌</td><td>所有菌都能长，但不同菌看起来不同</td></tr>
+          <tr><td>原理</td><td>加入特定抑制剂或特定碳源</td><td>加入指示剂，不同菌代谢产物不同→颜色不同</td></tr>
+          <tr><td>举例</td><td>加抗生素的培养基；以乙醇为唯一碳源</td><td>伊红美蓝培养基（大肠杆菌→金属光泽）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">5. F值 vs P值 ▼</div>
+      <div class="accordion-body">
+        <table>
+          <tr><th></th><th>F值</th><th>P值</th></tr>
+          <tr><td>含义</td><td>因素影响 vs 随机误差的比值</td><td>结果纯属运气的概率</td></tr>
+          <tr><td>判断</td><td>F越大→影响越大</td><td>P越小→越可信（越显著）</td></tr>
+          <tr><td>显著标准</td><td>—</td><td>P&lt;0.05显著，P&lt;0.01极显著</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 知识回顾清单</h2>
+    <p>学完这套课件，你应该能回答以下所有问题。如果某个问题还不会，点击对应链接回去复习。</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+      <li>✅ 酵母菌无氧呼吸产生什么？→ <a href="03-metabolism.html">微生物代谢</a></li>
+      <li>✅ 醋酸菌需要什么条件才能把酒精变成醋酸？→ <a href="04-bacteria-yeast.html">醋酸菌与酵母菌</a></li>
+      <li>✅ 醋酸积累有什么作用？→ <a href="02-kombucha.html">康普茶发酵</a></li>
+      <li>✅ 酵母菌和醋酸菌的细胞结构有什么区别？→ <a href="04-bacteria-yeast.html">醋酸菌与酵母菌</a></li>
+      <li>✅ 如何从混合菌群中分离出单一菌种？→ <a href="06-culture.html">微生物培养技术</a></li>
+      <li>✅ 3D曲面图怎么读？F值和P值怎么看？→ <a href="05-optimization.html">发酵条件优化</a></li>
+      <li>✅ 什么是无菌操作？为什么要做？→ <a href="07-aseptic.html">无菌操作</a></li>
+      <li>✅ 抑菌实验的原理是什么？→ <a href="01-problem.html">题目分析-第(4)问</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

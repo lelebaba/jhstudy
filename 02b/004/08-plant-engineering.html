@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>植物基因工程 — 苦茶碱合成调控</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a><ul class="tree-sub">
+      <li class="tree-item"><a href="02-transcription-factors.html" class="tree-link">🧬 2. 转录因子详解</a></li>
+      <li class="tree-item"><a href="03-antisense.html" class="tree-link">🔇 3. 反义核酸技术</a></li>
+      <li class="tree-item"><a href="04-emsa.html" class="tree-link">⚡ 4. EMSA实验</a></li>
+      <li class="tree-item"><a href="05-luciferase.html" class="tree-link">💡 5. 荧光素酶互补</a></li>
+      <li class="tree-item"><a href="06-gene-expression.html" class="tree-link">🎛️ 6. 基因表达基础</a></li>
+      <li class="tree-item"><a href="07-central-dogma.html" class="tree-link">🔄 7. 中心法则</a></li>
+      <li class="tree-item"><a href="08-plant-engineering.html" class="tree-link active">🌱 8. 植物基因工程</a></li>
+      <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+    </ul></li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🌱 植物基因工程</h1>
+  <p>基因怎么"送"进植物细胞？农杆菌——植物界的天然快递员</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 植物基因工程</div>
+
+<div class="card">
+  <h2>🚚 农杆菌转化法——天然的"基因快递员"</h2>
+  <p>绝大多数基因工程实验都需要把外源基因导入目标细胞。对动物细胞来说可以直接用显微注射或病毒感染，但对植物细胞——你有<strong>细胞壁</strong>这道"砖墙"挡着，不能直接穿刺。</p>
+  <p><strong>农杆菌</strong>是一种自然存在的土壤细菌，它有一种特殊的本领：当它感染植物伤口时，会将自己的一段DNA（称为<strong>T-DNA</strong>）"送"进植物细胞，并整合到植物的基因组中。科学家利用这一特性：<strong>把需要的基因序列装在T-DNA里，把不要的致病基因移除</strong>，让农杆菌当"基因快递员"。</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 200">
+      <circle cx="80" cy="80" r="25" fill="#8bc34a"/>
+      <text x="80" y="85" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">农杆菌</text>
+      <rect x="120" y="60" width="140" height="40" rx="6" fill="#fff9c4" stroke="#f9a825" stroke-width="2"/>
+      <text x="190" y="80" text-anchor="middle" font-size="10" fill="#333">T-DNA（含目的基因）</text>
+      <line x1="260" y1="80" x2="310" y2="80" stroke="#ff9800" stroke-width="2"/>
+      <polygon points="305,75 320,80 305,85" fill="#ff9800"/>
+      <text x="290" y="70" text-anchor="middle" font-size="9" fill="#333">感染</text>
+      <rect x="320" y="50" width="160" height="60" rx="10" fill="#c8e6c9" stroke="#4caf50" stroke-width="2"/>
+      <text x="400" y="75" text-anchor="middle" font-size="12" fill="#2e7d32" font-weight="bold">植物细胞</text>
+      <text x="400" y="95" text-anchor="middle" font-size="10" fill="#333">细胞核 + 染色体</text>
+      <line x1="480" y1="80" x2="530" y2="80" stroke="#4caf50" stroke-width="2"/>
+      <rect x="530" y="55" width="130" height="50" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="595" y="75" text-anchor="middle" font-size="11" fill="#2e7d32">T-DNA整合到</text>
+      <text x="595" y="93" text-anchor="middle" font-size="11" fill="#2e7d32">植物基因组</text>
+    </svg>
+    <figcaption>农杆菌转化过程：T-DNA像"包裹"一样被送入植物细胞并整合到染色体</figcaption>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔬 完整的操作流程</h2>
+  <ol class="step-list">
+    <li><strong>构建载体</strong><br>将目的基因（如反义T序列）连入农杆菌的T-DNA质粒载体中，同时通常加入筛选标记基因（如抗生素抗性基因）。</li>
+    <li><strong>转化农杆菌</strong><br>将重组载体导入农杆菌，筛选出携带正确载体的农杆菌菌株。</li>
+    <li><strong>感染植物组织</strong><br>将含有重组载体的农杆菌与植物组织（如叶片切片、愈伤组织）共培养，让农杆菌感染植物细胞。</li>
+    <li><strong>筛选与再生</strong><br>用筛选标记（如抗生素）杀死未获得T-DNA的细胞，存活细胞在培养基中再生成完整植株。</li>
+    <li><strong>检测基因表达</strong><br>通过PCR、Western blot、或本题中的苦茶碱含量检测等方法验证目的基因是否成功表达。</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>🌿 其他植物基因导入方法</h2>
+  <table>
+    <tr><th>方法</th><th>原理</th><th>优缺点</th></tr>
+    <tr><td>农杆菌转化法</td><td>利用农杆菌天然的T-DNA转移机制</td><td>效率高、操作简单，但部分单子叶植物不受感染</td></tr>
+    <tr><td>基因枪法</td><td>用金/钨微粒包裹DNA，"射击"进入细胞</td><td>适用性广（几乎所有植物），但整合随机</td></tr>
+    <tr><td>花粉管通道法</td><td>在授粉时将DNA溶液涂抹柱头，沿花粉管进入胚囊</td><td>简单、无需组培，但效率低</td></tr>
+    <tr><td>原生质体融合法</td><td>去除细胞壁后直接导入DNA</td><td>精确但操作复杂</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>🔗 回到题目</h2>
+  <p>本题图1实验中，实验组用<strong>农杆菌转化法</strong>将T基因的反义序列导入苦茶树组织。茶树是双子叶植物，农杆菌转化法是最标准、最常用的方法。</p>
+  <p>对照组导入<strong>空载体</strong>——即只有T-DNA空框架、不含反义序列的质粒载体。这样两组唯一的差异就是"有没有反义序列"，其余条件（农杆菌感染、组织培养、筛选过程等）完全一致。</p>
+</div>
+
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>农杆菌转化法利用的是农杆菌的哪种天然特性？</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="qcheck(this,'C')">A. 产生抗生素的能力</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">B. 进行光合作用的能力</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">C. 将自身T-DNA转移到植物细胞中的能力</div>
+      <div class="quiz-option" onclick="qcheck(this,'C')">D. 分解纤维素的能力</div>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="07-central-dogma.html" class="nav-link">← 中心法则</a>
+  <a href="09-practice.html" class="nav-link">📝 综合练习 →</a>
+</div>
+</div>
+</div>
+<script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function qcheck(el,ans){document.querySelectorAll('.quiz-option').forEach(e=>{var t=e.textContent.trim();if(t.length>1&&'ABCD'.includes(t[0]))e.classList.remove('correct','wrong');});el.classList.add(el.textContent.trim().startsWith(ans)?'correct':'wrong');var fb=document.getElementById('qfb');fb.className='quiz-feedback show '+(el.textContent.trim().startsWith(ans)?'correct':'wrong');fb.innerHTML=el.textContent.trim().startsWith(ans)?'✅ 正确！农杆菌天然具有将其Ti质粒上的T-DNA片段整合到植物基因组的能力，科学家利用这一特性构建了基因工程载体。':'❌ 正确选项是C。';}
+</script>
+</body>
+</html>

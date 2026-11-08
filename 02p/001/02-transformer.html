@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>变压器原理 — 变压器与远距离输电</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">⚡ 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item">
+      <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-transformer.html" class="tree-link active">🔌 2. 变压器原理</a></li>
+        <li class="tree-item"><a href="03-dynamic-analysis.html" class="tree-link">📊 3. 动态分析技巧</a></li>
+        <li class="tree-item"><a href="04-long-distance.html" class="tree-link">📡 4. 远距离输电</a></li>
+        <li class="tree-item"><a href="05-ac-basics.html" class="tree-link">💡 5. 交流电基础</a></li>
+        <li class="tree-item"><a href="06-electromagnetic-induction.html" class="tree-link">⚡ 6. 电磁感应</a></li>
+        <li class="tree-item"><a href="07-circuit-basics.html" class="tree-link">🔧 7. 电路基础</a></li>
+        <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main-content">
+<div class="page-header">
+  <h1>🔌 变压器原理详解</h1>
+  <p>变压器的"三大关系"是解题的核心武器</p>
+</div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">首页</a> <span>›</span> <a href="01-problem.html">题目分析</a> <span>›</span> 变压器原理</div>
+
+<div class="card">
+  <h2>🔧 变压器是什么？</h2>
+  <p>变压器是一种改变交流电压的设备。它的结构很简单：一个闭合铁芯上绕了两组线圈——<strong>原线圈</strong>（初级线圈，匝数 n₁）和<strong>副线圈</strong>（次级线圈，匝数 n₂）。</p>
+  <div class="fig-box">
+    <svg viewBox="0 0 680 200">
+      <text x="340" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">变压器结构示意图</text>
+      <!-- 闭合铁芯 -->
+      <rect x="150" y="60" width="380" height="100" rx="4" fill="none" stroke="#555" stroke-width="3"/>
+      <text x="340" y="180" text-anchor="middle" font-size="12" fill="#555">闭合铁芯（导磁）</text>
+      <!-- 原线圈 -->
+      <rect x="180" y="50" width="80" height="20" rx="3" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="220" y="65" text-anchor="middle" font-size="11" fill="#1565c0">原线圈 n₁</text>
+      <!-- 副线圈 -->
+      <rect x="420" y="50" width="80" height="20" rx="3" fill="#fff3e0" stroke="#ff6f00" stroke-width="2"/>
+      <text x="460" y="65" text-anchor="middle" font-size="11" fill="#ff6f00">副线圈 n₂</text>
+      <!-- 原线圈回路 -->
+      <line x1="180" y1="60" x2="160" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="160" y1="60" x2="160" y2="30" stroke="#333" stroke-width="1.5"/>
+      <line x1="260" y1="60" x2="280" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="280" y1="60" x2="280" y2="30" stroke="#333" stroke-width="1.5"/>
+      <line x1="160" y1="30" x2="280" y2="30" stroke="#333" stroke-width="1.5"/>
+      <circle cx="220" cy="30" r="10" fill="#fff" stroke="#c62828" stroke-width="2"/>
+      <text x="220" y="34" text-anchor="middle" font-size="9" fill="#c62828">A</text>
+      <text x="140" y="25" font-size="12" fill="#555">u₁</text>
+      <!-- 副线圈回路 -->
+      <line x1="420" y1="60" x2="400" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="400" y1="60" x2="400" y2="100" stroke="#333" stroke-width="1.5"/>
+      <line x1="500" y1="60" x2="520" y2="60" stroke="#333" stroke-width="1.5"/>
+      <line x1="520" y1="60" x2="520" y2="100" stroke="#333" stroke-width="1.5"/>
+      <rect x="440" y="100" width="40" height="30" rx="3" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="460" y="120" text-anchor="middle" font-size="11" fill="#2e7d32">负载</text>
+      <line x1="400" y1="130" x2="520" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="400" y1="100" x2="400" y2="130" stroke="#333" stroke-width="1.5"/>
+      <line x1="520" y1="100" x2="520" y2="130" stroke="#333" stroke-width="1.5"/>
+      <text x="490" y="55" font-size="12" fill="#ff6f00">u₂</text>
+    </svg>
+  </div>
+  <p><strong>比喻：</strong>变压器就像一个"电压翻译器"。原线圈接收一种电压（比如 220V），副线圈输出另一种电压（比如 22V 或 2200V），翻译的"比例"取决于两个线圈的匝数比。</p>
+</div>
+
+<div class="card">
+  <h2>⚡ 工作原理：互感现象</h2>
+  <p>变压器之所以能工作，靠的是<strong>互感</strong>——两个线圈通过磁场传递能量的现象。</p>
+  <ol>
+    <li>原线圈接交流电源 → 产生<strong>交变电流</strong> → 产生<strong>交变磁场</strong></li>
+    <li>交变磁场沿铁芯传播 → 穿过副线圈</li>
+    <li>副线圈中的磁通量不断变化 → 产生<strong>感应电动势</strong></li>
+    <li>副线圈接上负载 → 有电流输出</li>
+  </ol>
+  <div class="hint-box">
+    <p><strong>💡 关键理解：</strong>变压器只能用<strong>交流电</strong>工作！直流电的磁场不变，磁通量不变化，副线圈不会产生感应电动势。这就是为什么电网用交流电而不是直流电。</p>
+    <p>📖 想深入理解"交变磁场→感应电动势"的原理？看 <a href="06-electromagnetic-induction.html">电磁感应</a></p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📐 理想变压器的三大关系</h2>
+  <p>高中阶段默认使用<strong>理想变压器</strong>模型，满足三个条件：①没有漏磁（所有磁感线都穿过两个线圈）；②没有铜损（线圈电阻为零）；③没有铁损（铁芯没有能量损耗）。</p>
+
+  <h3>关系一：电压比 = 匝数比</h3>
+  <div class="formula-box">
+    U₁ / U₂ = n₁ / n₂
+    <span class="label">电压与匝数成正比</span>
+  </div>
+  <p>这是变压器最基本的关系。<strong>匝数多的线圈电压高</strong>，匝数少的线圈电压低。</p>
+  <ul>
+    <li>n₁ &gt; n₂：降压变压器（输入电压 > 输出电压）</li>
+    <li>n₁ &lt; n₂：升压变压器（输入电压 < 输出电压）</li>
+  </ul>
+  <p><strong>比喻：</strong>匝数就像楼梯的台阶数。从 10 楼到 1 楼（10 阶→1阶）是"降压"，从 1 楼到 10 楼（1阶→10阶）是"升压"。</p>
+
+  <h3>关系二：电流比 = 匝数反比</h3>
+  <div class="formula-box">
+    I₁ / I₂ = n₂ / n₁
+    <span class="label">电流与匝数成反比</span>
+  </div>
+  <p>匝数多的线圈电流<strong>小</strong>，匝数少的线圈电流<strong>大</strong>。</p>
+  <p><strong>为什么？</strong>理想变压器输入功率 = 输出功率（P₁ = P₂），即 U₁I₁ = U₂I₂。既然 U₁/U₂ = n₁/n₂，那么 I₁/I₂ 必然 = n₂/n₁。</p>
+
+  <h3>关系三：功率守恒</h3>
+  <div class="formula-box">
+    P₁ = P₂  →  U₁ × I₁ = U₂ × I₂
+    <span class="label">输入功率 = 输出功率（无损耗）</span>
+  </div>
+  <p>理想变压器不消耗能量，输入多少功率就输出多少功率。</p>
+
+  <div class="hint-box">
+    <p><strong>💡 三大关系不是独立的：</strong>记住电压比和匝数比的关系就够了，电流比和功率守恒都可以从这两者推导出来。这就是"少记多推"的学习策略。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧩 用三大关系解题</h2>
+  <p>回到本题，验证三大关系如何应用：</p>
+
+  <h4>物理7中：</h4>
+  <ul>
+    <li>输入电压 u₁ 恒定 → U₂ = U₁ × (n₂/n₁) 也恒定（电压比关系）</li>
+    <li>负载变化导致 I₂ 变化 → I₁ = I₂ × (n₂/n₁) 跟着变化（电流比关系）</li>
+    <li>P₁ = P₂ = U₂ × I₂ → I₂ 变化 → 总功率变化（功率守恒）</li>
+  </ul>
+
+  <h4>物理18中：</h4>
+  <ul>
+    <li>T₁：n₁:n₂ = 1:100 → U₂ = U₁ × 100，I₁ = I₂ × 100</li>
+    <li>T₂：n₃:n₄ = 200:1 → U₃ = U₄ × 200，I₂ = I₃ ÷ 200</li>
+    <li>级联使用：I₁ = I₂ × 100 = (I₃/200) × 100 = I₃/2</li>
+  </ul>
+  <p>每一步都用电压比或电流比，逻辑链清晰。</p>
+</div>
+
+<!-- 随堂小测 -->
+<div class="card">
+  <div class="quiz-block">
+    <h4>📝 随堂小测</h4>
+    <p>1. 一个理想变压器原线圈 1000 匝，副线圈 50 匝，原线圈接 220V 交流电，副线圈输出电压为：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ1(this)">A. 4400 V</div>
+      <div class="quiz-option" onclick="checkQ1(this)">B. 11 V</div>
+      <div class="quiz-option" onclick="checkQ1(this)">C. 220 V</div>
+      <div class="quiz-option" onclick="checkQ1(this)">D. 110 V</div>
+    </div>
+    <div class="quiz-feedback" id="q1fb"></div>
+
+    <p style="margin-top:16px;">2. 上题中如果副线圈输出电流为 4A，原线圈电流为：</p>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="checkQ2(this)">A. 0.2 A</div>
+      <div class="quiz-option" onclick="checkQ2(this)">B. 4 A</div>
+      <div class="quiz-option" onclick="checkQ2(this)">C. 80 A</div>
+      <div class="quiz-option" onclick="checkQ2(this)">D. 0.08 A</div>
+    </div>
+    <div class="quiz-feedback" id="q2fb"></div>
+  </div>
+</div>
+
+<div class="nav-section">
+  <a href="01-problem.html" class="nav-link">← 题目分析</a>
+  <a href="03-dynamic-analysis.html" class="nav-link">📊 动态分析技巧 →</a>
+</div>
+
+</div>
+</div>
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('show');document.getElementById('sidebarOverlay').classList.toggle('show');}
+function checkQ1(el){
+  document.querySelectorAll('#q1fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('B');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q1fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！U₂ = U₁ × (n₂/n₁) = 220 × (50/1000) = 11V。匝数少 → 电压低 → 降压变压器。':'❌ 正确选项是B。U₂ = U₁ × n₂/n₁ = 220 × 50/1000 = 11V。';
+}
+function checkQ2(el){
+  document.querySelectorAll('#q2fb').forEach(e=>{e.className='quiz-feedback';e.innerHTML='';});
+  document.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('correct','wrong'));
+  var correct=el.textContent.startsWith('A');
+  el.classList.add(correct?'correct':'wrong');
+  var fb=document.getElementById('q2fb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.innerHTML=correct?'✅ 正确！I₁ = I₂ × (n₂/n₁) = 4 × (50/1000) = 0.2A。匝数多 → 电流小，高压侧是"细水长流"。':'❌ 正确选项是A。I₁ = I₂ × n₂/n₁ = 4 × 50/1000 = 0.2A。电流与匝数成反比。';
+}
+</script>
+</body>
+</html>

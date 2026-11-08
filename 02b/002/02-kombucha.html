@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康普茶发酵原理 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link active">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>🫖 康普茶发酵原理</h1>
+    <p>两种微生物的"接力赛"——为什么1+1&gt;2？</p>
+  </div>
+
+  <div class="card">
+    <h2>什么是康普茶？</h2>
+    <p>康普茶（Kombucha）是一种古老的发酵茶饮料，起源于中国东北（约公元前220年），后来传到日本、俄罗斯和欧洲。</p>
+    <p>它的核心配方很简单：<strong>茶 + 糖 + SCOBY菌膜</strong>，在室温下静置发酵7-14天。</p>
+
+    <div class="hint-box">
+      <h4>💡 SCOBY是什么？</h4>
+      <p><strong>SCOBY</strong> = Symbiotic Culture Of Bacteria and Yeast（细菌和酵母的共生培养物）。它看起来像一块灰白色的、有点像海蜇的"膜"，漂浮在发酵液表面。</p>
+      <p><strong>比喻：</strong>SCOBY就像一个"微生物社区"——酵母菌和醋酸菌住在一起，互相帮忙，互相依赖。酵母菌产酒精给醋酸菌当"原料"，醋酸菌产醋酸降低pH保护酵母菌不受杂菌侵害。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>发酵的三个阶段</h2>
+
+    <div class="flow-step">
+      <span class="step-num">第一阶段</span>
+      <div>
+        <strong>初期：有氧阶段（0~2天）</strong><br>
+        纱布盖口，氧气充足。酵母菌进行<strong>有氧呼吸</strong>，大量繁殖。此时产生CO₂（可以看到气泡），糖被快速消耗。<br>
+        <span class="tag tag-green">酵母菌：有氧呼吸</span>
+        <span class="tag tag-blue">醋酸菌：开始繁殖</span>
+      </div>
+    </div>
+    <div class="flow-arrow">⬇</div>
+
+    <div class="flow-step">
+      <span class="step-num">第二阶段</span>
+      <div>
+        <strong>中期：过渡阶段（2~5天）</strong><br>
+        氧气逐渐消耗。酵母菌从有氧呼吸转向<strong>无氧呼吸（酒精发酵）</strong>，产生酒精。醋酸菌在液面形成菌膜，开始将酒精转化为醋酸。<br>
+        <span class="tag tag-orange">酵母菌：无氧呼吸 → 产酒精</span>
+        <span class="tag tag-green">醋酸菌：有氧 → 产醋酸</span>
+      </div>
+    </div>
+    <div class="flow-arrow">⬇</div>
+
+    <div class="flow-step">
+      <span class="step-num">第三阶段</span>
+      <div>
+        <strong>后期：稳定阶段（5~14天）</strong><br>
+        菌膜完全覆盖液面，内部形成微氧环境。酵母菌持续产酒精，醋酸菌持续产醋酸。pH降至3-4，风味物质积累。糖被消耗殆尽后，发酵趋于停止。<br>
+        <span class="tag tag-orange">酒精→醋酸 持续转化</span>
+        <span class="tag tag-blue">pH↓ → 抑制杂菌</span>
+      </div>
+    </div>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 260">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">康普茶发酵过程中的物质变化</text>
+
+        <!-- 时间轴 -->
+        <line x1="30" y1="50" x2="650" y2="50" stroke="#999" stroke-width="2"/>
+        <text x="60" y="42" font-size="11" fill="#666">第0天</text>
+        <text x="250" y="42" font-size="11" fill="#666">第3天</text>
+        <text x="450" y="42" font-size="11" fill="#666">第7天</text>
+        <text x="600" y="42" font-size="11" fill="#666">第14天</text>
+        <circle cx="30" cy="50" r="4" fill="#4caf50"/>
+        <circle cx="250" cy="50" r="4" fill="#f57c00"/>
+        <circle cx="450" cy="50" r="4" fill="#f57c00"/>
+        <circle cx="600" cy="50" r="4" fill="#1565c0"/>
+
+        <!-- 糖含量曲线 -->
+        <path d="M 30 80 Q 150 85 250 130 Q 350 170 450 200 Q 550 220 600 225" fill="none" stroke="#e91e63" stroke-width="3"/>
+        <text x="100" y="78" font-size="12" fill="#e91e63">糖 ↓</text>
+
+        <!-- 酵母菌数量 -->
+        <path d="M 30 120 Q 100 90 200 85 Q 300 82 400 90 Q 500 100 600 105" fill="none" stroke="#4caf50" stroke-width="3"/>
+        <text x="100" y="112" font-size="12" fill="#4caf50">酵母菌</text>
+
+        <!-- 酒精含量 -->
+        <path d="M 30 210 Q 120 200 200 150 Q 280 110 350 120 Q 420 130 480 160 Q 550 185 600 200" fill="none" stroke="#f57c00" stroke-width="3"/>
+        <text x="200" y="142" font-size="12" fill="#f57c00">酒精</text>
+
+        <!-- 醋酸含量 -->
+        <path d="M 30 220 Q 120 215 250 205 Q 350 190 450 150 Q 530 115 600 90" fill="none" stroke="#1565c0" stroke-width="3"/>
+        <text x="480" y="105" font-size="12" fill="#1565c0">醋酸 ↑</text>
+
+        <!-- 阶段标注 -->
+        <rect x="30" y="230" width="170" height="25" rx="5" fill="#e8f5e9" stroke="#4caf50"/>
+        <text x="115" y="248" text-anchor="middle" font-size="11" fill="#1b5e20">有氧阶段</text>
+        <rect x="220" y="230" width="180" height="25" rx="5" fill="#fff3e0" stroke="#f57c00"/>
+        <text x="310" y="248" text-anchor="middle" font-size="11" fill="#e65100">过渡阶段</text>
+        <rect x="420" y="230" width="180" height="25" rx="5" fill="#e3f2fd" stroke="#1565c0"/>
+        <text x="510" y="248" text-anchor="middle" font-size="11" fill="#0d47a1">稳定阶段</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🤝 为什么要"混合发酵"？</h2>
+    <p>康普茶是<strong>混合发酵</strong>（mixed fermentation）的典型例子——两种微生物在一起发酵，比各自单独发酵效果好得多。</p>
+
+    <table>
+      <tr><th></th><th>单独酵母菌</th><th>单独醋酸菌</th><th>混合发酵</th></tr>
+      <tr><td>产酒精</td><td>✅ 能产</td><td>❌ 不能产</td><td>✅ 能产</td></tr>
+      <tr><td>产醋酸</td><td>❌ 不能产</td><td>⚠ 需要酒精为原料</td><td>✅ 酵母菌供酒精，醋酸菌转醋酸</td></tr>
+      <tr><td>抑菌能力</td><td>弱（只有酒精）</td><td>弱（没有原料）</td><td>强（酒精+醋酸双重）</td></tr>
+      <tr><td>风味</td><td>单一（酒味）</td><td>单一（醋味）</td><td>丰富（酸甜气泡感）</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 "共生关系"的本质</h4>
+      <p><strong>酵母菌</strong>：把糖变成酒精 → 给醋酸菌提供"原料"<br>
+      <strong>醋酸菌</strong>：把酒精变成醋酸 → 降低pH → 保护酵母菌不受杂菌侵害（因为酵母菌耐受酸性，但大多数杂菌不耐酸）</p>
+      <p>这就是"互利共生"——两种生物互相帮忙，各取所需。就像面包师和奶酪师合作：一个烤面包，一个做奶酪，合在一起就成了美味的芝士三明治。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🧫 菌膜是怎么形成的？</h2>
+    <p>醋酸菌有一个特殊能力——能合成<strong>纤维素</strong>。当醋酸菌在液面繁殖时，它们分泌的纤维素在液面交织成一层致密的膜。</p>
+
+    <div class="hint-box">
+      <h4>💡 菌膜的双重作用</h4>
+      <p><strong>1. 物理屏障</strong>：菌膜覆盖液面，阻挡空气中的杂菌落入发酵液，起到"天然盖子"的作用。</p>
+      <p><strong>2. 微氧环境</strong>：菌膜虽然隔绝了大环境，但膜内部仍有微量的氧气，正好够醋酸菌"有氧产酸"使用。</p>
+      <p><strong>3. 菌种载体</strong>：SCOBY菌膜本身就含有大量活的醋酸菌和酵母菌，可以直接用于下一批发酵的"接种"。</p>
+    </div>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 发酵初期用纱布盖口的主要目的是什么？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">防止CO₂泄漏</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">透气供酵母菌有氧呼吸，同时阻挡杂菌进入</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">保持温度</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">阻挡光照</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 康普茶发酵中酵母菌和醋酸菌的关系是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">竞争关系（抢夺糖）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">寄生关系（一方有害）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">互利共生（酵母菌产酒精给醋酸菌，醋酸菌产酸保护酵母菌）</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">互不影响（各干各的）</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 醋酸菌形成的菌膜主要成分是什么？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">蛋白质</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">纤维素</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">多糖-蛋白质复合物</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">几丁质</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

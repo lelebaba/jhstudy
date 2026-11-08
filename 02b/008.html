@@ -1,0 +1,766 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+<title>蓝光与线粒体 — 有氧呼吸·ATP·电子传递链 学习课件</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f0f4f8;color:#1e293b;line-height:1.75;font-size:16px}
+.wrapper{display:flex;min-height:100vh}
+.sidebar{width:280px;flex-shrink:0;background:linear-gradient(180deg,#0f172a,#1e293b);color:#e2e8f0;position:sticky;top:0;height:100vh;overflow-y:auto;z-index:100}
+.sidebar-header{padding:20px 16px 16px;border-bottom:1px solid #334155}
+.sidebar-header h1{font-size:18px;font-weight:700;color:#fbbf24}
+.sidebar-header p{font-size:12px;color:#94a3b8;margin-top:4px}
+.sidebar-nav{padding:12px 0}
+.sidebar-nav a{display:block;padding:10px 16px 10px 20px;color:#cbd5e1;text-decoration:none;font-size:14px;border-left:3px solid transparent;transition:all .2s}
+.sidebar-nav a:hover,.sidebar-nav a.active{background:#1e293b;color:#fbbf24;border-left-color:#fbbf24}
+.sidebar-nav .sub{padding-left:36px;font-size:13px;color:#94a3b8}
+.sidebar-nav .sub:hover{color:#fbbf24}
+.sidebar-nav .section-label{padding:14px 16px 4px 20px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#64748b;font-weight:600}
+.sidebar-toggle{display:none;position:fixed;top:12px;left:12px;z-index:200;background:#0f172a;color:#fbbf24;border:none;border-radius:8px;padding:10px 14px;font-size:20px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99}
+.main{flex:1;min-width:0;padding:32px 40px 60px;max-width:900px}
+.section{margin-bottom:48px;scroll-margin-top:20px}
+.section h2{font-size:24px;font-weight:700;color:#0f172a;border-bottom:3px solid #fbbf24;padding-bottom:8px;margin-bottom:20px}
+.section h3{font-size:19px;font-weight:600;color:#1e293b;margin:24px 0 12px}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border:1px solid #e2e8f0}
+.card-problem{border-left:5px solid #ef4444;background:#fef2f2}
+.card-answer{border-left:5px solid #22c55e;background:#f0fdf4}
+.card-tip{border-left:5px solid #3b82f6;background:#eff6ff}
+.card-knowledge{border-left:5px solid #8b5cf6;background:#f5f3ff}
+.card-meta{border-left:5px solid #06b6d4;background:#ecfeff}
+.exercise-box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:20px;margin:16px 0}
+.exercise-box .question{font-weight:600;margin-bottom:10px}
+.exercise-box .options{margin:8px 0 8px 20px}
+.exercise-box .options label{display:block;padding:6px 0;cursor:pointer}
+.exercise-box .options input{margin-right:8px}
+.exercise-box .feedback{display:none;margin-top:12px;padding:12px;border-radius:8px;font-weight:500}
+.exercise-box .feedback.correct{display:block;background:#bbf7d0;color:#166534}
+.exercise-box .feedback.wrong{display:block;background:#fecaca;color:#b91c1c}
+.exercise-box .feedback.show-answer{display:block;background:#dbeafe;color:#1e40af}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-right:6px}
+.tag-red{background:#fecaca;color:#b91c1c}
+.tag-green{background:#bbf7d0;color:#166534}
+.tag-cyan{background:#a5f3fc;color:#155e75}
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border:1px solid #e2e8f0}
+th{background:#f1f5f9;font-weight:600;color:#334155}
+.btn{display:inline-block;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:#fbbf24;color:#0f172a}
+.btn-primary:hover{background:#f59e0b}
+.btn-sm{padding:4px 12px;font-size:12px}
+.knowledge-chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0;padding:16px;background:#f1f5f9;border-radius:10px}
+.knowledge-chain .kc-item{background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:500;text-decoration:none;color:#1e293b;transition:all .2s}
+.knowledge-chain .kc-item:hover{background:#fbbf24;border-color:#fbbf24;color:#0f172a}
+.knowledge-chain .kc-arrow{color:#94a3b8;font-size:16px}
+.back-top{display:inline-block;margin-top:20px;color:#3b82f6;text-decoration:none;font-size:14px}
+.back-top:hover{text-decoration:underline}
+@media(max-width:768px){.sidebar{display:none}.sidebar.show{display:block;position:fixed;inset:0;width:100%;height:100%;z-index:150;border-radius:0}.sidebar-overlay.show{display:block}.sidebar-toggle{display:block}.main{padding:60px 16px 40px}.section h2{font-size:20px}.card{padding:16px}.knowledge-chain{flex-direction:column;align-items:flex-start}.knowledge-chain .kc-arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="wrapper">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header"><h1>&#128218; 蓝光&#183;线粒体&#183;ATP</h1><p>有氧呼吸与电子传递链</p></div>
+  <div class="sidebar-nav">
+    <div class="section-label">&#128203; 题目与解析</div>
+    <a href="#sec-problem" data-section>题目展示</a>
+    <a href="#sec-answer" data-section>正确答案</a>
+    <a href="#sec-analysis" data-section>详细解析</a>
+    <div class="section-label">&#129514; 基础知识</div>
+    <a href="#sec-atp" data-section class="sub">ATP &#8212; 细胞的能量货币</a>
+    <a href="#sec-respiration" data-section class="sub">有氧呼吸 &#8212; 细胞的发电厂</a>
+    <a href="#sec-etc" data-section class="sub">电子传递链 &#8212; 能量传送带</a>
+    <a href="#sec-mitochondria" data-section class="sub">线粒体 &#8212; 充电宝工厂</a>
+    <a href="#sec-experiment" data-section class="sub">实验设计思维</a>
+    <div class="section-label">&#9998; 巩固练习</div>
+    <a href="#sec-practice" data-section class="sub">知识点小练习</a>
+    <a href="#sec-similar" data-section class="sub">同类题挑战</a>
+  </div>
+</nav>
+<div class="main" id="mainContent">
+
+<!-- SECTION 1: Problem -->
+<section class="section" id="sec-problem">
+<h2>&#128203; 题目展示</h2>
+<div class="card card-problem">
+<p><span class="tag tag-red">题目</span> <strong>17. [2023&#183;丰台二模]</strong></p>
+<p>研究表明，电子设备中的蓝光会对线粒体造成损伤，影响有氧呼吸过程，对机体产生一定的伤害。</p>
+<p><strong>(1)</strong> 有氧呼吸过程中 ATP 合成机制如图甲，来自 NADH 的电子沿电子传递链传递时，释放出的能量驱动图中 <u>__________</u> 转运 H<sup>+</sup> 从 <u>__________</u> 到膜间隙，形成 <u>__________</u>，驱动 H<sup>+</sup> 通过 ATP 合成酶，进而合成 ATP。</p>
+<p><strong>(2)</strong> 科研人员用 LED 灯模拟手机和平板电脑等设备发出的蓝光照射果蝇，检测其 ATP、线粒体和呼吸链复合物的相对含量，结果如表。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>检测指标</th><th>蓝光照射</th></tr></thead>
+<tbody>
+<tr><td>ATP 含量</td><td>减少</td></tr>
+<tr><td>线粒体含量</td><td>减少</td></tr>
+<tr><td>呼吸链复合物1</td><td>减少</td></tr>
+<tr><td>呼吸链复合物2</td><td>明显减少</td></tr>
+<tr><td>呼吸链复合物3</td><td>无明显变化</td></tr>
+<tr><td>呼吸链复合物4</td><td>无明显变化</td></tr>
+</tbody>
+</table>
+</div>
+<p>结合图甲及上述结果，分析蓝光导致果蝇体内 ATP 含量减少的机制是 <u>____________________</u>。</p>
+<p><strong>(3)</strong> 进一步研究发现，蓝光还会影响果蝇的存活率。科研人员选取同日龄果蝇，分组后分别培养，其中 1&#126;4 组分别进行 2 天、20 天、40 天、60 天暗培养，然后转入蓝光条件下培养（每日12小时蓝光照射，12小时黑暗），统计果蝇存活率，结果如图乙。实验结果表明 <u>____________________</u>。第5组果蝇的培养条件是 <u>____________</u>。</p>
+<p><strong>(4)</strong> 为研究蓝光对神经组织的影响，科研人员对老龄果蝇大脑切片观察，结果如图丙，其中箭头所指为脑神经组织空泡的位置。综合上述研究，推测蓝光导致老龄果蝇脑神经退化的机制可能是 <u>____________________</u>。</p>
+</div>
+<div class="card card-tip">
+<p><strong>&#128161; 读题提示</strong></p>
+<p>这道题是典型的"信息题"&#8212;&#8212;它给了你一段科研背景，然后让你结合基础知识和表格数据来推理。这种题在高考生物中越来越常见，考的是你 <strong>能不能把课本知识和新情境结合起来</strong>。</p>
+<p>拿到这种题，三步走：</p>
+<ol>
+<li><strong>先看课本关联</strong> &#8212; 这道题考的是有氧呼吸第三阶段（电子传递链）</li>
+<li><strong>再看表格数据</strong> &#8212; 哪些指标变了？哪些没变？变化规律是什么？</li>
+<li><strong>最后串联因果</strong> &#8212; 从"蓝光照射"到"ATP减少"再到"脑神经退化"，中间每一步都要有依据</li>
+</ol>
+</div>
+<a href="#sec-answer" class="btn btn-primary">&#128073; 去看正确答案</a>
+</section>
+
+<!-- SECTION 2: Answer -->
+<section class="section" id="sec-answer">
+<h2>&#9989; 正确答案</h2>
+<div class="card card-answer">
+<p><strong>(1)</strong> <span class="tag tag-green">答案</span></p>
+<p><strong>I、III、IV</strong>（或呼吸链复合物1、3、4）；<strong>线粒体基质</strong>；<strong>H<sup>+</sup>浓度梯度</strong>（或质子浓度梯度）</p>
+</div>
+<div class="card card-answer">
+<p><strong>(2)</strong> <span class="tag tag-green">答案</span></p>
+<p>蓝光照射导致线粒体含量减少，且呼吸链复合物1、2含量减少（尤其复合物2明显减少），使得电子传递链受阻，NADH脱下的电子传递效率下降，H<sup>+</sup>泵出量减少，H<sup>+</sup>浓度梯度降低，最终导致ATP合成减少。</p>
+</div>
+<div class="card card-answer">
+<p><strong>(3)</strong> <span class="tag tag-green">答案</span></p>
+<p>实验结果表明：<strong>随着暗培养时间的延长，果蝇在蓝光条件下的相对存活率升高</strong>。</p>
+<p>第5组果蝇的培养条件是：<strong>一直进行暗培养（或60天暗培养，不转入蓝光条件）</strong>。</p>
+</div>
+<div class="card card-answer">
+<p><strong>(4)</strong> <span class="tag tag-green">答案</span></p>
+<p>蓝光导致线粒体受损，有氧呼吸产生的ATP减少，能量供应不足，导致脑神经细胞凋亡或损伤，进而形成空泡，最终引起脑神经退化。</p>
+</div>
+<a href="#sec-analysis" class="btn btn-primary">&#128073; 去看详细解析</a>
+</section>
+
+<!-- SECTION 3: Analysis -->
+<section class="section" id="sec-analysis">
+<h2>&#128269; 详细解析</h2>
+<div class="card card-meta">
+<p><strong>(1) 解析</strong> <span class="tag tag-cyan">识图填空</span></p>
+<p>这道空考的是有氧呼吸第三阶段（电子传递链）的基础知识。图甲是线粒体内膜的结构示意图：</p>
+<ul>
+<li><strong>I、III、IV</strong>（复合物1、3、4）是<strong>质子泵</strong>，它们把H<sup>+</sup>从线粒体基质泵到膜间隙</li>
+<li>复合物II（复合物2）<strong>不是质子泵</strong>，它只负责传递电子，不泵H<sup>+</sup></li>
+<li>泵出去的H<sup>+</sup>在膜间隙积累，形成<strong>H<sup>+</sup>浓度梯度</strong>（好比在蓄水池上方蓄水）</li>
+<li>H<sup>+</sup>通过ATP合成酶回流时，驱动ATP合成（好比水流冲击水轮机发电）</li>
+</ul>
+<p><strong>易错点：</strong> 很多同学会写成"I、II、III、IV"全部转运H<sup>+</sup>，但根据图甲，<strong>II（复合物2）不泵H<sup>+</sup></strong>，它只负责传递电子。这在后面的表格数据中也有体现&#8212;&#8212;复合物2明显减少时，ATP也减少，说明它虽然不泵H<sup>+</sup>，但它的减少也会影响电子传递效率。</p>
+</div>
+<div class="card card-meta">
+<p><strong>(2) 解析</strong> <span class="tag tag-cyan">因果分析</span></p>
+<p>这一问的答题思路：从表格数据出发，沿着"蓝光&#8594;线粒体/复合物&#8594;电子传递&#8594;H<sup>+</sup>梯度&#8594;ATP"这条因果链推理。</p>
+<p><strong>第一步：看表格找变化</strong></p>
+<ul>
+<li>ATP含量 &#8595; &#8594; 这是我们要解释的结果</li>
+<li>线粒体含量 &#8595; &#8594; 发电厂本身变少了</li>
+<li>复合物1 &#8595;、复合物2 &#8595;&#8595; &#8594; 电子传递链的"传送带"部件坏了</li>
+<li>复合物3、4 无明显变化 &#8594; 不是所有部件都坏了</li>
+</ul>
+<p><strong>第二步：串联因果关系</strong></p>
+<p>蓝光 &#8594; 线粒体减少 + 复合物1、2减少 &#8594; 电子传递效率下降 &#8594; 泵出的H<sup>+</sup>减少 &#8594; H<sup>+</sup>浓度梯度降低 &#8594; 通过ATP合成酶的H<sup>+</sup>减少 &#8594; ATP合成减少</p>
+<p><strong>答题模板：</strong> 从现象到本质，层层递进，把每一步的因果关系写清楚。</p>
+</div>
+<div class="card card-meta">
+<p><strong>(3) 解析</strong> <span class="tag tag-cyan">实验分析</span></p>
+<p>这一问考的是实验设计中的<strong>对照组思维</strong>。</p>
+<p><strong>第一空（实验结果）：</strong> 看柱状图，1~4组暗培养时间依次增加（2天&#8594;20天&#8594;40天&#8594;60天），存活率依次升高。这说明"暗培养时间越长，果蝇抵抗蓝光的能力越强"。</p>
+<p><strong>第二空（第5组条件）：</strong> 这是一个关键考点！前面4组都经历了"暗培养&#8594;蓝光"，那第5组应该是什么？</p>
+<p>科学实验需要<strong>对照组</strong>。前面4组都照了蓝光，那第5组应该是<strong>完全不照蓝光</strong>的对照组，用来证明"蓝光确实导致了存活率下降"。</p>
+<p>所以第5组的条件是：<strong>一直暗培养（60天暗培养，不转入蓝光）</strong>。</p>
+<p><strong>注意：</strong> 如果第5组也是"60天暗培养后转入蓝光"，那它和前面4组就重复了，没有任何对照意义。</p>
+</div>
+<div class="card card-meta">
+<p><strong>(4) 解析</strong> <span class="tag tag-cyan">综合推理</span></p>
+<p>这道题的最后一步，把前面所有的线索串起来：</p>
+<ul>
+<li>线索&#9312;：蓝光 &#8594; 线粒体受损 &#8594; ATP减少（第1~2问结论）</li>
+<li>线索&#9313;：蓝光 &#8594; 脑神经组织出现空泡（图丙）</li>
+<li>推理：ATP是细胞的能量来源，脑神经细胞对能量需求特别大（大脑耗能占全身20%以上）。ATP供应不足 &#8594; 神经细胞无法维持正常功能 &#8594; 细胞凋亡/损伤 &#8594; 形成空泡 &#8594; 脑神经退化</li>
+</ul>
+<p><strong>答题要点：</strong> 一定要把"蓝光&#8594;线粒体&#8594;ATP&#8594;神经细胞&#8594;空泡&#8594;退化"这条因果链完整写出来，不能跳步。</p>
+</div>
+<div class="card card-tip">
+<p><strong>&#129504; 这道题想考什么？</strong></p>
+<p>这道题表面上在考"蓝光对线粒体的影响"，但实际上它考的是你能否：</p>
+<ol>
+<li><strong>熟练掌握</strong>有氧呼吸第三阶段（电子传递链）的基础知识</li>
+<li><strong>读懂实验数据</strong>（表格+柱状图+显微图）</li>
+<li><strong>建立因果链</strong>，从现象推理到本质</li>
+<li><strong>理解实验设计</strong>中的对照原则</li>
+</ol>
+</div>
+<a href="#sec-atp" class="btn btn-primary">&#128073; 开始学习基础知识</a>
+</section>
+
+<!-- SECTION 4: ATP -->
+<section class="section" id="sec-atp">
+<h2>&#129514; ATP &#8212; 细胞的能量货币</h2>
+<div class="knowledge-chain">
+<a href="#sec-atp" class="kc-item">ATP（当前）</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-respiration" class="kc-item">有氧呼吸</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-etc" class="kc-item">电子传递链</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-mitochondria" class="kc-item">线粒体</a>
+</div>
+<div class="card card-knowledge">
+<h3>&#128161; 什么是ATP？一个比喻</h3>
+<p>想象你是一个外卖骑手，你的电动车需要电才能跑。电动车电池里的电，就相当于细胞的ATP。</p>
+<ul>
+<li><strong>ATP = 满电的充电宝</strong> &#8212; 随时可以给细胞的各种活动供电</li>
+<li><strong>ADP + Pi = 没电的充电宝</strong> &#8212; 需要充电才能再用</li>
+<li><strong>ATP &#8594; ADP + Pi</strong>（放能）&#8212; 放电，提供能量给肌肉收缩、神经传导等</li>
+<li><strong>ADP + Pi &#8594; ATP</strong>（需能）&#8212; 充电，需要线粒体有氧呼吸提供能量</li>
+</ul>
+</div>
+<div class="card card-knowledge">
+<h3>&#128483; ATP的结构</h3>
+<p>ATP全称是"三磷酸腺苷"，听起来复杂，但结构很简单：</p>
+<ul>
+<li><strong>A</strong> = 腺苷（一个"头"）</li>
+<li><strong>T</strong> = 三（三个磷酸基团）</li>
+<li><strong>P</strong> = 磷酸基团（三个"尾巴"连在一起）</li>
+</ul>
+<p>关键知识点：ATP分子中，<strong>最末端的那个磷酸键是高能磷酸键</strong>，断裂时释放大量能量（约30.54 kJ/mol），这就是细胞能直接利用的"能量包"。</p>
+<p>就像你钱包里的100元钞票&#8212;&#8212;携带方便，随时能花。ATP就是细胞的"100元钞票"。</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#128260; ATP的循环利用</h3>
+<p>人体每天消耗的ATP量非常惊人&#8212;&#8212;大约相当于你自身的体重！但人体内ATP总量很少，只能维持几秒钟。所以关键在于：</p>
+<p style="text-align:center;font-size:18px;font-weight:600;color:#2563eb;margin:12px 0;">ATP &#8596; ADP + Pi（不断循环）</p>
+<p><strong>合成ATP的途径：</strong></p>
+<ul>
+<li>&#9989; 有氧呼吸（主要途径，产生大量ATP）</li>
+<li>&#9989; 无氧呼吸（次要途径，产生少量ATP）</li>
+<li>&#9989; 光合作用（植物专属）</li>
+</ul>
+<p>这道题中的蓝光破坏了线粒体，导致有氧呼吸受阻，ATP合成减少，细胞就"断电"了。</p>
+</div>
+
+<div class="exercise-box" id="ex-atp1">
+<p class="question">&#128221; 小练习 1：ATP的基础</p>
+<p>下列关于ATP的叙述，正确的是？</p>
+<div class="options">
+<label><input type="radio" name="ex-atp1" value="A"> A. ATP分子中含有三个高能磷酸键</label>
+<label><input type="radio" name="ex-atp1" value="B"> B. ATP在细胞中含量很大，不需要持续合成</label>
+<label><input type="radio" name="ex-atp1" value="C"> C. ATP的合成通常与放能反应相关联</label>
+<label><input type="radio" name="ex-atp1" value="D"> D. ATP水解时释放的能量可用于细胞内的吸能反应</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-atp1', 'D')">提交答案</button>
+<div class="feedback" id="ex-atp1-fb"></div>
+</div>
+<a href="#sec-respiration" class="btn btn-primary">&#128073; 下一步：有氧呼吸</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 5: Respiration -->
+<section class="section" id="sec-respiration">
+<h2>&#9889; 有氧呼吸 &#8212; 细胞的发电厂</h2>
+<div class="knowledge-chain">
+<a href="#sec-atp" class="kc-item">ATP</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-respiration" class="kc-item">有氧呼吸（当前）</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-etc" class="kc-item">电子传递链</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-mitochondria" class="kc-item">线粒体</a>
+</div>
+<div class="card card-knowledge">
+<h3>&#127963; 有氧呼吸的总览</h3>
+<p>有氧呼吸就是细胞"燃烧"葡萄糖来产生ATP的过程。就像火力发电厂烧煤发电一样：</p>
+<p style="text-align:center;font-size:18px;font-weight:600;color:#2563eb;margin:12px 0;">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> &#8594; 6CO<sub>2</sub> + 6H<sub>2</sub>O + 能量（约30~32个ATP）</p>
+<p>整个有氧呼吸分<strong>三个阶段</strong>，分别在细胞的不同位置进行：</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#128202; 三个阶段，一张表看懂</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>阶段</th><th>场所</th><th>原料</th><th>产物</th><th>产生ATP</th></tr></thead>
+<tbody>
+<tr><td><strong>第一阶段</strong>（糖酵解）</td><td>细胞质基质</td><td>葡萄糖</td><td>丙酮酸 + [H]（NADH）</td><td>少量（2个ATP）</td></tr>
+<tr><td><strong>第二阶段</strong>（三羧酸循环）</td><td>线粒体基质</td><td>丙酮酸</td><td>CO<sub>2</sub> + [H]（NADH/FADH<sub>2</sub>）</td><td>少量（2个ATP）</td></tr>
+<tr><td><strong>第三阶段</strong>（电子传递链）</td><td><strong>线粒体内膜</strong></td><td>[H] + O<sub>2</sub></td><td>H<sub>2</sub>O</td><td><strong>大量（约26~28个ATP）</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键点：</strong> 第三阶段产生的ATP最多，占整个有氧呼吸的85%以上。这道题考的就是第三阶段&#8212;&#8212;电子传递链。</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#127919; 三个阶段的比喻</h3>
+<p>想象你开了一家馒头店：</p>
+<ul>
+<li><strong>第一阶段（糖酵解）：</strong> 你先把面粉（葡萄糖）粗略揉成面团（丙酮酸），这个过程在厨房（细胞质基质）里进行，只赚了2块钱（2个ATP）</li>
+<li><strong>第二阶段（三羧酸循环）：</strong> 你把面团搬到专门的发酵室（线粒体基质），加入酵母，进行精细发酵，又赚了2块钱（2个ATP），还产生了大量"蒸汽"（[H]）</li>
+<li><strong>第三阶段（电子传递链）：</strong> 你把蒸汽引导到蒸汽轮机（线粒体内膜），推动轮机发电，赚了大钱&#8212;&#8212;26~28块钱（26~28个ATP）！</li>
+</ul>
+<p>所以第三阶段最关键，赚的钱最多！而蓝光恰好破坏了第三阶段，所以ATP就严重不足了。</p>
+</div>
+
+<div class="exercise-box" id="ex-resp1">
+<p class="question">&#128221; 小练习 2：有氧呼吸的阶段</p>
+<p>有氧呼吸三个阶段的共同点是？</p>
+<div class="options">
+<label><input type="radio" name="ex-resp1" value="A"> A. 都在线粒体中进行</label>
+<label><input type="radio" name="ex-resp1" value="B"> B. 都能产生大量ATP</label>
+<label><input type="radio" name="ex-resp1" value="C"> C. 都能产生[H]（NADH或FADH<sub>2</sub>）</label>
+<label><input type="radio" name="ex-resp1" value="D"> D. 都需要O<sub>2</sub>参与</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-resp1', 'C')">提交答案</button>
+<div class="feedback" id="ex-resp1-fb"></div>
+</div>
+<a href="#sec-etc" class="btn btn-primary">&#128073; 下一步：电子传递链</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 6: ETC -->
+<section class="section" id="sec-etc">
+<h2>&#9889; 电子传递链 &#8212; 能量传送带</h2>
+<div class="knowledge-chain">
+<a href="#sec-atp" class="kc-item">ATP</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-respiration" class="kc-item">有氧呼吸</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-etc" class="kc-item">电子传递链（当前）</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-mitochondria" class="kc-item">线粒体</a>
+</div>
+<div class="card card-knowledge">
+<h3>&#128293; 什么是电子传递链？</h3>
+<p>电子传递链是有氧呼吸第三阶段的核心内容，它位于线粒体内膜上。这道题的图甲画的就是这个。</p>
+<p><strong>一个比喻：</strong> 想象一条流水线传送带，上面有4个工人（复合物1~4）。工人A把货物（电子）传给工人B，B传给C，C传给D，最后把货物交给O<sub>2</sub>（氧气）。</p>
+<p>但这条传送带不是普通的传送带&#8212;&#8212;每一次传递，都会释放出能量，这些能量被用来"泵水"（泵H<sup>+</sup>），把水从低处抽到高处，形成一个水位差。</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#127961; 线粒体内膜上的"水电站"</h3>
+<p>让我们用"水电站"的比喻来理解：</p>
+<ul>
+<li><strong>线粒体基质</strong> = 下游的河床（低水位，H<sup>+</sup>少）</li>
+<li><strong>膜间隙</strong> = 上游的水库（高水位，H<sup>+</sup>多）</li>
+<li><strong>复合物I、III、IV</strong> = 三台水泵，把水从下游抽到上游（消耗能量）</li>
+<li><strong>复合物II</strong> = 只是传送带上的一个齿轮，不负责泵水</li>
+<li><strong>ATP合成酶</strong> = 水轮机，水从高处流下来时，推动它旋转发电（合成ATP）</li>
+</ul>
+<p>电子（来自NADH）沿着复合物传递时释放能量 &#8594; 能量驱动水泵（复合物I、III、IV）把H<sup>+</sup>泵到膜间隙 &#8594; 形成H<sup>+</sup>浓度梯度（水位差） &#8594; H<sup>+</sup>通过ATP合成酶回流 &#8594; 驱动ATP合成</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#128200; 电子传递链示意图</h3>
+<div class="diagram-box">
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <defs>
+    <marker id="arrowR" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrowB" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/></marker>
+    <marker id="arrowG" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/></marker>
+  </defs>
+  <!-- Membrane -->
+  <rect x="30" y="140" width="640" height="40" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <text x="360" y="168" text-anchor="middle" font-size="13" fill="#64748b">线粒体内膜</text>
+  <!-- Labels -->
+  <text x="360" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">膜间隙（H<sup>+</sup> 多）</text>
+  <text x="360" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">线粒体基质（H<sup>+</sup> 少）</text>
+  <!-- Complex I -->
+  <rect x="80" y="100" width="60" height="80" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="110" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">I</text>
+  <text x="110" y="225" text-anchor="middle" font-size="11" fill="#64748b">NADH</text>
+  <text x="110" y="240" text-anchor="middle" font-size="11" fill="#64748b">&#8595;</text>
+  <text x="110" y="255" text-anchor="middle" font-size="11" fill="#64748b">NAD<sup>+</sup></text>
+  <!-- H+ pump I -->
+  <text x="110" y="85" text-anchor="middle" font-size="11" fill="#3b82f6">4H<sup>+</sup></text>
+  <line x1="110" y1="100" x2="110" y2="85" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <!-- Complex II -->
+  <rect x="200" y="100" width="60" height="80" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="230" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#3730a3">II</text>
+  <text x="230" y="225" text-anchor="middle" font-size="11" fill="#64748b">FADH<sub>2</sub></text>
+  <text x="230" y="255" text-anchor="middle" font-size="11" fill="#64748b">FAD</text>
+  <!-- Arrow I->II -->
+  <line x1="140" y1="140" x2="200" y2="140" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <!-- Complex III -->
+  <rect x="320" y="100" width="60" height="80" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="350" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">III</text>
+  <!-- H+ pump III -->
+  <text x="350" y="85" text-anchor="middle" font-size="11" fill="#3b82f6">4H<sup>+</sup></text>
+  <line x1="350" y1="100" x2="350" y2="85" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <!-- Arrow II->III -->
+  <line x1="260" y1="140" x2="320" y2="140" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <!-- Complex IV -->
+  <rect x="440" y="100" width="60" height="80" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="470" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">IV</text>
+  <!-- H+ pump IV -->
+  <text x="470" y="85" text-anchor="middle" font-size="11" fill="#3b82f6">2H<sup>+</sup></text>
+  <line x1="470" y1="100" x2="470" y2="85" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <!-- Arrow III->IV -->
+  <line x1="380" y1="140" x2="440" y2="140" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <!-- O2 -->
+  <text x="470" y="225" text-anchor="middle" font-size="11" fill="#64748b">O<sub>2</sub></text>
+  <text x="470" y="255" text-anchor="middle" font-size="11" fill="#64748b">H<sub>2</sub>O</text>
+  <!-- ATP synthase -->
+  <rect x="560" y="100" width="60" height="80" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="590" y="130" text-anchor="middle" font-size="11" fill="#166534">ATP</text>
+  <text x="590" y="145" text-anchor="middle" font-size="11" fill="#166534">合成酶</text>
+  <!-- H+ through ATP synthase -->
+  <text x="590" y="85" text-anchor="middle" font-size="11" fill="#22c55e">H<sup>+</sup></text>
+  <line x1="590" y1="100" x2="590" y2="85" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowG)"/>
+  <!-- ADP+Pi -> ATP -->
+  <text x="590" y="225" text-anchor="middle" font-size="11" fill="#166534">ADP+Pi</text>
+  <text x="590" y="255" text-anchor="middle" font-size="11" fill="#166534">ATP</text>
+</svg>
+</div>
+<div class="diagram-label">&#128161; 点击知识点链接跳转到相关讲解</div>
+</div>
+<div class="card card-knowledge">
+<h3>&#128161; 回到这道题</h3>
+<p>现在来看表格数据：</p>
+<ul>
+<li>复合物1 &#8595;、复合物2 &#8595;&#8595; &#8594; 传送带的前两个部件坏了，电子传递受阻</li>
+<li>复合物3、4 无明显变化 &#8594; 后两个部件是好的</li>
+<li>但前两个坏了，后面再好也没用&#8212;&#8212;货物卡在传送带前面，后面空转</li>
+<li>结果：能量释放减少 &#8594; 泵出的H<sup>+</sup>减少 &#8594; 水位差变小 &#8594; ATP合成减少</li>
+</ul>
+</div>
+
+<div class="exercise-box" id="ex-etc1">
+<p class="question">&#128221; 小练习 3：电子传递链</p>
+<p>关于线粒体电子传递链的叙述，错误的是？</p>
+<div class="options">
+<label><input type="radio" name="ex-etc1" value="A"> A. 电子传递链位于线粒体内膜上</label>
+<label><input type="radio" name="ex-etc1" value="B"> B. 电子传递过程中释放的能量用于将H<sup>+</sup>泵到膜间隙</label>
+<label><input type="radio" name="ex-etc1" value="C"> C. 所有呼吸链复合物都能转运H<sup>+</sup></label>
+<label><input type="radio" name="ex-etc1" value="D"> D. 最终电子受体是O<sub>2</sub>，生成H<sub>2</sub>O</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-etc1', 'C')">提交答案</button>
+<div class="feedback" id="ex-etc1-fb"></div>
+</div>
+<a href="#sec-mitochondria" class="btn btn-primary">&#128073; 下一步：线粒体</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 7: Mitochondria -->
+<section class="section" id="sec-mitochondria">
+<h2>&#128176; 线粒体 &#8212; 细胞的充电宝工厂</h2>
+<div class="knowledge-chain">
+<a href="#sec-atp" class="kc-item">ATP</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-respiration" class="kc-item">有氧呼吸</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-etc" class="kc-item">电子传递链</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-mitochondria" class="kc-item">线粒体（当前）</a>
+</div>
+<div class="card card-knowledge">
+<h3>&#127760; 线粒体是什么？</h3>
+<p>线粒体是细胞内的一个"细胞器"（可以理解为细胞里的一个小器官），它的主要功能是进行有氧呼吸，产生ATP。</p>
+<p><strong>比喻：</strong> 线粒体就像你手机里的<strong>充电宝工厂</strong>。它把"燃料"（葡萄糖、脂肪酸）通过有氧呼吸"燃烧"，然后把产生的能量储存在ATP这个"充电宝"里，供细胞随时使用。</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#128065; 线粒体的结构</h3>
+<p>线粒体有<strong>双层膜</strong>结构：</p>
+<ul>
+<li><strong>外膜</strong> &#8212; 最外面的一层，相当于工厂的外墙</li>
+<li><strong>内膜</strong> &#8212; 里面的一层，向内折叠形成<strong>嵴</strong>（像折扇一样折叠，增加表面积），电子传递链就嵌在内膜上</li>
+<li><strong>膜间隙</strong> &#8212; 外膜和内膜之间的空间</li>
+<li><strong>基质</strong> &#8212; 内膜内部的空间，有氧呼吸第二阶段在这里进行</li>
+</ul>
+<p>关键点：线粒体内膜折叠成嵴，是为了<strong>增加表面积</strong>，让更多的电子传递链复合物和ATP合成酶镶嵌在上面，这样就能产生更多ATP。</p>
+</div>
+<div class="card card-knowledge">
+<h3>&#128200; 线粒体结构示意图</h3>
+<div class="diagram-box">
+<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Outer membrane -->
+  <ellipse cx="250" cy="110" rx="220" ry="100" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <text x="250" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">外膜</text>
+  <!-- Inner membrane -->
+  <ellipse cx="250" cy="110" rx="190" ry="80" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <!-- Cristae -->
+  <path d="M80 110 Q120 40 160 110" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <path d="M160 110 Q200 30 240 110" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <path d="M240 110 Q280 25 320 110" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <path d="M320 110 Q360 40 400 110" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <text x="250" y="50" text-anchor="middle" font-size="12" fill="#3b82f6">内膜（嵴）</text>
+  <!-- Matrix -->
+  <text x="250" y="180" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">基质</text>
+  <!-- Intermembrane space -->
+  <text x="250" y="95" text-anchor="middle" font-size="11" fill="#64748b">膜间隙</text>
+  <!-- ETC dots -->
+  <circle cx="100" cy="105" r="6" fill="#f59e0b"/>
+  <circle cx="180" cy="98" r="6" fill="#f59e0b"/>
+  <circle cx="260" cy="93" r="6" fill="#f59e0b"/>
+  <circle cx="340" cy="98" r="6" fill="#f59e0b"/>
+  <circle cx="410" cy="105" r="6" fill="#22c55e"/>
+  <text x="220" y="78" text-anchor="middle" font-size="10" fill="#f59e0b">电子传递链复合物</text>
+  <text x="410" y="78" text-anchor="middle" font-size="10" fill="#22c55e">ATP合成酶</text>
+</svg>
+</div>
+</div>
+<div class="card card-knowledge">
+<h3>&#128161; 回到这道题</h3>
+<p>题目表格中：<strong>线粒体含量减少</strong>。这意味着什么？</p>
+<p>蓝光不仅损坏了线粒体内部的部件（呼吸链复合物），还直接减少了线粒体的数量。就像一家发电厂，不仅发电机组坏了，连发电厂本身也被拆了几座。双重打击，ATP自然就严重不足了。</p>
+</div>
+
+<div class="exercise-box" id="ex-mito1">
+<p class="question">&#128221; 小练习 4：线粒体结构</p>
+<p>线粒体内膜形成嵴的主要意义是？</p>
+<div class="options">
+<label><input type="radio" name="ex-mito1" value="A"> A. 增加内外膜之间的间隙</label>
+<label><input type="radio" name="ex-mito1" value="B"> B. 增大内膜表面积，有利于酶的附着</label>
+<label><input type="radio" name="ex-mito1" value="C"> C. 使线粒体形状更美观</label>
+<label><input type="radio" name="ex-mito1" value="D"> D. 减少线粒体在细胞中占用的空间</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-mito1', 'B')">提交答案</button>
+<div class="feedback" id="ex-mito1-fb"></div>
+</div>
+<a href="#sec-experiment" class="btn btn-primary">&#128073; 下一步：实验设计思维</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 8: Experiment Design -->
+<section class="section" id="sec-experiment">
+<h2>&#128300; 实验设计思维 &#8212; 变量与控制</h2>
+<div class="knowledge-chain">
+<a href="#sec-atp" class="kc-item">ATP</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-respiration" class="kc-item">有氧呼吸</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-etc" class="kc-item">电子传递链</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-mitochondria" class="kc-item">线粒体</a>
+<span class="kc-arrow">&#8594;</span>
+<a href="#sec-experiment" class="kc-item">实验设计（当前）</a>
+</div>
+<div class="card card-knowledge">
+<h3>&#128300; 题目中的实验设计</h3>
+<p>这道题第(3)问考的是实验设计中最核心的概念&#8212;&#8212;<strong>对照组</strong>。</p>
+<p><strong>一个故事：</strong> 小明想测试"熬夜会不会影响考试成绩"。他找了几个同学，让他们连续熬夜3天，然后考试。结果发现这些同学成绩都不好。小明得出结论：熬夜导致成绩下降。</p>
+<p>问题出在哪里？</p>
+<ul>
+<li>小明没有设置<strong>对照组</strong>&#8212;&#8212;那些没有熬夜的同学成绩怎么样？</li>
+<li>如果没熬夜的同学成绩也不好，那就说明不是熬夜的问题，可能是题目太难了</li>
+</ul>
+</div>
+<div class="card card-knowledge">
+<h3>&#128196; 实验设计的三个基本要素</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>要素</th><th>定义</th><th>本题中的例子</th></tr></thead>
+<tbody>
+<tr><td><strong>自变量</strong>（你改变的东西）</td><td>实验者主动改变的因素</td><td>是否用蓝光照射、暗培养时间长短</td></tr>
+<tr><td><strong>因变量</strong>（你观察的结果）</td><td>随自变量变化而变化的指标</td><td>ATP含量、存活率、脑组织空泡</td></tr>
+<tr><td><strong>控制变量</strong>（保持不变的）</td><td>其他可能影响结果的因素，必须保持一致</td><td>果蝇品种、日龄、温度、食物等</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="card card-knowledge">
+<h3>&#128161; 为什么第5组是"一直暗培养"？</h3>
+<p>再看题目中的实验设计：</p>
+<ul>
+<li>1组：暗培养2天 &#8594; 蓝光</li>
+<li>2组：暗培养20天 &#8594; 蓝光</li>
+<li>3组：暗培养40天 &#8594; 蓝光</li>
+<li>4组：暗培养60天 &#8594; 蓝光</li>
+<li>5组：<strong>暗培养60天 &#8594; 继续暗培养（不照蓝光）</strong></li>
+</ul>
+<p>第5组的作用是：<strong>作为对照，证明"蓝光"确实降低了存活率</strong>。</p>
+<p>如果第5组存活率明显高于第4组，就说明蓝光确实有害。如果第5组和第4组存活率差不多，那就说明蓝光没什么影响，存活率低是其他原因（比如果蝇太老了）。</p>
+<p>这就是为什么第5组不能照蓝光&#8212;&#8212;它要提供一个"没有蓝光"的参考基准。</p>
+</div>
+
+<div class="exercise-box" id="ex-exp1">
+<p class="question">&#128221; 小练习 5：实验设计</p>
+<p>某实验研究"温度对酶活性的影响"，设置了3个温度组：0&#8451;、37&#8451;、100&#8451;。下列哪项不是该实验需要控制的变量？</p>
+<div class="options">
+<label><input type="radio" name="ex-exp1" value="A"> A. 酶的浓度</label>
+<label><input type="radio" name="ex-exp1" value="B"> B. 反应时间</label>
+<label><input type="radio" name="ex-exp1" value="C"> C. 温度</label>
+<label><input type="radio" name="ex-exp1" value="D"> D. 底物浓度</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-exp1', 'C')">提交答案</button>
+<div class="feedback" id="ex-exp1-fb"></div>
+</div>
+<a href="#sec-practice" class="btn btn-primary">&#128073; 去巩固练习</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 9: Practice Exercises -->
+<section class="section" id="sec-practice">
+<h2>&#9998; 知识点小练习</h2>
+<p>下面是针对各个知识点的综合练习，检验你的学习效果！</p>
+
+<div class="exercise-box" id="ex-p1">
+<p class="question">&#128221; 练习 1：综合理解</p>
+<p>下列关于有氧呼吸的叙述，正确的是？</p>
+<div class="options">
+<label><input type="radio" name="ex-p1" value="A"> A. 有氧呼吸三个阶段都在线粒体中进行</label>
+<label><input type="radio" name="ex-p1" value="B"> B. 有氧呼吸第三阶段产生的ATP最多</label>
+<label><input type="radio" name="ex-p1" value="C"> C. 有氧呼吸的最终产物是CO<sub>2</sub>和酒精</label>
+<label><input type="radio" name="ex-p1" value="D"> D. 有氧呼吸不需要O<sub>2</sub>参与</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-p1', 'B')">提交答案</button>
+<div class="feedback" id="ex-p1-fb"></div>
+</div>
+
+<div class="exercise-box" id="ex-p2">
+<p class="question">&#128221; 练习 2：电子传递链</p>
+<p>在线粒体电子传递链中，H<sup>+</sup>被泵到哪个部位？</p>
+<div class="options">
+<label><input type="radio" name="ex-p2" value="A"> A. 线粒体基质</label>
+<label><input type="radio" name="ex-p2" value="B"> B. 膜间隙</label>
+<label><input type="radio" name="ex-p2" value="C"> C. 细胞质基质</label>
+<label><input type="radio" name="ex-p2" value="D"> D. 细胞核</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-p2', 'B')">提交答案</button>
+<div class="feedback" id="ex-p2-fb"></div>
+</div>
+
+<div class="exercise-box" id="ex-p3">
+<p class="question">&#128221; 练习 3：ATP的合成</p>
+<p>驱动ATP合成酶合成ATP的直接动力是？</p>
+<div class="options">
+<label><input type="radio" name="ex-p3" value="A"> A. NADH分解释放的能量</label>
+<label><input type="radio" name="ex-p3" value="B"> B. 电子传递释放的能量</label>
+<label><input type="radio" name="ex-p3" value="C"> C. H<sup>+</sup>顺浓度梯度回流</label>
+<label><input type="radio" name="ex-p3" value="D"> D. O<sub>2</sub>的氧化作用</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-p3', 'C')">提交答案</button>
+<div class="feedback" id="ex-p3-fb"></div>
+</div>
+
+<div class="exercise-box" id="ex-p4">
+<p class="question">&#128221; 练习 4：实验分析</p>
+<p>某实验发现，某种药物处理后，线粒体复合物III的活性显著下降，但复合物I和IV的活性正常。推测该药物最可能直接影响？</p>
+<div class="options">
+<label><input type="radio" name="ex-p4" value="A"> A. 葡萄糖的分解</label>
+<label><input type="radio" name="ex-p4" value="B"> B. 三羧酸循环</label>
+<label><input type="radio" name="ex-p4" value="C"> C. 电子传递过程</label>
+<label><input type="radio" name="ex-p4" value="D"> D. ATP的直接水解</label>
+</div>
+<button class="btn btn-primary btn-sm" onclick="checkExercise('ex-p4', 'C')">提交答案</button>
+<div class="feedback" id="ex-p4-fb"></div>
+</div>
+
+<a href="#sec-similar" class="btn btn-primary">&#128073; 挑战同类题</a>
+<br><a href="#sec-problem" class="back-top">&#8593; 回到题目</a>
+</section>
+
+<!-- SECTION 10: Similar Problem -->
+<section class="section" id="sec-similar">
+<h2>&#128218; 同类题挑战</h2>
+<div class="card card-knowledge">
+<p>下面这道题和原题考查的知识点类似，试试看能不能独立完成！</p>
+</div>
+
+<div class="card card-problem">
+<p><span class="tag tag-red">挑战题</span> <strong>【模拟题】</strong></p>
+<p>研究发现，线粒体解偶联蛋白（UCP1）可以插入线粒体内膜，为H<sup>+</sup>提供一条绕过ATP合成酶的回流通道，使H<sup>+</sup>直接回流到线粒体基质，不经过ATP合成酶。</p>
+
+<p><strong>(1)</strong> 正常情况下，线粒体内膜上的电子传递链复合物将H<sup>+</sup>从 <u>__________</u> 泵到 <u>__________</u>，形成 <u>__________</u>，H<sup>+</sup>通过 <u>__________</u> 回流时驱动ATP合成。</p>
+
+<p><strong>(2)</strong> 若细胞中UCP1含量增加，推测ATP的合成量会如何变化？请说明理由。</p>
+
+<p><strong>(3)</strong> 科研人员将小鼠分为两组，甲组在寒冷环境（4&#8451;）中饲养，乙组在常温（25&#8451;）下饲养，一段时间后检测两组小鼠脂肪细胞中UCP1的含量。结果发现甲组UCP1含量显著高于乙组。</p>
+<p style="margin-left:20px;">① 该实验的自变量是 <u>__________</u>，因变量是 <u>__________</u>。</p>
+<p style="margin-left:20px;">② 推测寒冷环境中UCP1含量升高的意义是什么？</p>
+
+<p><strong>(4)</strong> 综合以上信息，如果将UCP1的抑制剂注射到小鼠体内，推测小鼠的体温会如何变化？请说明理由。</p>
+</div>
+
+<div class="card card-tip">
+<p><strong>&#128161; 提示</strong></p>
+<p>这道题和原题的核心思路是一样的：</p>
+<ul>
+<li>H<sup>+</sup>浓度梯度是ATP合成的"动力源泉"</li>
+<li>任何影响H<sup>+</sup>梯度的因素都会影响ATP合成</li>
+<li>UCP1相当于给H<sup>+</sup>开了个"泄洪通道"，让H<sup>+</sup>不经过水轮机（ATP合成酶）就流回去了</li>
+<li>能量守恒：H<sup>+</sup>回流不经过ATP合成酶，能量就会以<strong>热能</strong>的形式释放</li>
+</ul>
+</div>
+
+<div class="exercise-box" id="ex-similar">
+<p class="question">&#128221; 挑战题答案提交</p>
+<p>做完后可以点击查看答案，对照检查。</p>
+<button class="btn btn-primary btn-sm" onclick="showSimilarAnswer()">显示答案</button>
+<div class="feedback" id="ex-similar-fb"></div>
+</div>
+
+<a href="#sec-problem" class="btn btn-primary">&#128073; 回到题目</a>
+</section>
+
+<!-- SECTION 11: Footer -->
+<section class="section" style="text-align:center;margin-top:60px;padding-top:20px;border-top:1px solid #e2e8f0;">
+<p style="color:#94a3b8;font-size:14px;">&#128218; 学习课件 &mdash; 蓝光与线粒体 &mdash; 有氧呼吸&#183;ATP&#183;电子传递链</p>
+<p style="color:#94a3b8;font-size:13px;margin-top:4px;">制作时间：2026年8月6日 &mdash; 祝学习进步！&#128640;</p>
+</section>
+
+</div><!-- end main -->
+</div><!-- end wrapper -->
+
+<script>
+// Sidebar toggle (mobile)
+document.getElementById('sidebarToggle').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+});
+document.getElementById('sidebarOverlay').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.remove('show');
+  this.classList.remove('show');
+});
+
+// Close sidebar on nav click (mobile)
+document.querySelectorAll('#sidebarNav a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.getElementById('sidebar').classList.remove('show');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  });
+});
+
+// Exercise checker
+function checkExercise(id, correct) {
+  var radios = document.querySelectorAll('#' + id + ' input[type="radio"]');
+  var selected = null;
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) { selected = radios[i].value; break; }
+  }
+  var fb = document.getElementById(id + '-fb');
+  if (!selected) {
+    fb.className = 'feedback show-answer';
+    fb.textContent = '请先选择一个选项！';
+    return;
+  }
+  if (selected === correct) {
+    fb.className = 'feedback correct';
+    fb.textContent = '&#10004; 正确！很棒！';
+  } else {
+    fb.className = 'feedback wrong';
+    fb.textContent = '&#10008; 不对，再想想！提示：看看对应的知识点讲解。';
+  }
+}
+
+// Similar problem answer
+function showSimilarAnswer() {
+  var fb = document.getElementById('ex-similar-fb');
+  fb.className = 'feedback show-answer';
+  fb.innerHTML = '<strong>参考答案：</strong><br>' +
+    '<strong>(1)</strong> 线粒体基质；膜间隙；H<sup>+</sup>浓度梯度；ATP合成酶<br>' +
+    '<strong>(2)</strong> ATP合成量减少。因为UCP1为H<sup>+</sup>提供了绕过ATP合成酶的回流通道，H<sup>+</sup>浓度梯度被破坏，通过ATP合成酶的H<sup>+</sup>减少，ATP合成减少。<br>' +
+    '<strong>(3)</strong> &#9312; 自变量：环境温度（寒冷/常温）；因变量：UCP1含量<br>' +
+    '&#9313; 寒冷环境中UCP1含量升高，H<sup>+</sup>通过UCP1回流释放热能，用于维持体温，是一种适应性调节。<br>' +
+    '<strong>(4)</strong> 体温会升高。因为UCP1被抑制后，H<sup>+</sup>只能通过ATP合成酶回流，ATP合成增加，但产热减少，所以体温会下降。反过来，如果抑制UCP1，H<sup>+</sup>漏回流减少，通过ATP合成酶的回流增多，ATP合成增加，但产热减少&#8212;&#8212;等等，这个问题需要仔细分析：UCP1被抑制 &#8594; H<sup>+</sup>漏回流减少 &#8594; H<sup>+</sup>浓度梯度增大 &#8594; 通过ATP合成酶的回流增多 &#8594; ATP合成增加 &#8594; 但是产热（UCP1途径的产热）减少 &#8594; 体温可能下降（因为UCP1的主要功能是产热维持体温）。正确答案：体温可能下降，因为UCP1的产热功能被抑制了。';
+}
+</script>
+</body>
+</html>

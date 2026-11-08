@@ -1,0 +1,181 @@
+/* ===== 变压器物理课件 — 共享样式 ===== */
+:root {
+  --primary: #1565c0;
+  --primary-light: #e3f2fd;
+  --accent: #ff6f00;
+  --accent-light: #fff3e0;
+  --success: #2e7d32;
+  --success-light: #e8f5e9;
+  --warning: #f9a825;
+  --warning-light: #fffde7;
+  --danger: #c62828;
+  --danger-light: #ffebee;
+  --bg: #f0f4f8;
+  --card-bg: #ffffff;
+  --text: #263238;
+  --text-light: #607d8b;
+  --border: #cfd8dc;
+  --code-bg: #eceff1;
+  --sidebar-width: 260px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "Microsoft YaHei", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+}
+/* ===== 侧边栏 ===== */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-width); height: 100vh;
+  background: linear-gradient(180deg, #0d47a1, #1565c0);
+  color: #fff; overflow-y: auto; z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+}
+.sidebar.show { transform: translateX(0); }
+.sidebar-header {
+  padding: 20px; text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.sidebar-header a { color: #fff; text-decoration: none; font-size: 18px; font-weight: bold; }
+.tree-nav { padding: 10px 0; }
+.tree { list-style: none; }
+.tree-item { position: relative; }
+.tree-link {
+  display: block; padding: 8px 20px; color: rgba(255,255,255,0.85);
+  text-decoration: none; font-size: 14px; transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+.tree-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.tree-link.active {
+  background: rgba(255,255,255,0.15); color: #fff; font-weight: bold;
+  border-left-color: var(--accent);
+}
+.tree-sub { list-style: none; padding-left: 16px; }
+.tree-sub .tree-link { font-size: 13px; padding: 6px 20px; }
+.sidebar-toggle {
+  position: fixed; top: 12px; left: 12px; z-index: 1001;
+  background: var(--primary); color: #fff; border: none;
+  border-radius: 6px; padding: 8px 12px; cursor: pointer;
+  font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: none;
+}
+.sidebar-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4); z-index: 999; display: none;
+}
+.sidebar-overlay.show { display: block; }
+/* ===== 主内容 ===== */
+.main-content { margin-left: var(--sidebar-width); min-height: 100vh; transition: margin 0.3s; }
+.page-header {
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  color: #fff; padding: 40px 30px 30px; text-align: center;
+}
+.page-header h1 { font-size: 28px; margin-bottom: 8px; }
+.page-header p { font-size: 15px; opacity: 0.85; }
+.container { max-width: 800px; margin: 0 auto; padding: 24px 20px; }
+/* ===== 卡片 ===== */
+.card {
+  background: var(--card-bg); border-radius: 12px; padding: 28px;
+  margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.card h2 { color: var(--primary); margin-bottom: 16px; font-size: 22px; border-bottom: 2px solid var(--primary-light); padding-bottom: 10px; }
+.card h3 { color: var(--accent); margin: 20px 0 10px; font-size: 18px; }
+.card h4 { color: var(--text); margin: 16px 0 8px; font-size: 16px; }
+.card p { margin-bottom: 12px; }
+.card ul, .card ol { margin: 10px 0 14px 24px; }
+.card li { margin-bottom: 6px; }
+.card a { color: var(--primary); text-decoration: none; font-weight: 500; }
+.card a:hover { text-decoration: underline; }
+/* ===== 特殊框 ===== */
+.answer-box {
+  background: var(--success-light); border-left: 4px solid var(--success);
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+}
+.answer-box h4 { color: var(--success); }
+.hint-box {
+  background: var(--warning-light); border-left: 4px solid var(--warning);
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+}
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: bold; margin-right: 6px;
+}
+.tag-info { background: var(--primary-light); color: var(--primary); }
+.tag-success { background: var(--success-light); color: var(--success); }
+.tag-warning { background: var(--warning-light); color: var(--warning); }
+.tag-danger { background: var(--danger-light); color: var(--danger); }
+/* ===== 表格 ===== */
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: center; }
+td { padding: 8px 12px; border: 1px solid var(--border); text-align: center; }
+tr:nth-child(even) td { background: #f7f9fc; }
+/* ===== SVG图框 ===== */
+.fig-box { margin: 16px 0; text-align: center; }
+.fig-box svg { max-width: 100%; height: auto; }
+figcaption { font-size: 13px; color: var(--text-light); margin-top: 6px; }
+/* ===== 公式块 ===== */
+.formula-box {
+  background: var(--code-bg); border-radius: 8px; padding: 16px 20px;
+  margin: 14px 0; font-family: "Cambria Math", "Times New Roman", serif;
+  font-size: 17px; text-align: center; overflow-x: auto;
+}
+.formula-box .label { font-size: 13px; color: var(--text-light); display: block; margin-top: 6px; }
+/* ===== 导航链接 ===== */
+.breadcrumb { font-size: 13px; color: var(--text-light); margin-bottom: 16px; }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.nav-section {
+  display: flex; justify-content: space-between; margin-top: 30px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+}
+.nav-link {
+  display: inline-block; padding: 10px 20px; border-radius: 8px;
+  background: var(--primary-light); color: var(--primary);
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-link:hover { background: var(--primary); color: #fff; }
+/* ===== 手风琴 ===== */
+.accordion-item { margin: 8px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.accordion-header {
+  background: var(--primary-light); padding: 12px 16px; cursor: pointer;
+  font-weight: bold; color: var(--primary); user-select: none;
+}
+.accordion-body { padding: 16px; display: none; }
+.accordion-body.show { display: block; }
+/* ===== 练习 ===== */
+.quiz-block { margin: 16px 0; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+.quiz-option {
+  padding: 10px 16px; border: 2px solid var(--border); border-radius: 8px;
+  cursor: pointer; transition: all 0.2s; font-size: 15px;
+}
+.quiz-option:hover { border-color: var(--primary); background: var(--primary-light); }
+.quiz-option.correct { border-color: var(--success); background: var(--success-light); }
+.quiz-option.wrong { border-color: var(--danger); background: var(--danger-light); }
+.quiz-feedback { display: none; margin-top: 10px; padding: 12px 16px; border-radius: 8px; font-size: 14px; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--success-light); color: var(--success); }
+.quiz-feedback.wrong { background: var(--danger-light); color: var(--danger); }
+/* ===== 清单 ===== */
+.checklist { list-style: none; padding-left: 28px; }
+.checklist li { position: relative; margin-bottom: 10px; }
+.checklist li::before {
+  content: "\2713"; position: absolute; left: -28px;
+  color: var(--success); font-weight: bold; font-size: 18px;
+}
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.show { transform: translateX(0); }
+  .main-content { margin-left: 0; }
+  .sidebar-toggle { display: block; }
+  .container { padding: 16px 12px; }
+  .card { padding: 16px; }
+  .page-header h1 { font-size: 22px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 8px; }
+}

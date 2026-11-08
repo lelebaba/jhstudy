@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高中生物微课：线粒体的“分身术”</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FF9800;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+        }
+
+        .analogy-box {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .analogy-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .hidden-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-box {
+            background-color: #fff3e0;
+            border: 1px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .quiz-options label:hover {
+            background-color: #ffe0b2;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .correct { 
+            color: #2e7d32; 
+            background-color: #c8e6c9;
+        }
+        
+        .incorrect { 
+            color: #c62828; 
+            background-color: #ffcdd2;
+        }
+
+        .nav-link {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        /* 模拟图片展示区 */
+        .diagram-placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            font-style: italic;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧬 生物微课：线粒体的“分身术”</h1>
+    <p>欢迎来到互动课堂！我们将通过一道有趣的题目，揭开细胞内线粒体如何“一心二用”的秘密。</p>
+    
+    <!-- 导航菜单 -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button class="btn" onclick="showSection('intro')">🚀 开始学习</button>
+    </div>
+
+    <!-- 1. 引入层：题目情境 -->
+    <div id="intro" class="hidden-section">
+        <h2>1. 遇到难题的细胞</h2>
+        <p>想象一下，你经营着一家工厂（细胞）。这家工厂里有一个核心车间叫<strong>“线粒体”</strong>。</p>
+        <p>这个车间非常忙碌，它主要负责两件大事：</p>
+        <ul>
+            <li>⚡️ <strong>发电（合成ATP）：</strong> 给工厂提供能量。</li>
+            <li>🧱 <strong>造砖（合成氨基酸）：</strong> 比如合成“脯氨酸”，用来建造蛋白质。</li>
+        </ul>
+        <div class="analogy-box">
+            <span class="analogy-title">💡 生活比喻：</span>
+            这就好比一个厨师（线粒体），他既要负责<strong>炒菜赚钱（产ATP）</strong>，又要负责<strong>给自己做饭吃（产氨基酸）</strong>。如果只有他一个人，忙得过来吗？
+        </div>
+        <p><strong>现在的危机是：</strong> 工厂的燃料（葡萄糖）快用完了！这时候，线粒体该怎么办？</p>
+        <button class="btn" onclick="showSection('layer1')">👉 看看线粒体怎么应对（进入第一层知识）</button>
+    </div>
+
+    <!-- 2. 现象层：图表解读 -->
+    <div id="layer1" class="hidden-section">
+        <h2>2. 惊人的发现：耗氧量大增！</h2>
+        <p>科学家做了一个实验（对应题目图乙、图丙）：</p>
+        <ul>
+            <li><strong>情况A（有糖）：</strong> 线粒体悠哉悠哉，耗氧量正常。</li>
+            <li><strong>情况B（没糖）：</strong> 线粒体疯狂运转，<strong>耗氧量飙升</strong>！</li>
+        </ul>
+        <p>但是，奇怪的事情发生了：虽然没糖了，细胞里<strong>“脯氨酸”（砖块）的产量竟然没有下降</strong>（对应题目图丙，柱子高度一样）。</p>
+        
+        <div class="quiz-box">
+            <h3>🧠 小测验 1</h3>
+            <p>在缺乏葡萄糖时，细胞为了活命，必须大量产生ATP。根据图乙耗氧量增加，说明线粒体主要加强了哪个过程？</p>
+            <div class="quiz-options">
+                <label><input type="radio" name="q1" value="wrong"> A. 糖酵解（第一阶段）</label>
+                <label><input type="radio" name="q1" value="correct"> B. 氧化磷酸化（第三阶段）</label>
+                <label><input type="radio" name="q1" value="wrong"> C. 蛋白质合成</label>
+            </div>
+            <button class="btn" onclick="checkAnswer('q1', 'feedback1')">提交答案</button>
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+        <p style="margin-top:20px;">这就引出了一个大问题：<strong>既然大家都在抢资源（谷氨酸等），为什么造砖（脯氨酸）的速度没变慢，发电（ATP）还变快了？</strong></p>
+        <button class="btn" onclick="showSection('layer2')">👉 揭秘线粒体的“分身术”（进入第二层知识）</button>
+    </div>
+
+    <!-- 3. 机制层：分工合作 -->
+    <div id="layer2" class="hidden-section">
+        <h2>3. 核心机制：专业的人做专业的事</h2>
+        <p>科学家用电镜观察发现，在缺糖时，线粒体竟然<strong>分裂成了两种不同的形态</strong>（对应题目第4问）：</p>
+        
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                <h3>🏭 I型线粒体（工匠型）</h3>
+                <p><strong>特点：</strong> 没有发电设备（缺ATP合酶），但有很多造砖工具（富含P5CS酶）。</p>
+                <p><strong>任务：</strong> 专心合成脯氨酸。</p>
+            </div>
+            <div style="flex: 1; background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                <h3>⚡️ II型线粒体（电力型）</h3>
+                <p><strong>特点：</strong> 拥有大量发电设备（富含ATP合酶），但不造砖。</p>
+                <p><strong>任务：</strong> 专心通过氧化磷酸化产生ATP。</p>
+            </div>
+        </div>
+
+        <div class="analogy-box">
+            <span class="analogy-title">💡 深度比喻：</span>
+            以前是一个厨师既炒菜又给自己做饭，效率低还容易打架（竞争底物）。<br>
+            现在老板（细胞）雇了两个厨师：<br>
+            <strong>厨师A（I型）</strong>只负责做饭（产氨基酸）；<br>
+            <strong>厨师B（II型）</strong>只负责炒菜卖钱（产ATP）。<br>
+            这就是<strong>“功能分化”</strong>带来的高效率！
+        </div>
+
+        <div class="quiz-box">
+            <h3>🧠 小测验 2</h3>
+            <p>如果阻止线粒体分化（不让它变成两种类型），会发生什么？</p>
+            <div class="quiz-options">
+                <label><input type="radio" name="q2" value="wrong"> A. 细胞会立刻死亡</label>
+                <label><input type="radio" name="q2" value="correct"> B. 氧化磷酸化和脯氨酸合成能力都会受损（因为存在竞争）</label>
+                <label><input type="radio" name="q2" value="wrong"> C. 脯氨酸合成会大幅增加</label>
+            </div>
+            <button class="btn" onclick="checkAnswer('q2', 'feedback2')">提交答案</button>
+            <div id="feedback2" class="feedback"></div>
+        </div>
+
+        <button class="btn" onclick="showSection('layer3')">👉 追根溯源：这些酶在哪？（进入底层知识）</button>
+    </div>
+
+    <!-- 4. 基础层：回归课本 -->
+    <div id="layer3" class="hidden-section">
+        <h2>4. 底层知识：结构决定功能</h2>
+        <p>要理解上面的机制，我们需要回到高一的基础知识。</p>
+        
+        <h3>📍 地点在哪里？</h3>
+        <p>题目中提到的“氧化磷酸化”（产生大量ATP的过程），发生在线粒体的哪个部位？</p>
+        <p><strong>答案：线粒体内膜。</strong></p>
+        <p>因为只有内膜上折叠形成了嵴，上面才附着有大量的<strong>ATP合酶</strong>和电子传递链。这就是为什么II型线粒体要有丰富的内膜结构才能高效发电。</p>
+
+        <h3>🥗 细胞吃什么？</h3>
+        <p>题目第(2)问提到了体外培养MEF细胞。除了糖水（葡萄糖），还要加什么？</p>
+        <p><strong>答案：动物血清。</strong></p>
+        <p>因为我们对细胞需要的营养还没完全搞清，血清里含有各种未知的生长因子和营养物质，就像给细胞吃的“十全大补汤”。</p>
+
+        <button class="btn" onclick="showSection('final')">👉 挑战终极模拟题</button>
+    </div>
+
+    <!-- 5. 终极挑战 -->
+    <div id="final" class="hidden-section">
+        <h2>🏆 终极挑战：类似题演练</h2>
+        <p>假设科学家发现了一种新药，该药物能特异性地破坏线粒体内膜上的ATP合酶，但不影响P5CS酶。如果在缺乏葡萄糖的培养基中加入该药物，预测细胞的变化：</p>
+        
+        <div class="quiz-box">
+            <div class="quiz-options">
+                <label><input type="radio" name="q3" value="wrong"> A. ATP合成增加，脯氨酸合成减少</label>
+                <label><input type="radio" name="q3" value="wrong"> B. ATP合成不变，脯氨酸合成增加</label>
+                <label><input type="radio" name="q3" value="correct"> C. ATP合成受阻，细胞可能因能量不足而死亡</label>
+                <label><input type="radio" name="q3" value="wrong"> D. 线粒体会自动分化出更多的II型线粒体</label>
+            </div>
+            <button class="btn" onclick="checkAnswer('q3', 'feedback3')">提交答案</button>
+            <div id="feedback3" class="feedback"></div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <p>🎉 恭喜你完成了本次学习！</p>
+            <button class="btn" onclick="location.reload()">🔄 重新学习</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // 显示指定章节并隐藏其他章节
+    function showSection(sectionId) {
+        // 获取所有带有 hidden-section 类的元素
+        const sections = document.querySelectorAll('.hidden-section');
+        
+        // 隐藏所有章节
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+        
+        // 显示目标章节
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.style.display = 'block';
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            console.error('Section not found:', sectionId);
+        }
+    }
+
+    // 检查答案
+    function checkAnswer(questionName, feedbackId) {
+        const options = document.getElementsByName(questionName);
+        let selectedValue = null;
+        
+        for (const option of options) {
+            if (option.checked) {
+                selectedValue = option.value;
+                break;
+            }
+        }
+        
+        const feedbackElement = document.getElementById(feedbackId);
+        
+        if (!selectedValue) {
+            feedbackElement.textContent = "请先选择一个答案！";
+            feedbackElement.className = "feedback incorrect";
+            feedbackElement.style.display = "block";
+            return;
+        }
+        
+        if (selectedValue === "correct") {
+            feedbackElement.textContent = "✅ 回答正确！太棒了！";
+            feedbackElement.className = "feedback correct";
+        } else {
+            feedbackElement.textContent = "❌ 回答错误，再想想看哦~";
+            feedbackElement.className = "feedback incorrect";
+        }
+        
+        feedbackElement.style.display = "block";
+    }
+
+    // 初始化：确保页面加载时所有部分都隐藏，除了可能的欢迎界面（这里我们让用户点击开始）
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.hidden-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

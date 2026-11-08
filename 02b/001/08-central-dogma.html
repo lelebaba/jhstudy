@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中心法则 — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="08-central-dogma.html" class="tree-link active">🔄 8. 中心法则</a></li>
+        <li class="tree-item"><a href="05-protein-degradation.html" class="tree-link">🔬 5. 蛋白质合成与降解</a></li>
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link">🧬 2. Wnt通路</a></li>
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 研究方法</a></li>
+        <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>🔄 中心法则</h1><p>DNA → RNA → 蛋白质 —— 本题涉及的所有蛋白质是怎样产生的？</p></div>
+
+<div class="card">
+  <h2>📐 中心法则概览</h2>
+  <div class="svg-container">
+    <svg viewBox="0 0 680 200">
+      <rect x="10" y="10" width="660" height="180" rx="12" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">中心法则：DNA → RNA → 蛋白质</text>
+
+      <rect x="30" y="60" width="140" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <text x="100" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">DNA</text>
+      <text x="100" y="105" text-anchor="middle" font-size="10" fill="#555">遗传信息的"蓝图"</text>
+
+      <text x="200" y="95" font-size="18" fill="#1565c0">→</text>
+      <text x="190" y="110" font-size="9" fill="#1565c0">转录</text>
+
+      <rect x="230" y="60" width="140" height="60" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+      <text x="300" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">mRNA</text>
+      <text x="300" y="105" text-anchor="middle" font-size="10" fill="#555">信息的"复印件"</text>
+
+      <text x="400" y="95" font-size="18" fill="#e65100">→</text>
+      <text x="390" y="110" font-size="9" fill="#e65100">翻译</text>
+
+      <rect x="430" y="60" width="140" height="60" rx="8" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="500" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">蛋白质</text>
+      <text x="500" y="105" text-anchor="middle" font-size="10" fill="#555">功能执行者</text>
+
+      <text x="100" y="155" text-anchor="middle" font-size="10" fill="#888">转录因子在此发挥作用</text>
+      <text x="500" y="155" text-anchor="middle" font-size="10" fill="#888">核糖体在此发挥作用</text>
+    </svg>
+  </div>
+
+  <p><strong>转录：</strong>DNA→mRNA，在细胞核中进行，由 RNA 聚合酶催化。转录因子（如本题中的 β-cat）结合在启动子区域调节转录速率。</p>
+  <p><strong>翻译：</strong>mRNA→蛋白质，在细胞质中的<strong>核糖体</strong>上进行。本题第（1）问第一空答案就是"核糖体"。</p>
+</div>
+
+<div class="card">
+  <h2>📌 中心法则与本题的关系</h2>
+  <table>
+    <tr><th>步骤</th><th>本题对应</th><th>说明</th></tr>
+    <tr><td>DNA → mRNA（转录）</td><td>M蛋白基因 → M蛋白mRNA</td><td>β-cat（作为转录因子）进入细胞核后与TCF结合，促进M蛋白基因的转录</td></tr>
+    <tr><td>mRNA → 蛋白质（翻译）</td><td>β-cat mRNA → β-cat蛋白</td><td>在核糖体上合成β-cat蛋白（第（1）问考点）</td></tr>
+    <tr><td>蛋白质降解</td><td>β-cat被降解复合体磷酸化→泛素化→水解</td><td>Wnt通路调控这个步骤（降解复合体的活性）</td></tr>
+  </table>
+
+  <div class="info-box">
+    <h4>🔑 各实验对应哪个环节</h4>
+    <p><strong>图2（ICG实验）：</strong>作用于<strong>蛋白质降解</strong>环节——ICG恢复降解复合体功能，让β-cat正常被降解。</p>
+    <p><strong>图3（M蛋白检测）：</strong>作用于<strong>转录</strong>环节——β-cat入核作为转录因子，促进M蛋白基因转录。</p>
+    <p><strong>图4（侵袭细胞数）：</strong>最终表型——M蛋白水解E蛋白后，EMT发生，癌细胞获得侵袭能力。</p>
+  </div>
+</div>
+
+<div class="quiz">
+  <div class="q">🧪 小练习：β-cat蛋白是在哪个细胞器中合成的？</div>
+  <div class="option" onclick="checkQuiz(this,'A')">A. 细胞核</div>
+  <div class="option" onclick="checkQuiz(this,'B')">B. 线粒体</div>
+  <div class="option" onclick="checkQuiz(this,'C')">C. 核糖体</div>
+  <div class="option" onclick="checkQuiz(this,'D')">D. 高尔基体</div>
+  <div class="feedback"></div>
+</div>
+
+<div class="nav-btns">
+  <a href="07-research-methods.html" class="nav-btn back">← 研究方法</a>
+  <a href="09-practice.html" class="nav-btn">下一课：综合练习 →</a>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkQuiz(el, ans) {
+  var all = el.parentElement.querySelectorAll('.option');
+  all.forEach(function(o){ o.classList.remove('correct','wrong'); });
+  var fb = el.parentElement.querySelector('.feedback');
+  if(ans==='C') {
+    el.classList.add('correct');
+    fb.textContent = '✅ 正确！所有蛋白质（包括β-cat、Wnt、M蛋白、E蛋白）都在核糖体上合成。';
+    fb.className = 'feedback correct show';
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = '❌ 再想想。蛋白质的合成场所始终是核糖体——这是高中生物的基础考点。';
+    fb.className = 'feedback wrong show';
+  }
+}
+</script>
+</body>
+</html>

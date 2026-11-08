@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微生物培养技术 - 学习课件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav">
+    <ul class="tree">
+      <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+      <li class="tree-item">
+        <a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+        <ul class="tree-sub">
+          <li class="tree-item">
+            <a href="02-kombucha.html" class="tree-link">🫖 2. 康普茶发酵</a>
+            <ul class="tree-sub">
+              <li class="tree-item">
+                <a href="03-metabolism.html" class="tree-link">🍶 3. 微生物代谢</a>
+                <ul class="tree-sub">
+                  <li class="tree-item"><a href="04-bacteria-yeast.html" class="tree-link">🔬 4. 醋酸菌与酵母菌</a></li>
+                </ul>
+              </li>
+              <li class="tree-item"><a href="05-optimization.html" class="tree-link">📊 5. 发酵条件优化</a></li>
+            </ul>
+          </li>
+          <li class="tree-item">
+            <a href="06-culture.html" class="tree-link active">🧫 6. 微生物培养技术</a>
+            <ul class="tree-sub">
+              <li class="tree-item"><a href="07-aseptic.html" class="tree-link">🧪 7. 无菌操作</a></li>
+            </ul>
+          </li>
+          <li class="tree-item"><a href="08-practice.html" class="tree-link">📝 8. 综合练习</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="main">
+  <div class="header">
+    <h1>🧫 微生物培养技术</h1>
+    <p>从混合菌群到单一菌种——分离、纯化、筛选的完整流程</p>
+  </div>
+
+  <div class="card">
+    <h2>微生物培养的核心目标</h2>
+    <p>在自然界或发酵液中，微生物总是以<strong>混合群体</strong>存在。要做工业化生产，必须先<strong>分离纯化</strong>出单一菌种，再筛选出最优菌种。</p>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 220">
+        <text x="340" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">微生物分离纯化流程</text>
+
+        <rect x="10" y="50" width="120" height="60" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="70" y="75" text-anchor="middle" font-size="12" fill="#1b5e20">发酵液</text>
+        <text x="70" y="92" text-anchor="middle" font-size="11" fill="#666">（混合菌群）</text>
+
+        <polygon points="140,80 160,80 150,70 160,60 140,60" fill="#4caf50"/>
+        <text x="150" y="105" text-anchor="middle" font-size="10" fill="#666">稀释</text>
+
+        <rect x="170" y="50" width="120" height="60" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+        <text x="230" y="75" text-anchor="middle" font-size="12" fill="#e65100">梯度稀释</text>
+        <text x="230" y="92" text-anchor="middle" font-size="11" fill="#666">10⁻¹ ~ 10⁻⁸</text>
+
+        <polygon points="300,80 320,80 310,70 320,60 300,60" fill="#f57c00"/>
+        <text x="310" y="105" text-anchor="middle" font-size="10" fill="#666">涂布</text>
+
+        <rect x="330" y="50" width="120" height="60" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="390" y="75" text-anchor="middle" font-size="12" fill="#0d47a1">固体平板</text>
+        <text x="390" y="92" text-anchor="middle" font-size="11" fill="#666">培养24-48h</text>
+
+        <polygon points="460,80 480,80 470,70 480,60 460,60" fill="#1565c0"/>
+        <text x="470" y="105" text-anchor="middle" font-size="10" fill="#666">长出</text>
+
+        <rect x="490" y="50" width="170" height="60" rx="10" fill="#fce4ec" stroke="#e91e63" stroke-width="2"/>
+        <text x="575" y="75" text-anchor="middle" font-size="12" fill="#880e4f">单菌落</text>
+        <text x="575" y="92" text-anchor="middle" font-size="11" fill="#666">（每个菌落=一个细胞的后代）</text>
+
+        <!-- 下方箭头到筛选 -->
+        <line x1="575" y1="110" x2="575" y2="145" stroke="#999" stroke-width="2" stroke-dasharray="5,3"/>
+        <polygon points="570,145 580,145 575,155" fill="#999"/>
+
+        <rect x="490" y="160" width="170" height="50" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+        <text x="575" y="190" text-anchor="middle" font-size="12" fill="#4a148c">鉴定 + 筛选最优菌种</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>两种常用的分离方法</h2>
+
+    <h3>1. 稀释涂布平板法</h3>
+    <p>将发酵液<strong>逐级稀释</strong>（10⁻¹, 10⁻², ... 10⁻⁸），取少量稀释液涂布到固体培养基表面。当稀释度足够高时，每个菌落都来自<strong>单个细胞</strong>。</p>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 200">
+        <text x="340" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">稀释涂布平板法</text>
+
+        <!-- 稀释管 -->
+        <rect x="10" y="50" width="60" height="80" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="40" y="70" text-anchor="middle" font-size="10" fill="#333">原液</text>
+        <text x="40" y="120" text-anchor="middle" font-size="14" fill="#4caf50">●●●●</text>
+
+        <polygon points="80,90 95,90 88,80 95,70 80,70" fill="#4caf50"/>
+        <text x="88" y="110" text-anchor="middle" font-size="9" fill="#666">取1mL</text>
+
+        <rect x="105" y="50" width="60" height="80" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="135" y="70" text-anchor="middle" font-size="10" fill="#333">10⁻¹</text>
+        <text x="135" y="120" text-anchor="middle" font-size="14" fill="#4caf50">●●●</text>
+
+        <polygon points="175,90 190,90 183,80 190,70 175,70" fill="#4caf50"/>
+        <text x="183" y="110" text-anchor="middle" font-size="9" fill="#666">取1mL</text>
+
+        <rect x="200" y="50" width="60" height="80" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="230" y="70" text-anchor="middle" font-size="10" fill="#333">10⁻²</text>
+        <text x="230" y="120" text-anchor="middle" font-size="14" fill="#4caf50">●●</text>
+
+        <text x="270" y="90" font-size="20" fill="#999">...</text>
+
+        <rect x="300" y="50" width="60" height="80" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="330" y="70" text-anchor="middle" font-size="10" fill="#333">10⁻⁸</text>
+        <text x="330" y="120" text-anchor="middle" font-size="14" fill="#4caf50">●</text>
+
+        <polygon points="370,90 385,90 378,80 385,70 370,70" fill="#4caf50"/>
+        <text x="378" y="110" text-anchor="middle" font-size="9" fill="#666">取0.1mL</text>
+
+        <!-- 平板 -->
+        <ellipse cx="470" cy="90" rx="50" ry="40" fill="#fff8e1" stroke="#f57c00" stroke-width="2"/>
+        <text x="470" y="80" text-anchor="middle" font-size="11" fill="#e65100">固体平板</text>
+        <circle cx="455" cy="100" r="5" fill="#c62828"/>
+        <circle cx="485" cy="95" r="5" fill="#1565c0"/>
+        <circle cx="475" cy="110" r="5" fill="#2e7d32"/>
+        <text x="470" y="145" text-anchor="middle" font-size="10" fill="#666">长出分散的单菌落</text>
+
+        <!-- 关键说明 -->
+        <rect x="540" y="50" width="130" height="100" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="605" y="72" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">关键要求</text>
+        <text x="550" y="90" font-size="10" fill="#333">✅ 菌落分散</text>
+        <text x="550" y="105" font-size="10" fill="#333">✅ 每个菌落</text>
+        <text x="550" y="118" font-size="10" fill="#333">&#160;&#160;&#160;来自单个细胞</text>
+        <text x="550" y="133" font-size="10" fill="#333">✅ 可计数</text>
+        <text x="550" y="146" font-size="10" fill="#333">✅ 可挑取纯化</text>
+      </svg>
+    </div>
+
+    <h3>2. 平板划线法</h3>
+    <p>用接种环蘸取少量菌液，在固体培养基表面<strong>连续划线</strong>。每次划线都将菌液进一步稀释，最终在划线末端形成<strong>单个菌落</strong>。</p>
+
+    <div class="svg-container">
+      <svg viewBox="0 0 680 200">
+        <text x="340" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#f57c00">平板划线法</text>
+
+        <ellipse cx="340" cy="110" rx="180" ry="70" fill="#fff8e1" stroke="#f57c00" stroke-width="2"/>
+
+        <!-- 划线轨迹 -->
+        <path d="M 200 90 Q 250 70 300 90 Q 350 110 300 130 Q 250 150 200 130" fill="none" stroke="#c62828" stroke-width="2"/>
+        <path d="M 300 90 Q 350 75 400 90 Q 450 105 400 120 Q 350 135 300 120" fill="none" stroke="#1565c0" stroke-width="2"/>
+        <path d="M 400 90 Q 440 82 470 90 Q 480 95 475 105" fill="none" stroke="#2e7d32" stroke-width="2"/>
+
+        <!-- 单菌落 -->
+        <circle cx="475" cy="105" r="4" fill="#2e7d32"/>
+        <text x="480" y="107" font-size="10" fill="#2e7d32">单菌落</text>
+
+        <text x="180" y="75" font-size="10" fill="#c62828">第1区（菌最多）</text>
+        <text x="310" y="72" font-size="10" fill="#1565c0">第2区（渐少）</text>
+        <text x="420" y="75" font-size="10" fill="#2e7d32">第3区（单菌落）</text>
+
+        <text x="340" y="195" text-anchor="middle" font-size="11" fill="#666">划线过程不断稀释菌液 → 末端形成单个菌落</text>
+      </svg>
+    </div>
+
+    <h3>两种方法对比</h3>
+    <table>
+      <tr><th></th><th>稀释涂布平板法</th><th>平板划线法</th></tr>
+      <tr><td>操作</td><td>稀释→涂布</td><td>接种环蘸菌→划线</td></tr>
+      <tr><td>能否计数</td><td>✅ 可以（计算活菌数）</td><td>❌ 不能（无法定量）</td></tr>
+      <tr><td>分离效果</td><td>较好（菌落分散均匀）</td><td>好（末端单菌落清晰）</td></tr>
+      <tr><td>本题适用</td><td>✅ 本题选此法</td><td>✅ 也可用</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>培养基的类型</h2>
+    <table>
+      <tr><th>类型</th><th>功能</th><th>举例</th></tr>
+      <tr><td><strong>选择培养基</strong></td><td>只让目标菌生长，抑制其他菌</td><td>加抗生素的培养基（只让抗性菌生长）；以特定碳源为唯一碳源的培养基</td></tr>
+      <tr><td><strong>鉴别培养基</strong></td><td>所有菌都能长，但不同菌表现不同</td><td>伊红美蓝培养基（大肠杆菌→金属光泽菌落）</td></tr>
+      <tr><td>固体培养基</td><td>含琼脂，用于分离单菌落</td><td>琼脂浓度1.5-2%</td></tr>
+      <tr><td>液体培养基</td><td>用于扩大培养、发酵生产</td><td>不含琼脂</td></tr>
+    </table>
+
+    <div class="hint-box">
+      <h4>💡 本题为什么用"选择培养基"？</h4>
+      <p>题目说"将发酵液接种至<strong>选择培养基</strong>"。发酵液中含有醋酸菌、酵母菌、乳酸菌等多种微生物。如果要专门筛选醋酸菌，可以在培养基中加入<strong>特定的碳源（如乙醇）</strong>——只有醋酸菌能利用乙醇生长，其他菌被"饿死"。</p>
+    </div>
+  </div>
+
+  <!-- 互动小练习 -->
+  <div class="card">
+    <h2>✏️ 本节小练习</h2>
+    <div class="quiz">
+      <h3>Q1: 稀释涂布平板法的关键目标是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">让所有菌都长在一起</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">获得分散的单菌落，每个菌落来自单个细胞</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">杀死所有杂菌</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">让培养基变酸</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: 选择培养基的特点是？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">所有菌都能生长，但表现不同</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">只让目标菌种生长，抑制其他菌</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">含有琼脂，是固体</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">不含任何营养</div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q3: 下列哪种方法可以用于活菌计数？</h3>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">平板划线法</div>
+      <div class="quiz-option" onclick="checkAnswer(this, true)">稀释涂布平板法</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">显微镜直接计数</div>
+      <div class="quiz-option" onclick="checkAnswer(this, false)">称重法</div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkAnswer(el, isCorrect) {
+  const quiz = el.parentElement;
+  quiz.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
+  if (isCorrect) { el.classList.add('correct'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show correct'; fb.textContent = '✅ 回答正确！'; }
+  else { el.classList.add('wrong'); const fb = quiz.querySelector('.quiz-feedback'); fb.className = 'quiz-feedback show wrong'; fb.textContent = '❌ 再想想～'; }
+}
+</script>
+</body>
+</html>

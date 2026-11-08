@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wnt/β-catenin信号通路 — Hp与胃癌课件</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="has-sidebar">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><a href="index.html">📚 知识目录</a></div>
+  <nav class="tree-nav"><ul class="tree">
+    <li class="tree-item"><a href="index.html" class="tree-link">🏠 首页</a></li>
+    <li class="tree-item"><a href="01-problem.html" class="tree-link">📋 1. 题目分析</a>
+      <ul class="tree-sub">
+        <li class="tree-item"><a href="02-wnt-signaling.html" class="tree-link active">🧬 2. Wnt/β-cat信号通路</a></li>
+        <li class="tree-item"><a href="04-cell-adhesion.html" class="tree-link">🔗 4. 细胞黏附</a></li>
+        <li class="tree-item"><a href="03-hp-gastric-cancer.html" class="tree-link">👻 3. Hp与胃癌</a></li>
+        <li class="tree-item"><a href="07-research-methods.html" class="tree-link">🧪 7. 研究方法</a></li>
+        <li class="tree-item"><a href="09-practice.html" class="tree-link">📝 9. 综合练习</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+</aside>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="container">
+<div class="header"><h1>🧬 Wnt/β-catenin 信号通路</h1><p>本题最核心的知识点——理解β-cat蛋白如何被调控，是解答整道题的关键</p></div>
+
+<div class="card">
+  <h2>🤔 什么是"信号通路"？</h2>
+  <p>信号通路（Signaling Pathway）是细胞内部的"<strong>指令传递链</strong>"。就像公司里老板发指令：</p>
+  <div class="pathway" style="font-family:'Microsoft YaHei',sans-serif;">
+📩 外界信号 → A蛋白接收 → A激活B → B激活C → ... → 最终产生效果
+  </div>
+  <p>Wnt 信号通路就是以 <strong>Wnt 蛋白</strong>为起点的一条指令链。它的"最终效果"之一是<strong>决定 β-cat 蛋白的命运</strong>：是留着用，还是送去销毁。</p>
+</div>
+
+<div class="card">
+  <h2>🔄 Wnt 信号通路的核心机制</h2>
+
+  <h3>1️⃣ Wnt 信号关闭时（正常状态）</h3>
+  <div class="svg-container">
+    <svg viewBox="0 0 680 280">
+      <rect x="10" y="10" width="660" height="260" rx="12" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="38" text-anchor="middle" font-size="16" font-weight="bold" fill="#c62828">Wnt 信号关闭 = β-cat 被持续降解</text>
+      <rect x="50" y="55" width="180" height="180" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+      <text x="140" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">降解复合体</text>
+      <rect x="70" y="100" width="140" height="24" rx="4" fill="#c8e6c9"/>
+      <text x="140" y="117" text-anchor="middle" font-size="11" fill="#333">GSK-3β</text>
+      <rect x="70" y="130" width="140" height="24" rx="4" fill="#c8e6c9"/>
+      <text x="140" y="147" text-anchor="middle" font-size="11" fill="#333">APC</text>
+      <rect x="70" y="160" width="140" height="24" rx="4" fill="#c8e6c9"/>
+      <text x="140" y="177" text-anchor="middle" font-size="11" fill="#333">Axin</text>
+      <text x="140" y="205" text-anchor="middle" font-size="11" fill="#555">正常工作中...</text>
+      <line x1="230" y1="145" x2="290" y2="145" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowGreen)"/>
+      <defs><marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#2e7d32"/></marker></defs>
+      <rect x="300" y="100" width="100" height="40" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+      <text x="350" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">β-cat</text>
+      <line x1="400" y1="120" x2="460" y2="120" stroke="#c62828" stroke-width="2" marker-end="url(#arrowRed)"/>
+      <defs><marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#c62828"/></marker></defs>
+      <text x="470" y="110" font-size="14" fill="#c62828" font-weight="bold">Ⓟ</text>
+      <text x="470" y="138" font-size="11" fill="#c62828">磷酸化标记</text>
+      <line x1="510" y1="120" x2="560" y2="120" stroke="#c62828" stroke-width="2" marker-end="url(#arrowRed)"/>
+      <text x="570" y="112" font-size="11" fill="#c62828">泛素化</text>
+      <text x="570" y="138" font-size="11" fill="#c62828">→水解</text>
+    </svg>
+  </div>
+  <p>降解复合体像一个<strong>"标签机+碎纸机"</strong>：先用磷酸化给β-cat贴标签→再泛素化标记→最后送入蛋白酶体碎掉。结果是 β-cat 一直保持低浓度。</p>
+
+  <h3>2️⃣ Wnt 信号激活时</h3>
+  <div class="svg-container">
+    <svg viewBox="0 0 680 240">
+      <rect x="10" y="10" width="660" height="220" rx="12" fill="#f5f5f5" stroke="#ccc"/>
+      <text x="340" y="38" text-anchor="middle" font-size="16" font-weight="bold" fill="#2e7d32">Wnt 信号激活 = β-cat 大量积累</text>
+      <rect x="40" y="60" width="160" height="50" rx="8" fill="#c8e6c9" stroke="#4caf50" stroke-width="2"/>
+      <text x="120" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">Wnt蛋白</text>
+      <text x="120" y="99" text-anchor="middle" font-size="11" fill="#555">（信号来了！）</text>
+      <line x1="200" y1="85" x2="260" y2="85" stroke="#4caf50" stroke-width="2" marker-end="url(#ag)"/>
+      <rect x="270" y="60" width="170" height="50" rx="8" fill="#ffcdd2" stroke="#c62828" stroke-width="2"/>
+      <text x="355" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">降解复合体</text>
+      <text x="355" y="99" text-anchor="middle" font-size="11" fill="#c62828">✗ 被抑制！</text>
+      <line x1="440" y1="85" x2="490" y2="85" stroke="#c62828" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <rect x="300" y="140" width="110" height="40" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+      <text x="355" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">β-cat</text>
+      <text x="470" y="155" font-size="13" fill="#ff9800" font-weight="bold">积累！</text>
+      <text x="470" y="175" font-size="11" fill="#555">→进入细胞核</text>
+      <text x="50" y="195" font-size="12" fill="#888">比喻：碎纸机被关掉了 → 纸张堆积如山</text>
+    </svg>
+  </div>
+  <p>Wnt 蛋白来"报信"，与降解复合体结合 → 降解复合体暂时"罢工" → β-cat 不再被降解 → 在细胞质中积累 → 达到一定浓度后进入细胞核 → 激活下游基因。</p>
+</div>
+
+<div class="card">
+  <h2>🎯 β-cat 蛋白的三重角色</h2>
+  <table>
+    <tr><th>位置</th><th>角色</th><th>功能</th></tr>
+    <tr><td>细胞膜</td><td>黏附分子</td><td>与 E 蛋白结合，维持细胞间连接</td></tr>
+    <tr><td>细胞质</td><td>信号中间体</td><td>被降解复合体持续降解，或积累后入核</td></tr>
+    <tr><td>细胞核</td><td>转录共激活因子</td><td>与 TCF/LEF 转录因子结合，激活靶基因（如M蛋白基因）</td></tr>
+  </table>
+
+  <div class="hint-box">
+    <h4>💡 "双重角色"是本题的解题核心</h4>
+    <p>β-cat 既是<strong>膜上正常的结构蛋白</strong>（与E蛋白一起维持黏附），又是<strong>核内致癌的转录因子</strong>（调控M蛋白基因）。这道题的命题逻辑正是围绕这个双重性展开的：</p>
+    <ul>
+      <li>正常状态 → β-cat 主要在膜上（黏附）和降解（维持低浓度）</li>
+      <li>Hp 感染 → β-cat 大量入核 → 激活 M 蛋白 → M 蛋白水解 E 蛋白 → 黏附破坏 → 更多 β-cat 释放入核（恶性循环）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📌 本题中的Wnt通路</h2>
+  <table>
+    <tr><th>本题情景</th><th>对应的通路状态</th><th>β-cat含量</th></tr>
+    <tr><td>正常细胞</td><td>降解复合体正常工作</td><td>低</td></tr>
+    <tr><td>Hp感染</td><td>Wnt被激活→降解复合体被抑制</td><td>高</td></tr>
+    <tr><td>Hp + ICG</td><td>ICG阻断Wnt功能→降解复合体恢复</td><td>恢复正常（低）</td></tr>
+  </table>
+</div>
+
+<div class="quiz">
+  <div class="q">🧪 小练习：下列哪项最准确地描述了Wnt信号"开"和"关"的净效果？</div>
+  <div class="option" onclick="checkQuiz(this,'A')">A. Wnt开→β-cat被降解；Wnt关→β-cat被保留</div>
+  <div class="option" onclick="checkQuiz(this,'B')">B. Wnt开→降解复合体被抑制→β-cat积累；Wnt关→降解复合体工作→β-cat被降解</div>
+  <div class="option" onclick="checkQuiz(this,'C')">C. Wnt开和关对β-cat没有影响，只影响其他蛋白</div>
+  <div class="option" onclick="checkQuiz(this,'D')">D. Wnt开→β-cat合成增加；Wnt关→β-cat合成减少</div>
+  <div class="feedback" id="fb"></div>
+</div>
+
+<div class="nav-btns">
+  <a href="01-problem.html" class="nav-btn back">← 题目分析</a>
+  <a href="03-hp-gastric-cancer.html" class="nav-btn">下一课：Hp与胃癌 →</a>
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('show');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function checkQuiz(el, ans) {
+  var all = el.parentElement.querySelectorAll('.option');
+  all.forEach(function(o){ o.classList.remove('correct','wrong'); });
+  var fb = el.parentElement.querySelector('.feedback');
+  if(ans==='B') {
+    el.classList.add('correct');
+    fb.textContent = '✅ 正确！Wnt信号激活本质上就是关闭降解复合体，让β-cat积累。';
+    fb.className = 'feedback correct show';
+  } else {
+    el.classList.add('wrong');
+    fb.textContent = '❌ 再想想。Wnt通路的核心机制是调控降解复合体的活性，而不是调控β-cat的合成。';
+    fb.className = 'feedback wrong show';
+  }
+}
+</script>
+</body>
+</html>

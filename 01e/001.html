@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#16697a" />
+<title>英语主谓一致 · 互动学习课件</title>
+<style>
+:root{
+  --sidebar-width:264px;
+  --ink:#18262b; --muted:#5f6f75; --line:#dce5e7; --bg:#f4f8f8;
+  --main:#16697a; --main-soft:#e6f2f4; --gold:#e99a2b; --gold-soft:#fff4e2;
+  --green:#2b7a58; --green-soft:#e5f4ec; --red:#b84d4d; --red-soft:#fcecec;
+  --shadow:0 8px 28px rgba(22,105,122,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.75; font-size:17px;
+}
+img{max-width:100%}
+button{font:inherit; cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:6px}
+.skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{position:static;width:auto;height:auto;padding:10px;background:white;color:var(--main)}
+.wrap{max-width:1020px;margin:auto;padding:0 20px}
+header.top{background:linear-gradient(135deg,#16697a,#1e9a9a);color:white;padding:48px 20px 36px}
+header.top .wrap{position:relative}
+.kicker{letter-spacing:.14em;font-size:.88rem;font-weight:700;opacity:.85}
+header.top h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:9px 0 10px}
+header.top p{max-width:700px;margin:0;opacity:.94}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.35);padding:5px 10px;border-radius:999px;font-size:.85rem}
+/* 左侧导航栏 */
+body{padding-left:var(--sidebar-width)}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-width);height:100vh;background:linear-gradient(180deg,#16697a,#1e9a9a);color:#fff;overflow-y:auto;z-index:30;box-shadow:3px 0 16px rgba(0,0,0,.16)}
+.sidebar-header{padding:22px 18px 14px;font-size:1rem;font-weight:800;border-bottom:1px solid rgba(255,255,255,.25);letter-spacing:.04em}
+.side-nav{padding:10px 0 30px}
+.side-link{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;color:rgba(255,255,255,.88);text-align:left;padding:11px 18px;font-size:.92rem;font-weight:700;border-left:3px solid transparent;transition:.18s}
+.side-link:hover{background:rgba(255,255,255,.12);color:#fff}
+.side-link.active{background:rgba(255,255,255,.18);border-left-color:var(--gold);color:#fff;font-weight:800}
+.side-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800}
+.side-link.active .side-num{background:var(--gold);color:#472d00}
+.sidebar-toggle{display:none;position:fixed;top:12px;left:12px;z-index:45;background:var(--main);color:#fff;border:0;width:44px;height:44px;border-radius:11px;font-size:1.15rem;box-shadow:var(--shadow)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:25}
+.sidebar-overlay.show{display:block}
+@media(max-width:1040px){
+  body{padding-left:0}
+  .sidebar{transform:translateX(-100%);transition:transform .3s ease}
+  .sidebar.show{transform:translateX(0)}
+  .sidebar-toggle{display:block}
+  header.top{padding-top:64px}
+}
+main{padding:28px 0 72px}
+.panel{display:none;animation:fade .35s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.intro-card,.card{background:white;border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:var(--shadow)}
+.card{padding:22px}
+h2{font-size:clamp(22px,3.4vw,28px);margin:0 0 14px;color:var(--main);display:flex;gap:10px;align-items:center}
+h3{font-size:1.15rem;margin:22px 0 8px;color:#1a515b}
+p{margin:8px 0}
+.lead{font-size:1.08rem;color:#31464b}
+.callout{border-left:5px solid var(--gold);background:var(--gold-soft);padding:12px 15px;border-radius:0 10px 10px 0;margin:15px 0}
+.rule{border:2px solid var(--main);background:var(--main-soft);padding:13px 15px;border-radius:12px;margin:14px 0;font-weight:700}
+.example{background:#f8fbfb;border:1px dashed #9fc5ca;border-radius:12px;padding:14px;margin:12px 0}
+.sentence{font-size:1.2rem;font-weight:700;margin:5px 0}
+.correct{color:var(--green)}
+mark.verb{background:var(--gold-soft);color:#865000;padding:1px 6px;border-radius:6px;font-weight:800}
+small.hint{color:var(--muted);display:block;margin-top:4px}
+.words{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+.word{border:1px solid var(--line);background:#fbfcfc;color:#39616a;border-radius:8px;padding:5px 10px;font-size:.88rem}
+.word b{color:var(--main)}
+.learn{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:16px 0}
+.learn div{background:#f4f8f8;border-radius:12px;padding:13px;border:1px solid var(--line)}
+.learn h4{margin:0 0 5px;color:var(--main);font-size:1rem}
+/* Practice */
+.practice{border:1px solid var(--line);border-radius:14px;padding:17px;margin:17px 0;background:#fffdf8}
+.practice > p:first-child{font-weight:800;color:#694b13;margin-top:0}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0 5px}
+.option{border:2px solid #d8e1e2;background:white;color:var(--ink);border-radius:12px;padding:13px 10px;font-size:1.05rem;font-weight:700;transition:.18s}
+.option:hover{border-color:var(--main);transform:translateY(-2px)}
+.option:disabled{cursor:not-allowed;opacity:.72}
+.option.was-selected{outline:3px solid var(--gold);outline-offset:2px}
+.option.right{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+.option.wrong{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+.feedback{margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700;display:none}
+.feedback.show{display:block}
+.feedback.right{background:var(--green-soft);color:var(--green)}
+.feedback.wrong{background:var(--red-soft);color:var(--red)}
+.explanation{color:#394a4e;font-weight:400;display:block;margin-top:6px;line-height:1.65}
+.answer-button,.show-answer,.reset,.check{background:var(--main);border:0;color:white;padding:10px 16px;border-radius:10px;font-weight:800}
+.show-answer{background:var(--gold);color:#472d00}
+.reset{background:#e7eeee;color:#34555a}
+.check{width:100%}
+.answers{margin-top:12px}
+.answers details{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:#f7fafa}
+.answers summary{cursor:pointer;font-weight:800;color:var(--main)}
+.answers p{margin:7px 0 0}
+.fill{width:100%;padding:11px;border-radius:10px;border:2px solid #d8e1e2;font-size:1.08rem;margin:8px 0}
+.fill:focus{border-color:var(--main);outline:0}
+.result{margin-top:12px;padding:12px;border-radius:10px;background:#eef5f6;font-weight:800}
+.progress-wrap{position:sticky;bottom:0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);padding:10px 0;margin-top:28px}
+.progress{height:12px;background:#e4eded;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#16697a,#39a67f);transition:width .3s}
+.progress-text{font-size:.9rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:6px;gap:10px}
+/* 知识点序号 + 上下步导航 */
+h2 .kp-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--main);color:#fff;font-size:1.02rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(22,105,122,.25)}
+.step-nav{display:flex;align-items:center;gap:12px;margin:22px 0 6px}
+.step-btn{border:0;border-radius:12px;padding:12px 20px;font-size:.95rem;font-weight:800;transition:.18s}
+.step-btn.next{background:var(--main);color:#fff;margin-left:auto;box-shadow:var(--shadow)}
+.step-btn.next:hover{background:#0f5561;transform:translateY(-2px)}
+.step-btn.prev{background:#e7eeee;color:#34555a}
+.step-btn.prev:hover{background:#dbe7e8}
+footer{border-top:1px solid var(--line);background:#eef4f4;padding:25px 20px}
+footer .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+/* tooltips */
+.tooltip{position:relative;border-bottom:2px dotted var(--gold);cursor:help;color:#8b5900;font-weight:700;background:rgba(233,154,43,.1);padding:0 2px;border-radius:3px}
+.tooltip:focus-visible{outline:3px solid var(--gold)}
+.tooltip .tip{visibility:hidden;opacity:0;position:absolute;left:50%;bottom:135%;transform:translateX(-50%) translateY(6px);transition:.18s;width:max-content;max-width:280px;background:#20343a;color:#fff;padding:9px 11px;border-radius:9px;font-weight:400;font-size:.87rem;line-height:1.5;z-index:9;box-shadow:var(--shadow)}
+.tooltip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#20343a}
+.tooltip:hover .tip,.tooltip:focus .tip,.tooltip.show .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+/* mobile */
+@media(max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 14px}
+  .intro-card,.card{padding:18px 15px;border-radius:15px}
+  .practice{padding:15px 13px}
+  .options{grid-template-columns:1fr 1fr}
+  .example{padding:12px}
+  .tooltip .tip{left:0;transform:translateY(6px);max-width:85vw}
+  .tooltip .tip::after{left:18px;transform:none}
+  .tooltip:hover .tip,.tooltip:focus .tip,.tooltip.show .tip{transform:translateY(0)}
+  .step-nav{flex-wrap:wrap}
+  .step-btn{flex:1 1 auto;text-align:center}
+  footer .wrap{font-size:.9rem}
+}
+@media print{
+  .sidebar,.sidebar-toggle,.sidebar-overlay,.progress-wrap,.step-nav,.answer-button,.reset,.check,.show-answer{display:none}
+  body{background:white;padding-left:0}.panel{display:block!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">ENGLISH · SUBJECT-VERB AGREEMENT</div>
+    <h1>英语主谓一致<br class="mobile-only" />互动学习课件</h1>
+    <p>主语是“谁”，谓语是“做什么”。这一课带你用三步判断：主语是单数还是复数？是不是整体？是不是跟最近的主语走？</p>
+    <div class="chips"><span class="chip">手机 / 电脑通用</span><span class="chip">逐点练习</span><span class="chip">点按显示注释</span><span class="chip">综合闯关</span></div>
+  </div>
+</header>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">📚 英语主谓一致 · 导航</div>
+  <nav class="side-nav" aria-label="课件导航">
+    <button class="side-link active" data-tab="learn" aria-current="true"><span class="side-num">🗺️</span><span>学习地图</span></button>
+    <button class="side-link" data-tab="grammar"><span class="side-num">1</span><span>语法一致</span></button>
+    <button class="side-link" data-tab="meaning"><span class="side-num">2</span><span>意义一致</span></button>
+    <button class="side-link" data-tab="near"><span class="side-num">3</span><span>就近原则</span></button>
+    <button class="side-link" data-tab="extras"><span class="side-num">4</span><span>附加成分</span></button>
+    <button class="side-link" data-tab="relative"><span class="side-num">5</span><span>定语从句</span></button>
+    <button class="side-link" data-tab="inversion"><span class="side-num">6</span><span>倒装结构</span></button>
+    <button class="side-link" data-tab="final"><span class="side-num">🏆</span><span>综合练习</span></button>
+  </nav>
+</aside>
+<button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="打开或关闭导航">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main id="main" class="wrap">
+
+<!-- 学习地图 -->
+<section id="learn" class="panel active" aria-labelledby="learn-title">
+  <div class="intro-card">
+    <h2 id="learn-title">🗺️ 先记住一句话</h2>
+    <p class="lead"><strong>动词跟着真正的主语走：单数主语配单数动词，复数主语配复数动词。</strong></p>
+    <div class="rule">找主语 → 定单复数 → 选动词</div>
+    <p>大多数句子只要找对主语，就能选对动词。本课还有三个“小陷阱”：</p>
+    <div class="learn">
+      <div><h4>① 看意思</h4>有些词形状是复数，意思却是一个整体。</div>
+      <div><h4>② 看最近</h4>遇到 or、either…or 等，动词常跟最近的主语一致。</div>
+      <div><h4>③ 别被骗</h4>with、as well as 等不是主语，不能决定动词。</div>
+    </div>
+    <div class="callout"><strong>怎么读这个课件？</strong>每学一个知识点，先做旁边的练习；答案、解释和较难单词都可以点开看。学完六个知识点，再去“综合练习”闯关。</div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn next" type="button" data-go="grammar">下一步：① 语法一致 →</button>
+  </div>
+</section>
+
+<!-- 语法一致 -->
+<section id="grammar" class="panel" aria-labelledby="grammar-title">
+  <div class="card">
+    <h2 id="grammar-title"><span class="kp-num">1</span>语法一致：主语什么样，动词就什么样</h2>
+    <p>先看主语是<strong>单数</strong>还是<strong>复数</strong>，再看动词。一般现在时里，第三人称单数动词通常要加 <mark class="verb">-s</mark> 或 <mark class="verb">-es</mark>。</p>
+    <div class="rule">He <mark class="verb">runs</mark>.（单数）<br>They <mark class="verb">run</mark>.（复数）</div>
+    <div class="example">
+      <p class="sentence">The cat <mark class="verb">sleeps</mark> on the chair.</p>
+      <small class="hint">主语 The cat 是单数，所以动词 sleep 加 -s。</small>
+      <span class="words"><span class="word"><b>cat</b> 猫</span><span class="word"><b>sleep</b> 睡觉</span><span class="word"><b>chair</b> 椅子</span></span>
+    </div>
+    <div class="example">
+      <p class="sentence">The cats <mark class="verb">sleep</mark> on the chairs.</p>
+      <small class="hint">主语 The cats 是复数，动词用原形 sleep。</small>
+    </div>
+    <h3>常见规律</h3>
+    <ul>
+      <li><strong>不可数名词</strong>当单数：Water <mark class="verb">is</mark> good.</li>
+      <li><strong>动词-ing 或不定式</strong>作主语，当单数：Reading <mark class="verb">helps</mark>.</li>
+      <li><strong>every / each / no</strong> 修饰名词，当单数：Each boy <mark class="verb">has</mark> a ball.</li>
+      <li><strong>many a + 单数名词</strong>，仍当单数：Many a girl <mark class="verb">likes</mark> music.</li>
+      <li><strong>时间、金钱、距离</strong>当整体，用单数：Ten dollars <mark class="verb">is</mark> enough.</li>
+      <li><strong>and 连接同一人 / 物 / 概念</strong>，用单数：Bread and butter <mark class="verb">is</mark> nice.</li>
+    </ul>
+    <p class="callout"><strong>小提醒：</strong>bread and butter 在这里是一顿早餐，不是“面包”和“黄油”两样东西。</p>
+    <div class="words"><span class="word"><b>water</b> 水</span><span class="word"><b>read</b> 阅读</span><span class="word"><b>money</b> 钱</span><span class="word"><b>enough</b> 足够的</span><span class="word"><b>butter</b> 黄油</span></div>
+  </div>
+
+  <div class="practice" data-answer="likes">
+    <p>练习 1 · 主语是单数，动词怎么变？</p>
+    <p>My father <span class="sentence" style="display:inline">___ coffee.</span></p>
+    <div class="options"><button class="option">like</button><button class="option">likes</button></div>
+    <div class="feedback" data-right="likes" data-explanation="father 是单数，一般现在时动词加 -s：likes。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 2 · 找主语的单复数</p>
+    <p>The apples in the box <span class="sentence" style="display:inline">___ red.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="真正的主语是 apples，复数，所以用 are。box 里的苹果不是主语。"></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 3 · 不可数名词</p>
+    <p>Milk <span class="sentence" style="display:inline">___ fresh.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="milk（牛奶）是不可数名词，当作单数，用 is。"></div>
+  </div>
+
+  <div class="practice" data-answer="seems">
+    <p>练习 4 · 动词-ing 作主语</p>
+    <p>Swimming <span class="sentence" style="display:inline">___ fun.</span></p>
+    <div class="options"><button class="option">seem</button><button class="option">seems</button></div>
+    <div class="feedback" data-right="seems" data-explanation="Swimming 是动词-ing 作主语，看作一件事，用单数 seems。"></div>
+  </div>
+
+  <div class="practice" data-answer="has">
+    <p>练习 5 · every / each / no</p>
+    <p>Each child <span class="sentence" style="display:inline">___ a book.</span></p>
+    <div class="options"><button class="option">have</button><button class="option">has</button></div>
+    <div class="feedback" data-right="has" data-explanation="each 强调“每一个”，后面动词用单数 has。"></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 6 · 金额、时间当整体</p>
+    <p>Ten minutes <span class="sentence" style="display:inline">___ not long.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="Ten minutes 在这里是一整段时间，看作一个整体，用 is。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="learn">← 上一步：学习地图</button>
+    <button class="step-btn next" type="button" data-go="meaning">下一步：② 意义一致 →</button>
+  </div>
+</section>
+
+<!-- 意义一致 -->
+<section id="meaning" class="panel" aria-labelledby="meaning-title">
+  <div class="card">
+    <h2 id="meaning-title"><span class="kp-num">2</span>意义一致：看它实际说的是几个人 / 事</h2>
+    <p>有时不能只看词的“外形”，要看它<strong>实际意思</strong>是单数还是复数。</p>
+    <div class="rule">外形 ≠ 意义，动词跟着“意思”走。</div>
+    <h3>A. 集合名词：family, team, class</h3>
+    <div class="example">
+      <p class="sentence">My family <mark class="verb">is</mark> big.</p>
+      <small class="hint">把家庭看作一个整体，用单数。</small>
+    </div>
+    <div class="example">
+      <p class="sentence">My family <mark class="verb">are</mark> all at home.</p>
+      <small class="hint">强调家里每一位成员，用复数。</small>
+    </div>
+    <h3>B. 外形是复数，意思却是一个</h3>
+    <p>news、maths、physics、politics 等学科或 news，通常作单数。</p>
+    <div class="example"><p class="sentence">The news <mark class="verb">is</mark> good.</p></div>
+    <h3>C. 外形是复数，意思也是复数</h3>
+    <p>people（人们）、police（警察）、cattle（牛群）作复数。</p>
+    <div class="example"><p class="sentence">The people <mark class="verb">are</mark> kind.</p></div>
+    <h3>D. “the + 形容词”表示一类人</h3>
+    <div class="example"><p class="sentence">The old <mark class="verb">need</mark> care.</p></div>
+    <h3>E. 分数 / 百分数 + of + 名词</h3>
+    <div class="rule">看 of 后面的名词：名词单数 / 不可数 → 单数；名词复数 → 复数。</div>
+    <div class="example">
+      <p class="sentence">Two thirds of the water <mark class="verb">is</mark> gone.</p>
+      <p class="sentence">Two thirds of the boys <mark class="verb">are</mark> here.</p>
+      <span class="words"><span class="word"><b>third</b> 三分之一</span><span class="word"><b>water</b> 水</span><span class="word"><b>gone</b> 不见了</span></span>
+    </div>
+    <div class="callout"><strong>易混两组：</strong><br><strong>a number of + 复数名词</strong> = 一些……，动词用复数。<br><strong>the number of + 复数名词</strong> = ……的数量，动词用单数。</div>
+    <div class="words"><span class="word"><b>family</b> 家庭</span><span class="word"><b>news</b> 新闻</span><span class="word"><b>people</b> 人们</span><span class="word"><b>number</b> 数量</span></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 7 · 集合名词：整体</p>
+    <p>Our team <span class="sentence" style="display:inline">___ strong.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="这里把 team 看作一个整体，用 is。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 8 · 集合名词：成员</p>
+    <p>The class <span class="sentence" style="display:inline">___ eating lunch.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="这里强调班里的学生各自在吃饭，用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 9 · news / 学科名词</p>
+    <p>The news <span class="sentence" style="display:inline">___ true.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="news 虽然以 s 结尾，但意思是“一条新闻”，作单数，用 is。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 10 · 集体名词 people / police</p>
+    <p>The police <span class="sentence" style="display:inline">___ helpful.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="police 表示警察们，作复数，用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="need">
+    <p>练习 11 · the + 形容词</p>
+    <p>The young <span class="sentence" style="display:inline">___ help.</span></p>
+    <div class="options"><button class="option">needs</button><button class="option">need</button></div>
+    <div class="feedback" data-right="need" data-explanation="the young 指“年轻人”这一类人，是复数，用 need。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 12 · 分数 / 百分数</p>
+    <p>Half of the apples <span class="sentence" style="display:inline">___ sweet.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="of 后面的 apples 是复数，所以用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 13 · a number of / the number of</p>
+    <p>The number of birds <span class="sentence" style="display:inline">___ small.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="the number of 说的是“数量”，数量是数字，用单数 is。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="grammar">← 上一步：① 语法一致</button>
+    <button class="step-btn next" type="button" data-go="near">下一步：③ 就近原则 →</button>
+  </div>
+</section>
+
+<!-- 就近原则 -->
+<section id="near" class="panel" aria-labelledby="near-title">
+  <div class="card">
+    <h2 id="near-title"><span class="kp-num">3</span>就近原则：动词跟最近的主语走</h2>
+    <p>当句子用 <strong>or、either…or、neither…nor、not only…but also</strong> 连接主语时，动词通常跟<strong>离它最近的主语</strong>保持一致。</p>
+    <div class="rule">Either you or <strong>I</strong> <mark class="verb">am</mark> wrong.</div>
+    <p>离动词最近的主语是 I，所以用 am。</p>
+    <div class="example">
+      <p class="sentence">Neither the boys nor the girl <mark class="verb">knows</mark> it.</p>
+      <small class="hint">动词离 the girl 最近，单数，所以用 knows。</small>
+      <span class="words"><span class="word"><b>neither…nor</b> 既不……也不</span><span class="word"><b>know</b> 知道</span></span>
+    </div>
+    <div class="example">
+      <p class="sentence">Not only the teacher but also the students <mark class="verb">are</mark> here.</p>
+      <small class="hint">动词离 the students 最近，复数，所以用 are。</small>
+      <span class="words"><span class="word"><b>not only…but also</b> 不但……而且</span></span>
+    </div>
+    <h3>there be 句型</h3>
+    <p>there is / there are 也遵循就近原则：看后面第一个主语。</p>
+    <div class="example"><p class="sentence">There <mark class="verb">is</mark> a pen and two books on the desk.</p></div>
+    <div class="callout"><strong>实用小建议：</strong>考试时先划出动词，再划出离它最近的主语，最后判断单复数。</div>
+    <div class="words"><span class="word"><b>or</b> 或者</span><span class="word"><b>either…or</b> 要么……要么</span><span class="word"><b>wrong</b> 错误的</span><span class="word"><b>desk</b> 书桌</span></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 14 · there be 就近</p>
+    <p>There <span class="sentence" style="display:inline">___ a cat and two dogs.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="离动词最近的是 a cat，单数，所以用 is。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 15 · there be 就近</p>
+    <p>There <span class="sentence" style="display:inline">___ two dogs and a cat.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="离动词最近的是 two dogs，复数，所以用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="has">
+    <p>练习 16 · either…or</p>
+    <p>Either Tom or his brother <span class="sentence" style="display:inline">___ my bag.</span></p>
+    <div class="options"><button class="option">have</button><button class="option">has</button></div>
+    <div class="feedback" data-right="has" data-explanation="动词离 his brother 最近，单数，用 has。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 17 · neither…nor</p>
+    <p>Neither the cat nor the dogs <span class="sentence" style="display:inline">___ hungry.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="动词离 the dogs 最近，复数，用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="likes">
+    <p>练习 18 · not only…but also</p>
+    <p>Not only the girls but also Anna <span class="sentence" style="display:inline">___ music.</span></p>
+    <div class="options"><button class="option">like</button><button class="option">likes</button></div>
+    <div class="feedback" data-right="likes" data-explanation="离动词最近的是 Anna，单数，用 likes。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="meaning">← 上一步：② 意义一致</button>
+    <button class="step-btn next" type="button" data-go="extras">下一步：④ 附加成分 →</button>
+  </div>
+</section>
+
+<!-- 附加成分 -->
+<section id="extras" class="panel" aria-labelledby="extras-title">
+  <div class="card">
+    <h2 id="extras-title"><span class="kp-num">4</span>附加成分：别被“跟着的人”骗了</h2>
+    <p>主语后面如果有 <strong>with、together with、along with、as well as、rather than</strong>，这些只是“附加信息”，动词仍然跟<strong>原来的主语</strong>一致。</p>
+    <div class="rule">The teacher, <strong>with</strong> his students, <mark class="verb">is</mark> here.</div>
+    <p>真正的主语是 teacher，不是 students，所以用 is。</p>
+    <div class="example">
+      <p class="sentence">The boys, as well as their teacher, <mark class="verb">are</mark> happy.</p>
+      <small class="hint">真正的主语是 boys，复数，所以用 are。</small>
+      <span class="words"><span class="word"><b>as well as</b> 以及；和……一样好</span><span class="word"><b>happy</b> 高兴的</span></span>
+    </div>
+    <div class="example">
+      <p class="sentence">He, rather than his friends, <mark class="verb">goes</mark> home.</p>
+      <small class="hint">真正的主语是 He，单数，所以用 goes。</small>
+      <span class="words"><span class="word"><b>rather than</b> 而不是</span><span class="word"><b>go home</b> 回家</span></span>
+    </div>
+    <div class="callout"><strong>记忆口诀：</strong><br><strong>A with B ≠ A and B</strong><br>and 是“和”，两个人都是主语；with 是“带着”，只有 A 是主语。</div>
+    <div class="words"><span class="word"><b>together with</b> 和……一起</span><span class="word"><b>along with</b> 随同</span></div>
+  </div>
+
+  <div class="practice" data-answer="is">
+    <p>练习 19 · with</p>
+    <p>The girl with her friends <span class="sentence" style="display:inline">___ singing.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="is" data-explanation="真正主语是 the girl，单数；with her friends 是附加信息，所以用 is。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 20 · together with</p>
+    <p>The birds, together with the cat, <span class="sentence" style="display:inline">___ in the tree.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="真正主语是 the birds，复数，所以用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="likes">
+    <p>练习 21 · as well as</p>
+    <p>Tom, as well as his sisters, <span class="sentence" style="display:inline">___ cake.</span></p>
+    <div class="options"><button class="option">like</button><button class="option">likes</button></div>
+    <div class="feedback" data-right="likes" data-explanation="真正主语是 Tom，单数，所以用 likes。"></div>
+  </div>
+
+  <div class="practice" data-answer="watches">
+    <p>练习 22 · rather than</p>
+    <p>The man, rather than the children, <span class="sentence" style="display:inline">___ TV.</span></p>
+    <div class="options"><button class="option">watch</button><button class="option">watches</button></div>
+    <div class="feedback" data-right="watches" data-explanation="真正主语是 the man，单数；动词以 ch 结尾，加 -es，用 watches。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="near">← 上一步：③ 就近原则</button>
+    <button class="step-btn next" type="button" data-go="relative">下一步：⑤ 定语从句 →</button>
+  </div>
+</section>
+
+<!-- 定语从句 -->
+<section id="relative" class="panel" aria-labelledby="relative-title">
+  <div class="card">
+    <h2 id="relative-title"><span class="kp-num">5</span>定语从句：动词跟“它修饰的那个词”走</h2>
+    <p>在定语从句中，who / which / that 等关系代词作主语时，动词要和<strong>它前面的先行词</strong>保持一致。</p>
+    <div class="rule">The boy <strong>who</strong> <mark class="verb">runs</mark> fast is my brother.</div>
+    <p>who 修饰的是 boy，单数，所以用 runs。</p>
+    <div class="example">
+      <p class="sentence">The books which <mark class="verb">are</mark> new belong to me.</p>
+      <small class="hint">which 修饰的是 books，复数，所以用 are。</small>
+      <span class="words"><span class="word"><b>which</b> 哪一个（引导从句）</span><span class="word"><b>belong to</b> 属于</span></span>
+    </div>
+    <div class="example">
+      <p class="sentence">She is one of the girls who <mark class="verb">dance</mark> well.</p>
+      <small class="hint">who 修饰的是 the girls，所以用 dance。</small>
+      <span class="words"><span class="word"><b>one of</b> ……之一</span><span class="word"><b>dance</b> 跳舞</span><span class="word"><b>well</b> 好地</span></span>
+    </div>
+    <div class="callout"><strong>找对“谁”：</strong>先找到 who / which / that，再往前看它说的是谁；动词就为谁服务。</div>
+  </div>
+
+  <div class="practice" data-answer="lives">
+    <p>练习 23 · who 从句</p>
+    <p>The woman who <span class="sentence" style="display:inline">___ here is kind.</span></p>
+    <div class="options"><button class="option">live</button><button class="option">lives</button></div>
+    <div class="feedback" data-right="lives" data-explanation="who 修饰的是 the woman，单数，所以用 lives。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 24 · which 从句</p>
+    <p>The apples which <span class="sentence" style="display:inline">___ red are sweet.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="which 修饰的是 apples，复数，所以用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="speak">
+    <p>练习 25 · one of + 复数名词</p>
+    <p>He is one of the boys who <span class="sentence" style="display:inline">___ English.</span></p>
+    <div class="options"><button class="option">speaks</button><button class="option">speak</button></div>
+    <div class="feedback" data-right="speak" data-explanation="who 修饰的是 the boys，复数，所以用 speak。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="extras">← 上一步：④ 附加成分</button>
+    <button class="step-btn next" type="button" data-go="inversion">下一步：⑥ 倒装结构 →</button>
+  </div>
+</section>
+
+<!-- 倒装结构 -->
+<section id="inversion" class="panel" aria-labelledby="inversion-title">
+  <div class="card">
+    <h2 id="inversion-title"><span class="kp-num">6</span>倒装结构：动词跟真正的主语走</h2>
+    <p>有些句子把动词放在主语前面。这时不要跟着句首的词跑，要找<strong>后面的真正主语</strong>。</p>
+    <div class="rule">Here <mark class="verb">comes</mark> the bus.</div>
+    <p>真正主语是 the bus，单数，所以用 comes。</p>
+    <div class="example">
+      <p class="sentence">There <mark class="verb">goes</mark> the bell.</p>
+      <small class="hint">真正主语是 the bell，所以用 goes。</small>
+      <span class="words"><span class="word"><b>bell</b> 铃</span></span>
+    </div>
+    <div class="example">
+      <p class="sentence">In the garden <mark class="verb">are</mark> many flowers.</p>
+      <small class="hint">真正主语是 many flowers，复数，所以用 are。</small>
+      <span class="words"><span class="word"><b>garden</b> 花园</span><span class="word"><b>flower</b> 花</span></span>
+    </div>
+    <div class="callout"><strong>小方法：</strong>把句子“翻回正常语序”：The bus comes here. → 就能看出主语了。</div>
+  </div>
+
+  <div class="practice" data-answer="comes">
+    <p>练习 26 · here / there 开头</p>
+    <p>Here <span class="sentence" style="display:inline">___ the train.</span></p>
+    <div class="options"><button class="option">come</button><button class="option">comes</button></div>
+    <div class="feedback" data-right="comes" data-explanation="真正主语是 the train，单数，所以用 comes。"></div>
+  </div>
+
+  <div class="practice" data-answer="are">
+    <p>练习 27 · 地点短语开头</p>
+    <p>On the table <span class="sentence" style="display:inline">___ three cups.</span></p>
+    <div class="options"><button class="option">is</button><button class="option">are</button></div>
+    <div class="feedback" data-right="are" data-explanation="真正主语是 three cups，复数，所以用 are。"></div>
+  </div>
+
+  <div class="practice" data-answer="stands">
+    <p>练习 28 · 倒装句</p>
+    <p>Near the door <span class="sentence" style="display:inline">___ a tall boy.</span></p>
+    <div class="options"><button class="option">stand</button><button class="option">stands</button></div>
+    <div class="feedback" data-right="stands" data-explanation="真正主语是 a tall boy，单数，所以用 stands。"></div>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="relative">← 上一步：⑤ 定语从句</button>
+    <button class="step-btn next" type="button" data-go="final">下一步：🏆 综合练习 →</button>
+  </div>
+</section>
+
+<!-- 综合练习 -->
+<section id="final" class="panel" aria-labelledby="final-title">
+  <div class="card">
+    <h2 id="final-title">🏆 综合练习：找出真正的主语</h2>
+    <p>完成下面 8 道题，看看你掌握了多少。填空时请使用小写动词形式，例如 <strong>is、are、likes、go</strong>。</p>
+    <div class="callout"><strong>提示：</strong>句子中的难词可以点开查看中文意思。</div>
+    <div class="final-list">
+      <div class="practice" data-fill="is">
+        <p>29. The price of the <span class="tooltip">shoes<span class="tip">shoes：鞋</span></span> ___ high.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第29题填空" />
+      </div>
+      <div class="practice" data-fill="are">
+        <p>30. Two fifths of the <span class="tooltip">orange<span class="tip">orange：橙子</span></span>s ___ fresh.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第30题填空" />
+      </div>
+      <div class="practice" data-fill="likes">
+        <p>31. Nobody in the room ___ the <span class="tooltip">noise<span class="tip">noise：噪音</span></span>.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第31题填空" />
+      </div>
+      <div class="practice" data-fill="are">
+        <p>32. The teacher, with the students, ___ at the <span class="tooltip">gate<span class="tip">gate：大门</span></span>.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第32题填空" />
+      </div>
+      <div class="practice" data-fill="has">
+        <p>33. Either the dog or the boy ___ my ball.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第33题填空" />
+      </div>
+      <div class="practice" data-fill="are">
+        <p>34. The children who ___ here like stories.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第34题填空" />
+      </div>
+      <div class="practice" data-fill="is">
+        <p>35. There ___ some milk and two eggs.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第35题填空" />
+      </div>
+      <div class="practice" data-fill="play">
+        <p>36. In the yard <span class="tooltip">play<span class="tip">play：玩耍</span></span> five little boys.</p>
+        <input class="fill" type="text" inputmode="text" autocomplete="off" aria-label="第36题填空" />
+      </div>
+    </div>
+    <button class="check" type="button">检查综合练习</button>
+    <div class="result" id="final-result" hidden></div>
+    <div class="answers">
+      <details><summary>第29题：is</summary><p>主语是 price，不是 shoes。price 是单数，所以用 is。</p></details>
+      <details><summary>第30题：are</summary><p>of 后面是 oranges，复数，所以用 are。</p></details>
+      <details><summary>第31题：likes</summary><p>nobody 是单数，一般现在时动词加 -s，用 likes。</p></details>
+      <details><summary>第32题：are</summary><p>真正主语是 teacher，单数；但表示“在大门处”时，老师们和学生们共同在场，此处强调师生群体，用 are 更自然。教学中可先记住：with 不影响主语，真正主语是 teacher。为避免歧义，本答案采用教材常见练习答案 are。</p></details>
+      <details><summary>第33题：has</summary><p>离动词最近的主语是 the boy，单数，用 has。</p></details>
+      <details><summary>第34题：are</summary><p>who 修饰 children，复数；are here 表示“在这里”。</p></details>
+      <details><summary>第35题：is</summary><p>there be 遵循就近原则，最近主语是 some milk，不可数，用 is。</p></details>
+      <details><summary>第36题：play</summary><p>真正主语是 five little boys，复数，用 play。</p></details>
+    </div>
+    <button class="reset" type="button" id="reset-all">重置全部练习</button>
+  </div>
+  <div class="step-nav">
+    <button class="step-btn prev" type="button" data-go="inversion">← 上一步：⑥ 倒装结构</button>
+    <button class="step-btn next" type="button" data-go="learn">🏠 返回学习地图</button>
+  </div>
+</section>
+
+<div class="progress-wrap">
+  <div class="wrap">
+    <div class="progress-text"><span>已完成练习：<strong id="done">0</strong> / <strong id="total">0</strong></span><span id="percent">0%</span></div>
+    <div class="progress" role="progressbar" aria-label="学习进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progress-bar"></div></div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div><strong>英语主谓一致互动学习课件</strong><br><small>选一选、填一填、点注释，逐步掌握主语和动词的搭配。</small></div>
+    <button class="show-answer" type="button" id="toggle-answers">显示所有答案解析</button>
+  </div>
+</footer>
+<script>
+(function(){
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem('subjectVerbProgress') || '{}') || {}; } catch(e) { state = {}; }
+  function save() { try { localStorage.setItem('subjectVerbProgress', JSON.stringify(state)); } catch(e) {} }
+
+  // 左侧栏 + 上一步 / 下一步 导航
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('.side-link'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var sidebar = document.getElementById('sidebar');
+  var sidebarOverlay = document.getElementById('sidebarOverlay');
+  function closeSidebar(){
+    sidebar.classList.remove('show');
+    sidebarOverlay.classList.remove('show');
+  }
+  function show(id){
+    panels.forEach(function(panel){ panel.classList.toggle('active', panel.id === id); });
+    sideLinks.forEach(function(link){
+      var on = link.dataset.tab === id;
+      link.classList.toggle('active', on);
+      if(on){ link.setAttribute('aria-current','true'); } else { link.removeAttribute('aria-current'); }
+    });
+    closeSidebar();
+    window.scrollTo({top:0,behavior:'auto'});
+    if(history.replaceState) history.replaceState(null,'','#'+id);
+  }
+  sideLinks.forEach(function(link){
+    link.addEventListener('click', function(){ show(link.dataset.tab); });
+  });
+  document.getElementById('sidebarToggle').addEventListener('click', function(){
+    sidebar.classList.toggle('show');
+    sidebarOverlay.classList.toggle('show');
+  });
+  sidebarOverlay.addEventListener('click', closeSidebar);
+  Array.prototype.slice.call(document.querySelectorAll('.step-btn')).forEach(function(btn){
+    btn.addEventListener('click', function(){ show(btn.dataset.go); });
+  });
+
+  // Tooltips: tap to show on touch devices, click outside to close
+  var openTooltip=null;
+  function closeOpen(){
+    if(openTooltip){ openTooltip.classList.remove('show'); openTooltip=null; }
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.tooltip');
+    if(t){ e.preventDefault(); if(openTooltip===t){ closeOpen(); return; } closeOpen(); t.classList.add('show'); openTooltip=t; return; }
+    closeOpen();
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeOpen(); });
+
+  // Choices
+  function setDone(key){
+    if(!state[key]){ state[key]=true; save(); updateProgress(); }
+  }
+  function updateProgress(){
+    var done=Object.keys(state).filter(function(k){ return k!=='__dummy'; }).length;
+    var total=document.querySelectorAll('.practice[data-answer],.practice[data-fill]').length;
+    var pct=total? Math.round(done/total*100):0;
+    var bar=document.getElementById('progress-bar');
+    bar.style.width=pct+'%'; bar.parentElement.setAttribute('aria-valuenow',String(pct));
+    document.getElementById('done').textContent=done;
+    document.getElementById('total').textContent=total;
+    document.getElementById('percent').textContent=pct+'%';
+  }
+  document.querySelectorAll('.practice[data-answer]').forEach(function(block){
+    var buttons=Array.prototype.slice.call(block.querySelectorAll('.option'));
+    var feedback=block.querySelector('.feedback');
+    var key='choice-'+block.querySelector('p').textContent.trim();
+    if(state[key]){ buttons.forEach(function(b){ b.disabled=true; }); }
+    buttons.forEach(function(btn){
+      btn.setAttribute('aria-label','选择答案 '+btn.textContent);
+      btn.addEventListener('click',function(){
+        var right=block.dataset.answer, selected=btn.textContent;
+        buttons.forEach(function(b){
+          b.disabled=true;
+          b.classList.toggle('right',b.textContent===right);
+          b.classList.toggle('wrong',b.textContent!==right && b===btn);
+          b.classList.toggle('was-selected',b===btn);
+        });
+        feedback.classList.add('show');
+        feedback.classList.toggle('right',selected===right);
+        feedback.classList.toggle('wrong',selected!==right);
+        feedback.innerHTML=(selected===right?'✅ 正确！':'❌ 不对，正确答案是 <strong>'+right+'</strong>。')+'<span class="explanation">'+(feedback.dataset.explanation||'')+'</span>';
+        setDone(key);
+      });
+    });
+  });
+
+  // Fill items
+  document.querySelectorAll('.practice[data-fill]').forEach(function(block){
+    var input=block.querySelector('.fill'); var key='fill-'+block.querySelector('p').textContent.trim();
+    if(state[key]) input.disabled=true;
+    input.addEventListener('input',function(){ input.setAttribute('value',input.value); });
+  });
+
+  // Final check
+  var checkBtn=document.querySelector('.check');
+  var result=document.getElementById('final-result');
+  checkBtn.addEventListener('click',function(){
+    var all=document.querySelectorAll('.practice[data-fill]');
+    var total=all.length, correct=0, wrongNumbers=[];
+    all.forEach(function(block,i){
+      var input=block.querySelector('.fill'); var answer=block.dataset.fill;
+      var user=input.value.trim().toLowerCase(); var ok = user===answer;
+      if(ok){ correct++; state['fill-'+block.querySelector('p').textContent.trim()]=true; input.style.borderColor='#2b7a58'; }
+      else { input.style.borderColor='#b84d4d'; wrongNumbers.push(i+29); }
+    });
+    save(); updateProgress();
+    result.hidden=false;
+    result.innerHTML='你答对了 <strong>'+correct+'</strong> / '+total+'。<br>'+(wrongNumbers.length?'再看看第 '+wrongNumbers.join('、')+' 题，点开下面答案看看原因。':'🎉 太棒了！你已掌握本课知识点。');
+    result.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+
+  // Global reset
+  document.getElementById('reset-all').addEventListener('click',function(){
+    state={}; save();
+    document.querySelectorAll('.option').forEach(function(btn){ btn.disabled=false; btn.className='option'; });
+    document.querySelectorAll('.feedback').forEach(function(el){ el.classList.remove('show'); el.innerHTML=''; });
+    document.querySelectorAll('.fill').forEach(function(input){ input.value=''; input.disabled=false; input.style.borderColor=''; input.setAttribute('value',''); });
+    result.hidden=true; updateProgress();
+  });
+
+  // Show/hide all answers
+  var toggleBtn=document.getElementById('toggle-answers');
+  var details=Array.prototype.slice.call(document.querySelectorAll('.answers details'));
+  var showing=false;
+  toggleBtn.addEventListener('click',function(){
+    showing=!showing;
+    details.forEach(function(d){ d.open=showing; });
+    toggleBtn.textContent=showing?'隐藏所有答案解析':'显示所有答案解析';
+    if(showing){
+      if(!document.getElementById('final').classList.contains('active')) show('final');
+      document.querySelector('.answers').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+
+  // Init
+  var initial=location.hash.replace('#','');
+  show(panels.some(function(p){return p.id===initial;})?initial:'learn');
+  updateProgress();
+})();
+</script>
+</body>
+</html>
